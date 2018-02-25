@@ -20,13 +20,13 @@
 
   <name>escalade</name>
   <url>http://maven.apache.org</url>
-    <description>
-        Site communautaire autour de l'escalade !
-    </description>
+  <description>
+      Site communautaire autour de l'escalade !
+  </description>
 
-    <organization>
-        <name>Mickaël Parlow</name>
-    </organization>
+  <organization>
+      <name>Mickaël Parlow</name>
+  </organization>
 
   <!-- =============================================================== -->
   <!-- DistributionManagement -->
@@ -118,6 +118,11 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
         </dependency>
 
     </dependencies>

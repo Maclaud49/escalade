@@ -16,6 +16,7 @@
           <element id="archive" name="escalade-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="escalade_model" />
           </element>
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.9" />
         </element>
       </element>
       <element id="directory" name="META-INF">
