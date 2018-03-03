@@ -6,9 +6,24 @@ public class Region {
     private Integer id;
     private String region;
 
-    // ==================== Constructeurs ================
-
     // ==================== Getters/Setters ==============
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
 
     // ==================== Méthodes =====================
 }

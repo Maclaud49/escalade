@@ -6,9 +6,23 @@ public class PeriodeFav {
     private Integer id;
     private String periode;
 
-    // ==================== Constructeurs ================
 
     // ==================== Getters/Setters ==============
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPeriode() {
+        return periode;
+    }
+
+    public void setPeriode(String periode) {
+        this.periode = periode;
+    }
 
     // ==================== Méthodes =====================
 }

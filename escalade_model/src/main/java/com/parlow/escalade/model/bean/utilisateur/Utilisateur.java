@@ -18,9 +18,71 @@ public class Utilisateur {
     private Image profiImage;
     private String email;
 
-    // ==================== Constructeurs ================
-
     // ==================== Getters/Setters ==============
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public Cotation getCotation() {
+        return cotation;
+    }
+
+    public void setCotation(Cotation cotation) {
+        this.cotation = cotation;
+    }
+
+    public DateTime getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(DateTime dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public List<Topo> getTopos() {
+        return topos;
+    }
+
+    public void setTopos(List<Topo> topos) {
+        this.topos = topos;
+    }
+
+    public Image getProfiImage() {
+        return profiImage;
+    }
+
+    public void setProfiImage(Image profiImage) {
+        this.profiImage = profiImage;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
     // ==================== Méthodes =====================
 }

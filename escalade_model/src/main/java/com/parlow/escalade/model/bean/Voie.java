@@ -19,10 +19,5 @@ public class Voie {
     private Integer interet;
 
 
-
-    // ==================== Constructeurs ================
-
-    // ==================== Getters/Setters ==============
-
     // ==================== Méthodes =====================
 }

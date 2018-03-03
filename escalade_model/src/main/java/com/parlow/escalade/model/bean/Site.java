@@ -23,11 +23,122 @@ public class Site {
     private String niveauPratique;
     private List<Image> images;
 
+    // ==================== Constructeurs ==============
+
+    /**
+     * Constructeur par défaut.
+     */
+    public Site() {
+    }
 
 
-    // ==================== Constructeurs ================
+    /**
+     * Constructeur.
+     *
+     * @param pid-
+     */
+    public Site(int pid) {
+        id = pid;
+    }
 
     // ==================== Getters/Setters ==============
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
+    }
+
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
+    }
+
+    public List<Region> getRegion() {
+        return region;
+    }
+
+    public void setRegion(List<Region> region) {
+        this.region = region;
+    }
+
+    public List<PeriodeFav> getPeriodeFav() {
+        return periodeFav;
+    }
+
+    public void setPeriodeFav(List<PeriodeFav> periodeFav) {
+        this.periodeFav = periodeFav;
+    }
+
+    public List<TypeRocher> getTypeRocher() {
+        return typeRocher;
+    }
+
+    public void setTypeRocher(List<TypeRocher> typeRocher) {
+        this.typeRocher = typeRocher;
+    }
+
+    public Integer getNbSecteurs() {
+        return nbSecteurs;
+    }
+
+    public void setNbSecteurs(Integer nbSecteurs) {
+        this.nbSecteurs = nbSecteurs;
+    }
+
+    public Integer getNbVoies() {
+        return nbVoies;
+    }
+
+    public void setNbVoies(Integer nbVoies) {
+        this.nbVoies = nbVoies;
+    }
+
+    public DateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(DateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public String getNiveauPratique() {
+        return niveauPratique;
+    }
+
+    public void setNiveauPratique(String niveauPratique) {
+        this.niveauPratique = niveauPratique;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+
 
     // ==================== Méthodes =====================
 }
