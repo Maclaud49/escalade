@@ -1,13 +1,18 @@
-package com.parlow.escalade.business.manager;
+package com.parlow.escalade.business.manager.impl;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parlow.escalade.business.manager.contract.SecteurManager;
+import com.parlow.escalade.consummer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 
 /**
@@ -15,7 +20,11 @@ import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
  *
  * @author Parlow
  */
+@Named
 public class SecteurManagerImpl implements SecteurManager {
+
+    @Inject
+    private DaoFactory daoFactory;
 
     /**
      * Cherche et renvoie le {@link Secteur} numéro {@code id}

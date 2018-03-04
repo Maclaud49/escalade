@@ -1,4 +1,4 @@
-package com.parlow.escalade.business.manager;
+package com.parlow.escalade.business.manager.contract;
 
 public interface ManagerFactory {
     // On renvoie désormais simplement l'attribut siteManager

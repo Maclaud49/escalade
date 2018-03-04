@@ -1,11 +1,16 @@
-package com.parlow.escalade.business.manager;
+package com.parlow.escalade.business.manager.impl;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parlow.escalade.business.manager.contract.SiteManager;
+import com.parlow.escalade.consummer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.NotFoundException;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 
 /**
@@ -13,7 +18,11 @@ import com.parlow.escalade.model.exception.NotFoundException;
  *
  * @author lgu
  */
-public class SiteManagerImpl implements SiteManager{
+@Named
+public class SiteManagerImpl implements SiteManager {
+
+    @Inject
+    private DaoFactory daoFactory;
 
     /**
      * Renvoie le site demandé

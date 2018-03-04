@@ -1,6 +1,10 @@
 package com.parlow.escalade.webapp.rest.resource;
 
-import com.parlow.escalade.business.manager.*;
+import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.business.manager.contract.SecteurManager;
+import com.parlow.escalade.business.manager.contract.SiteManager;
+import com.parlow.escalade.business.manager.impl.SecteurManagerImpl;
+import com.parlow.escalade.business.manager.impl.SiteManagerImpl;
 
 public abstract class AbstractResource {
 

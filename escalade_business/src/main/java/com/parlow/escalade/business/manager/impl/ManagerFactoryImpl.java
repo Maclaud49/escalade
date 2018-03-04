@@ -1,31 +1,25 @@
-package com.parlow.escalade.business.manager;
+package com.parlow.escalade.business.manager.impl;
 
+import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.business.manager.contract.SecteurManager;
+import com.parlow.escalade.business.manager.contract.SiteManager;
+
+import javax.inject.Named;
+import javax.inject.Inject;
+
+@Named
 public final class ManagerFactoryImpl implements ManagerFactory {
 
-    /** Instance unique de la classe (design pattern Singleton) */
-    public static final ManagerFactoryImpl INSTANCE = new ManagerFactoryImpl();
 
     private SiteManager siteManager;
     private SecteurManager secteurManager;
 
-
-
-    /**
-     * Constructeur.
-     */
-    public ManagerFactoryImpl() {
-        super();
+    @Inject
+    public  ManagerFactoryImpl(SiteManager pSiteManager,
+                               SecteurManager pSecteurManager) {
+        this.siteManager = pSiteManager;
+        this.secteurManager = pSecteurManager;
     }
-
-    /**
-     * Renvoie l'instance unique de la classe (design pattern Singleton).
-     *
-     * @return {@link ManagerFactoryImpl}
-     */
-    public static ManagerFactoryImpl getInstance() {
-        return ManagerFactoryImpl.INSTANCE;
-    }
-
 
     // On renvoie désormais simplement l'attribut siteManager
     @Override

@@ -1,4 +1,4 @@
-package com.parlow.escalade.business.manager;
+package com.parlow.escalade.business.manager.contract;
 
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.exception.NotFoundException;

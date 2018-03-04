@@ -4,8 +4,10 @@ import com.parlow.escalade.consummer.dao.contract.SiteDao;
 import com.parlow.escalade.consummer.dao.util.DAOException;
 import com.parlow.escalade.model.bean.Site;
 
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class SiteDaoImpl implements SiteDao {
     @Override
     public void creer(Site site) throws DAOException {
