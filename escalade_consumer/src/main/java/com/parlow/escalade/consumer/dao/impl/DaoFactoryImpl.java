@@ -1,8 +1,8 @@
-package com.parlow.escalade.consummer.dao.impl;
+package com.parlow.escalade.consumer.dao.impl;
 
-import com.parlow.escalade.consummer.dao.contract.DaoFactory;
-import com.parlow.escalade.consummer.dao.contract.SecteurDao;
-import com.parlow.escalade.consummer.dao.contract.SiteDao;
+import com.parlow.escalade.consumer.dao.contract.DaoFactory;
+import com.parlow.escalade.consumer.dao.contract.SecteurDao;
+import com.parlow.escalade.consumer.dao.contract.SiteDao;
 
 import javax.inject.Named;
 import javax.inject.Inject;

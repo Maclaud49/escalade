@@ -47,7 +47,7 @@ public class RechercheSecteur {
      * @param pSiteId -
      * @return {@code this}
      */
-    public RechercheSecteur setProjetId(Integer pSiteId) {
+    public RechercheSecteur setSiteId(Integer pSiteId) {
         siteId = pSiteId;
         return this;
     }

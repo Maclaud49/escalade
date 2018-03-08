@@ -15,10 +15,7 @@ public class DependencyInjectionListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent pServletContextEvent) {
         // Création de l'instance de ManagerFactory
-        ManagerFactory vManagerFactory = new ManagerFactoryImpl();
-        // On ajoute l'injection des Managers dans la ManagerFactory
-        vManagerFactory.setSiteManager(new SiteManagerImpl());
-        vManagerFactory.setSecteurManager(new SecteurManagerImpl());
+        ManagerFactory vManagerFactory = new ManagerFactoryImpl(new SiteManagerImpl(),new SecteurManagerImpl());
 
         // Injection de l'instance de ManagerFactory dans la classe AbstractResource
         AbstractResource.setManagerFactory(vManagerFactory);

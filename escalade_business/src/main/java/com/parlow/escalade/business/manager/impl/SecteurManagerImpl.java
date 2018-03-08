@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.parlow.escalade.business.manager.contract.SecteurManager;
-import com.parlow.escalade.consummer.dao.contract.DaoFactory;
+import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.exception.NotFoundException;

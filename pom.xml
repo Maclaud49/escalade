@@ -41,6 +41,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>4.3.11.RELEASE</spring.version>
+    <struts.version>2.5.14.1</struts.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <!-- =============================================================== -->
@@ -147,7 +150,6 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-
         <!-- JSR-250 -->
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -160,6 +162,22 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        <!-- Drivers JDBC PostgreSQL -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Framework Apache Struts -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-bom</artifactId>
+            <version>${struts.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
 
 
     </dependencies>
@@ -187,6 +205,7 @@
                     <configuration>
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
+                        <compilerVersion>1.8</compilerVersion>
                     </configuration>
                 </plugin>
 

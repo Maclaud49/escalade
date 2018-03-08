@@ -1,4 +1,4 @@
-package com.parlow.escalade.consummer.dao.util;
+package com.parlow.escalade.consumer.dao.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

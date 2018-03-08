@@ -1,4 +1,4 @@
-package com.parlow.escalade.consummer.dao.contract;
+package com.parlow.escalade.consumer.dao.contract;
 
 public interface DaoFactory {
 

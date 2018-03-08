@@ -14,13 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="escalade" target="1.5" />
-      <module name="escalade_batch" target="1.5" />
-      <module name="escalade_business" target="1.5" />
-      <module name="escalade_consumer" target="1.5" />
-      <module name="escalade_model" target="1.5" />
-      <module name="escalade_technical" target="1.5" />
-      <module name="escalade_webapp" target="1.5" />
+      <module name="escalade" target="1.8" />
+      <module name="escalade_business" target="1.8" />
+      <module name="escalade_consumer" target="1.8" />
+      <module name="escalade_model" target="1.8" />
+      <module name="escalade_technical" target="1.8" />
+      <module name="escalade_webapp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
