@@ -19,7 +19,6 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>com.parlow.escalade.webapp.bootstrap.SpringConfiguration</param-value>

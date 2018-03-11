@@ -1,5 +1,6 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,8 @@
 </head>
 
 <body>
-    <h2>Bienvenue sur l'application Escalade</h2>
+    <h2>Une erreur s'est produite</h2>
 
-    <s:a action="site_list">Liste des sites</s:a>
-
+    <s:actionerror />
 </body>
 </html>

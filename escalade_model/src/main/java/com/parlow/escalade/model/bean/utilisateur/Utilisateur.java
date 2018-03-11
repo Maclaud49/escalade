@@ -85,4 +85,25 @@ public class Utilisateur {
 
 
     // ==================== Méthodes =====================
+
+    /**
+     * Constructeur.
+     *
+     * @param pNom -
+     */
+    public Utilisateur(String pNom) {
+        nom = pNom;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder vStB = new StringBuilder(this.getClass().getSimpleName());
+        final String vSEP = ", ";
+        vStB.append(" {")
+                .append("id=").append(id)
+                .append(vSEP).append("nom=\"").append(nom).append('"')
+                .append(vSEP).append("prenom=\"").append(prenom).append('"')
+                .append("}");
+        return vStB.toString();
+    }
 }

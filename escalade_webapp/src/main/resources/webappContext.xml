@@ -9,5 +9,14 @@
     <bean id="dataSourceEscalade" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:comp/env/jdbc/DB_escalade"/>
     </bean>
+    <bean id="GestionSiteAction"
+          class="com.parlow.escalade.webapp.action.GestionSiteAction"
+           >
+    </bean>
+    <bean id="GestionUtilistateurAction"
+          class="com.parlow.escalade.webapp.action.GestionUtilistateurAction"
+           >
+    </bean>
+
 </beans>
 

@@ -3,6 +3,7 @@ package com.parlow.escalade.model.bean;
 import com.parlow.escalade.model.bean.listes.PeriodeFav;
 import com.parlow.escalade.model.bean.listes.Region;
 import com.parlow.escalade.model.bean.listes.TypeRocher;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.joda.time.DateTime;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class Site {
     private DateTime lastUpdate;
     private String niveauPratique;
     private List<Image> images;
+    private Utilisateur utilisateur;
 
     // ==================== Constructeurs ==============
 
@@ -138,6 +140,13 @@ public class Site {
         this.images = images;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
 
     // ==================== Méthodes =====================

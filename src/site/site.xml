@@ -28,7 +28,7 @@
         <!-- Ajout d'un menu vers la documentation -->
         <menu name="Documentation">
             <!-- Entrée de menu vers la page Architecture -->
-            <item name="Architecture" href="architecture.html"/>
+        <item name="Architecture" href="architecture.html"/>
         </menu>
     </body>
 </project>

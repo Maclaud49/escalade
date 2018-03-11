@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.parlow.escalade.business.manager.contract.SiteManager;
+import com.parlow.escalade.business.manager.contract.UtilisateurManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Site;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
 
 import javax.inject.Inject;
@@ -23,6 +25,11 @@ public class SiteManagerImpl implements SiteManager {
 
     @Inject
     private DaoFactory daoFactory;
+
+    @Inject
+    private UtilisateurManager utilisateurManager;
+
+
 
     /**
      * Renvoie le site demandé
@@ -51,12 +58,15 @@ public class SiteManagerImpl implements SiteManager {
      */
     @Override
     public List<Site> getListSite() {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
+
         List<Site> vList = new ArrayList<>();
         for (int vI = 0; vI < 9; vI++) {
             Site vSite = new Site();
             vSite.setNom("Site n°" + vI);
+            Utilisateur mac = new Utilisateur("Parlow");
+            mac.setId(1);
+            mac.setPrenom("Mickael");
+            vSite.setUtilisateur(mac);
             vList.add(vSite);
         }
         return vList;

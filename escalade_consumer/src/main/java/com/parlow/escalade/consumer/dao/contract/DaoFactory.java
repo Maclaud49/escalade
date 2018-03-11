@@ -9,4 +9,8 @@ public interface DaoFactory {
     SiteDao getSiteDao();
 
     void setSiteDao(SiteDao pSiteDao);
+
+    UtilisateurDao getUtilisateurDao();
+
+    void setUtilisateurDao(UtilisateurDao pUtilisateurDao);
 }
