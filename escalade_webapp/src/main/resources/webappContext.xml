@@ -17,6 +17,11 @@
           class="com.parlow.escalade.webapp.action.GestionUtilistateurAction"
            >
     </bean>
+    <bean id="LoginAction"
+          class="com.parlow.escalade.webapp.action.LoginAction"
+    >
+    </bean>
+
 
 
 

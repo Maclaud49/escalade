@@ -35,7 +35,9 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
     @Override
     public Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException {
         if (StringUtils.equals(pLogin, "joe") && StringUtils.equals(pPassword, "joe")) {
-            return newUtilisateur("Mickael");
+            Utilisateur mac = new Utilisateur("Parlow");
+            mac.setPrenom("Mickaël");
+            return mac;
         }
         throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
     }

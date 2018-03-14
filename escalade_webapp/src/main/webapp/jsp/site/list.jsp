@@ -7,24 +7,25 @@
 </head>
 
 <body>
-<h2><s:text name="site.list"/></h2>
+    <%@ include file="../include/header.jsp" %>
+    <h2><s:text name="site.list"/></h2>
 
-    <ul>
-        <s:iterator value="listSite">
-            <li>
-                <s:a action="site_detail">
-                    <s:param name="id" value="id" />
-                    <s:property value="nom"/>
-                </s:a>
+        <ul>
+            <s:iterator value="listSite">
+                <li>
+                    <s:a action="site_detail">
+                        <s:param name="id" value="id" />
+                        <s:property value="nom"/>
+                    </s:a>
 
-                - Responsable :
-                <s:a action="utilisateur_detail">
-                    <s:param name="id" value="utilisateur.id" />
-                    <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
-                </s:a>
-            </li>
-        </s:iterator>
-    </ul>
+                    - Responsable :
+                    <s:a action="utilisateur_detail">
+                        <s:param name="id" value="utilisateur.id" />
+                        <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
+                    </s:a>
+                </li>
+            </s:iterator>
+        </ul>
 
     <%@ include file="../include/footer.jsp" %>
 </body>

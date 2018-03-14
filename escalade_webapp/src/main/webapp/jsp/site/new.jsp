@@ -7,22 +7,23 @@
 </head>
 
 <body>
-<s:actionerror/>
-<s:actionmessage/>
+    <%@ include file="../include/header.jsp" %>
+    <s:actionerror/>
+    <s:actionmessage/>
 
-<h2><s:text name="site.create"/></h2>
-    <s:form action="site_new">
-        <s:textfield name="site.nom" label="Nom" requiredLabel="true" />
-        <s:select name="site.utilisateur.id" label="Responsable"
-                  list="listUtilisateur" listKey="id" listValue="prenom"
-                  emptyOption="true"
-                  requiredLabel="true"/>
+    <h2><s:text name="site.create"/></h2>
+        <s:form action="site_new">
+            <s:textfield name="site.nom" label="Nom" requiredLabel="true" />
+            <s:select name="site.utilisateur.id" label="Responsable"
+                      list="listUtilisateur" listKey="id" listValue="prenom"
+                      emptyOption="true"
+                      requiredLabel="true"/>
 
-        <s:checkbox name="site.publication" label="Cloturé"/>
+            <s:checkbox name="site.publication" label="Cloturé"/>
 
-        <s:submit value="OK"/>
-    </s:form>
+            <s:submit value="OK"/>
+        </s:form>
 
-<%@ include file="../include/footer.jsp" %>
+    <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -7,11 +7,10 @@
 </head>
 
 <body>
+
     <h2><s:text name="home.welcome"/></h2>
 
-    <s:a action="site_list">
-        <s:text name="nav.listSite"/>
-    </s:a>
+    <%@ include file="./include/header.jsp" %>
 
     <br>
     <%@ include file="./include/footer.jsp" %>
