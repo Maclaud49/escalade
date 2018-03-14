@@ -14,7 +14,7 @@
     <ul>
         <li>ID : <s:property value="site.id" /></li>
         <li>Nom : <s:property value="site.nom" /></li>
-        <li>Date création : <s:date name="site.presentation" /></li>
+        <li>Présentation : <s:property value="site.presentation" /></li>
         <li>
             Responsable :
             <s:a action="utilisateur_detail">
@@ -22,7 +22,7 @@
                 <s:property value="site.utilisateur.prenom"/> <s:property value="site.utilisateur.nom"/>
             </s:a>
         </li>
-        <li>Cloturé : <s:property value="site.lastUpdate" /></li>
+        <li>Création : <s:property value="site.dateCreation" /></li>
     </ul>
 </body>
 </html>

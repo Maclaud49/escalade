@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,6 +19,8 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
 
     @Inject
     private UtilisateurDao utilisateurDao;
+    @Inject
+    private DaoFactory daoFactory;
 
     @Override
     public Utilisateur getUtilisateur(Integer pId) throws NotFoundException {
@@ -25,7 +28,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         if (pId < 0) {
             throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
         }
-        Utilisateur vUtilisateur = utilisateurDao.findById(pId);
+        Utilisateur vUtilisateur = daoFactory.getUtilisateurDao().findById(pId);
         return vUtilisateur;
     }
     @Override

@@ -20,6 +20,7 @@ public class Site {
     private List<TypeRocher> typeRocher;
     private Integer nbSecteurs;
     private Integer nbVoies;
+    private DateTime dateCreation;
     private DateTime lastUpdate;
     private String niveauPratique;
     private List<Image> images;
@@ -146,6 +147,14 @@ public class Site {
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
+    }
+
+    public DateTime getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(DateTime dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
 

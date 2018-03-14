@@ -7,9 +7,11 @@ import java.util.List;
 import com.parlow.escalade.business.manager.contract.SiteManager;
 import com.parlow.escalade.business.manager.contract.UtilisateurManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
+import com.parlow.escalade.consumer.dao.contract.SiteDao;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
+import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -45,8 +47,8 @@ public class SiteManagerImpl implements SiteManager {
         if (pId < 1) {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }
-        Site vSite = new Site();
-        vSite.setNom("Site n°" + pId);
+
+        Site vSite = daoFactory.getSiteDao().findById(pId);
         return vSite;
     }
 
@@ -62,7 +64,9 @@ public class SiteManagerImpl implements SiteManager {
         List<Site> vList = new ArrayList<>();
         for (int vI = 0; vI < 9; vI++) {
             Site vSite = new Site();
+            vSite.setId(vI);
             vSite.setNom("Site n°" + vI);
+            vSite.setPresentation("Un site tip top");
             Utilisateur mac = new Utilisateur("Parlow");
             mac.setId(1);
             mac.setPrenom("Mickael");

@@ -18,29 +18,28 @@ public class DaoFactoryImpl implements DaoFactory {
     private SiteDao siteDao;
     @Inject
     private UtilisateurDao utilisateurDao;
-
     @Inject
     public  DaoFactoryImpl() {
     }
 
     @Override
     public SecteurDao getSecteurDao() {
-        return null;
+        return secteurDao;
     }
 
     @Override
     public void setSecteurDao(SecteurDao pSecteurDao) {
-
+        this.secteurDao = pSecteurDao;
     }
 
     @Override
     public SiteDao getSiteDao() {
-        return null;
+        return siteDao;
     }
 
     @Override
     public void setSiteDao(SiteDao pSiteDao) {
-
+        this.siteDao = pSiteDao;
     }
 
     @Override
@@ -49,7 +48,8 @@ public class DaoFactoryImpl implements DaoFactory {
     }
 
     @Override
-    public void setUtilisateurDao(UtilisateurDao utilisateurDao) {
-        this.utilisateurDao = utilisateurDao;
+    public void setUtilisateurDao(UtilisateurDao pUtilisateurDao) {
+
+        this.utilisateurDao = pUtilisateurDao;
     }
 }

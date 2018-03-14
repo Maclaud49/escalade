@@ -3,6 +3,8 @@ package com.parlow.escalade.consumer.dao.impl;
 import com.parlow.escalade.consumer.dao.contract.SiteDao;
 import com.parlow.escalade.consumer.dao.util.DAOException;
 import com.parlow.escalade.model.bean.Site;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import org.joda.time.DateTime;
 
 import javax.inject.Named;
 import java.util.List;
@@ -23,7 +25,17 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public Site findById(int id) throws DAOException {
-        return null;
+        Site vSite = new Site();
+        vSite.setId(1);
+        vSite.setNom("Site 1");
+        vSite.setPresentation("Un site tip top");
+        vSite.setDateCreation(new DateTime());
+        Utilisateur mac = new Utilisateur("Parlow");
+        mac.setId(1);
+        mac.setPrenom("Mickael");
+        vSite.setUtilisateur(mac);
+
+        return vSite;
     }
 
     @Override
