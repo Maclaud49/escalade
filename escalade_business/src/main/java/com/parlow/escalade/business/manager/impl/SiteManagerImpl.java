@@ -3,6 +3,7 @@ package com.parlow.escalade.business.manager.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.parlow.escalade.business.manager.contract.SiteManager;
 import com.parlow.escalade.business.manager.contract.UtilisateurManager;
@@ -10,11 +11,14 @@ import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.consumer.dao.contract.SiteDao;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 
 /**
@@ -23,7 +27,7 @@ import javax.inject.Named;
  * @author lgu
  */
 @Named
-public class SiteManagerImpl implements SiteManager {
+public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
     @Inject
     private DaoFactory daoFactory;
@@ -31,7 +35,8 @@ public class SiteManagerImpl implements SiteManager {
     @Inject
     private UtilisateurManager utilisateurManager;
 
-
+    // Je stocke les sites en mémoire car je n'ai pas codé de persistance
+    private final List<Site> listSite = new ArrayList<>();
 
     /**
      * Renvoie le site demandé
@@ -74,5 +79,38 @@ public class SiteManagerImpl implements SiteManager {
             vList.add(vSite);
         }
         return vList;
+    }
+
+    @Override
+    public void insert(Site pSite) throws FunctionalException {
+        if (pSite == null) {
+            throw new FunctionalException("L'objet Site ne doit pas être null !");
+        }
+
+        Set<ConstraintViolation<Site>> vViolations = getConstraintValidator().validate(pSite);
+        if (!vViolations.isEmpty()) {
+            throw new FunctionalException("L'objet Site est invalide",
+                    new ConstraintViolationException(vViolations));
+        }
+
+        // TODO Persistance
+        pSite.setId(999);
+        this.listSite.add(pSite);
+        
+    }
+
+    @Override
+    public Site findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Site> findAll() {
+        return null;
+    }
+
+    @Override
+    public void delete(int siteid) {
+
     }
 }

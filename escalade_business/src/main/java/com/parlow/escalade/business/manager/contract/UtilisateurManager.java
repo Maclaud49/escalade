@@ -27,8 +27,6 @@ public interface UtilisateurManager {
      */
     Utilisateur getUtilisateur(Integer pId) throws NotFoundException;
 
-    Utilisateur getUtilisateur() throws NotFoundException;
-
 
     /**
      * Renvoie l'{@link Utilisateur} correspondant au couple login / mot de passe

@@ -3,14 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Escalade</title>
+    <%@ include file="./include/head.jsp" %>
 </head>
 
 <body>
-    <h2>Bienvenue sur l'application Escalade</h2>
+    <h2><s:text name="home.welcome"/></h2>
 
-    <s:a action="site_list">Liste des sites</s:a>
+    <s:a action="site_list">
+        <s:text name="nav.listSite"/>
+    </s:a>
 
+    <br>
+    <%@ include file="./include/footer.jsp" %>
 </body>
 </html>

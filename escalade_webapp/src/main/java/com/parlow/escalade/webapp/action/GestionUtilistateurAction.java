@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.Collections;
 
 
 /**
@@ -49,18 +50,16 @@ public class GestionUtilistateurAction extends ActionSupport {
      * @return success / error
      */
     public String doDetail() {
-        logger.debug("id "+ id);
-        System.out.println("id "+ id);
 
-        /*if (id == null) {
-            this.addActionError("Vous devez indiquer un id d'utilisateur");
-        } else {*/
+        if (id == null) {
+            this.addActionError(getText("error.user.missing.id"));
+        } else {
             try {
                 utilisateur = managerFactory.getUtilisateurManager().getUtilisateur(id);
             } catch (NotFoundException pE) {
-                this.addActionError("Utilisateur non trouvé. ID = " + id);
+                this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
             }
-        //}
+        }
 
         return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
