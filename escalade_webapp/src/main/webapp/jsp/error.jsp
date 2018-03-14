@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Escalade</title>
+    <%@ include file="./include/head.jsp" %>
 </head>
 
 <body>
     <h2>Une erreur s'est produite</h2>
 
     <s:actionerror />
+
+    <s:bean name="java.util.Date" var="now" />
+    <s:text name="error.metadata">
+        <s:param value="now" />
+    </s:text>
 </body>
 </html>

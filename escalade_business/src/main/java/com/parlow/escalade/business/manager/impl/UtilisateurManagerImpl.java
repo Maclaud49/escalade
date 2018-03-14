@@ -31,15 +31,6 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         Utilisateur vUtilisateur = daoFactory.getUtilisateurDao().findById(pId);
         return vUtilisateur;
     }
-    @Override
-    public Utilisateur getUtilisateur() throws NotFoundException {
-        Utilisateur vUtilisateur = newUtilisateur("Parlow");
-        vUtilisateur.setPrenom("Mickael");
-        vUtilisateur.setId(1);
-        return vUtilisateur;
-    }
-
-
 
     @Override
     public Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException {

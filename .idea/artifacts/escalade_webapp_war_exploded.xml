@@ -18,7 +18,7 @@
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.apache.bval:bval-jsr:1.1.2" />
           <element id="library" level="project" name="Maven: org.apache.bval:bval-core:1.1.2" />
-          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.6" />
           <element id="archive" name="escalade-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="escalade_model" />

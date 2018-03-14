@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Escalade</title>
+    <%@ include file="../include/head.jsp" %>
 </head>
 
 <body>
-    <h2>Liste des sites</h2>
+<h2><s:text name="site.list"/></h2>
 
     <ul>
         <s:iterator value="listSite">
@@ -27,5 +25,7 @@
             </li>
         </s:iterator>
     </ul>
+
+    <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

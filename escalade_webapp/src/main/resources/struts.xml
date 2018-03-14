@@ -18,8 +18,24 @@
         </action>
         <!-- Action affichant le détail d'un site -->
         <action name="site_detail" class="GestionSiteAction" method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
             <result name="success">/jsp/site/detail.jsp</result>
             <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de créer un site -->
+        <action name="site_new" class="GestionSiteAction" method="doCreate">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/site/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">site_detail</param>
+                <param name="id">${site.id}</param>
+            </result>
         </action>
 
         <!-- Action affichant le détail d'un utilisateur -->
@@ -27,5 +43,7 @@
             <result name="success">/jsp/utilisateur/detail.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+
+
     </package>
 </struts>

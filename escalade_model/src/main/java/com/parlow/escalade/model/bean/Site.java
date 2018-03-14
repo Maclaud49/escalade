@@ -4,14 +4,18 @@ import com.parlow.escalade.model.bean.listes.PeriodeFav;
 import com.parlow.escalade.model.bean.listes.Region;
 import com.parlow.escalade.model.bean.listes.TypeRocher;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.sun.istack.internal.NotNull;
 import org.joda.time.DateTime;
 
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Site {
 
     // ==================== Attributs ====================
     private Integer id;
+    @NotNull
+    @Size(min = 1, max = 100)
     private String nom;
     private String presentation;
     private List<Secteur> secteurs;
@@ -25,6 +29,7 @@ public class Site {
     private String niveauPratique;
     private List<Image> images;
     private Utilisateur utilisateur;
+    private boolean publication;
 
     // ==================== Constructeurs ==============
 
@@ -155,6 +160,14 @@ public class Site {
 
     public void setDateCreation(DateTime dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public boolean isPublication() {
+        return publication;
+    }
+
+    public void setPublication(boolean publication) {
+        this.publication = publication;
     }
 
 
