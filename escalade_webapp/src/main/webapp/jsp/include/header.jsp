@@ -10,9 +10,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <s:a action="index" class="nav-link"><s:text name="home.home"/></s:a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSite" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Site
