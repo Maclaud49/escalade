@@ -14,7 +14,7 @@
     <h2><s:text name="site.create"/></h2>
         <s:form action="site_new">
             <s:textfield name="site.nom" label="Nom" requiredLabel="true" />
-            <s:select name="site.utilisateur.id" label="Responsable"
+            <s:select name="site.utilisateur" label="Responsable"
                       list="listUtilisateur" listKey="id" listValue="prenom"
                       emptyOption="true"
                       requiredLabel="true"/>

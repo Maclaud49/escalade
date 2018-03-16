@@ -97,20 +97,6 @@ public class GestionSiteAction extends ActionSupport {
 
         // ===== Validation de l'ajout de site (site != null)
         if (this.site != null) {
-            // Récupération du responsable
-            if (this.site.getUtilisateur() == null
-                    || this.site.getUtilisateur().getId() == null) {
-                this.addFieldError("site.utilisateur.id", "ne doit pas être vide");
-            } else {
-                try {
-                    Utilisateur vUtilisateur
-                            = managerFactory.getUtilisateurManager()
-                            .getUtilisateur(this.site.getUtilisateur().getId());
-                    this.site.setUtilisateur(vUtilisateur);
-                } catch (NotFoundException pEx) {
-                    this.addFieldError("site.utilisateur.id", pEx.getMessage());
-                }
-            }
             // Date de création
             this.site.setDateCreation(new DateTime());
 

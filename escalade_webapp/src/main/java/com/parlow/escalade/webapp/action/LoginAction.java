@@ -27,22 +27,32 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
     private HttpServletRequest servletRequest;
 
     // ----- Paramètres en entrée
-    private String login;
+    private String email;
     private String password;
+    private boolean remember;
+    //todo mettre dans cookie
 
 
     // ==================== Getters/Setters ====================
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
-    public void setLogin(String pLogin) {
-        login = pLogin;
+    public void setEmail(String pEmail) {
+        email = pEmail;
     }
     public String getPassword() {
         return password;
     }
     public void setPassword(String pPassword) {
         password = pPassword;
+    }
+
+    public boolean isRemember() {
+        return remember;
+    }
+
+    public void setRemember(boolean remember) {
+        this.remember = remember;
     }
 
 
@@ -53,11 +63,11 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
      */
     public String doLogin() {
         String vResult = ActionSupport.INPUT;
-        if (!StringUtils.isAllEmpty(login, password)) {
+        if (!StringUtils.isAllEmpty(email, password)) {
             try {
                 Utilisateur vUtilisateur
                         = managerFactory.getUtilisateurManager()
-                        .getUtilisateur(login, password);
+                        .getUtilisateur(email, password);
                 // Ajout de l'utilisateur en session
                 this.session.put("user", vUtilisateur);
                 vResult = ActionSupport.SUCCESS;

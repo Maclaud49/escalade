@@ -98,6 +98,9 @@ CREATE TABLE t_user(
 	nom CHARACTER VARYING(15) NOT NULL,
 	prenom CHARACTER VARYING(15) NOT NULL,
 	dateNaissance DATE,
+	profil INTEGER,
+	email CHARACTER VARYING(30) NOT NULL,
+	password CHARACTER VARYING(60) NOT NULL,
 	cotation_fk_id INTEGER,
 	topo_fk_id INTEGER
 );
