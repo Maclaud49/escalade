@@ -40,7 +40,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
             return user;
         }
         else {
-            throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
+            throw new NotFoundException("Aucun utilisateur correspondant au couple email/mot de passe fourni.");
         }
     }
 

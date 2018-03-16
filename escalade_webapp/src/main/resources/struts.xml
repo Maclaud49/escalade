@@ -14,7 +14,7 @@
 
         <!-- Action listant les sites -->
         <action name="site_list" class="GestionSiteAction" method="doList">
-            <result>/jsp/site/list.jsp</result>
+            <result>/jsp/main/site/list.jsp</result>
         </action>
         <!-- Action affichant le détail d'un site -->
         <action name="site_detail" class="GestionSiteAction" method="doDetail">
@@ -45,7 +45,7 @@
         </action>
         <!-- Actions Login/Logout -->
         <action name="login" class="LoginAction" method="doLogin">
-            <result name="input">/jsp/login.jsp</result>
+            <result name="input">/jsp/main/login.jsp</result>
             <result name="success" type="redirectAction">index</result>
         </action>
         <action name="logout" class="LoginAction" method="doLogout">

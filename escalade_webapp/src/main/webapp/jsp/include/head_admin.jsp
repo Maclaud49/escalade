@@ -8,18 +8,15 @@
 
 <title><s:text name="home.title"/></title>
 
-<!-- Bootstrap core CSS -->
-<link href="../../ressources/template/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- Langues -->
-<link rel="stylesheet" href="../../ressources/css/languages.min.css">
-<link  href="../../ressources/css/languages.png">
-<!-- Custom styles for main template -->
-<link href="../../ressources/template/main/css/modern-business.css" rel="stylesheet">
+<link href="../../ressources/template/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- MetisMenu CSS -->
 <link href="../../ressources/template/admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <link href="../../ressources/template/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="../../ressources/template/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <s:head />

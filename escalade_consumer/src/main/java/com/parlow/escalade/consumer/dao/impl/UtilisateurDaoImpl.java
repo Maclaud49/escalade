@@ -2,6 +2,7 @@ package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.parlow.escalade.model.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,14 +53,18 @@ public class UtilisateurDaoImpl  implements UtilisateurDao {
     }
 
     @Override
-    public Utilisateur findByEmail(String email, String password){
+    public Utilisateur findByEmail(String email, String password) throws NotFoundException {
 
             String sql_findByEmail = "SELECT * FROM T_user WHERE email = ? AND password = ?";
 
-            Utilisateur user = (Utilisateur)this.vJdbcTemplate.queryForObject(
-                    sql_findByEmail, new Object[] { email, password }, new BeanPropertyRowMapper(Utilisateur.class));
+            try {
+                Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(
+                        sql_findByEmail, new Object[]{email, password}, new BeanPropertyRowMapper(Utilisateur.class));
+                return user;
+            }catch(Exception e){
+                throw new NotFoundException("Aucun utilisateur correspondant au couple email/mot de passe fourni.");
+            }
 
-            return user;
 
     }
 
