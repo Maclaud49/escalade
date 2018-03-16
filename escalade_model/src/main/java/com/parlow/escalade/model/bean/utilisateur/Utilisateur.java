@@ -3,7 +3,8 @@ package com.parlow.escalade.model.bean.utilisateur;
 import com.parlow.escalade.model.bean.listes.Cotation;
 import com.parlow.escalade.model.bean.Image;
 import com.parlow.escalade.model.bean.Topo;
-import org.joda.time.DateTime;
+
+import java.sql.Date;
 import java.util.List;
 
 public class Utilisateur {
@@ -13,10 +14,14 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private Cotation cotation;
-    private DateTime dateNaissance;
+    private Date dateNaissance;
     private List<Topo> topos;
     private Image profiImage;
     private String email;
+    private String password;
+    private Integer profil;
+
+
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -51,11 +56,11 @@ public class Utilisateur {
         this.cotation = cotation;
     }
 
-    public DateTime getDateNaissance() {
+    public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(DateTime dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -83,17 +88,31 @@ public class Utilisateur {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getProfil() {
+        return profil;
+    }
+
+    public void setProfil(Integer profil) {
+        this.profil = profil;
+    }
+
 
     // ==================== Méthodes =====================
 
     /**
      * Constructeur.
      *
-     * @param pNom -
+     *
      */
-    public Utilisateur(String pNom) {
-        nom = pNom;
-    }
+    public Utilisateur() { }
 
     @Override
     public String toString() {

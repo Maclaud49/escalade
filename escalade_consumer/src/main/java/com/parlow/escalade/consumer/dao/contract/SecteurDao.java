@@ -1,6 +1,5 @@
 package com.parlow.escalade.consumer.dao.contract;
 
-import com.parlow.escalade.consumer.dao.util.DAOException;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 
@@ -10,11 +9,11 @@ public interface SecteurDao {
 
     int getCountSecteur(RechercheSecteur pRechercheSecteur);
 
-    void insert(Secteur secteur) throws DAOException;
+    void insert(Secteur secteur)  ;
 
-    Secteur findById(int id) throws DAOException;
+    Secteur findById(int id)  ;
 
-    List<Secteur> findAll() throws DAOException;
+    List<Secteur> findAll()  ;
 
-    void delete(int secteurid) throws DAOException;
+    void delete(int secteurid)  ;
 }

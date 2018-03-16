@@ -72,7 +72,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             vSite.setId(vI);
             vSite.setNom("Site n°" + vI);
             vSite.setPresentation("Un site tip top");
-            Utilisateur mac = new Utilisateur("Parlow");
+            Utilisateur mac = new Utilisateur();
             mac.setId(1);
             mac.setPrenom("Mickael");
             vSite.setUtilisateur(mac);

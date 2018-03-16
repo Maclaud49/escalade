@@ -9,6 +9,13 @@
     <bean id="dataSourceEscalade" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="java:comp/env/jdbc/DB_escalade"/>
     </bean>
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/escalade?currentSchema=sch_escalade" />
+        <property name="username" value="escalade_user" />
+        <property name="password" value="Escalade_2018" />
+    </bean>
     <bean id="GestionSiteAction"
           class="com.parlow.escalade.webapp.action.GestionSiteAction"
            >

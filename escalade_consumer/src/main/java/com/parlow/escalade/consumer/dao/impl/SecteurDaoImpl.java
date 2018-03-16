@@ -1,7 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.SecteurDao;
-import com.parlow.escalade.consumer.dao.util.DAOException;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 
@@ -16,22 +15,22 @@ public class SecteurDaoImpl implements SecteurDao {
     }
 
     @Override
-    public void insert(Secteur secteur) throws DAOException {
+    public void insert(Secteur secteur)   {
 
     }
 
     @Override
-    public Secteur findById(int id) throws DAOException {
+    public Secteur findById(int id)   {
         return null;
     }
 
     @Override
-    public List<Secteur> findAll() throws DAOException {
+    public List<Secteur> findAll()   {
         return null;
     }
 
     @Override
-    public void delete(int secteurid) throws DAOException {
+    public void delete(int secteurid)   {
 
     }
 }

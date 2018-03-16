@@ -33,13 +33,15 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
     }
 
     @Override
-    public Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException {
-        if (StringUtils.equals(pLogin, "joe") && StringUtils.equals(pPassword, "joe")) {
-            Utilisateur mac = new Utilisateur("Parlow");
-            mac.setPrenom("Mickaël");
-            return mac;
+    public Utilisateur getUtilisateur(String pEmail, String pPassword) throws NotFoundException {
+
+        Utilisateur user = daoFactory.getUtilisateurDao().findByEmail(pEmail,pPassword);
+        if(user != null){
+            return user;
         }
-        throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
+        else {
+            throw new NotFoundException("Aucun utilisateur correspondant au couple login/password fourni.");
+        }
     }
 
 
@@ -62,7 +64,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
      */
     private Utilisateur newUtilisateur(String pNom) {
 
-        Utilisateur vUtilisateur = new Utilisateur(pNom);
+        Utilisateur vUtilisateur = new Utilisateur();
         vUtilisateur.setPrenom("Mac");
         return vUtilisateur;
     }

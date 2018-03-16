@@ -9,7 +9,7 @@
 
         <!-- Action "index" -->
         <action name="index">
-            <result>/jsp/index.jsp</result>
+            <result>/jsp/main/index.jsp</result>
         </action>
 
         <!-- Action listant les sites -->

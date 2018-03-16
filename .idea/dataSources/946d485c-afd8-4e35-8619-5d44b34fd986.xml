@@ -31,8 +31,8 @@
     </schema>
     <schema id="10" parent="2" name="sch_escalade">
       <ObjectId>16396</ObjectId>
-      <IntrospectionTimestamp>2018-02-24.19:30:55.397</IntrospectionTimestamp>
-      <IntrospectionStateNumber>561</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-03-15.23:26:37.619</IntrospectionTimestamp>
+      <IntrospectionStateNumber>570</IntrospectionStateNumber>
       <Visible>1</Visible>
     </schema>
     <sequence id="11" parent="10" name="t_cotation_id_seq">
@@ -109,7 +109,7 @@
     </table>
     <table id="29" parent="10" name="t_topo">
       <ObjectId>16399</ObjectId>
-      <StateNumber>561</StateNumber>
+      <StateNumber>564</StateNumber>
     </table>
     <table id="30" parent="10" name="t_typerocher">
       <ObjectId>16426</ObjectId>
@@ -117,11 +117,11 @@
     </table>
     <table id="31" parent="10" name="t_user">
       <ObjectId>16474</ObjectId>
-      <StateNumber>561</StateNumber>
+      <StateNumber>570</StateNumber>
     </table>
     <table id="32" parent="10" name="t_voie">
       <ObjectId>16450</ObjectId>
-      <StateNumber>561</StateNumber>
+      <StateNumber>565</StateNumber>
     </table>
     <column id="33" parent="22" name="id">
       <Position>1</Position>
@@ -505,18 +505,24 @@
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <index id="91" parent="29" name="t_topo_pkey">
+    <column id="91" parent="29" name="disponible">
+      <Position>5</Position>
+      <DataType>boolean|0</DataType>
+      <StateNumber>564</StateNumber>
+      <DefaultExpression>true</DefaultExpression>
+    </column>
+    <index id="92" parent="29" name="t_topo_pkey">
       <ObjectId>16403</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="92" parent="29" name="t_topo_pkey">
+    <key id="93" parent="29" name="t_topo_pkey">
       <ObjectId>16404</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>t_topo_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="93" parent="29" name="t_topo_site_fk">
+    <foreign-key id="94" parent="29" name="t_topo_site_fk">
       <ObjectId>16488</ObjectId>
       <ColNames>site_fk_id</ColNames>
       <RefTableId>16407</RefTableId>
@@ -526,7 +532,7 @@
       <RefColNames>id</RefColNames>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <column id="94" parent="30" name="id">
+    <column id="95" parent="30" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -534,24 +540,24 @@
       <SequenceName>sch_escalade.t_typerocher_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;t_typerocher_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="95" parent="30" name="typerocher">
+    <column id="96" parent="30" name="typerocher">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>561</StateNumber>
     </column>
-    <index id="96" parent="30" name="t_typerocher_pkey">
+    <index id="97" parent="30" name="t_typerocher_pkey">
       <ObjectId>16430</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="97" parent="30" name="t_typerocher_pkey">
+    <key id="98" parent="30" name="t_typerocher_pkey">
       <ObjectId>16431</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>t_typerocher_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="98" parent="31" name="id">
+    <column id="99" parent="31" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -559,45 +565,60 @@
       <SequenceName>sch_escalade.t_user_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;t_user_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="99" parent="31" name="nom">
+    <column id="100" parent="31" name="nom">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="100" parent="31" name="prenom">
+    <column id="101" parent="31" name="prenom">
       <Position>3</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="101" parent="31" name="datenaissance">
+    <column id="102" parent="31" name="datenaissance">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="102" parent="31" name="cotation_fk_id">
+    <column id="103" parent="31" name="cotation_fk_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="103" parent="31" name="topo_fk_id">
+    <column id="104" parent="31" name="topo_fk_id">
       <Position>6</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <index id="104" parent="31" name="t_user_pkey">
+    <column id="105" parent="31" name="profil">
+      <Position>7</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>567</StateNumber>
+    </column>
+    <column id="106" parent="31" name="password">
+      <Position>8</Position>
+      <DataType>varchar(60)|0</DataType>
+      <StateNumber>568</StateNumber>
+    </column>
+    <column id="107" parent="31" name="email">
+      <Position>9</Position>
+      <DataType>varchar(60)|0</DataType>
+      <StateNumber>570</StateNumber>
+    </column>
+    <index id="108" parent="31" name="t_user_pkey">
       <ObjectId>16478</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="105" parent="31" name="t_user_pkey">
+    <key id="109" parent="31" name="t_user_pkey">
       <ObjectId>16479</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>t_user_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="106" parent="31" name="t_user_cotation_fk">
+    <foreign-key id="110" parent="31" name="t_user_cotation_fk">
       <ObjectId>16548</ObjectId>
       <ColNames>cotation_fk_id</ColNames>
       <RefTableId>16458</RefTableId>
@@ -607,7 +628,7 @@
       <RefColNames>id</RefColNames>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <foreign-key id="107" parent="31" name="t_user_topo_fk">
+    <foreign-key id="111" parent="31" name="t_user_topo_fk">
       <ObjectId>16553</ObjectId>
       <ColNames>topo_fk_id</ColNames>
       <RefTableId>16399</RefTableId>
@@ -617,7 +638,7 @@
       <RefColNames>id</RefColNames>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="108" parent="32" name="id">
+    <column id="112" parent="32" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -625,54 +646,59 @@
       <SequenceName>sch_escalade.t_voie_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;t_voie_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="109" parent="32" name="nom">
+    <column id="113" parent="32" name="nom">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="110" parent="32" name="longueur_fk_id">
+    <column id="114" parent="32" name="longueur_fk_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="111" parent="32" name="cotation_fk_id">
+    <column id="115" parent="32" name="cotation_fk_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="112" parent="32" name="nbpoints">
+    <column id="116" parent="32" name="nbpoints">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="113" parent="32" name="equipee">
+    <column id="117" parent="32" name="equipee">
       <Position>6</Position>
       <DataType>boolean|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="114" parent="32" name="secteur_fk_id">
+    <column id="118" parent="32" name="secteur_fk_id">
       <Position>7</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <column id="115" parent="32" name="interet">
+    <column id="119" parent="32" name="interet">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <StateNumber>561</StateNumber>
     </column>
-    <index id="116" parent="32" name="t_voie_pkey">
+    <column id="120" parent="32" name="hauteurvoie">
+      <Position>9</Position>
+      <DataType>numeric(2)|0</DataType>
+      <StateNumber>565</StateNumber>
+    </column>
+    <index id="121" parent="32" name="t_voie_pkey">
       <ObjectId>16454</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="117" parent="32" name="t_voie_pkey">
+    <key id="122" parent="32" name="t_voie_pkey">
       <ObjectId>16455</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>t_voie_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="118" parent="32" name="t_voie_longueur_fk">
+    <foreign-key id="123" parent="32" name="t_voie_longueur_fk">
       <ObjectId>16523</ObjectId>
       <ColNames>longueur_fk_id</ColNames>
       <RefTableId>16466</RefTableId>
@@ -682,7 +708,7 @@
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="119" parent="32" name="t_voie_cotation_fk">
+    <foreign-key id="124" parent="32" name="t_voie_cotation_fk">
       <ObjectId>16528</ObjectId>
       <ColNames>cotation_fk_id</ColNames>
       <RefTableId>16458</RefTableId>
@@ -692,7 +718,7 @@
       <RefColNames>id</RefColNames>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <foreign-key id="120" parent="32" name="t_voie_secteur_fk">
+    <foreign-key id="125" parent="32" name="t_voie_secteur_fk">
       <ObjectId>16533</ObjectId>
       <ColNames>secteur_fk_id</ColNames>
       <RefTableId>16442</RefTableId>
