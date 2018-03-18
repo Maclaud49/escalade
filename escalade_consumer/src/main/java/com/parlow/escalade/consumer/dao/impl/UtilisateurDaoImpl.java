@@ -26,15 +26,12 @@ public class UtilisateurDaoImpl  implements UtilisateurDao {
     private static final String SQL_DELETE_PAR_ID = "DELETE FROM T_user WHERE id = ?";
 
     private DataSource dataSource;
-
     private JdbcTemplate vJdbcTemplate ;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.vJdbcTemplate = new JdbcTemplate(dataSource);
     }
-
-
 
     @Override
     public void insert(Utilisateur utilisateur) {

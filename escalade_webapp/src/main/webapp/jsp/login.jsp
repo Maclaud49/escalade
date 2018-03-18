@@ -15,7 +15,7 @@
     <h2><s:text name="login.connexion"/></h2>
 
         <s:form action="login">
-            <s:textfield name="login" key="login.id" requiredLabel="true" />
+            <s:textfield name="email" key="login.id" requiredLabel="true" />
             <s:password name="password" key="login.password" requiredLabel="true" />
 
             <s:submit value="Connexion"/>

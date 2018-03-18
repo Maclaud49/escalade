@@ -61,8 +61,7 @@
     <div class="row">
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Mickaël Parlow</h4>
-                <p>15 mars 2018</p>
+                <h4 class="card-header">Mickaël Parlow - 15 mars 2018</h4>
                 <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                 </div>
@@ -73,8 +72,7 @@
         </div>
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Aimée Parlow</h4>
-                <p>4 mars 2018</p>
+                <h4 class="card-header">Aimée Parlow - 4 mars 2018</h4>
                 <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
                 </div>
@@ -85,8 +83,7 @@
         </div>
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Marc Lefèvre</h4>
-                <p>2 février 2018</p>
+                <h4 class="card-header">Marc Lefèvre - 2 février 2018</h4>
                 <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
                 </div>

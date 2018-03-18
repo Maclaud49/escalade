@@ -4,6 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
     <package name="default" extends="struts-default">
+
         <!-- Action par défaut -->
         <default-action-ref name="index" />
 
@@ -31,7 +32,7 @@
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
-            <result name="input">/jsp/site/new.jsp</result>
+            <result name="input">/jsp/main/site/new.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">site_detail</param>
                 <param name="id">${site.id}</param>

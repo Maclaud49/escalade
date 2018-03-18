@@ -24,8 +24,8 @@
                         Secteur
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="blog-home-1.html">Liste des secteurs</a>
-                        <a class="dropdown-item" href="blog-home-2.html">Créer un nouveau secteur</a>
+                        <a class="dropdown-item" href="#">Liste des secteurs</a>
+                        <a class="dropdown-item" href="#">Créer un nouveau secteur</a>
                     </div>
                 </li>
                 <li class="nav-item">

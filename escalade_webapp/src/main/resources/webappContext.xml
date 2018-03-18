@@ -17,16 +17,13 @@
         <property name="password" value="Escalade_2018" />
     </bean>
     <bean id="GestionSiteAction"
-          class="com.parlow.escalade.webapp.action.GestionSiteAction"
-           >
+          class="com.parlow.escalade.webapp.action.GestionSiteAction">
     </bean>
     <bean id="GestionUtilistateurAction"
-          class="com.parlow.escalade.webapp.action.GestionUtilistateurAction"
-           >
+          class="com.parlow.escalade.webapp.action.GestionUtilistateurAction">
     </bean>
     <bean id="LoginAction"
-          class="com.parlow.escalade.webapp.action.LoginAction"
-    >
+          class="com.parlow.escalade.webapp.action.LoginAction">
     </bean>
 
 

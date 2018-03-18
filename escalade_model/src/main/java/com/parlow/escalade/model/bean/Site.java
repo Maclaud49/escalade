@@ -17,7 +17,7 @@ public class Site {
     @NotNull
     @Size(min = 1, max = 100)
     private String nom;
-    private String presentation;
+    private String description;
     private List<Secteur> secteurs;
     private List<Region> region;
     private List<PeriodeFav> periodeFav;
@@ -66,12 +66,12 @@ public class Site {
         this.nom = nom;
     }
 
-    public String getPresentation() {
-        return presentation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPresentation(String presentation) {
-        this.presentation = presentation;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Secteur> getSecteurs() {

@@ -27,7 +27,6 @@
 
         <div class="row">
 
-            <!-- Blog Entries Column -->
             <div class="col-md-8">
 
                 <!-- Blog Post -->
@@ -149,3 +148,11 @@
 
     </div>
     <!-- /.container -->
+
+    <%@ include file="../../include/footer.jsp" %>
+
+    <%@ include file="../../include/script.jsp" %>
+
+</body>
+
+</html>

@@ -28,7 +28,7 @@ public class SiteDaoImpl  implements SiteDao {
         Site vSite = new Site();
         vSite.setId(1);
         vSite.setNom("Site 1");
-        vSite.setPresentation("Un site tip top");
+        vSite.setDescription("Un site tip top");
         vSite.setDateCreation(new DateTime());
         Utilisateur mac = new Utilisateur();
         mac.setId(1);

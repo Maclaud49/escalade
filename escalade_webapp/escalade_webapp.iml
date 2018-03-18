@@ -13,10 +13,10 @@
       </configuration>
       <facet type="Struts2" name="Struts 2">
         <configuration>
-          <fileset id="s2fileset2" name="default" removed="false">
+          <fileset id="s2fileset" name="default" removed="false">
             <file>file://$MODULE_DIR$/src/main/resources/struts.xml</file>
-            <file>jar://$MODULE_DIR$/../../../Env_Java/maven/repository/org/apache/struts/struts2-core/2.5.14.1/struts2-core-2.5.14.1.jar!/struts-default.xml</file>
-            <file>jar://$MODULE_DIR$/../../../Env_Java/maven/repository/org/apache/struts/struts2-spring-plugin/2.5.14.1/struts2-spring-plugin-2.5.14.1.jar!/struts-plugin.xml</file>
+            <file>jar://D:/maven/repertoireLib/org/apache/struts/struts2-core/2.5.14.1/struts2-core-2.5.14.1.jar!/struts-default.xml</file>
+            <file>jar://D:/maven/repertoireLib/org/apache/struts/struts2-spring-plugin/2.5.14.1/struts2-spring-plugin-2.5.14.1.jar!/struts-plugin.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
@@ -42,6 +42,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Spring-4.3.14.RELEASE" level="project" />
     <orderEntry type="module" module-name="escalade_business" />
     <orderEntry type="module" module-name="escalade_consumer" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.11.RELEASE" level="project" />
@@ -74,5 +75,18 @@
     <orderEntry type="library" name="Maven: org.apache.struts:struts2-spring-plugin:2.5.14.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.struts:struts-annotations:1.0.6" level="project" />
+    <orderEntry type="library" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-showcase:2.5.2" level="project" />
+    <orderEntry type="library" name="Maven: com.jgeppert.struts2.jquery:struts2-jquery-plugin:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.5" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.1" level="project" />
+    <orderEntry type="library" name="Maven: oro:oro:2.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.struts:struts2-convention-plugin:2.5.14.1" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-commons:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.struts:struts2-json-plugin:2.5.14.1" level="project" />
   </component>
 </module>

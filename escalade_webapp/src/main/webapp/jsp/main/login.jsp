@@ -11,7 +11,7 @@
 
 
         <div class="container" style="margin-top:50px">
-            <form class="form-horizontal" role="form" method="POST" action="/login">
+            <form class="form-horizontal" method="POST" action="login">
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
@@ -23,7 +23,7 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="form-group has-danger">
-                            <label class="sr-only" for="email">E-Mail Address</label>
+                            <label class="sr-only" for="email">E-Mail Adresse</label>
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <s:textfield type="text" name="email" class="form-control"
