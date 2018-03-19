@@ -11,7 +11,8 @@
 
 
         <div class="container" style="margin-top:50px">
-            <form class="form-horizontal" method="POST" action="login">
+
+            <form class="form-horizontal" method="POST" action="login.action">
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
@@ -23,10 +24,10 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="form-group has-danger">
-                            <label class="sr-only" for="email">E-Mail Adresse</label>
+                            <label class="sr-only" for="email">E-Mail</label>
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                                <s:textfield type="text" name="email" class="form-control"
+                                <s:textfield name="email" class="form-control"
                                              placeholder="votreadresse@exemple.fr" />
                             </div>
                         </div>
@@ -82,10 +83,11 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Se connecter</button>
-                        <a class="btn btn-link" href="/password/reset">Vous avez oublié votre mot de passe?</a>
+                        <a class="btn btn-link" href="#">Vous avez oublié votre mot de passe ?</a>
                     </div>
                 </div>
-            </form>
+
+           </form>
         </div>
 
         <%@ include file="../include/script.jsp" %>

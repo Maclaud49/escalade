@@ -11,6 +11,17 @@
     <s:actionerror/>
     <s:actionmessage/>
 
+
+    <s:if test="hasActionErrors()">
+        <div class="errors">
+            <s:actionerror/>
+        </div>
+    </s:if>
+    <s:if test="hasActionMessages()">
+        <div class="welcome">
+            <s:actionmessage/>
+        </div>
+    </s:if>
     <h2><s:text name="site.create"/></h2>
         <s:form action="site_new">
             <s:textfield name="site.nom" label="Nom" requiredLabel="true" />

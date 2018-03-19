@@ -1,9 +1,6 @@
 package com.parlow.escalade.business.manager.impl;
 
-import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.business.manager.contract.SecteurManager;
-import com.parlow.escalade.business.manager.contract.SiteManager;
-import com.parlow.escalade.business.manager.contract.UtilisateurManager;
+import com.parlow.escalade.business.manager.contract.*;
 
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -17,25 +14,28 @@ public final class ManagerFactoryImpl implements ManagerFactory {
     private SecteurManager secteurManager;
     @Inject
     private UtilisateurManager utilisateurManager;
+    @Inject
+    private RegionManager regionManager;
+
 
     @Override
     public SiteManager getSiteManager() {
-        return siteManager;
+        return this.siteManager;
     }
 
     @Override
     public void setSiteManager(SiteManager pSiteManager) {
-        siteManager = pSiteManager;
+        this.siteManager = pSiteManager;
     }
 
     @Override
     public SecteurManager getSecteurManager() {
-        return secteurManager;
+        return this.secteurManager;
     }
 
     @Override
     public void setSecteurManager(SecteurManager pSecteurManager) {
-        secteurManager = pSecteurManager;
+        this.secteurManager = pSecteurManager;
     }
 
     @Override
@@ -45,7 +45,17 @@ public final class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public void setUtilisateurManager(UtilisateurManager pUtilisateurManager) {
-        utilisateurManager = pUtilisateurManager;
+        this.utilisateurManager = pUtilisateurManager;
+    }
+
+    @Override
+    public RegionManager getRegionManager() {
+        return this.regionManager;
+    }
+
+    @Override
+    public void setRegionManager(RegionManager pRegionManager) {
+         this.regionManager = pRegionManager;
     }
 
 }

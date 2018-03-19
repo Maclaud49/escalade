@@ -18,20 +18,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Named
-public class UtilisateurDaoImpl  implements UtilisateurDao {
+public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurDao {
 
     private static final String SQL_SELECT        = "SELECT * FROM T_user ORDER BY id";
     private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM T_user WHERE nom = ?";
     private static final String SQL_INSERT        = "INSERT INTO T_user (email, password, profil) VALUES (?, ?, ?)";
     private static final String SQL_DELETE_PAR_ID = "DELETE FROM T_user WHERE id = ?";
-
-    private DataSource dataSource;
-    private JdbcTemplate vJdbcTemplate ;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.vJdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public void insert(Utilisateur utilisateur) {
@@ -41,11 +33,8 @@ public class UtilisateurDaoImpl  implements UtilisateurDao {
     public Utilisateur findById(int id) {
         String vSQL_findById = "SELECT * FROM T_user WHERE id = ?";
 
-        //return this.vJdbcTemplate.queryForObject(vSQL,new Object[] { id },new UtilisateurRM() );
-
         Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{id},
                 new BeanPropertyRowMapper(Utilisateur.class));
-
         return user;
     }
 

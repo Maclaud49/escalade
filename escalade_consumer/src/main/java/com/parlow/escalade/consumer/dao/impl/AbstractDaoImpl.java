@@ -1,5 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
@@ -12,12 +13,11 @@ public abstract class AbstractDaoImpl {
 
 
 
-    @Inject
     protected DataSource dataSource;
+    protected JdbcTemplate vJdbcTemplate ;
 
-    protected JdbcTemplate vJdbcTemplate = new JdbcTemplate(dataSource);
-
-    public DataSource getDataSource() {
-        return dataSource;
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.vJdbcTemplate = new JdbcTemplate(dataSource);
     }
 }

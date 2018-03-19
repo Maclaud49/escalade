@@ -14,4 +14,8 @@ public interface ManagerFactory {
 
     void setUtilisateurManager(UtilisateurManager pUtilisateurManager);
 
+    RegionManager getRegionManager();
+
+    void setRegionManager(RegionManager pRegionManager);
+
 }

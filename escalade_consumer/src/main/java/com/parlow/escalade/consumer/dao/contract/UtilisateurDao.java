@@ -9,11 +9,11 @@ public interface UtilisateurDao {
 
     void insert(Utilisateur utilisateur);
 
-    Utilisateur findById(int id);
+    Utilisateur findById(int id) throws NotFoundException;
 
     Utilisateur findByEmail(String email, String password) throws NotFoundException;
 
     List<Utilisateur> findAll();
 
-    void delete(int utilisateurid);
+    void delete(int utilisateurid) throws NotFoundException;
 }

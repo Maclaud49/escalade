@@ -68,12 +68,8 @@
             <artifactId>log4j-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jgeppert.struts2.bootstrap</groupId>
-            <artifactId>struts2-bootstrap-plugin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jgeppert.struts2.bootstrap</groupId>
-            <artifactId>struts2-bootstrap-showcase</artifactId>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts-core</artifactId>
         </dependency>
 
     </dependencies>

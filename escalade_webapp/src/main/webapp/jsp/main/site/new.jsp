@@ -1,5 +1,4 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -24,53 +23,76 @@
             <li class="breadcrumb-item active">Création site</li>
         </ol>
 
-        <div class="row">
-
-            <div class="col-md-8">
-
-                <s:if test="hasActionErrors()">
-                    <div class="alert alert-danger actionError">
-                        <s:actionerror theme="bootstrap"/>
-                    </div>
-                </s:if>
-                <s:if test="hasActionMessages()">
-                    <div class="alert alert-info">
-                        <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: 0.3em;"></span>
-                            <span><s:actionmessage theme="bootstrap"/></span></p>
-                    </div>
-                </s:if>
-
-
-                <s:form action="site_new" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal"
-                        label="Renseignez les différents champs pour créer un nouveau site">
-                    <s:textfield
-                            label="Nom du site"
-                            name="site.nom"
-                            requiredLabel="true"/>
-
-                    <s:textarea
-                            label="Description"
-                            name="site.description"
-                            cols="20"
-                            rows="3"/>
-
-                    <s:select
-                            label="Région"
-                            list="{'Red', 'Blue', 'Green'}"
-                            name="site.region"
-                            emptyOption="true"
-                            headerKey="--- Région ---"
-                            headerValue="Aucune"/>
-
-                    <s:file
-                            label="Image"
-                            name="site.images"/>
-
-                    <s:submit cssClass="btn btn-primary" value="Créer"/>
-                </s:form>
+        <form class="form-horizontal" method="POST" action="site_new.action" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <h4>Renseignez les différents champs pour créer un nouveau site</h4>
+                    <hr>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Nom du site</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:textfield name="site.nom" class="form-control" required="true"/>
+                        </div>
+                        <s:if test="hasFieldErrors()">
+                            <small class="text-danger align-middle"><s:fielderror fieldName="siteNom"/></small>
+                        </s:if>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Decription</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:textarea  class="form-control" name="site.description" />
+                        </div>
+                        <small id="descriptionHelp" class="form-text text-muted">Decription limité à 500 caractères</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label >Région</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:select  class="form-control" name="site.region.id"
+                                       list="listRegions" listKey="id" listValue="region" emptyOption="true" required="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label >Image</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:file name="site.images"/>
+                        </div>
+                        <small id="imageHelp" class="form-text text-muted">Image de dimensions : 750x300 </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 1rem">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success">Création du site</button>
+                </div>
+            </div>
+        </form>
     </div>
+
+
 
     <%@ include file="../../include/footer.jsp" %>
 
