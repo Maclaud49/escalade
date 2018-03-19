@@ -5,6 +5,7 @@
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Mickaël Parlow 2018</p>
+        <div class="text-center text-white"><s:debug /></div>
     </div>
     <!-- /.container -->
 </footer>

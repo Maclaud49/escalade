@@ -30,6 +30,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>escalade-model</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>escalade-technical</artifactId>
+        </dependency>
 
         <!-- ===== Bibliothèques tierces ===== -->
         <!-- ===== Tests ===== -->

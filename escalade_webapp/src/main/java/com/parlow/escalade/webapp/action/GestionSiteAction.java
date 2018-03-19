@@ -13,15 +13,12 @@ import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts2.components.ActionMessage;
-import org.apache.struts2.components.FieldError;
-import org.apache.struts2.dispatcher.mapper.ActionMapping;
-import org.joda.time.DateTime;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -35,6 +32,9 @@ public class GestionSiteAction extends ActionSupport {
     // ==================== Attributs ====================
     @Inject
     private ManagerFactory managerFactory;
+
+    private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
+
 
     // ----- Paramètres en entrée
     private Integer id;
@@ -147,6 +147,8 @@ public class GestionSiteAction extends ActionSupport {
     @Override
     public void validate() {
         if (this.site != null) {
+            logger.error("I m here");
+            logger.info("I m here");
             if (site.getNom().length() < 3) {
                 addFieldError("siteNom", "Le nom du site doit faire au moins 3 lettres");
             }
