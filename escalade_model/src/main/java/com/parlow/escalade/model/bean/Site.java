@@ -4,28 +4,29 @@ import com.parlow.escalade.model.bean.listes.PeriodeFav;
 import com.parlow.escalade.model.bean.listes.Region;
 import com.parlow.escalade.model.bean.listes.TypeRocher;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
-import com.sun.istack.internal.NotNull;
-import org.joda.time.DateTime;
 
+
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Site {
 
     // ==================== Attributs ====================
     private Integer id;
-    @NotNull
-    @Size(min = 1, max = 100)
+    //@NotNull(message="Le champ ne doit pas être vide")
+    //@Size(min = 3, max = 100, message="Le nom doit être supérieur à 3 lettres")
     private String nom;
     private String description;
     private List<Secteur> secteurs;
-    private List<Region> region;
+    private Region region;
     private List<PeriodeFav> periodeFav;
     private List<TypeRocher> typeRocher;
     private Integer nbSecteurs;
     private Integer nbVoies;
-    private DateTime dateCreation;
-    private DateTime lastUpdate;
+    private Timestamp dateCreation;
+    private Timestamp lastUpdate;
     private String niveauPratique;
     private List<Image> images;
     private Utilisateur utilisateur;
@@ -82,11 +83,11 @@ public class Site {
         this.secteurs = secteurs;
     }
 
-    public List<Region> getRegion() {
+    public Region getRegion() {
         return region;
     }
 
-    public void setRegion(List<Region> region) {
+    public void setRegion(Region region) {
         this.region = region;
     }
 
@@ -122,11 +123,11 @@ public class Site {
         this.nbVoies = nbVoies;
     }
 
-    public DateTime getLastUpdate() {
+    public Timestamp getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(DateTime lastUpdate) {
+    public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -154,11 +155,11 @@ public class Site {
         this.utilisateur = utilisateur;
     }
 
-    public DateTime getDateCreation() {
+    public Timestamp getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(DateTime dateCreation) {
+    public void setDateCreation(Timestamp dateCreation) {
         this.dateCreation = dateCreation;
     }
 

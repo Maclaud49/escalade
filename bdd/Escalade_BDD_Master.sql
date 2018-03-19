@@ -27,25 +27,26 @@ CREATE SCHEMA sch_escalade AUTHORIZATION escalade_admin;
 -- ====================================================================================================================
 ------------------------------------------------ CREATION DES TABLES --------------------------------------------------
 -- ====================================================================================================================
-SET search_path = sch_escalade;
+SET search_path = sch_escalade,pg_catalog;
 
 CREATE TABLE t_topo (
-    id SERIAL PRIMARY KEY,
-    nom CHARACTER VARYING(15) NOT NULL,
+  id SERIAL PRIMARY KEY,
+  nom CHARACTER VARYING(15) NOT NULL,
 	region CHARACTER VARYING(20),
 	disponible BOOLEAN,
 	site_fk_id INTEGER
 );
 
 CREATE TABLE t_site (
-    id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
 	nom CHARACTER VARYING(20) NOT NULL,
 	secteur_fk_id INTEGER,
 	region_fk_id INTEGER,
-	presentation CHARACTER VARYING(500),
+	description CHARACTER VARYING(500),
 	periodeFav_fk_id INTEGER, 
 	lastUpdate TIMESTAMP, 
-	typeRocher_fk_id INTEGER
+	typeRocher_fk_id INTEGER,
+	dateCreation TIMESTAMP
 );
 
 CREATE TABLE t_periodeFav (
@@ -59,8 +60,14 @@ CREATE TABLE t_typeRocher (
 );
 
 CREATE TABLE t_region (
-    id SERIAL PRIMARY KEY,
-	region CHARACTER VARYING(15) NOT NULL
+    id INTEGER,
+		region CHARACTER VARYING(30) NOT NULL
+);
+
+CREATE TABLE t_departement (
+	id SERIAL PRIMARY KEY,
+	departement CHARACTER VARYING(30) NOT NULL,
+	region_fk_id INTEGER
 );
 
 CREATE TABLE t_secteur (
@@ -136,6 +143,7 @@ ALTER TABLE t_user ADD CONSTRAINT t_user_topo_fk FOREIGN KEY (topo_fk_id) REFERE
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_user_fk FOREIGN KEY (topoProprioUSer_fk_id) REFERENCES t_user ON DELETE SET NULL;	
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_user_fk2 FOREIGN KEY (topoLoueurUser_fk_id) REFERENCES t_user ON DELETE RESTRICT;
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_topo_fk FOREIGN KEY (topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
+ALTER TABLE t_departement ADD CONSTRAINT t_departement_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region ON DELETE SET NULL;
 
 -- ====================================================================================================================
 ---------------------------------------------------- DROITS SUR TABLES ------------------------------------------------
@@ -146,6 +154,7 @@ ALTER TABLE t_site OWNER TO escalade_admin;
 ALTER TABLE t_periodeFav OWNER TO escalade_admin;
 ALTER TABLE t_typeRocher OWNER TO escalade_admin;
 ALTER TABLE t_region OWNER TO escalade_admin;
+ALTER TABLE t_departement OWNER TO escalade_admin;
 ALTER TABLE t_secteur OWNER TO escalade_admin;
 ALTER TABLE t_voie OWNER TO escalade_admin;
 ALTER TABLE t_cotation OWNER TO escalade_admin;
@@ -160,4 +169,6 @@ GRANT SELECT ON ALL TABLES IN SCHEMA sch_escalade TO escalade_user;
 GRANT UPDATE ON ALL TABLES IN SCHEMA sch_escalade TO escalade_user;
 GRANT INSERT ON ALL TABLES IN SCHEMA sch_escalade TO escalade_user;
 GRANT DELETE ON ALL TABLES IN SCHEMA sch_escalade TO escalade_user;
+
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA sch_escalade TO escalade_user;
 

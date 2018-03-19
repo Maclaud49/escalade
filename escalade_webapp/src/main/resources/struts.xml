@@ -6,7 +6,7 @@
     <package name="default" extends="struts-default">
 
         <!-- Action par défaut -->
-        <default-action-ref name="index" />
+        <default-action-ref name="site_new" />
 
         <!-- Action "index" -->
         <action name="index">
@@ -14,11 +14,11 @@
         </action>
 
         <!-- Action listant les sites -->
-        <action name="site_list" class="GestionSiteAction" method="doList">
+        <action name="site_list" class="gestionSiteAction" method="doList">
             <result>/jsp/main/site/list.jsp</result>
         </action>
         <!-- Action affichant le détail d'un site -->
-        <action name="site_detail" class="GestionSiteAction" method="doDetail">
+        <action name="site_detail" class="gestionSiteAction" method="doDetail">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
@@ -27,7 +27,7 @@
             <result name="error">/jsp/error.jsp</result>
         </action>
         <!-- Actions permettant de créer un site -->
-        <action name="site_new" class="GestionSiteAction" method="doCreate">
+        <action name="site_new" class="gestionSiteAction" method="doCreate">
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
@@ -40,16 +40,16 @@
         </action>
 
         <!-- Action affichant le détail d'un utilisateur -->
-        <action name="utilisateur_detail" class="GestionUtilistateurAction" method="doDetail">
+        <action name="utilisateur_detail" class="gestionUtilistateurAction" method="doDetail">
             <result name="success">/jsp/utilisateur/detail.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
         <!-- Actions Login/Logout -->
-        <action name="login" class="LoginAction" method="doLogin">
-            <result name="input">/jsp/main/login.jsp</result>
+        <action name="login" class="loginAction" method="doLogin">
             <result name="success" type="redirectAction">index</result>
+            <result name="input">/jsp/main/login.jsp</result>
         </action>
-        <action name="logout" class="LoginAction" method="doLogout">
+        <action name="logout" class="loginAction" method="doLogout">
             <result type="redirectAction">index</result>
         </action>
 

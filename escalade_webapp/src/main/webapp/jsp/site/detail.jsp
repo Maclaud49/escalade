@@ -17,7 +17,7 @@
     <ul>
         <li>ID : <s:property value="site.id" /></li>
         <li>Nom : <s:property value="site.nom" /></li>
-        <li>Présentation : <s:property value="site.presentation" /></li>
+        <li>Description : <s:property value="site.description" /></li>
         <li>
             Responsable :
             <s:a action="utilisateur_detail">

@@ -13,7 +13,7 @@ public interface SiteManager {
 
     List<Site> getListSite();
 
-    void insert( Site site )throws FunctionalException, TechnicalException;
+    int insert( Site site )throws FunctionalException, TechnicalException;
 
     Site findById( int id );
 

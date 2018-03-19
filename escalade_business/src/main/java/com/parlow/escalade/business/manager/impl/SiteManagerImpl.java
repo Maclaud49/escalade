@@ -71,7 +71,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             Site vSite = new Site();
             vSite.setId(vI);
             vSite.setNom("Site n°" + vI);
-            vSite.setPresentation("Un site tip top");
+            vSite.setDescription("Un site tip top");
             Utilisateur mac = new Utilisateur();
             mac.setId(1);
             mac.setPrenom("Mickael");
@@ -82,7 +82,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
-    public void insert(Site pSite) throws FunctionalException {
+    public int insert(Site pSite) throws FunctionalException {
         if (pSite == null) {
             throw new FunctionalException("L'objet Site ne doit pas être null !");
         }
@@ -93,10 +93,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
                     new ConstraintViolationException(vViolations));
         }
 
-        // TODO Persistance
-        pSite.setId(999);
-        this.listSite.add(pSite);
-        
+        return daoFactory.getSiteDao().insert(pSite);
     }
 
     @Override

@@ -1,9 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
-import com.parlow.escalade.consumer.dao.contract.DaoFactory;
-import com.parlow.escalade.consumer.dao.contract.SecteurDao;
-import com.parlow.escalade.consumer.dao.contract.SiteDao;
-import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
+import com.parlow.escalade.consumer.dao.contract.*;
 
 import javax.inject.Named;
 import javax.inject.Inject;
@@ -19,12 +16,14 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     private UtilisateurDao utilisateurDao;
     @Inject
+    private RegionDao regionDao;
+    @Inject
     public  DaoFactoryImpl() {
     }
 
     @Override
     public SecteurDao getSecteurDao() {
-        return secteurDao;
+        return this.secteurDao;
     }
 
     @Override
@@ -34,7 +33,7 @@ public class DaoFactoryImpl implements DaoFactory {
 
     @Override
     public SiteDao getSiteDao() {
-        return siteDao;
+        return this.siteDao;
     }
 
     @Override
@@ -44,12 +43,22 @@ public class DaoFactoryImpl implements DaoFactory {
 
     @Override
     public UtilisateurDao getUtilisateurDao() {
-        return utilisateurDao;
+        return this.utilisateurDao;
     }
 
     @Override
     public void setUtilisateurDao(UtilisateurDao pUtilisateurDao) {
 
         this.utilisateurDao = pUtilisateurDao;
+    }
+
+    @Override
+    public RegionDao getRegionDao() {
+        return this.regionDao;
+    }
+
+    @Override
+    public void setRegionDao(RegionDao pRegionDao) {
+        this.regionDao = pRegionDao;
     }
 }

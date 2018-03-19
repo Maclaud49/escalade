@@ -13,4 +13,10 @@ public interface DaoFactory {
     UtilisateurDao getUtilisateurDao();
 
     void setUtilisateurDao(UtilisateurDao pUtilisateurDao);
+
+    RegionDao getRegionDao();
+
+    void setRegionDao(RegionDao pRegionDao);
+
+
 }
