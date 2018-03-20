@@ -34,11 +34,13 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     private TopoDao topoDao;
     @Inject
-    private TypeRocherDao typeRocher;
+    private TypeRocherDao typeRocherDao;
     @Inject
     private UtilisateurDao utilisateurDao;
     @Inject
     private VoieDao voieDao;
+    @Inject
+    private DepartementDao departementDao;
 
     @Override
     public AdresseDao getAdresseDao() {
@@ -104,7 +106,6 @@ public class DaoFactoryImpl implements DaoFactory {
     public void setProfilDao(ProfilDao profilDao) {
         this.profilDao = profilDao;
     }
-
     @Override
     public RegionDao getRegionDao() {
         return regionDao;
@@ -113,22 +114,18 @@ public class DaoFactoryImpl implements DaoFactory {
     public void setRegionDao(RegionDao regionDao) {
         this.regionDao = regionDao;
     }
-
     @Override
     public SecteurDao getSecteurDao() {
         return secteurDao;
     }
-
     @Override
     public void setSecteurDao(SecteurDao secteurDao) {
         this.secteurDao = secteurDao;
     }
-
     @Override
     public SiteDao getSiteDao() {
         return siteDao;
     }
-
     @Override
     public void setSiteDao(SiteDao siteDao) {
         this.siteDao = siteDao;
@@ -142,19 +139,17 @@ public class DaoFactoryImpl implements DaoFactory {
         this.topoDao = topoDao;
     }
     @Override
-    public TypeRocherDao getTypeRocher() {
-        return typeRocher;
+    public TypeRocherDao getTypeRocherDao() {
+        return typeRocherDao;
     }
     @Override
-    public void setTypeRocher(TypeRocherDao typeRocher) {
-        this.typeRocher = typeRocher;
+    public void setTypeRocherDao(TypeRocherDao typeRocherDao) {
+        this.typeRocherDao = typeRocherDao;
     }
-
     @Override
     public UtilisateurDao getUtilisateurDao() {
         return utilisateurDao;
     }
-
     @Override
     public void setUtilisateurDao(UtilisateurDao utilisateurDao) {
         this.utilisateurDao = utilisateurDao;
@@ -166,5 +161,13 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setVoieDao(VoieDao voieDao) {
         this.voieDao = voieDao;
+    }
+    @Override
+    public DepartementDao getDepartementDao() {
+        return departementDao;
+    }
+    @Override
+    public void setDepartementDao(DepartementDao departementDao) {
+        this.departementDao = departementDao;
     }
 }

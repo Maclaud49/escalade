@@ -29,27 +29,27 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
     @Override
     public List<Location> findAll() {
         String vSQL_findAll = "SELECT * FROM t_location";
-        List<Location> locations  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Location.class));
+        List<Location> locations = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Location.class));
         return locations;
     }
 
     @Override
     public int insert(Location pLocation) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_location (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_location (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        this.vJdbcTemplate.update( new PreparedStatementCreator() {
-                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pLocation.getNom());
-                                           pst.setString(2,pLocation.getDescription());
-                                           pst.setInt(3,pLocation.getRegion().getId());
-                                           pst.setTimestamp(4,pLocation.getDateCreation());
-                                           return pst;
-                                       }
-                                   },
+        this.vJdbcTemplate.update(new PreparedStatementCreator() {
+                                      public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                          pst.setTimestamp(1, pLocation.getDateDebut());
+                                          pst.setInt(2, pLocation.getTopoProprio().getId());
+                                          pst.setInt(3, pLocation.getTopoLoueur().getId());
+                                          pst.setInt(4, pLocation.getTopo().getId());
+                                          return pst;
+                                      }
+                                  },
                 keyHolder);
-        int key = (Integer)keyHolder.getKey();
+        int key = (Integer) keyHolder.getKey();
         return key;
     }
 
@@ -61,6 +61,9 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     @Override
     public void update(Location pLocation) throws FunctionalException {
-        String vSQL_update = "UPDATE t_location SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_location SET dateDebut = ?, dateFin = ?, topoProprioUtilisateur_fk_id = ?," +
+                " topoLoueurUtilisateur_fk_id = ?, topo_fk_id = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pLocation.getDateDebut(), pLocation.getDateFin(),pLocation.getTopoProprio().getId(),
+                pLocation.getTopoLoueur().getId(),pLocation.getTopo().getId(),pLocation.getId());
     }
+}

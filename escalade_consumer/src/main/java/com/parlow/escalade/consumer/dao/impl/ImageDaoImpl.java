@@ -35,17 +35,15 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
 
     @Override
     public int insert(Image pImage) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_image (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_image (chemin) VALUES(?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pImage.getNom());
-                                           pst.setString(2,pImage.getDescription());
-                                           pst.setInt(3,pImage.getRegion().getId());
-                                           pst.setTimestamp(4,pImage.getDateCreation());
-                                           return pst;
+                                           try (PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"})) {
+                                               pst.setString(1, pImage.getChemin());
+                                               return pst;
+                                           }
                                        }
                                    },
                 keyHolder);
@@ -61,7 +59,7 @@ public class ImageDaoImpl extends AbstractDaoImpl implements ImageDao {
 
     @Override
     public void update(Image pImage) throws FunctionalException {
-        String vSQL_update = "UPDATE t_image SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_image SET chemin = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pImage.getChemin(), pImage.getId());
     }
 }

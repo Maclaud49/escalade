@@ -38,6 +38,8 @@ public final class ManagerFactoryImpl implements ManagerFactory {
     private UtilisateurManager utilisateurManager;
     @Inject
     private VoieManager voieManager;
+    @Inject
+    private DepartementManager departementManager;
 
 
     @Override
@@ -166,5 +168,13 @@ public final class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setVoieManager(VoieManager voieManager) {
         this.voieManager = voieManager;
+    }
+    @Override
+    public DepartementManager getDepartementManager() {
+        return departementManager;
+    }
+    @Override
+    public void setDepartementManager(DepartementManager departementManager) {
+        this.departementManager = departementManager;
     }
 }

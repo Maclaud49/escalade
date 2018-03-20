@@ -4,13 +4,14 @@ import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.joda.time.DateTime;
 
+import java.sql.Timestamp;
+
 public class Location {
 
     // ==================== Attributs ====================
     private Integer id;
-    private String cotation;
-    private DateTime dateDebut;
-    private DateTime dateFin;
+    private Timestamp dateDebut;
+    private Timestamp dateFin;
     private Utilisateur topoProprio;
     private Utilisateur topoLoueur;
     private Topo topo;
@@ -25,27 +26,19 @@ public class Location {
         this.id = id;
     }
 
-    public String getCotation() {
-        return cotation;
-    }
-
-    public void setCotation(String cotation) {
-        this.cotation = cotation;
-    }
-
-    public DateTime getDateDebut() {
+    public Timestamp getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(DateTime dateDebut) {
+    public void setDateDebut(Timestamp dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public DateTime getDateFin() {
+    public Timestamp getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(DateTime dateFin) {
+    public void setDateFin(Timestamp dateFin) {
         this.dateFin = dateFin;
     }
 

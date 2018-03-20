@@ -30,7 +30,7 @@ public class ImageManagerImpl extends AbstractManager implements ImageManager{
         if (vList == null) {
             Image image = new Image();
             image.setId(1);
-            image.setNom("Pas de données");
+            image.setChemin("../../../ressources/images/750x300.png");
             vList.add(image);
         }
         return vList;

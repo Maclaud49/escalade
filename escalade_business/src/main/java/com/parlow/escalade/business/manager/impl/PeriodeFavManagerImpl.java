@@ -31,7 +31,7 @@ public class PeriodeFavManagerImpl extends AbstractManager implements PeriodeFav
         if (vList == null) {
             PeriodeFav periodeFav = new PeriodeFav();
             periodeFav.setId(1);
-            periodeFav.setNom("Pas de données");
+            periodeFav.setPeriode("Pas de données");
             vList.add(periodeFav);
         }
         return vList;

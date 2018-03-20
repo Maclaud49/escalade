@@ -23,7 +23,7 @@ SET search_path = sch_escalade,pg_catalog;
 -----------------------------------------------------DONNEES-----------------------------------------------------------
 -- ====================================================================================================================
 
-INSERT INTO t_user(
+INSERT INTO t_utilisateur(
   nom, prenom, datenaissance,email,password)
 VALUES ('Parlow', 'Mickaël', '13/04/2018','mickael@parlow-co.com','escalade2018');
 

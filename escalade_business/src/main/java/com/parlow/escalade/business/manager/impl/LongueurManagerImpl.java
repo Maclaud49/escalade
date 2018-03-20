@@ -31,7 +31,6 @@ public class LongueurManagerImpl extends AbstractManager implements LongueurMana
         if (vList == null) {
             Longueur longueur = new Longueur();
             longueur.setId(1);
-            longueur.setNom("Pas de données");
             vList.add(longueur);
         }
         return vList;

@@ -13,7 +13,7 @@ public class Cotation {
 
     // ==================== Attributs ====================
     private Integer id;
-    private String description;
+    private String cotation;
     private Integer niveau;
 
 
@@ -28,11 +28,11 @@ public class Cotation {
     }
 
     public String getCotation() {
-        return description;
+        return cotation;
     }
 
     public void setCotation(String cotation) {
-        this.description = cotation;
+        this.cotation = cotation;
     }
 
     public Integer getNiveau() {

@@ -29,27 +29,25 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
     @Override
     public List<Cotation> findAll() {
         String vSQL_findAll = "SELECT * FROM t_cotation";
-        List<Cotation> cotations  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Cotation.class));
+        List<Cotation> cotations = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Cotation.class));
         return cotations;
     }
 
     @Override
     public int insert(Cotation pCotation) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_cotation (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_cotation (cotation,niveau) VALUES(?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        this.vJdbcTemplate.update( new PreparedStatementCreator() {
-                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pCotation.getNom());
-                                           pst.setString(2,pCotation.getDescription());
-                                           pst.setInt(3,pCotation.getRegion().getId());
-                                           pst.setTimestamp(4,pCotation.getDateCreation());
-                                           return pst;
-                                       }
-                                   },
+        this.vJdbcTemplate.update(new PreparedStatementCreator() {
+                                      public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                          pst.setString(1, pCotation.getCotation());
+                                          pst.setInt(1, pCotation.getNiveau());
+                                          return pst;
+                                      }
+                                  },
                 keyHolder);
-        int key = (Integer)keyHolder.getKey();
+        int key = (Integer) keyHolder.getKey();
         return key;
     }
 
@@ -61,6 +59,7 @@ public class CotationDaoImpl extends AbstractDaoImpl implements CotationDao {
 
     @Override
     public void update(Cotation pCotation) throws FunctionalException {
-        String vSQL_update = "UPDATE t_cotation SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_cotation SET cotation = ?, niveau = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pCotation.getCotation(), pCotation.getNiveau(), pCotation.getId());
     }
+}

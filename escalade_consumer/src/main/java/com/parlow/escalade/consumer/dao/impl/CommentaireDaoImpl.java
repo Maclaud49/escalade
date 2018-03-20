@@ -35,16 +35,13 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public int insert(Commentaire pCommentaire) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_commentaire (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_commentaire (commentaire) VALUES(?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pCommentaire.getNom());
-                                           pst.setString(2,pCommentaire.getDescription());
-                                           pst.setInt(3,pCommentaire.getRegion().getId());
-                                           pst.setTimestamp(4,pCommentaire.getDateCreation());
+                                           pst.setString(1, pCommentaire.getCommentaire());
                                            return pst;
                                        }
                                    },
@@ -61,7 +58,8 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public void update(Commentaire pCommentaire) throws FunctionalException {
-        String vSQL_update = "UPDATE t_commentaire SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_commentaire SET commentaire = ?, dateCommentaire = ?, utilisateur_fk_id = ?, table_fk_id = ?, target_table = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pCommentaire.getCommentaire(),pCommentaire.getDateCommentaire(),
+                pCommentaire.getUtilisateur().getId(),pCommentaire.getReference_id(),pCommentaire.getTable(),pCommentaire.getId());
     }
 }

@@ -30,7 +30,7 @@ public class CotationManagerImpl extends AbstractManager implements CotationMana
         if (vList == null) {
             Cotation cotation = new Cotation();
             cotation.setId(1);
-            cotation.setNom("Pas de données");
+            cotation.setCotation("Pas de données");
             vList.add(cotation);
         }
         return vList;

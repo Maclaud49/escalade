@@ -31,7 +31,7 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
         if (vList == null) {
             Commentaire commentaire = new Commentaire();
             commentaire.setId(1);
-            commentaire.setNom("Pas de données");
+            commentaire.setCommentaire("Pas de données");
             vList.add(commentaire);
         }
         return vList;

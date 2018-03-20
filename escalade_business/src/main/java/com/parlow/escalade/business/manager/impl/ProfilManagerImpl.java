@@ -30,7 +30,7 @@ public class ProfilManagerImpl extends AbstractManager implements ProfilManager{
         if (vList == null) {
             Profil profil = new Profil();
             profil.setId(1);
-            profil.setNom("Pas de données");
+            profil.setProfil("Pas de données");
             vList.add(profil);
         }
         return vList;

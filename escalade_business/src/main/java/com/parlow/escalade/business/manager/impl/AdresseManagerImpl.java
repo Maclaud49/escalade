@@ -31,7 +31,7 @@ public class AdresseManagerImpl extends AbstractManager implements AdresseManage
         if (vList == null) {
             Adresse adresse = new Adresse();
             adresse.setId(1);
-            adresse.setNom("Pas de données");
+            adresse.setAdresse1("Pas de données");
             vList.add(adresse);
         }
         return vList;

@@ -20,7 +20,7 @@
 CREATE ROLE escalade_admin WITH PASSWORD 'Escalade_2018' LOGIN SUPERUSER CREATEROLE INHERIT;
 CREATE ROLE escalade_user WITH PASSWORD 'Escalade_2018' LOGIN;
 
-CREATE DATABASE escalade WITH OWNER = escalade_admin ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C' CONNECTION LIMIT = -1;
+CREATE DATABASE escalade WITH OWNER = escalade_admin ENCODING = 'UTF8' CONNECTION LIMIT = -1;
 
 CREATE SCHEMA sch_escalade AUTHORIZATION escalade_admin;
 
@@ -54,7 +54,7 @@ CREATE TABLE t_site (
 	dateCreation TIMESTAMP,
 	image_fk_id INTEGER,
 	utilisateur_fk_id INTEGER,
-	publication boolean,
+	publication boolean
 );
 
 CREATE TABLE t_periodeFav (
@@ -171,7 +171,6 @@ CREATE TABLE t_profil(
 --------------------------------------------------------- CONTRAINTES -------------------------------------------------
 -- ====================================================================================================================
 
-ALTER TABLE t_topo ADD CONSTRAINT t_topo_commentaire_fk FOREIGN KEY (commentaire_fk_id) REFERENCES t_commentaire ON DELETE SET NULL;
 ALTER TABLE t_topo ADD CONSTRAINT t_topo_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
 ALTER TABLE t_topo ADD CONSTRAINT t_topo_image_fk FOREIGN KEY (image_fk_id) REFERENCES t_image ON DELETE SET NULL;
 ALTER TABLE t_site ADD CONSTRAINT t_site_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;	
@@ -183,7 +182,6 @@ ALTER TABLE t_site ADD CONSTRAINT t_site_utilisateur_fk FOREIGN KEY (utilisateur
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;	
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_site_fk FOREIGN KEY (site_fk_id) REFERENCES t_site ON DELETE SET NULL;
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_voie ADD CONSTRAINT t_voie_longueur_fk FOREIGN KEY (longueur_fk_id) REFERENCES t_longueur ON DELETE CASCADE;	
 ALTER TABLE t_voie ADD CONSTRAINT t_voie_cotation_fk FOREIGN KEY (cotation_fk_id) REFERENCES t_cotation ON DELETE SET NULL;	
 ALTER TABLE t_voie ADD CONSTRAINT t_voie_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;
 ALTER TABLE t_voie ADD CONSTRAINT t_voie_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;

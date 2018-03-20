@@ -35,16 +35,14 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
 
     @Override
     public int insert(Adresse pAdresse) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_adresse (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_adresse (adresse1, adresse2) VALUES(?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pAdresse.getNom());
-                                           pst.setString(2,pAdresse.getDescription());
-                                           pst.setInt(3,pAdresse.getRegion().getId());
-                                           pst.setTimestamp(4,pAdresse.getDateCreation());
+                                           pst.setString(1, pAdresse.getAdresse1());
+                                           pst.setString(2,pAdresse.getAdresse2());
                                            return pst;
                                        }
                                    },
@@ -61,7 +59,8 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
 
     @Override
     public void update(Adresse pAdresse) throws FunctionalException {
-        String vSQL_update = "UPDATE t_adresse SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_adresse SET adresse1 = ?,adresse2 = ?,codePostal = ?,ville = ?,pays = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pAdresse.getAdresse1(),pAdresse.getAdresse2(),pAdresse.getCodePostal(),
+                pAdresse.getVille(),pAdresse.getPays(),pAdresse.getId());
     }
 }

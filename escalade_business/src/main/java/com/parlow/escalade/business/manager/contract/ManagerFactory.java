@@ -62,4 +62,8 @@ public interface ManagerFactory {
     VoieManager getVoieManager();
 
     void setVoieManager(VoieManager voieManager);
+
+    DepartementManager getDepartementManager();
+
+    void setDepartementManager(DepartementManager departementManager);
 }

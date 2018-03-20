@@ -20,27 +20,6 @@ import java.util.List;
 @Named
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
-    @Override
-    public int insert(Site site) {
-
-        String vSQL_insert = "INSERT into t_site (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-
-        this.vJdbcTemplate.update( new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                PreparedStatement pst =
-                        con.prepareStatement(vSQL_insert, new String[] {"id"});
-                pst.setString(1, site.getNom());
-                pst.setString(2,site.getDescription());
-                pst.setInt(3,site.getRegion().getId());
-                pst.setTimestamp(4,site.getDateCreation());
-                return pst;
-            }
-        },
-                keyHolder);
-        int key = (Integer)keyHolder.getKey();
-        return key;
-    }
 
     @Override
     public Site findById(int pId) throws NotFoundException {

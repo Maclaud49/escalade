@@ -30,7 +30,6 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
         if (vList == null) {
             Location location = new Location();
             location.setId(1);
-            location.setNom("Pas de données");
             vList.add(location);
         }
         return vList;

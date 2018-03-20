@@ -51,9 +51,9 @@ public interface DaoFactory {
 
     void setTopoDao(TopoDao topoDao);
 
-    TypeRocherDao getTypeRocher();
+    TypeRocherDao getTypeRocherDao();
 
-    void setTypeRocher(TypeRocherDao typeRocher);
+    void setTypeRocherDao(TypeRocherDao typeRocherDao);
 
     UtilisateurDao getUtilisateurDao();
 
@@ -62,4 +62,8 @@ public interface DaoFactory {
     VoieDao getVoieDao();
 
     void setVoieDao(VoieDao voieDao);
+
+    DepartementDao getDepartementDao();
+
+    void setDepartementDao  (DepartementDao departementDao);
 }
