@@ -1,17 +1,23 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
+import com.parlow.escalade.model.bean.Utilisateur;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,24 +25,6 @@ import java.util.List;
 
 @Named
 public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurDao {
-
-    private static final String SQL_SELECT        = "SELECT * FROM T_user ORDER BY id";
-    private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM T_user WHERE nom = ?";
-    private static final String SQL_INSERT        = "INSERT INTO T_user (email, password, profil) VALUES (?, ?, ?)";
-    private static final String SQL_DELETE_PAR_ID = "DELETE FROM T_user WHERE id = ?";
-
-    @Override
-    public void insert(Utilisateur utilisateur) {
-    }
-
-    @Override
-    public Utilisateur findById(int id) {
-        String vSQL_findById = "SELECT * FROM T_user WHERE id = ?";
-
-        Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{id},
-                new BeanPropertyRowMapper(Utilisateur.class));
-        return user;
-    }
 
     @Override
     public Utilisateur findByEmail(String email, String password) throws NotFoundException {
@@ -50,40 +38,54 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
             }catch(Exception e){
                 throw new NotFoundException("Aucun utilisateur correspondant au couple email/mot de passe fourni.");
             }
-
-
-    }
-
-
-    @Override
-    public List<Utilisateur> findAll(){
-        String vSQL_findAll = "SELECT * FROM T_user";
-
-        List<Utilisateur> users  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Utilisateur.class));
-
-        return users;
     }
 
     @Override
-    public void delete(int utilisateurid) {
+    public Utilisateur findById(int pId) throws NotFoundException {
+        String vSQL_findById = "SELECT * FROM t_user WHERE id = ?";
+        Utilisateur utilisateur = (Utilisateur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
+                new BeanPropertyRowMapper(Utilisateur.class));
+        return utilisateur;
+    }
 
+    @Override
+    public List<Utilisateur> findAll() {
+        String vSQL_findAll = "SELECT * FROM t_user";
+        List<Utilisateur> utilisateurs  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Utilisateur.class));
+        return utilisateurs;
+    }
+
+    @Override
+    public int insert(Utilisateur pUtilisateur) throws FunctionalException {
+        String vSQL_insert = "INSERT into t_user (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        this.vJdbcTemplate.update( new PreparedStatementCreator() {
+                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
+                                           pst.setString(1, pUtilisateur.getNom());
+                                           pst.setString(2,pUtilisateur.getDescription());
+                                           pst.setInt(3,pUtilisateur.getRegion().getId());
+                                           pst.setTimestamp(4,pUtilisateur.getDateCreation());
+                                           return pst;
+                                       }
+                                   },
+                keyHolder);
+        int key = (Integer)keyHolder.getKey();
+        return key;
+    }
+
+    @Override
+    public void delete(int pId) throws NotFoundException {
+        String vSQL_delete = "DELETE FROM t_user WHERE id=?";
+        this.vJdbcTemplate.update(vSQL_delete, pId);
+    }
+
+    @Override
+    public void update(Utilisateur pUtilisateur) throws FunctionalException {
+        String vSQL_update = "UPDATE t_user SET age = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, age, id);
     }
 
 
-
-
-
-    private static final class UtilisateurRM implements RowMapper<Utilisateur> {
-        public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Utilisateur user = new Utilisateur();
-            user.setId(rs.getInt("id"));
-            user.setNom(rs.getString("nom"));
-            user.setEmail(rs.getString("email"));
-            user.setPassword(rs.getString("password"));
-            user.setPrenom(rs.getString("prenom"));
-            user.setProfil(rs.getInt("profil"));
-
-            return user;
-        }
-    }
 }

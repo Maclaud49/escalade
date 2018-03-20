@@ -1,10 +1,10 @@
-package com.parlow.escalade.model.bean.listes;
+package com.parlow.escalade.model.bean;
 
-public class Profil {
+public class Region {
 
     // ==================== Attributs ====================
     private Integer id;
-    private String profil;
+    private String region;
 
     // ==================== Getters/Setters ==============
 
@@ -16,12 +16,12 @@ public class Profil {
         this.id = id;
     }
 
-    public String getProfil() {
-        return profil;
+    public String getRegion() {
+        return region;
     }
 
-    public void setProfil(String profil) {
-        this.profil = profil;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
 

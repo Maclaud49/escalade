@@ -1,4 +1,4 @@
-package com.parlow.escalade.model.bean.utilisateur;
+package com.parlow.escalade.model.bean;
 
 import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;

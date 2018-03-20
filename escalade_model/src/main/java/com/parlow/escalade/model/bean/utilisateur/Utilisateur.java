@@ -1,6 +1,7 @@
 package com.parlow.escalade.model.bean.utilisateur;
 
-import com.parlow.escalade.model.bean.listes.Cotation;
+import com.parlow.escalade.model.bean.Adresse;
+import com.parlow.escalade.model.bean.Cotation;
 import com.parlow.escalade.model.bean.Image;
 import com.parlow.escalade.model.bean.Topo;
 
@@ -20,8 +21,7 @@ public class Utilisateur {
     private String email;
     private String password;
     private Integer profil;
-
-
+    private Adresse adresse;
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -104,6 +104,13 @@ public class Utilisateur {
         this.profil = profil;
     }
 
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresses(Adresse adresse) {
+        this.adresse = adresse;
+    }
 
     // ==================== Méthodes =====================
 

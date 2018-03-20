@@ -1,10 +1,10 @@
-package com.parlow.escalade.model.bean.listes;
+package com.parlow.escalade.model.bean;
 
-public class PeriodeFav {
+public class TypeRocher {
 
     // ==================== Attributs ====================
     private Integer id;
-    private String periode;
+    private String typeRocher;
 
 
     // ==================== Getters/Setters ==============
@@ -16,13 +16,14 @@ public class PeriodeFav {
         this.id = id;
     }
 
-    public String getPeriode() {
-        return periode;
+    public String getTypeRocher() {
+        return typeRocher;
     }
 
-    public void setPeriode(String periode) {
-        this.periode = periode;
+    public void setTypeRocher(String typeRocher) {
+        this.typeRocher = typeRocher;
     }
+
 
     // ==================== Méthodes =====================
 }

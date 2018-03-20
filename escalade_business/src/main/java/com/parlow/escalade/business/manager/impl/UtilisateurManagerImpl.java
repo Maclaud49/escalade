@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
+import com.parlow.escalade.model.exception.FunctionalException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.parlow.escalade.business.manager.contract.UtilisateurManager;
@@ -18,19 +19,7 @@ import com.parlow.escalade.model.exception.NotFoundException;
 public class UtilisateurManagerImpl extends AbstractManager implements UtilisateurManager {
 
     @Inject
-    private UtilisateurDao utilisateurDao;
-    @Inject
     private DaoFactory daoFactory;
-
-    @Override
-    public Utilisateur getUtilisateur(Integer pId) throws NotFoundException {
-        // Je n'ai pas codé la DAO, je mets juste un code pour le cours...
-        if (pId < 0) {
-            throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
-        }
-        Utilisateur vUtilisateur = daoFactory.getUtilisateurDao().findById(pId);
-        return vUtilisateur;
-    }
 
     @Override
     public Utilisateur getUtilisateur(String pEmail, String pPassword) throws NotFoundException {
@@ -44,29 +33,53 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
         }
     }
 
+    @Override
+    public Utilisateur findById(int pId) throws NotFoundException {
+        if (pId < 1) {
+            throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
+        }
+        Utilisateur vUtilisateur = daoFactory.getUtilisateurDao().findById(pId);
+        return vUtilisateur;
+    }
 
     @Override
-    public List<Utilisateur> getListUtilisateur() {
-        // Je n'ai pas codé la DAO, je mets juste un code pour le cours...
-        List<Utilisateur> vList = new ArrayList<>();
-        for (int vI = 0; vI < 9; vI++) {
-            Utilisateur vUtilisateur = newUtilisateur("Mickael"+vI);
-            vList.add(vUtilisateur);
+    public List<Utilisateur> findAll() {
+        List<Utilisateur> vList = daoFactory.getUtilisateurDao().findAll();
+        if (vList == null) {
+            Utilisateur utilisateur = new Utilisateur();
+            utilisateur.setId(1);
+            utilisateur.setNom("Pas de données");
+            vList.add(utilisateur);
         }
         return vList;
     }
 
-
-    /**
-     * Crée une instance d'{@link Utilisateur}
-     * @param pNom -
-     * @return Utilisateur
-     */
-    private Utilisateur newUtilisateur(String pNom) {
-
-        Utilisateur vUtilisateur = new Utilisateur();
-        vUtilisateur.setPrenom("Mac");
-        return vUtilisateur;
+    @Override
+    public int insert(Utilisateur pUtilisateur) throws FunctionalException {
+        if (pUtilisateur == null) {
+            throw new FunctionalException("L'objet Utilisateur ne doit pas être null !");
+        }
+        return daoFactory.getUtilisateurDao().insert(pUtilisateur);
     }
+
+    @Override
+    public void delete(int pId) throws NotFoundException {
+        if (pId < 1) {
+            throw new NotFoundException("Utilisateur non trouvé : ID=" + pId);
+        }
+        daoFactory.getUtilisateurDao().delete(pId);
+    }
+
+    @Override
+    public void update(Utilisateur pUtilisateur) throws FunctionalException {
+        if (pUtilisateur == null) {
+            throw new FunctionalException("L'objet Utilisateur ne doit pas être null !");
+        }
+        daoFactory.getUtilisateurDao().update(pUtilisateur);
+    }
+
+
+
+
 
 }

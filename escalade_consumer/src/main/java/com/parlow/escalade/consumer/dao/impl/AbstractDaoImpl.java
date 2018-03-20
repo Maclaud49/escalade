@@ -11,8 +11,6 @@ import javax.sql.DataSource;
 
 public abstract class AbstractDaoImpl {
 
-
-
     protected DataSource dataSource;
     protected JdbcTemplate vJdbcTemplate ;
 

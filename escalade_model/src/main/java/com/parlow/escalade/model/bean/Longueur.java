@@ -1,6 +1,6 @@
 package com.parlow.escalade.model.bean;
 
-import com.parlow.escalade.model.bean.listes.Cotation;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 public class Longueur {
 
@@ -9,6 +9,7 @@ public class Longueur {
     private double relai;
     private Voie voie;
     private Cotation cotation;
+    private Utilisateur utilisateur;
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -41,6 +42,14 @@ public class Longueur {
 
     public void setCotation(Cotation cotation) {
         this.cotation = cotation;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
 

@@ -6,8 +6,9 @@ import java.util.List;
 
 import com.parlow.escalade.business.manager.contract.SecteurManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
-import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 
@@ -21,67 +22,54 @@ import javax.inject.Named;
  * @author Parlow
  */
 @Named
-public class SecteurManagerImpl implements SecteurManager {
+public class SecteurManagerImpl extends AbstractManager implements SecteurManager {
+
 
     @Inject
     private DaoFactory daoFactory;
 
-    /**
-     * Cherche et renvoie le {@link Secteur} numéro {@code id}
-     *
-     * @param id le numéro du Secteur
-     * @return Le {@link Secteur}
-     * @throws NotFoundException Si le Secteur n'est pas trouvé
-     */
     @Override
-    public Secteur getSecteur(int id) throws NotFoundException {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
-        if (id < 1L) {
-            throw new NotFoundException("Secteur non trouvé : numero=" + id);
+    public Secteur findById(int pId) throws NotFoundException {
+        if (pId < 1) {
+            throw new NotFoundException("Secteur non trouvé : ID=" + pId);
         }
-
-        return new Secteur();
+        Secteur vSecteur = daoFactory.getSecteurDao().findById(pId);
+        return vSecteur;
     }
 
-
-    /**
-     * Renvoie la liste des {@link Secteur} correspondants aux critères de recherche.
-     *
-     * @param pRechercheSecteur -
-     * @return List
-     */
     @Override
-    public List<Secteur> getListSecteur(RechercheSecteur pRechercheSecteur) {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
-        List<Secteur> vList = new ArrayList<>();
-        if (pRechercheSecteur.getSiteId() != null) {
-            Site vSite = new Site(pRechercheSecteur.getSiteId());
-            for (int vI = 0; vI < 4; vI++) {
-                Secteur vSecteur = new Secteur(vI);
-                vSecteur.setSite(vSite);
-                vList.add(vSecteur);
-            }
-        } else {
-            for (int vI = 0; vI < 9; vI++) {
-                Secteur vSecteur = new Secteur(vI);
-                vList.add(vSecteur);
-            }
+    public List<Secteur> findAll() {
+        List<Secteur> vList = daoFactory.getSecteurDao().findAll();
+        if (vList == null) {
+            Secteur secteur = new Secteur();
+            secteur.setId(1);
+            secteur.setNom("Pas de données");
+            vList.add(secteur);
         }
         return vList;
     }
 
+    @Override
+    public int insert(Secteur pSecteur) throws FunctionalException {
+        if (pSecteur == null) {
+            throw new FunctionalException("L'objet Secteur ne doit pas être null !");
+        }
+        return daoFactory.getSecteurDao().insert(pSecteur);
+    }
 
-    /**
-     * Renvoie le nombre de {@link Secteur} correspondants aux critères de recherche.
-     *
-     * @param pRechercheSecteur -
-     * @return int
-     */
-    public int getCountSecteur(RechercheSecteur pRechercheSecteur) {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
-        return 42;
+    @Override
+    public void delete(int pId) throws NotFoundException {
+        if (pId < 1) {
+            throw new NotFoundException("Secteur non trouvé : ID=" + pId);
+        }
+        daoFactory.getSecteurDao().delete(pId);
+    }
+
+    @Override
+    public void update(Secteur pSecteur) throws FunctionalException {
+        if (pSecteur == null) {
+            throw new FunctionalException("L'objet Secteur ne doit pas être null !");
+        }
+        daoFactory.getSecteurDao().update(pSecteur);
     }
 }

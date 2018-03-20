@@ -1,6 +1,6 @@
 package com.parlow.escalade.model.bean;
 
-import com.parlow.escalade.model.bean.listes.Region;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 import java.util.List;
 
@@ -9,14 +9,15 @@ public class Topo {
     // ==================== Attributs ====================
     private Integer id;
     private String nom;
-    private List<Region> regions;
-    private List<Site> sites;
+    private Region region;
     private Integer nbSites;
     private Integer nbSecteurs;
     private Integer nbVoies;
     private boolean disponible;
     private String presentation;
-    private List<Image> images;
+    private Image image;
+    private Utilisateur utilisateur;
+    private List<Commentaire> commentaires;
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -33,22 +34,6 @@ public class Topo {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public List<Region> getRegions() {
-        return regions;
-    }
-
-    public void setRegions(List<Region> regions) {
-        this.regions = regions;
-    }
-
-    public List<Site> getSites() {
-        return sites;
-    }
-
-    public void setSites(List<Site> sites) {
-        this.sites = sites;
     }
 
     public Integer getNbSites() {
@@ -91,16 +76,37 @@ public class Topo {
         this.presentation = presentation;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
+    public Region getRegion() {
+        return region;
+    }
 
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
 
     // ==================== Méthodes =====================
 }

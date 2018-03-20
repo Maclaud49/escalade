@@ -1,4 +1,4 @@
-package com.parlow.escalade.model.bean.utilisateur;
+package com.parlow.escalade.model.bean;
 
 public class Adresse {
 

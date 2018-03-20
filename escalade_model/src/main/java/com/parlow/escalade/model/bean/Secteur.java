@@ -1,5 +1,7 @@
 package com.parlow.escalade.model.bean;
 
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+
 import java.util.List;
 
 public class Secteur {
@@ -10,7 +12,10 @@ public class Secteur {
     private List<Voie> voies;
     private Site site;
     private Integer nbVoies;
-    private List<Image> images;
+    private Image image;
+    private Utilisateur utilisateur;
+    private boolean publication;
+    private List<Commentaire> commentaires;
 
     // ==================== Constructeurs ==============
 
@@ -71,15 +76,36 @@ public class Secteur {
         this.nbVoies = nbVoies;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setImage(Image images) {
+        this.image = image;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
 
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
+    public boolean isPublication() {
+        return publication;
+    }
+
+    public void setPublication(boolean publication) {
+        this.publication = publication;
+    }
+
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
     // ==================== Méthodes =====================
 }
