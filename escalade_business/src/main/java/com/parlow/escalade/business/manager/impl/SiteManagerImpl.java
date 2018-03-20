@@ -32,51 +32,23 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     @Inject
     private DaoFactory daoFactory;
 
-    @Inject
-    private UtilisateurManager utilisateurManager;
-
-    // Je stocke les sites en mémoire car je n'ai pas codé de persistance
-    private final List<Site> listSite = new ArrayList<>();
-
-    /**
-     * Renvoie le site demandé
-     *
-     * @param pId l'identifiant du site
-     * @return Le {@link Site}
-     * @throws NotFoundException Si le site n'est pas trouvé
-     */
     @Override
-    public Site getSite(Integer pId) throws NotFoundException {
-        // Je n'ai pas encore codé la DAO
-        // Je mets juste un code temporaire pour commencer le cours...
+    public Site findById(int pId) throws NotFoundException {
         if (pId < 1) {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }
-
         Site vSite = daoFactory.getSiteDao().findById(pId);
         return vSite;
     }
 
-
-    /**
-     * Renvoie la liste des {@link Site}
-     *
-     * @return List
-     */
     @Override
-    public List<Site> getListSite() {
-
-        List<Site> vList = new ArrayList<>();
-        for (int vI = 0; vI < 9; vI++) {
-            Site vSite = new Site();
-            vSite.setId(vI);
-            vSite.setNom("Site n°" + vI);
-            vSite.setDescription("Un site tip top");
-            Utilisateur mac = new Utilisateur();
-            mac.setId(1);
-            mac.setPrenom("Mickael");
-            vSite.setUtilisateur(mac);
-            vList.add(vSite);
+    public List<Site> findAll() {
+        List<Site> vList = daoFactory.getSiteDao().findAll();
+        if (vList == null) {
+            Site site = new Site();
+            site.setId(1);
+            site.setNom("Pas de données");
+            vList.add(site);
         }
         return vList;
     }
@@ -86,28 +58,22 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
         if (pSite == null) {
             throw new FunctionalException("L'objet Site ne doit pas être null !");
         }
-
-        Set<ConstraintViolation<Site>> vViolations = getConstraintValidator().validate(pSite);
-        if (!vViolations.isEmpty()) {
-            throw new FunctionalException("L'objet Site est invalide",
-                    new ConstraintViolationException(vViolations));
-        }
-
         return daoFactory.getSiteDao().insert(pSite);
     }
 
     @Override
-    public Site findById(int id) {
-        return null;
+    public void delete(int pId) throws NotFoundException {
+        if (pId < 1) {
+            throw new NotFoundException("Site non trouvé : ID=" + pId);
+        }
+        daoFactory.getSiteDao().delete(pId);
     }
 
     @Override
-    public List<Site> findAll() {
-        return null;
-    }
-
-    @Override
-    public void delete(int siteid) {
-
+    public void update(Site pSite) throws FunctionalException {
+        if (pSite == null) {
+            throw new FunctionalException("L'objet Site ne doit pas être null !");
+        }
+        daoFactory.getSiteDao().update(pSite);
     }
 }

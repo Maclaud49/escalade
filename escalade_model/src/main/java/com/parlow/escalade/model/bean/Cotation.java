@@ -1,4 +1,4 @@
-package com.parlow.escalade.model.bean.listes;
+package com.parlow.escalade.model.bean;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +15,6 @@ public class Cotation {
     private Integer id;
     private String description;
     private Integer niveau;
-    private static final Logger logger = LogManager.getLogger(Cotation.class);
 
 
 
@@ -45,7 +44,5 @@ public class Cotation {
     }
 
     // ==================== Méthodes =====================
-    public void maMethod() {
-        logger.info("Hello, World!");
-    }
+
 }

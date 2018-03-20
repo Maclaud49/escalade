@@ -1,13 +1,8 @@
 package com.parlow.escalade.model.bean;
 
-import com.parlow.escalade.model.bean.listes.PeriodeFav;
-import com.parlow.escalade.model.bean.listes.Region;
-import com.parlow.escalade.model.bean.listes.TypeRocher;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -28,9 +23,10 @@ public class Site {
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
     private String niveauPratique;
-    private List<Image> images;
+    private Image image;
     private Utilisateur utilisateur;
     private boolean publication;
+    private List<Commentaire> commentaires;
 
     // ==================== Constructeurs ==============
 
@@ -139,12 +135,12 @@ public class Site {
         this.niveauPratique = niveauPratique;
     }
 
-    public List<Image> getImages() {
-        return images;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setImage(Image images) {
+        this.image = image;
     }
 
     public Utilisateur getUtilisateur() {
@@ -171,6 +167,13 @@ public class Site {
         this.publication = publication;
     }
 
+    public List<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
 
     // ==================== Méthodes =====================
 }

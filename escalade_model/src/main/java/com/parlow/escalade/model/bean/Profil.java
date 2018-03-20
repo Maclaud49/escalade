@@ -1,13 +1,13 @@
-package com.parlow.escalade.model.bean.listes;
+package com.parlow.escalade.model.bean;
 
-public class TypeRocher {
+public class Profil {
 
     // ==================== Attributs ====================
     private Integer id;
-    private String typeRocher;
-
+    private String profil;
 
     // ==================== Getters/Setters ==============
+
     public Integer getId() {
         return id;
     }
@@ -16,12 +16,12 @@ public class TypeRocher {
         this.id = id;
     }
 
-    public String getTypeRocher() {
-        return typeRocher;
+    public String getProfil() {
+        return profil;
     }
 
-    public void setTypeRocher(String typeRocher) {
-        this.typeRocher = typeRocher;
+    public void setProfil(String profil) {
+        this.profil = profil;
     }
 
 

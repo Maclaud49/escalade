@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.listes.Region;
+import com.parlow.escalade.model.bean.Region;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
