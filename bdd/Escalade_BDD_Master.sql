@@ -60,7 +60,7 @@ CREATE TABLE t_typeRocher (
 );
 
 CREATE TABLE t_region (
-    id INTEGER,
+    id INTEGER UNIQUE,
 		region CHARACTER VARYING(30) NOT NULL
 );
 
@@ -128,7 +128,7 @@ CREATE TABLE t_location_topo(
 
 ALTER TABLE t_topo ADD CONSTRAINT t_topo_site_fk FOREIGN KEY (site_fk_id) REFERENCES t_site ON DELETE SET NULL;	
 ALTER TABLE t_site ADD CONSTRAINT t_site_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;	
-ALTER TABLE t_site ADD CONSTRAINT t_site_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region ON DELETE SET NULL;	
+ALTER TABLE t_site ADD CONSTRAINT t_site_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region(id) ON DELETE SET NULL;
 ALTER TABLE t_site ADD CONSTRAINT t_site_periodeFav_fk FOREIGN KEY (periodeFav_fk_id) REFERENCES t_periodeFav ON DELETE SET NULL;	
 ALTER TABLE t_site ADD CONSTRAINT t_site_typeRocher_fk FOREIGN KEY (typeRocher_fk_id) REFERENCES t_typeRocher ON DELETE SET NULL;	
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;	
@@ -143,7 +143,7 @@ ALTER TABLE t_user ADD CONSTRAINT t_user_topo_fk FOREIGN KEY (topo_fk_id) REFERE
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_user_fk FOREIGN KEY (topoProprioUSer_fk_id) REFERENCES t_user ON DELETE SET NULL;	
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_user_fk2 FOREIGN KEY (topoLoueurUser_fk_id) REFERENCES t_user ON DELETE RESTRICT;
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_topo_fk FOREIGN KEY (topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
-ALTER TABLE t_departement ADD CONSTRAINT t_departement_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region ON DELETE SET NULL;
+ALTER TABLE t_departement ADD CONSTRAINT t_departement_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region(id) ON DELETE SET NULL;
 
 -- ====================================================================================================================
 ---------------------------------------------------- DROITS SUR TABLES ------------------------------------------------
@@ -161,6 +161,7 @@ ALTER TABLE t_cotation OWNER TO escalade_admin;
 ALTER TABLE t_longueur OWNER TO escalade_admin;
 ALTER TABLE t_user OWNER TO escalade_admin;
 ALTER TABLE t_location_topo OWNER TO escalade_admin;
+
 
 GRANT ALL ON SCHEMA sch_escalade TO escalade_admin;
 GRANT USAGE ON SCHEMA sch_escalade TO escalade_user;

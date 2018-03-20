@@ -54,11 +54,6 @@
       <!-- ===== Modules ===== -->
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>escalade-batch</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
         <artifactId>escalade-webapp</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -79,7 +74,7 @@
       </dependency>
       <dependency>
           <groupId>${project.groupId}</groupId>
-          <artifactId>ticket-technical</artifactId>
+          <artifactId>escalade-technical</artifactId>
           <version>${project.version}</version>
       </dependency>
 
