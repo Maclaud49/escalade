@@ -35,16 +35,13 @@ public class TypeRocherDaoImpl extends AbstractDaoImpl implements TypeRocherDao{
 
     @Override
     public int insert(TypeRocher pTypeRocher) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_typeRocher (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_typeRocher (typeRocher) VALUES(?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pTypeRocher.getNom());
-                                           pst.setString(2,pTypeRocher.getDescription());
-                                           pst.setInt(3,pTypeRocher.getRegion().getId());
-                                           pst.setTimestamp(4,pTypeRocher.getDateCreation());
+                                           pst.setString(1, pTypeRocher.getTypeRocher());
                                            return pst;
                                        }
                                    },
@@ -61,7 +58,7 @@ public class TypeRocherDaoImpl extends AbstractDaoImpl implements TypeRocherDao{
 
     @Override
     public void update(TypeRocher pTypeRocher) throws FunctionalException {
-        String vSQL_update = "UPDATE t_typeRocher SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_typeRocher SET typeRocher = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pTypeRocher.getTypeRocher(), pTypeRocher.getId());
     }
 }

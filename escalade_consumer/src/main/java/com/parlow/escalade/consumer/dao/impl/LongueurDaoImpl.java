@@ -29,27 +29,27 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
     @Override
     public List<Longueur> findAll() {
         String vSQL_findAll = "SELECT * FROM t_longueur";
-        List<Longueur> longueurs  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Longueur.class));
+        List<Longueur> longueurs = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Longueur.class));
         return longueurs;
     }
 
     @Override
     public int insert(Longueur pLongueur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_longueur (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_longueur (relai, voie_fk_id, cotation_fk_id, utilisateur_fk_id) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        this.vJdbcTemplate.update( new PreparedStatementCreator() {
-                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pLongueur.getNom());
-                                           pst.setString(2,pLongueur.getDescription());
-                                           pst.setInt(3,pLongueur.getRegion().getId());
-                                           pst.setTimestamp(4,pLongueur.getDateCreation());
-                                           return pst;
-                                       }
-                                   },
+        this.vJdbcTemplate.update(new PreparedStatementCreator() {
+                                      public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                          pst.setDouble(1, pLongueur.getRelai());
+                                          pst.setInt(2, pLongueur.getVoie().getId());
+                                          pst.setInt(3, pLongueur.getCotation().getId());
+                                          pst.setInt(4, pLongueur.getUtilisateur().getId());
+                                          return pst;
+                                      }
+                                  },
                 keyHolder);
-        int key = (Integer)keyHolder.getKey();
+        int key = (Integer) keyHolder.getKey();
         return key;
     }
 
@@ -61,6 +61,8 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public void update(Longueur pLongueur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_longueur SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_longueur SET relai = ?,voie_fk_id = ?,cotation_fk_id = ?,utilisateur_fk_id = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation().getId(),
+                pLongueur.getUtilisateur().getId(), pLongueur.getId());
     }
+}

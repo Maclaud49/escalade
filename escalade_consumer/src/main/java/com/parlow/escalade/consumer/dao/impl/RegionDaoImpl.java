@@ -36,29 +36,20 @@ public class RegionDaoImpl extends AbstractDaoImpl implements RegionDao {
     }
 
     @Override
-    public List<Region> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_region";
-        List<Region> regions  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Region.class));
-        return regions;
-    }
-
-    @Override
     public int insert(Region pRegion) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_region (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_region (id,region) VALUES(?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pRegion.getNom());
-                                           pst.setString(2,pRegion.getDescription());
-                                           pst.setInt(3,pRegion.getRegion().getId());
-                                           pst.setTimestamp(4,pRegion.getDateCreation());
+                                           pst.setInt(1, pRegion.getId());
+                                           pst.setString(1, pRegion.getRegion());
                                            return pst;
                                        }
                                    },
                 keyHolder);
-        int key = (Integer)keyHolder.getKey();
+        int key = 1;
         return key;
     }
 
@@ -70,7 +61,7 @@ public class RegionDaoImpl extends AbstractDaoImpl implements RegionDao {
 
     @Override
     public void update(Region pRegion) throws FunctionalException {
-        String vSQL_update = "UPDATE t_region SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_region SET region = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pRegion.getRegion(), pRegion.getId());
     }
 }

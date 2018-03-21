@@ -34,16 +34,13 @@ public class ProfilDaoImpl extends AbstractDaoImpl implements ProfilDao {
 
     @Override
     public int insert(Profil pProfil) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_profil (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_profil (profil) VALUES(?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pProfil.getNom());
-                                           pst.setString(2,pProfil.getDescription());
-                                           pst.setInt(3,pProfil.getRegion().getId());
-                                           pst.setTimestamp(4,pProfil.getDateCreation());
+                                           pst.setString(1, pProfil.getProfil());
                                            return pst;
                                        }
                                    },
@@ -60,8 +57,8 @@ public class ProfilDaoImpl extends AbstractDaoImpl implements ProfilDao {
 
     @Override
     public void update(Profil pProfil) throws FunctionalException {
-        String vSQL_update = "UPDATE t_profil SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_profil SET profil = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pProfil.getProfil(), pProfil.getId());
     }
     
 }

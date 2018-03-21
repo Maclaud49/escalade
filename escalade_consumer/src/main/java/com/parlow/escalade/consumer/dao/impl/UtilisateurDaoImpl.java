@@ -1,7 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
-import com.parlow.escalade.model.bean.Utilisateur;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -57,16 +56,20 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public int insert(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_user (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_user (nom, prenom, dateNaissance, email, password, cotation_fk_id, adresse_fk_id, profil_fk_id) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pUtilisateur.getNom());
-                                           pst.setString(2,pUtilisateur.getDescription());
-                                           pst.setInt(3,pUtilisateur.getRegion().getId());
-                                           pst.setTimestamp(4,pUtilisateur.getDateCreation());
+                                           pst.setString(2,pUtilisateur.getPrenom());
+                                           pst.setDate(3,pUtilisateur.getDateNaissance());
+                                           pst.setString(4,pUtilisateur.getEmail());
+                                           pst.setString(5, pUtilisateur.getPassword());
+                                           pst.setInt(6,pUtilisateur.getCotation().getId());
+                                           pst.setInt(7,pUtilisateur.getAdresse().getId());
+                                           pst.setInt(8,pUtilisateur.getProfil().getId());
                                            return pst;
                                        }
                                    },
@@ -83,9 +86,11 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public void update(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_user SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_user SET nom = ?, prenom = ?, dateNaissance = ?, email = ?," +
+                " password = ?, cotation_fk_id = ?, adresse_fk_id = ?, profil_fk_id = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pUtilisateur.getNom(), pUtilisateur.getPrenom(),
+                pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
+                pUtilisateur.getCotation().getId(), pUtilisateur.getAdresse().getId(),
+                pUtilisateur.getProfil().getId(), pUtilisateur.getId());
     }
-
-
 }

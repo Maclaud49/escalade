@@ -35,16 +35,13 @@ public class PeriodeFavDaoImpl extends AbstractDaoImpl implements PeriodeFavDao{
 
         @Override
         public int insert(PeriodeFav pPeriodeFav) throws FunctionalException {
-            String vSQL_insert = "INSERT into t_periodeFav (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+            String vSQL_insert = "INSERT into t_periodeFav (periode) VALUES(?)";
             KeyHolder keyHolder = new GeneratedKeyHolder();
 
             this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                                PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                               pst.setString(1, pPeriodeFav.getNom());
-                                               pst.setString(2,pPeriodeFav.getDescription());
-                                               pst.setInt(3,pPeriodeFav.getRegion().getId());
-                                               pst.setTimestamp(4,pPeriodeFav.getDateCreation());
+                                               pst.setString(1, pPeriodeFav.getPeriode());
                                                return pst;
                                            }
                                        },
@@ -61,7 +58,7 @@ public class PeriodeFavDaoImpl extends AbstractDaoImpl implements PeriodeFavDao{
 
         @Override
         public void update(PeriodeFav pPeriodeFav) throws FunctionalException {
-            String vSQL_update = "UPDATE t_periodeFav SET age = ? WHERE id = ?";
-            this.vJdbcTemplate.update(vSQL_update, age, id);
+            String vSQL_update = "UPDATE t_periodeFav SET periode = ? WHERE id = ?";
+            this.vJdbcTemplate.update(vSQL_update, pPeriodeFav.getPeriode(), pPeriodeFav.getId());
         }
 }

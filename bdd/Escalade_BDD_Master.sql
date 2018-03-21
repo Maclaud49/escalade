@@ -45,12 +45,9 @@ CREATE TABLE t_topo (
 CREATE TABLE t_site (
   id SERIAL PRIMARY KEY,
 	nom CHARACTER VARYING(20) NOT NULL,
-	secteur_fk_id INTEGER,
 	region_fk_id INTEGER,
 	description CHARACTER VARYING(500),
-	periodeFav_fk_id INTEGER, 
-	lastUpdate TIMESTAMP, 
-	typeRocher_fk_id INTEGER,
+	lastUpdate TIMESTAMP,
 	dateCreation TIMESTAMP,
 	image_fk_id INTEGER,
 	utilisateur_fk_id INTEGER,
@@ -81,7 +78,6 @@ CREATE TABLE t_departement (
 CREATE TABLE t_secteur (
 	id SERIAL PRIMARY KEY,
 	nom CHARACTER VARYING(15) NOT NULL,
-	voie_fk_id INTEGER,
 	site_fk_id INTEGER,
 	utilisateur_fk_id INTEGER,
 	publication boolean
@@ -116,11 +112,10 @@ CREATE TABLE t_utilisateur(
 	id SERIAL PRIMARY KEY,
 	nom CHARACTER VARYING(15) NOT NULL,
 	prenom CHARACTER VARYING(15) NOT NULL,
-	dateNaissance TIMESTAMP,
+	dateNaissance DATE,
 	email CHARACTER VARYING(30) NOT NULL,
 	password CHARACTER VARYING(60) NOT NULL,
 	cotation_fk_id INTEGER,
-	topo_fk_id INTEGER,
 	adresse_fk_id INTEGER,
 	profil_fk_id INTEGER
 
@@ -173,13 +168,9 @@ CREATE TABLE t_profil(
 
 ALTER TABLE t_topo ADD CONSTRAINT t_topo_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
 ALTER TABLE t_topo ADD CONSTRAINT t_topo_image_fk FOREIGN KEY (image_fk_id) REFERENCES t_image ON DELETE SET NULL;
-ALTER TABLE t_site ADD CONSTRAINT t_site_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;	
 ALTER TABLE t_site ADD CONSTRAINT t_site_region_fk FOREIGN KEY (region_fk_id) REFERENCES t_region(id) ON DELETE SET NULL;
-ALTER TABLE t_site ADD CONSTRAINT t_site_periodeFav_fk FOREIGN KEY (periodeFav_fk_id) REFERENCES t_periodeFav ON DELETE SET NULL;	
-ALTER TABLE t_site ADD CONSTRAINT t_site_typeRocher_fk FOREIGN KEY (typeRocher_fk_id) REFERENCES t_typeRocher ON DELETE SET NULL;
 ALTER TABLE t_site ADD CONSTRAINT t_site_image_fk FOREIGN KEY (image_fk_id) REFERENCES t_image ON DELETE SET NULL;
 ALTER TABLE t_site ADD CONSTRAINT t_site_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;	
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_site_fk FOREIGN KEY (site_fk_id) REFERENCES t_site ON DELETE SET NULL;
 ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
 ALTER TABLE t_voie ADD CONSTRAINT t_voie_cotation_fk FOREIGN KEY (cotation_fk_id) REFERENCES t_cotation ON DELETE SET NULL;	
@@ -188,8 +179,7 @@ ALTER TABLE t_voie ADD CONSTRAINT t_voie_utilisateur_fk FOREIGN KEY (utilisateur
 ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;	
 ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_cotation_fk FOREIGN KEY (cotation_fk_id) REFERENCES t_cotation ON DELETE SET NULL;
 ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_cotation_fk FOREIGN KEY (cotation_fk_id) REFERENCES t_cotation ON DELETE SET NULL;	
-ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_topo_fk FOREIGN KEY (topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
+ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_cotation_fk FOREIGN KEY (cotation_fk_id) REFERENCES t_cotation ON DELETE SET NULL;
 ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_profil_fk FOREIGN KEY (profil_fk_id) REFERENCES t_profil ON DELETE SET NULL;
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk FOREIGN KEY (topoProprioUtilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;	
 ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk2 FOREIGN KEY (topoLoueurUtilisateur_fk_id) REFERENCES t_utilisateur ON DELETE RESTRICT;

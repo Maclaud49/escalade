@@ -35,7 +35,7 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     @Override
     public int insert(Location pLocation) throws FunctionalException {
-        String vSQL_insert = "INSERT INTO t_location (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_location (dateDebut, topoProprioUtilisateur_fk_id, topoLoueurUtilisateur_fk_id, topo_fk_id) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {

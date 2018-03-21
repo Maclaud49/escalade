@@ -14,7 +14,7 @@ public class Topo {
     private Integer nbSecteurs;
     private Integer nbVoies;
     private boolean disponible;
-    private String presentation;
+    private String description;
     private Image image;
     private Utilisateur utilisateur;
     private List<Commentaire> commentaires;
@@ -68,12 +68,12 @@ public class Topo {
         this.disponible = disponible;
     }
 
-    public String getPresentation() {
-        return presentation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPresentation(String presentation) {
-        this.presentation = presentation;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Utilisateur getUtilisateur() {
