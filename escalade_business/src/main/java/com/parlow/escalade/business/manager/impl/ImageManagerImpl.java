@@ -12,8 +12,7 @@ import java.util.List;
 
 @Named
 public class ImageManagerImpl extends AbstractManager implements ImageManager{
-    @Inject
-    private DaoFactory daoFactory;
+
 
     @Override
     public Image findById(int pId) throws NotFoundException {

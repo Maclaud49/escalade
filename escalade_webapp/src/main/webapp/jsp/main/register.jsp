@@ -28,8 +28,11 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                         <s:textfield type="email" name="email" class="form-control"
-                                     placeholder="votreadresse@exemple.fr" title="Votre adresse email"/>
+                                     placeholder="votreadresse@exemple.fr" title="Votre adresse email" required="true"/>
                     </div>
+                    <s:if test="hasFieldErrors()">
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                    </s:if>
                 </div>
             </div>
             <div class="col-md-3">
@@ -47,12 +50,16 @@
                     <label class="sr-only" for="password">Mot de passe</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <s:password type="password" class="form-control" name="password"  placeholder="Votre mot de passe" title=" Votre mot de passe - Au moins 6 caractères"  />
+                        <s:password type="password" class="form-control" name="password"  placeholder="Votre mot de passe"
+                                    title=" Votre mot de passe - Au moins 6 caractères" required="true" />
                     </div>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"></div>
                         <small id="passwordHelp" class="form-text text-muted">Doit contenir au moins 6 caractères</small>
                     </div>
+                    <s:if test="hasFieldErrors()">
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword"/></small>
+                    </s:if>
                 </div>
             </div>
         </div>
@@ -63,8 +70,12 @@
                     <label class="sr-only" for="password">Vérification mot de passe</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <s:password type="password" class="form-control" name="password2" placeholder="Vérification de votre mot de passe" title="Vérification de votre mot de passe"/>
+                        <s:password type="password" class="form-control" name="password2" placeholder="Vérification de votre mot de passe"
+                                    title="Vérification de votre mot de passe" required="true"/>
                     </div>
+                    <s:if test="hasFieldErrors()">
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword"/></small>
+                    </s:if>
                 </div>
             </div>
         </div>
@@ -73,7 +84,7 @@
             <div class="col-md-6" style="padding-top: .35rem">
                         <span class="text-danger align-middle">
                             <s:if test="hasFieldErrors()">
-                              <small class="text-danger align-middle"><s:fielderror fieldName="verificationPassword"/></small>
+                              <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword2"/></small>
                             </s:if>
                         </span>
             </div>
@@ -84,8 +95,11 @@
                 <div class="form-group has-danger">
                     <label class="sr-only" for="nom">Nom</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <s:textfield name="nom" class="form-control" placeholder="Votre nom" title="Votre nom"/>
+                        <s:textfield name="nom" class="form-control" placeholder="Votre nom" title="Votre nom" required="true"/>
                     </div>
+                    <s:if test="hasFieldErrors()">
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerNom"/></small>
+                    </s:if>
                 </div>
             </div>
         </div>
@@ -95,8 +109,11 @@
                 <div class="form-group has-danger">
                     <label class="sr-only" for="prenom">Prénom</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <s:textfield name="prenom" class="form-control" placeholder="Votre prénom" title="Votre prénom"/>
+                        <s:textfield name="prenom" class="form-control" placeholder="Votre prénom" title="Votre prénom" required="true"/>
                     </div>
+                    <s:if test="hasFieldErrors()">
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPrenom"/></small>
+                    </s:if>
                 </div>
             </div>
         </div>

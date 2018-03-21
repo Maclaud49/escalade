@@ -18,13 +18,21 @@ import com.parlow.escalade.model.exception.NotFoundException;
 @Named
 public class UtilisateurManagerImpl extends AbstractManager implements UtilisateurManager {
 
-    @Inject
-    private DaoFactory daoFactory;
+    @Override
+    public Utilisateur findByEmail( String pEmail )throws NotFoundException{
+        Utilisateur user = daoFactory.getUtilisateurDao().findByEmail(pEmail);
+        if(user != null){
+            return user;
+        }
+        else {
+            throw new NotFoundException("Aucun utilisateur correspondant à cet adresse email fournie.");
+        }
+    }
 
     @Override
     public Utilisateur getUtilisateur(String pEmail, String pPassword) throws NotFoundException {
 
-        Utilisateur user = daoFactory.getUtilisateurDao().findByEmail(pEmail,pPassword);
+        Utilisateur user = daoFactory.getUtilisateurDao().findByEmailAndPassword(pEmail,pPassword);
         if(user != null){
             return user;
         }

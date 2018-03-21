@@ -148,6 +148,7 @@ public class GestionSiteAction extends ActionSupport {
     public void validate() {
         if (this.site != null) {
             logger.error("I m here");
+            logger.debug("I m here");
             logger.info("I m here");
             if (site.getNom().length() < 3) {
                 addFieldError("siteNom", "Le nom du site doit faire au moins 3 lettres");

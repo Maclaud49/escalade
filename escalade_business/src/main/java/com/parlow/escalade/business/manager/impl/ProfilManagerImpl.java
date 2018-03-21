@@ -12,8 +12,6 @@ import java.util.List;
 
 @Named
 public class ProfilManagerImpl extends AbstractManager implements ProfilManager{
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Profil findById(int pId) throws NotFoundException {

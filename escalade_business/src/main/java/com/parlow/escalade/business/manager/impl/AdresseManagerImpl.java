@@ -13,9 +13,6 @@ import java.util.List;
 @Named
 public class AdresseManagerImpl extends AbstractManager implements AdresseManager {
 
-    @Inject
-    private DaoFactory daoFactory;
-
     @Override
     public Adresse findById(int pId) throws NotFoundException {
         if (pId < 1) {

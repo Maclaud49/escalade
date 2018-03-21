@@ -12,8 +12,6 @@ import java.util.List;
 
 @Named
 public class LocationManagerImpl extends AbstractManager implements LocationManager{
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Location findById(int pId) throws NotFoundException {

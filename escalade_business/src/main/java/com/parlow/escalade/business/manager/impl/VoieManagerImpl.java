@@ -13,8 +13,6 @@ import java.util.List;
 @Named
 public class VoieManagerImpl extends AbstractManager implements VoieManager{
 
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Voie findById(int pId) throws NotFoundException {

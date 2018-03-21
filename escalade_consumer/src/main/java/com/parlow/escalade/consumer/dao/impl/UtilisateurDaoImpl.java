@@ -26,7 +26,21 @@ import java.util.List;
 public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurDao {
 
     @Override
-    public Utilisateur findByEmail(String email, String password) throws NotFoundException {
+    public Utilisateur findByEmail(String email) throws NotFoundException {
+
+        String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ?";
+
+        try {
+            Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(
+                    sql_findByEmail, new Object[]{email}, new BeanPropertyRowMapper(Utilisateur.class));
+            return user;
+        }catch(Exception e){
+            throw new NotFoundException("Aucun utilisateur correspondant à cette adresse email fourni.");
+        }
+    }
+
+    @Override
+    public Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException {
 
             String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ? AND password = ?";
 

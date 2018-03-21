@@ -12,8 +12,6 @@ import java.util.List;
 
 @Named
 public class DepartementManagerImpl extends AbstractManager implements DepartementManager {
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Departement findById(int pId) throws NotFoundException {

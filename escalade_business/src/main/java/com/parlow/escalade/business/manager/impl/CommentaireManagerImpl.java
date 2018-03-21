@@ -13,9 +13,6 @@ import java.util.List;
 @Named
 public class CommentaireManagerImpl extends AbstractManager implements CommentaireManager{
 
-    @Inject
-    private DaoFactory daoFactory;
-
     @Override
     public Commentaire findById(int pId) throws NotFoundException {
         if (pId < 1) {

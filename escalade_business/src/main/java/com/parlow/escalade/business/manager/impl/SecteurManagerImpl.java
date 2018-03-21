@@ -25,9 +25,6 @@ import javax.inject.Named;
 public class SecteurManagerImpl extends AbstractManager implements SecteurManager {
 
 
-    @Inject
-    private DaoFactory daoFactory;
-
     @Override
     public Secteur findById(int pId) throws NotFoundException {
         if (pId < 1) {

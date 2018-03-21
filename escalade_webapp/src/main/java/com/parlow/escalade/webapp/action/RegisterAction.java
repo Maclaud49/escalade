@@ -111,4 +111,39 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
         this.servletRequest = pRequest;
     }
 
+    @Override
+    public void validate() {
+        if (!StringUtils.isAllEmpty(nom, prenom, email, password)) {
+            logger.error("I m here");
+            logger.debug("I m here");
+            logger.info("I m here");
+            boolean userExist = false;
+
+            if (nom.length() < 2 || nom.length() >15) {
+                addFieldError("registerNom", "Votre nom doit faire entre 2 et 15 caratères ");
+            }
+            if (prenom.length() < 2 || nom.length() >15) {
+                addFieldError("registerPrenom", "Votre prénom doit faire entre 2 et 15 caratères ");
+            }
+            if (email.length() < 5 || nom.length() >30) {
+                addFieldError("registerEmail", "Votre email doit faire entre 5 et 30 caratères ");
+            }
+            if (password.length() < 6 || nom.length() >60) {
+                addFieldError("registerPassword", "Votre mot de passe doit faire entre 6 et 60 caratères ");
+            }
+            try {
+                managerFactory.getUtilisateurManager().findByEmail(email);
+            } catch (NotFoundException e) {
+                userExist = true;
+            }
+            if(!userExist){
+                addFieldError("registerEmail", "Cet email est déjà utilisée ");
+            }
+            if(!password.equals(password2)){
+                addFieldError("registerPassword2", "Les mots de passe ne sont pas identiques ");
+            }
+
+        }
+    }
+
 }

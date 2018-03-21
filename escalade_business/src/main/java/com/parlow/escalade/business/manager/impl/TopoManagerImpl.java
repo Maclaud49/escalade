@@ -13,8 +13,6 @@ import java.util.List;
 @Named
 public class TopoManagerImpl extends AbstractManager implements TopoManager{
 
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Topo findById(int pId) throws NotFoundException {

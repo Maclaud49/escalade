@@ -13,6 +13,14 @@ import com.parlow.escalade.model.exception.NotFoundException;
 public interface UtilisateurManager {
 
     /**
+     * Renvoie le {@link Utilisateur} demandé
+     * @param pEmail du {@link Utilisateur}
+     * @return {@link Utilisateur}
+     * @throws NotFoundException si non trouvé
+     */
+    Utilisateur findByEmail( String pEmail )throws NotFoundException;
+
+    /**
      * Renvoie l'{@link Utilisateur} correspondant au couple login / mot de passe
      *
      * @param pLogin le login de l'Utilisateur
@@ -23,7 +31,7 @@ public interface UtilisateurManager {
     Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException;
 
     /**
-     * Renvoie la le {@link Utilisateur} demandé
+     * Renvoie le {@link Utilisateur} demandé
      * @param pId du {@link Utilisateur}
      * @return {@link Utilisateur}
      * @throws NotFoundException si non trouvé

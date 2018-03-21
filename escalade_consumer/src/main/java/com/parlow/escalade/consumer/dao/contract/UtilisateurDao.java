@@ -8,9 +8,24 @@ import java.util.List;
 
 public interface UtilisateurDao {
 
-   
 
-    Utilisateur findByEmail(String email, String password) throws NotFoundException;
+    /**
+     * Renvoie le {@link Utilisateur} demandé
+     * @param pEmail du {@link Utilisateur}
+     * @return {@link Utilisateur}
+     * @throws NotFoundException si non trouvé
+     */
+    Utilisateur findByEmail( String pEmail )throws NotFoundException;
+
+    /**
+     * Renvoie l'{@link Utilisateur} correspondant au couple login / mot de passe
+     *
+     * @param email le login de l'Utilisateur
+     * @param password le mot de passe de l'Utilisateur
+     * @return Le {@link Utilisateur}
+     * @throws NotFoundException Si l'Utilisateur n'est pas trouvé
+     */
+    Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException;
 
     /**
      * Renvoie la le {@link Utilisateur} demandé

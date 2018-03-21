@@ -12,8 +12,7 @@ import java.util.List;
 
 @Named
 public class CotationManagerImpl extends AbstractManager implements CotationManager{
-    @Inject
-    private DaoFactory daoFactory;
+
 
     @Override
     public Cotation findById(int pId) throws NotFoundException {

@@ -13,8 +13,6 @@ import java.util.List;
 @Named
 public class LongueurManagerImpl extends AbstractManager implements LongueurManager{
 
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Longueur findById(int pId) throws NotFoundException {

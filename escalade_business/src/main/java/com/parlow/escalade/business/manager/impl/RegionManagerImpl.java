@@ -14,9 +14,6 @@ import java.util.List;
 public class RegionManagerImpl extends AbstractManager implements RegionManager {
 
 
-    @Inject
-    private DaoFactory daoFactory;
-
     @Override
     public Region findById(int pId) throws NotFoundException {
         if (pId < 1) {

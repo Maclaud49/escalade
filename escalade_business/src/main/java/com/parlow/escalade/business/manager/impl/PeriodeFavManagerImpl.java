@@ -13,8 +13,6 @@ import java.util.List;
 @Named
 public class PeriodeFavManagerImpl extends AbstractManager implements PeriodeFavManager{
 
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public PeriodeFav findById(int pId) throws NotFoundException {

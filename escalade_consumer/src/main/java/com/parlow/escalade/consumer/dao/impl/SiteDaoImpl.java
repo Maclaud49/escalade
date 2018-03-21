@@ -3,12 +3,9 @@ package com.parlow.escalade.consumer.dao.impl;
 import com.parlow.escalade.consumer.dao.contract.SiteDao;
 
 import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-import org.joda.time.DateTime;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -44,16 +41,15 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
-                                           pst.setString(1, pSite.getNom());
-                                           pst.setInt(2,pSite.getRegion().getId());
-                                           pst.setString(3,pSite.getDescription());
-                                           pst.setTimestamp(4,pSite.getLastUpdate());
-                                           pst.setString(5, pSite.getImage().getChemin());
-                                           pst.setTimestamp(6,pSite.getDateCreation());
-                                           pst.setInt(7,pSite.getUtilisateur().getId());
-                                           pst.setBoolean(8,pSite.isPublication());
-                                           return pst;
+                                           try (PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"})) {
+                                               pst.setString(1, pSite.getNom());
+                                               pst.setInt(2, pSite.getRegion().getId());
+                                               pst.setString(3, pSite.getDescription());
+                                               pst.setString(4, pSite.getImage().getChemin());
+                                               pst.setTimestamp(5, pSite.getDateCreation());
+                                               pst.setInt(6, pSite.getUtilisateur().getId());
+                                               return pst;
+                                           }
                                        }
                                    },
                 keyHolder);

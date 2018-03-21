@@ -30,8 +30,6 @@ import javax.validation.ConstraintViolationException;
 @Named
 public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
-    @Inject
-    private DaoFactory daoFactory;
 
     @Override
     public Site findById(int pId) throws NotFoundException {
