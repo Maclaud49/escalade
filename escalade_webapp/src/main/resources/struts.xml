@@ -44,13 +44,17 @@
             <result name="success">/jsp/utilisateur/detail.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
-        <!-- Actions Login/Logout -->
+        <!-- Actions Login/Logout/Register -->
         <action name="login" class="loginAction" method="doLogin">
             <result name="success" type="redirectAction">index</result>
             <result name="input">/jsp/main/login.jsp</result>
         </action>
         <action name="logout" class="loginAction" method="doLogout">
             <result type="redirectAction">index</result>
+        </action>
+        <action name="register" class="registerAction" method="doRegister">
+            <result name="success" type="redirectAction">index</result>
+            <result name="input">/jsp/main/register.jsp</result>
         </action>
 
     </package>

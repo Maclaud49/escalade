@@ -167,6 +167,9 @@ INSERT INTO t_cotation(cotation, niveau)VALUES ('9a', 25);
 INSERT INTO t_cotation(cotation, niveau)VALUES ('9b', 26);
 INSERT INTO t_cotation(cotation, niveau)VALUES ('9c', 27);
 
+INSERT INTO t_profil(profil) VALUES ('Editor');
+INSERT INTO t_profil(profil) VALUES ('Admin');
+
 
 
 

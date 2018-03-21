@@ -30,7 +30,7 @@ public class UtilisateurLocator extends StrutsTypeConverter {
                     vRetour
                             = StringUtils.isEmpty(vValue)
                             ? null
-                            :  managerFactory.getUtilisateurManager().getUtilisateur(new Integer(vValue));
+                            :  managerFactory.getUtilisateurManager().findById(new Integer(vValue));
                 } catch (NumberFormatException pEx) {
                     throw new TypeConversionException("Format d'identifiant utilisateur invalide", pEx);
                 } catch (NotFoundException pEx) {

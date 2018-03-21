@@ -55,11 +55,18 @@ public class GestionUtilistateurAction extends ActionSupport {
             this.addActionError(getText("error.user.missing.id"));
         } else {
             try {
-                utilisateur = managerFactory.getUtilisateurManager().getUtilisateur(id);
+                utilisateur = managerFactory.getUtilisateurManager().findById(id);
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
             }
         }
+
+        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
+    }
+
+    public String doRegister(){
+
+
 
         return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }

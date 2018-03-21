@@ -7,6 +7,7 @@ import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 import org.joda.time.DateTime;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -37,7 +38,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
-    public int insert(Site pSite) throws FunctionalException {
+    public int insert(Site pSite) throws FunctionalException, TechnicalException{
         String vSQL_insert = "INSERT into t_site (nom, region_fk_id, description, lastUpdate, image_fk_id, dateCreation, utilisateur_fk_id, publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -61,7 +62,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
-    public void delete(int pId) throws NotFoundException {
+    public void delete(int pId) throws NotFoundException, TechnicalException {
         String vSQL_delete = "DELETE FROM t_site WHERE id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
