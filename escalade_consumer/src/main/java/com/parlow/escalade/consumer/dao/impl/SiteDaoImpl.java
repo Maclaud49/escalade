@@ -7,6 +7,7 @@ import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 import org.joda.time.DateTime;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -37,17 +38,21 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
-    public int insert(Site pSite) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_site (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+    public int insert(Site pSite) throws FunctionalException, TechnicalException{
+        String vSQL_insert = "INSERT into t_site (nom, region_fk_id, description, lastUpdate, image_fk_id, dateCreation, utilisateur_fk_id, publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pSite.getNom());
-                                           pst.setString(2,pSite.getDescription());
-                                           pst.setInt(3,pSite.getRegion().getId());
-                                           pst.setTimestamp(4,pSite.getDateCreation());
+                                           pst.setInt(2,pSite.getRegion().getId());
+                                           pst.setString(3,pSite.getDescription());
+                                           pst.setTimestamp(4,pSite.getLastUpdate());
+                                           pst.setString(5, pSite.getImage().getChemin());
+                                           pst.setTimestamp(6,pSite.getDateCreation());
+                                           pst.setInt(7,pSite.getUtilisateur().getId());
+                                           pst.setBoolean(8,pSite.isPublication());
                                            return pst;
                                        }
                                    },
@@ -57,17 +62,16 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     }
 
     @Override
-    public void delete(int pId) throws NotFoundException {
+    public void delete(int pId) throws NotFoundException, TechnicalException {
         String vSQL_delete = "DELETE FROM t_site WHERE id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Site pSite) throws FunctionalException {
-        String vSQL_update = "UPDATE t_site SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_site SET nom = ?, region_fk_id = ?, description = ?, lastUpdate = ?, image_fk_id = ?," +
+                " dateCreation = ?, utilisateur_fk_id = ?, publication = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pSite.getNom(), pSite.getRegion().getId(),pSite.getDescription(),pSite.getLastUpdate(),
+                pSite.getImage().getId(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
     }
-
-
-
 }

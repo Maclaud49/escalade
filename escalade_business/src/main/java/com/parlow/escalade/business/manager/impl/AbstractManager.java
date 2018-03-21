@@ -17,15 +17,15 @@ public abstract class AbstractManager {
 
     /**
      * Renvoie un {@link Validator} de contraintes
-     *
+     *desactivé pour test
      * @return Validator
      */
-    protected Validator getConstraintValidator() {
+   /* protected Validator getConstraintValidator() {
         Configuration<?> vConfiguration = Validation.byDefaultProvider().configure();
         ValidatorFactory vFactory = vConfiguration.buildValidatorFactory();
         Validator vValidator = vFactory.getValidator();
         return vValidator;
-    }
+    }*/
 
 
 }

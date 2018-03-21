@@ -21,6 +21,11 @@ import java.util.List;
 public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
+    public int getCountSecteur(RechercheSecteur pRechercheSecteur) {
+        return 0;
+    }
+
+    @Override
     public Secteur findById(int pId) throws NotFoundException {
         String vSQL_findById = "SELECT * FROM t_secteur WHERE id = ?";
         Secteur secteur = (Secteur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
@@ -37,16 +42,16 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public int insert(Secteur pSecteur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_secteur (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_secteur (nom, site_fk_id, utilisateur_fk_id,publication) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pSecteur.getNom());
-                                           pst.setString(2,pSecteur.getDescription());
-                                           pst.setInt(3,pSecteur.getRegion().getId());
-                                           pst.setTimestamp(4,pSecteur.getDateCreation());
+                                           pst.setInt(2,pSecteur.getSite().getId());
+                                           pst.setInt(3,pSecteur.getUtilisateur().getId());
+                                           pst.setBoolean(4,pSecteur.isPublication());
                                            return pst;
                                        }
                                    },
@@ -63,8 +68,9 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public void update(Secteur pSecteur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_secteur SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_secteur SET nom = ?, site_fk_id = ?, utilisateur_fk_id = ?,publication = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pSecteur.getNom(), pSecteur.getSite().getId(),pSecteur.getUtilisateur().getId(),
+                pSecteur.isPublication(),pSecteur.getId());
     }
     
 }

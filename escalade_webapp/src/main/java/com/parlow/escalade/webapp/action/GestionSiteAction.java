@@ -77,7 +77,7 @@ public class GestionSiteAction extends ActionSupport {
      * @return success
      */
     public String doList() {
-        listSite = managerFactory.getSiteManager().getListSite();
+        listSite = managerFactory.getSiteManager().findAll();
         return ActionSupport.SUCCESS;
     }
 
@@ -91,7 +91,7 @@ public class GestionSiteAction extends ActionSupport {
             this.addActionError(getText("error.site.missing.id"));
         } else {
             try {
-                site = managerFactory.getSiteManager().getSite(id);
+                site = managerFactory.getSiteManager().findById(id);
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
             }
@@ -138,7 +138,7 @@ public class GestionSiteAction extends ActionSupport {
 
         // Si on doit aller sur le formulaire de saisie, il faut ajouter les info nécessaires
         if (vResult.equals(ActionSupport.INPUT)) {
-            this.listRegions = managerFactory.getRegionManager().getListRegion();
+            this.listRegions = managerFactory.getRegionManager().findAll();
         }
 
         return vResult;

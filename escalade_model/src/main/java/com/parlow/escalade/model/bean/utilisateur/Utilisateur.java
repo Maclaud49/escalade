@@ -1,9 +1,6 @@
 package com.parlow.escalade.model.bean.utilisateur;
 
-import com.parlow.escalade.model.bean.Adresse;
-import com.parlow.escalade.model.bean.Cotation;
-import com.parlow.escalade.model.bean.Image;
-import com.parlow.escalade.model.bean.Topo;
+import com.parlow.escalade.model.bean.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -20,7 +17,7 @@ public class Utilisateur {
     private Image profiImage;
     private String email;
     private String password;
-    private Integer profil;
+    private Profil profil;
     private Adresse adresse;
 
     // ==================== Getters/Setters ==============
@@ -96,11 +93,11 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public Integer getProfil() {
+    public Profil getProfil() {
         return profil;
     }
 
-    public void setProfil(Integer profil) {
+    public void setProfil(Profil profil) {
         this.profil = profil;
     }
 

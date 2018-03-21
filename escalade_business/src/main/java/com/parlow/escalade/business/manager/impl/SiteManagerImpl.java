@@ -13,6 +13,7 @@ import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 import org.joda.time.DateTime;
 
 import javax.inject.Inject;
@@ -54,7 +55,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
-    public int insert(Site pSite) throws FunctionalException {
+    public int insert(Site pSite) throws FunctionalException, TechnicalException {
         if (pSite == null) {
             throw new FunctionalException("L'objet Site ne doit pas être null !");
         }
@@ -62,7 +63,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
-    public void delete(int pId) throws NotFoundException {
+    public void delete(int pId) throws NotFoundException, TechnicalException {
         if (pId < 1) {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }

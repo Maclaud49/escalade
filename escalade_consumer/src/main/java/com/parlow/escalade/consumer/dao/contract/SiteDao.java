@@ -3,6 +3,7 @@ package com.parlow.escalade.consumer.dao.contract;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -28,16 +29,18 @@ public interface SiteDao {
      * @param pSite le {@link Site}
      * @return Le {@link Site}
      * @throws FunctionalException si le site est null
+     * @throws TechnicalException si problème avec la base de données
      */
-    int insert( Site pSite )throws FunctionalException;
+    int insert( Site pSite )throws FunctionalException, TechnicalException;
 
     /**
      * Supprime un {@link Site}
      * @param pId du {@link Site}
      * @throws NotFoundException si non trouvé
+     * @throws TechnicalException si problème avec la base de données
      * @return boolean
      */
-    void delete( int pId )throws NotFoundException;
+    void delete( int pId )throws NotFoundException, TechnicalException;
 
     /**
      * Met à jour l'{@link Site} dans la bdd

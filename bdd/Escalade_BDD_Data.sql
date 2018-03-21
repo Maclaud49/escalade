@@ -138,6 +138,38 @@ INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Bouches-du-Rhô
 INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Var');
 INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Vaucluse');
 
+INSERT INTO t_cotation(cotation, niveau)VALUES (3, 1);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('3a', 2);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('3b', 3);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('3c', 4);
+INSERT INTO t_cotation(cotation, niveau)VALUES (4, 1);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('4a', 5);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('4b', 6);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('4c', 7);
+INSERT INTO t_cotation(cotation, niveau)VALUES (5, 8);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('5a', 9);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('5b', 10);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('5c', 11);
+INSERT INTO t_cotation(cotation, niveau)VALUES (6, 12);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('6a', 13);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('6b', 14);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('6c', 15);
+INSERT INTO t_cotation(cotation, niveau)VALUES (7, 16);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('7a', 17);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('7b', 18);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('7c', 19);
+INSERT INTO t_cotation(cotation, niveau)VALUES (8, 20);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('8a', 21);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('8b', 22);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('8c', 23);
+INSERT INTO t_cotation(cotation, niveau)VALUES (9, 24);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('9a', 25);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('9b', 26);
+INSERT INTO t_cotation(cotation, niveau)VALUES ('9c', 27);
+
+INSERT INTO t_profil(profil) VALUES ('Editor');
+INSERT INTO t_profil(profil) VALUES ('Admin');
+
 
 
 

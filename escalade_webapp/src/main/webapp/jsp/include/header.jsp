@@ -34,7 +34,7 @@
                 <s:if test="#session.user">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <s:property value="#session.user.prenom" />
+                            <i class="fa fa-user"> <s:property value="#session.user.prenom" /></i>
                             <s:property value="#session.user.nom" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
@@ -44,8 +44,14 @@
 
                 </s:if>
                 <s:else>
-                    <li class="nav-item">
-                        <s:a action="login" class="nav-link">Connexion</s:a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConnexion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"> Non connecté</i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                            <s:a action="login" class="dropdown-item">Se connecter</s:a>
+                            <s:a action="register" class="dropdown-item">S'enregistrer</s:a>
+                        </div>
                     </li>
                 </s:else>
                 <li class="nav-item dropdown">

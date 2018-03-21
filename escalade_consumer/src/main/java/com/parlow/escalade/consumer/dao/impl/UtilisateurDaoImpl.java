@@ -1,7 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
-import com.parlow.escalade.model.bean.Utilisateur;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -29,7 +28,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmail(String email, String password) throws NotFoundException {
 
-            String sql_findByEmail = "SELECT * FROM T_user WHERE email = ? AND password = ?";
+            String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ? AND password = ?";
 
             try {
                 Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(
@@ -42,7 +41,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public Utilisateur findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_user WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_utilisateur WHERE id = ?";
         Utilisateur utilisateur = (Utilisateur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Utilisateur.class));
         return utilisateur;
@@ -50,23 +49,24 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public List<Utilisateur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_user";
+        String vSQL_findAll = "SELECT * FROM t_utilisateur";
         List<Utilisateur> utilisateurs  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Utilisateur.class));
         return utilisateurs;
     }
 
     @Override
     public int insert(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_user (nom, description, region_fk_id, dateCreation) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_utilisateur (nom, prenom, email, password, profil_fk_id) VALUES(?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pUtilisateur.getNom());
-                                           pst.setString(2,pUtilisateur.getDescription());
-                                           pst.setInt(3,pUtilisateur.getRegion().getId());
-                                           pst.setTimestamp(4,pUtilisateur.getDateCreation());
+                                           pst.setString(2,pUtilisateur.getPrenom());
+                                           pst.setString(3,pUtilisateur.getEmail());
+                                           pst.setString(4, pUtilisateur.getPassword());
+                                           pst.setInt(5, pUtilisateur.getProfil().getId());
                                            return pst;
                                        }
                                    },
@@ -77,15 +77,17 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_user WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_utilisateur WHERE id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_user SET age = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, age, id);
+        String vSQL_update = "UPDATE t_utilisateur SET nom = ?, prenom = ?, dateNaissance = ?, email = ?," +
+                " password = ?, cotation_fk_id = ?, adresse_fk_id = ?, profil_fk_id = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pUtilisateur.getNom(), pUtilisateur.getPrenom(),
+                pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
+                pUtilisateur.getCotation().getId(), pUtilisateur.getAdresse().getId(),
+                pUtilisateur.getProfil().getId(), pUtilisateur.getId());
     }
-
-
 }

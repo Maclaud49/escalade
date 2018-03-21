@@ -3,6 +3,7 @@ package com.parlow.escalade.business.manager.contract;
 import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
 
