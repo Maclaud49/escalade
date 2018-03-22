@@ -35,14 +35,14 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public int insert(Voie pVoie) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_voie (nom, cotation_fk_id, nbPoints, equipee,secteur_fk_id,interet,utilisateur_fk_id) VALUES(?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_voie (nom, cotation, nbPoints, equipee,secteur_fk_id,interet,utilisateur_fk_id) VALUES(?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pVoie.getNom());
-                                           pst.setInt(2,pVoie.getCotation().getId());
+                                           pst.setString(2,pVoie.getCotation());
                                            pst.setInt(3,pVoie.getNbPoints());
                                            pst.setBoolean(4,pVoie.isEquipee());
                                            pst.setInt(5,pVoie.getSecteur().getId());
@@ -64,9 +64,9 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public void update(Voie pVoie) throws FunctionalException {
-        String vSQL_update = "UPDATE t_voie SET nom = ?, cotation_fk_id = ?, nbPoints = ?, equipee = ?," +
+        String vSQL_update = "UPDATE t_voie SET nom = ?, cotation = ?, nbPoints = ?, equipee = ?," +
                 " secteur_fk_id = ?, interet = ?, utilisateur_fk_id = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(), pVoie.getCotation().getId(), pVoie.getNbPoints(),
+        this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(), pVoie.getCotation(), pVoie.getNbPoints(),
                 pVoie.isEquipee(), pVoie.getSecteur().getId(), pVoie.getInteret(), pVoie.getUtilisateur().getId(), pVoie.getId());
     }
 }

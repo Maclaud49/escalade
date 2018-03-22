@@ -2,7 +2,7 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.Profil;
+import com.parlow.escalade.model.bean.deleted.Profil;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -85,7 +85,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             vUtilisateur.setPassword(password);
             Profil vProfil = new Profil();
             vProfil.setId(1);
-            vUtilisateur.setProfil(vProfil);
+            vUtilisateur.setProfil("ADMIN");
             try {
                 int id = managerFactory.getUtilisateurManager().insert(vUtilisateur);
                 // Ajout de l'utilisateur en session

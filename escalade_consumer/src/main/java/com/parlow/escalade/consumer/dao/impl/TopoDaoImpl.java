@@ -35,14 +35,14 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public int insert(Topo pTopo) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_topo (nom, region, disponible, description, utilisateur_fk_id, image_fk_id) VALUES(?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_topo (nom, region, disponible, description, utilisateur_fk_id, image) VALUES(?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
                                            pst.setString(1, pTopo.getNom());
-                                           pst.setInt(2,pTopo.getRegion().getId());
+                                           pst.setString(2,pTopo.getRegion());
                                            pst.setBoolean(3,pTopo.isDisponible());
                                            pst.setString(4,pTopo.getDescription());
                                            pst.setInt(3,pTopo.getUtilisateur().getId());
@@ -63,8 +63,8 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public void update(Topo pTopo) throws FunctionalException {
-        String vSQL_update = "UPDATE t_topo SET nom = ?, region = ?, disponible = ?, description = ?, utilisateur_fk_id = ?, image_fk_id = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pTopo.getNom(), pTopo.getRegion().getId(), pTopo.isDisponible(), pTopo.getDescription(),
-                pTopo.getUtilisateur().getId(), pTopo.getImage().getChemin(), pTopo.getId());
+        String vSQL_update = "UPDATE t_topo SET nom = ?, region = ?, disponible = ?, description = ?, utilisateur_fk_id = ?, image = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pTopo.getNom(), pTopo.getRegion(), pTopo.isDisponible(), pTopo.getDescription(),
+                pTopo.getUtilisateur().getId(), pTopo.getImage(), pTopo.getId());
     }
 }

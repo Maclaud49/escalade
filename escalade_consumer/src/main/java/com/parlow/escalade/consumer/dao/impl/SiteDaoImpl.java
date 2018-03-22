@@ -2,12 +2,14 @@ package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.SiteDao;
 
+import com.parlow.escalade.consumer.dao.contract.rowMapper.SiteMapper;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -18,12 +20,11 @@ import java.util.List;
 @Named
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
-
     @Override
     public Site findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_site WHERE id = ?";
-        Site site = (Site) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Site.class));
+        String vSQL_findById = "SELECT * FROM t_site WHERE t_site.id = ?";
+        Site site = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
+                new SiteMapper());
         return site;
     }
 
@@ -36,20 +37,21 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public int insert(Site pSite) throws FunctionalException, TechnicalException{
-        String vSQL_insert = "INSERT into t_site (nom, region_fk_id, description, lastUpdate, image_fk_id, dateCreation, utilisateur_fk_id, publication) VALUES(?,?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_site (nom, region, description,lastUpdate, image, dateCreation, utilisateur_fk_id, publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           try (PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"})) {
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
                                                pst.setString(1, pSite.getNom());
-                                               pst.setInt(2, pSite.getRegion().getId());
+                                               pst.setString(2, pSite.getRegion());
                                                pst.setString(3, pSite.getDescription());
-                                               pst.setString(4, pSite.getImage().getChemin());
-                                               pst.setTimestamp(5, pSite.getDateCreation());
-                                               pst.setInt(6, pSite.getUtilisateur().getId());
+                                               pst.setTimestamp(4, pSite.getDateCreation());
+                                               pst.setString(5, pSite.getImage());
+                                               pst.setTimestamp(6, pSite.getDateCreation());
+                                               pst.setInt(7, pSite.getUtilisateur().getId());
+                                               pst.setBoolean(8, false);
                                                return pst;
-                                           }
                                        }
                                    },
                 keyHolder);
@@ -65,9 +67,11 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public void update(Site pSite) throws FunctionalException {
-        String vSQL_update = "UPDATE t_site SET nom = ?, region_fk_id = ?, description = ?, lastUpdate = ?, image_fk_id = ?," +
+        String vSQL_update = "UPDATE t_site SET nom = ?, region = ?, description = ?, lastUpdate = ?, image = ?," +
                 " dateCreation = ?, utilisateur_fk_id = ?, publication = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pSite.getNom(), pSite.getRegion().getId(),pSite.getDescription(),pSite.getLastUpdate(),
-                pSite.getImage().getId(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
+        this.vJdbcTemplate.update(vSQL_update, pSite.getNom(), pSite.getRegion(),pSite.getDescription(),pSite.getLastUpdate(),
+                pSite.getImage(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
     }
 }
+
+

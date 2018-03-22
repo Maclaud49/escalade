@@ -23,7 +23,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
-            <result name="success">/jsp/site/detail.jsp</result>
+            <result name="success">/jsp/main/site/detail.jsp</result>
             <result name="error">/jsp/error.jsp</result>
         </action>
         <!-- Actions permettant de créer un site -->

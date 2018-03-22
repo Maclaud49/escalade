@@ -1,14 +1,13 @@
 package com.parlow.escalade.webapp.action;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.sql.Timestamp;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.Region;
+import com.parlow.escalade.model.bean.deleted.Region;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -16,15 +15,18 @@ import com.parlow.escalade.model.exception.TechnicalException;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.SessionAware;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
  * Action de gestion des {@link Site}
  */
-public class GestionSiteAction extends ActionSupport {
+public class GestionSiteAction extends ActionSupport implements ServletRequestAware, SessionAware {
 
 
 
@@ -32,6 +34,8 @@ public class GestionSiteAction extends ActionSupport {
     // ==================== Attributs ====================
     @Inject
     private ManagerFactory managerFactory;
+    private Map<String, Object> session;
+    private HttpServletRequest servletRequest;
 
     private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
 
@@ -41,7 +45,7 @@ public class GestionSiteAction extends ActionSupport {
 
     // ----- Eléments en sortie
     private List<Site> listSite;
-    private List<Region> listRegions;
+    private List<String> listRegions;
     private Site site;
     private List<Utilisateur> listUtilisateur;
 
@@ -64,10 +68,10 @@ public class GestionSiteAction extends ActionSupport {
     public List<Utilisateur> getListUtilisateur() {
         return listUtilisateur;
     }
-    public List<Region> getListRegions() {
+    public List<String> getListRegions() {
         return listRegions;
     }
-    public void setListRegions(List<Region> listRegions) {
+    public void setListRegions(List<String> listRegions) {
         this.listRegions = listRegions;
     }
 
@@ -91,7 +95,21 @@ public class GestionSiteAction extends ActionSupport {
             this.addActionError(getText("error.site.missing.id"));
         } else {
             try {
+                logger.error("id du site" + id);
+
                 site = managerFactory.getSiteManager().findById(id);
+                Utilisateur utilisateur = managerFactory.getUtilisateurManager().findById(1);
+                logger.error("nom du utilisateur" + utilisateur.getNom());
+                logger.error("email du utilisateur" + utilisateur.getEmail());
+                logger.error("region du site" + site.getRegion());
+                logger.error("region du nom" + site.getNom());
+                logger.error("region du image" + site.getImage());
+                logger.error("region du datecreation" + site.getDateCreation());
+                logger.error("region du lastupdate" + site.getDateCreation());
+                logger.error("region du site" + site.getUtilisateur());
+
+               // logger.error("id du utilisateur" + site.getUtilisateur().getId());
+                //logger.error("nom du utilisateur" + site.getUtilisateur().getNom());
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
             }
@@ -104,6 +122,7 @@ public class GestionSiteAction extends ActionSupport {
      * @return input / success / error
      */
     public String doCreate() {
+        logger.error("I m here");
         // Si (this.site == null) c'est que l'on entre dans l'ajout de site
         // Sinon, c'est que l'on vient de valider le formulaire d'ajout
 
@@ -112,13 +131,14 @@ public class GestionSiteAction extends ActionSupport {
 
         // ===== Validation de l'ajout de site (site != null)
         if (this.site != null) {
-            // Date de création
             Date date = new Date();
+            this.site.setUtilisateur((Utilisateur)this.session.get("user"));
             this.site.setDateCreation(new Timestamp(date.getTime()));
-
-            // Si pas d'erreur, ajout du site...
-            /*if (!this.hasErrors()) {*/
                 try {
+                    if(this.site.getImage()==null){
+                        String image = "../../ressources/images/750x300.png";
+                        this.site.setImage(image);
+                    }
                     this.site.setId(managerFactory.getSiteManager().insert(this.site));
                     vResult = ActionSupport.SUCCESS;
                     this.addActionMessage("Site ajouté avec succès");
@@ -133,12 +153,13 @@ public class GestionSiteAction extends ActionSupport {
                     this.addActionError(pEx.getMessage());
                     vResult = ActionSupport.ERROR;
                 }
-            /*}*/
         }
 
         // Si on doit aller sur le formulaire de saisie, il faut ajouter les info nécessaires
         if (vResult.equals(ActionSupport.INPUT)) {
-            this.listRegions = managerFactory.getRegionManager().findAll();
+            this.listRegions = Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
+            "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
+            "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
         }
 
         return vResult;
@@ -147,13 +168,20 @@ public class GestionSiteAction extends ActionSupport {
     @Override
     public void validate() {
         if (this.site != null) {
-            logger.error("I m here");
-            logger.debug("I m here");
-            logger.info("I m here");
             if (site.getNom().length() < 3) {
                 addFieldError("siteNom", "Le nom du site doit faire au moins 3 lettres");
             }
         }
+    }
+
+    @Override
+    public void setSession(Map<String, Object> pSession) {
+        this.session = pSession;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest pRequest) {
+        this.servletRequest = pRequest;
     }
 
 }

@@ -14,6 +14,8 @@ import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 
 import javax.inject.Inject;
@@ -30,13 +32,13 @@ import javax.validation.ConstraintViolationException;
 @Named
 public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
-
     @Override
     public Site findById(int pId) throws NotFoundException {
         if (pId < 1) {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }
         Site vSite = daoFactory.getSiteDao().findById(pId);
+
         return vSite;
     }
 
