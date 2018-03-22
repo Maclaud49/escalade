@@ -23,11 +23,11 @@ SET search_path = sch_escalade,pg_catalog;
 -----------------------------------------------------DONNEES-----------------------------------------------------------
 -- ====================================================================================================================
 
-INSERT INTO t_utilisateur(
-  nom, prenom, datenaissance,email,password, profil, adresse_fk_id)
+INSERT INTO sch_escalade.t_adresse( adresse_adresse1, adresse_adresse2, adresse_codepostal, adresse_ville, adresse_pays) VALUES ('5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
+
+INSERT INTO t_utilisateur(utilisateur_nom, utilisateur_prenom, utilisateur_datenaissance,utilisateur_email,utilisateur_password, utilisateur_profil, utilisateur_adresse_fk_id)
 VALUES ('Parlow', 'Mickaël', '13/04/2018','mickael@parlow-co.com','escalade2018','admin','1');
 
-INSERT INTO sch_escalade.t_adresse( adresse1, adresse2, codepostal, ville, pays) VALUES ('5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
 
 INSERT INTO t_region(id,region) VALUES('1','Grand-Est');
 INSERT INTO t_region(id,region) VALUES('2','Nouvelle-Aquitaine');

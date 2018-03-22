@@ -98,7 +98,7 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
                 logger.error("id du site" + id);
 
                 site = managerFactory.getSiteManager().findById(id);
-                Utilisateur utilisateur = managerFactory.getUtilisateurManager().findById(1);
+                Utilisateur utilisateur = managerFactory.getUtilisateurManager().findById(2);
                 logger.error("nom du utilisateur" + utilisateur.getNom());
                 logger.error("email du utilisateur" + utilisateur.getEmail());
                 logger.error("region du site" + site.getRegion());
@@ -160,6 +160,23 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
             this.listRegions = Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
             "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
             "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
+           /* Utilisateur user = new Utilisateur();
+            try {
+                 user = managerFactory.getUtilisateurManager().findById(3);
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.println("user present en base et trouvable" + user.getNom());
+            System.out.println("user.adresse present en base et trouvable" + user.getAdresse().getAdresse1());
+
+            Site site2 = new Site();
+            try {
+                site2 = managerFactory.getSiteManager().findById(4);
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.println("site.user present en base et trouvable nom " + site2.getUtilisateur().getNom());
+            System.out.println("site.user present en base et trouvable id " + site2.getUtilisateur().getId());*/
         }
 
         return vResult;

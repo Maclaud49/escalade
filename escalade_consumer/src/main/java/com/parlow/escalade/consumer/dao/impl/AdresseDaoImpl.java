@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import javax.inject.Named;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -63,5 +64,17 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
         String vSQL_update = "UPDATE t_adresse SET adresse1 = ?,adresse2 = ?,codePostal = ?,ville = ?,pays = ? WHERE id = ?";
         this.vJdbcTemplate.update(vSQL_update, pAdresse.getAdresse1(),pAdresse.getAdresse2(),pAdresse.getCodePostal(),
                 pAdresse.getVille(),pAdresse.getPays(),pAdresse.getId());
+    }
+
+    public Adresse mapRow(ResultSet rs, int rowNum) throws SQLException {
+        System.out.println("Adresse mapRow");
+        Adresse adresse = new Adresse();
+        adresse.setId(rs.getInt("id"));
+        adresse.setAdresse1(rs.getString("adresse1"));
+        adresse.setAdresse2(rs.getString("adresse2"));
+        adresse.setCodePostal(rs.getString("codePostal"));
+        adresse.setVille(rs.getString("ville"));
+        adresse.setPays(rs.getString("pays"));
+        return adresse;
     }
 }

@@ -1,7 +1,9 @@
 package com.parlow.escalade.consumer.dao.impl;
 
+import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
 import com.parlow.escalade.consumer.dao.contract.rowMapper.UtilisateurMapper;
+import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -25,6 +27,9 @@ import java.util.List;
 
 @Named
 public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurDao {
+    @Inject
+    protected DaoFactory daoFactory;
+
 
     @Override
     public Utilisateur findByEmail(String email) throws NotFoundException {
@@ -43,11 +48,11 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException {
 
-            String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ? AND password = ?";
+            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur WHERE email = ? AND password = ?";
 
             try {
-                Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(
-                        sql_findByEmail, new Object[]{email, password}, new BeanPropertyRowMapper(Utilisateur.class));
+                Utilisateur user = this.vJdbcTemplate.queryForObject(
+                        sql_findByEmailAndPass, new Object[]{email, password}, new UtilisateurMapper());
                 return user;
             }catch(Exception e){
                 throw new NotFoundException("Aucun utilisateur correspondant au couple email/mot de passe fourni.");
@@ -56,9 +61,11 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public Utilisateur findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_utilisateur WHERE id = ?";
-        Utilisateur utilisateur = (Utilisateur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Utilisateur.class));
+        System.out.println("utilisateur findById");
+        String vSQL_findById = "SELECT * FROM t_utilisateur,t_adresse WHERE utilisateur_id = ? AND utilisateur_adresse_fk_id=adresse_id";
+
+        Utilisateur utilisateur = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
+                new UtilisateurMapper());
         return utilisateur;
     }
 
@@ -104,5 +111,27 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
                 pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
                 pUtilisateur.getCotation(), pUtilisateur.getAdresse().getId(),
                 pUtilisateur.getProfil(), pUtilisateur.getId());
+    }
+
+    public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+        System.out.println("Utilisateur mapRow");
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(rs.getInt("id"));
+        utilisateur.setNom(rs.getString("nom"));
+        utilisateur.setPrenom(rs.getString("prenom"));
+        utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
+        utilisateur.setEmail(rs.getString("email"));
+        utilisateur.setPassword(rs.getString("password"));
+        utilisateur.setCotation(rs.getString("cotation"));
+        Adresse adresse = new Adresse();
+        try {
+            System.out.println("adresse id " + rs.getInt("adresse_fk_id"));
+            adresse = daoFactory.getAdresseDao().findById(rs.getInt("adresse_fk_id"));
+        } catch (Exception e) {
+            System.out.println("Adresse non trouvée");
+        }
+        utilisateur.setAdresse(adresse);
+        utilisateur.setProfil(rs.getString("profil"));
+        return utilisateur;
     }
 }

@@ -30,100 +30,100 @@ CREATE SCHEMA sch_escalade AUTHORIZATION escalade_admin;
 SET search_path = sch_escalade,pg_catalog;
 
 CREATE TABLE t_topo (
-  id SERIAL PRIMARY KEY,
-  nom CHARACTER VARYING(15) NOT NULL,
-	region CHARACTER VARYING(30),
-	nbSites INTEGER,
-	nbSecteurs INTEGER,
-	nbVoies INTEGER,
-	disponible BOOLEAN,
-	description CHARACTER VARYING(2000) NOT NULL,
-	utilisateur_fk_id INTEGER,
-	image CHARACTER VARYING(100)
+  topo_id SERIAL PRIMARY KEY,
+  topo_nom CHARACTER VARYING(15) NOT NULL,
+	topo_region CHARACTER VARYING(30),
+	topo_nbSites INTEGER,
+	topo_nbSecteurs INTEGER,
+	topo_nbVoies INTEGER,
+	topo_disponible BOOLEAN,
+	topo_description CHARACTER VARYING(2000) NOT NULL,
+	topo_utilisateur_fk_id INTEGER,
+	topo_image CHARACTER VARYING(100)
 );
 
 CREATE TABLE t_site (
-  id SERIAL PRIMARY KEY,
-	nom CHARACTER VARYING(20) NOT NULL,
-	region CHARACTER VARYING(30),
-	description CHARACTER VARYING(500),
-	lastUpdate TIMESTAMP,
-	dateCreation TIMESTAMP,
-	image CHARACTER VARYING(100),
-	utilisateur_fk_id INTEGER,
-	publication boolean
+  site_id SERIAL PRIMARY KEY,
+	site_nom CHARACTER VARYING(20) NOT NULL,
+	site_region CHARACTER VARYING(30),
+	site_description CHARACTER VARYING(500),
+	site_lastUpdate TIMESTAMP,
+	site_dateCreation TIMESTAMP,
+	site_image CHARACTER VARYING(100),
+	site_utilisateur_fk_id INTEGER,
+	site_publication boolean
 );
 
 CREATE TABLE t_departement (
-	id SERIAL PRIMARY KEY,
-	departement CHARACTER VARYING(30) NOT NULL,
-	region CHARACTER VARYING(30)
+	departement_id SERIAL PRIMARY KEY,
+	departement_departement CHARACTER VARYING(30) NOT NULL,
+	departement_region CHARACTER VARYING(30)
 );
 
 CREATE TABLE t_secteur (
-	id SERIAL PRIMARY KEY,
-	nom CHARACTER VARYING(15) NOT NULL,
-	site_fk_id INTEGER,
-	utilisateur_fk_id INTEGER,
-	publication boolean
+	secteur_id SERIAL PRIMARY KEY,
+	secteur_nom CHARACTER VARYING(15) NOT NULL,
+	secteur_site_fk_id INTEGER,
+	secteur_utilisateur_fk_id INTEGER,
+	secteur_publication boolean
 );
    
 CREATE TABLE t_voie (
-  id SERIAL PRIMARY KEY,
-	nom CHARACTER VARYING(15) NOT NULL,
-	cotation CHARACTER VARYING(15),
-	nbPoints INTEGER,
-	equipee BOOLEAN,
-	secteur_fk_id INTEGER,
-	interet INTEGER,
-	utilisateur_fk_id INTEGER
+	voie_id SERIAL PRIMARY KEY,
+	voie_nom CHARACTER VARYING(15) NOT NULL,
+	voie_cotation CHARACTER VARYING(15),
+	voie_nbPoints INTEGER,
+	voie_equipee BOOLEAN,
+	voie_secteur_fk_id INTEGER,
+	voie_interet INTEGER,
+	voie_utilisateur_fk_id INTEGER
 );
 
 CREATE TABLE t_longueur (
-  id SERIAL PRIMARY KEY,
-	relai NUMERIC(2),
-	voie_fk_id INTEGER,
-	cotation CHARACTER VARYING(15),
-	utilisateur_fk_id INTEGER
+	longueur_id SERIAL PRIMARY KEY,
+	longueur_relai NUMERIC(2),
+	longueur_voie_fk_id INTEGER,
+	longueur_cotation CHARACTER VARYING(15),
+	longueur_utilisateur_fk_id INTEGER
 );
 
 CREATE TABLE t_utilisateur(
-	id SERIAL PRIMARY KEY,
-	nom CHARACTER VARYING(15) NOT NULL,
-	prenom CHARACTER VARYING(15) NOT NULL,
-	dateNaissance DATE,
-	email CHARACTER VARYING(30) NOT NULL,
-	password CHARACTER VARYING(60) NOT NULL,
-	cotation CHARACTER VARYING(15),
-	adresse_fk_id INTEGER,
-	profil CHARACTER VARYING(15) NOT NULL
+	utilisateur_id SERIAL PRIMARY KEY,
+	utilisateur_nom CHARACTER VARYING(15) NOT NULL,
+	utilisateur_prenom CHARACTER VARYING(15) NOT NULL,
+	utilisateur_dateNaissance DATE,
+	utilisateur_email CHARACTER VARYING(30) NOT NULL,
+	utilisateur_password CHARACTER VARYING(60) NOT NULL,
+	utilisateur_cotation CHARACTER VARYING(15),
+	utilisateur_adresse_fk_id INTEGER,
+	utilisateur_profil CHARACTER VARYING(15) NOT NULL
 );
 
 CREATE TABLE t_location_topo(
-	id SERIAL PRIMARY KEY,
-	dateDebut TIMESTAMP,
-	dateFin TIMESTAMP,
-	topoProprioUtilisateur_fk_id INTEGER,
-	topoLoueurUtilisateur_fk_id INTEGER,
-	topo_fk_id INTEGER
+	loc_id SERIAL PRIMARY KEY,
+	loc_dateDebut TIMESTAMP,
+	loc_dateFin TIMESTAMP,
+	loc_topoProprioUser_fk_id INTEGER,
+	loc_topoLoueurUser_fk_id INTEGER,
+	loc_topo_fk_id INTEGER
 );
 ---
 CREATE TABLE t_adresse(
-	id SERIAL PRIMARY KEY,
-	adresse1 CHARACTER VARYING(30) NOT NULL,
-	adresse2 CHARACTER VARYING(30),
-	codePostal CHARACTER VARYING(10),
-	ville CHARACTER VARYING(20),
-	pays CHARACTER VARYING(20)
+	adresse_id SERIAL PRIMARY KEY,
+	adresse_adresse1 CHARACTER VARYING(30) NOT NULL,
+	adresse_adresse2 CHARACTER VARYING(30),
+	adresse_codePostal CHARACTER VARYING(10),
+	adresse_ville CHARACTER VARYING(20),
+	adresse_pays CHARACTER VARYING(20)
 );
 
 CREATE TABLE t_commentaire (
-	id  SERIAL PRIMARY KEY,
-	dateCommentaire TIMESTAMP,
-	commentaire CHARACTER VARYING(200),
-	utilisateur_fk_id INTEGER,
-	table_fk_id INTEGER,
-	target_table CHARACTER VARYING(20)
+	com_id  SERIAL PRIMARY KEY,
+	com_dateCommentaire TIMESTAMP,
+	com_commentaire CHARACTER VARYING(200),
+	com_utilisateur_fk_id INTEGER,
+	com_table_fk_id INTEGER,
+	com_target_table CHARACTER VARYING(20)
 );
 
 
@@ -131,19 +131,19 @@ CREATE TABLE t_commentaire (
 --------------------------------------------------------- CONTRAINTES -------------------------------------------------
 -- ====================================================================================================================
 
-ALTER TABLE t_topo ADD CONSTRAINT t_topo_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_site ADD CONSTRAINT t_site_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_site_fk FOREIGN KEY (site_fk_id) REFERENCES t_site ON DELETE SET NULL;
-ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_voie ADD CONSTRAINT t_voie_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;
-ALTER TABLE t_voie ADD CONSTRAINT t_voie_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;
-ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
-ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk FOREIGN KEY (topoProprioUtilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;	
-ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk2 FOREIGN KEY (topoLoueurUtilisateur_fk_id) REFERENCES t_utilisateur ON DELETE RESTRICT;
-ALTER TABLE t_location_topo ADD CONSTRAINT t_location_topo_fk FOREIGN KEY (topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
-ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_adresse_fk FOREIGN KEY (adresse_fk_id) REFERENCES t_adresse ON DELETE SET NULL;
-ALTER TABLE t_commentaire ADD CONSTRAINT t_commentaire_utilisateur_fk FOREIGN KEY (utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_topo ADD CONSTRAINT t_topo_utilisateur_fk FOREIGN KEY (topo_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_site ADD CONSTRAINT t_site_utilisateur_fk FOREIGN KEY (site_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_site_fk FOREIGN KEY (secteur_site_fk_id) REFERENCES t_site ON DELETE SET NULL;
+ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_utilisateur_fk FOREIGN KEY (secteur_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_voie ADD CONSTRAINT t_voie_secteur_fk FOREIGN KEY (voie_secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;
+ALTER TABLE t_voie ADD CONSTRAINT t_voie_utilisateur_fk FOREIGN KEY (voie_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_voie_fk FOREIGN KEY (longueur_voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;
+ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_utilisateur_fk FOREIGN KEY (longueur_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk FOREIGN KEY (loc_topoProprioUser_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk2 FOREIGN KEY (loc_topoLoueurUser_fk_id) REFERENCES t_utilisateur ON DELETE RESTRICT;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_topo_fk FOREIGN KEY (loc_topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
+ALTER TABLE t_utilisateur ADD CONSTRAINT t_utilisateur_adresse_fk FOREIGN KEY (utilisateur_adresse_fk_id) REFERENCES t_adresse ON DELETE SET NULL;
+ALTER TABLE t_commentaire ADD CONSTRAINT t_commentaire_utilisateur_fk FOREIGN KEY (com_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
 
 
 

@@ -10,12 +10,12 @@ public class AdresseMapper implements RowMapper<Adresse> {
     public Adresse mapRow(ResultSet rs, int rowNum) throws SQLException {
         System.out.println("Adresse mapRow");
         Adresse adresse = new Adresse();
-        adresse.setId(rs.getInt("id"));
-        adresse.setAdresse1(rs.getString("adresse1"));
-        adresse.setAdresse2(rs.getString("adresse2"));
-        adresse.setCodePostal(rs.getString("codePostal"));
-        adresse.setVille(rs.getString("ville"));
-        adresse.setPays(rs.getString("pays"));
+        adresse.setId(rs.getInt("adresse_id"));
+        adresse.setAdresse1(rs.getString("adresse_adresse1"));
+        adresse.setAdresse2(rs.getString("adresse_adresse2"));
+        adresse.setCodePostal(rs.getString("adresse_codePostal"));
+        adresse.setVille(rs.getString("adresse_ville"));
+        adresse.setPays(rs.getString("adresse_pays"));
         return adresse;
     }
 }

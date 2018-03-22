@@ -1,37 +1,51 @@
 package com.parlow.escalade.consumer.dao.contract.rowMapper;
 
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
+import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
+import com.parlow.escalade.consumer.dao.impl.UtilisateurDaoImpl;
 import com.parlow.escalade.model.bean.Site;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.parlow.escalade.model.exception.NotFoundException;
 import org.springframework.jdbc.core.RowMapper;
 
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Named
 public class SiteMapper implements RowMapper<Site> {
-    @Inject
-    DaoFactory daoFactory;
 
+    @Inject
+    protected DaoFactory daoFactory;
 
     public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
         System.out.println("Site mapRow");
         Site site = new Site();
-        site.setId(rs.getInt("id"));
-        site.setNom(rs.getString("nom"));
-        site.setRegion(rs.getString("region"));
-        site.setDescription(rs.getString("description"));
-        site.setLastUpdate(rs.getTimestamp("lastUpdate"));
-        site.setImage(rs.getString("image"));
-        site.setDateCreation(rs.getTimestamp("dateCreation"));
-        try {
-            System.out.println("id du utilisateur " + rs.getInt("utilisateur_fk_id"));
-            site.setUtilisateur(daoFactory.getUtilisateurDao().findById(rs.getInt("utilisateur_fk_id")));
-        } catch (Exception e) {
-            System.out.println("Utilisateur non trouvé");
-        }
+        site.setId(rs.getInt("site_id"));
+        site.setNom(rs.getString("site_nom"));
+        site.setRegion(rs.getString("site_region"));
+        site.setDescription(rs.getString("site_description"));
+        site.setLastUpdate(rs.getTimestamp("site_lastUpdate"));
+        site.setImage(rs.getString("site_image"));
+        site.setDateCreation(rs.getTimestamp("site_dateCreation"));
+        UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
+        Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
+        site.setUtilisateur(utilisateur);
+        System.out.println("nom du utilisateur " + site.getUtilisateur().getNom());
         site.setPublication(rs.getBoolean("publication"));
+
         return site;
     }
 
 }
+
+        /*try {
+            System.out.println("id du utilisateur " + rs.getInt("utilisateur_fk_id"));
+            utilisateur = daoFactory.getUtilisateurDao().findById(rs.getInt("utilisateur_fk_id"));
+            System.out.println("nom du utilisateur " + utilisateur.getNom());
+
+        } catch (NotFoundException e) {
+            System.out.println("Utilisateur non trouvé");
+        }*/
