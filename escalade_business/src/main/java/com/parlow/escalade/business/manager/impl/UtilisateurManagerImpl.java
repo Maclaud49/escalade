@@ -30,7 +30,7 @@ public class UtilisateurManagerImpl extends AbstractManager implements Utilisate
     }
 
     @Override
-    public Utilisateur getUtilisateur(String pEmail, String pPassword) throws NotFoundException {
+    public Utilisateur login(String pEmail, String pPassword) throws NotFoundException {
 
         Utilisateur user = daoFactory.getUtilisateurDao().findByEmailAndPassword(pEmail,pPassword);
         if(user != null){

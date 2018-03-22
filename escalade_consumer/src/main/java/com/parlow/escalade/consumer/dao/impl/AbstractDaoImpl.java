@@ -1,5 +1,6 @@
 package com.parlow.escalade.consumer.dao.impl;
 
+import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;

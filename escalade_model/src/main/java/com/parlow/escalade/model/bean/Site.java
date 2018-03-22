@@ -1,5 +1,6 @@
 package com.parlow.escalade.model.bean;
 
+import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 
@@ -15,15 +16,15 @@ public class Site {
     private String nom;
     private String description;
     private List<Secteur> secteurs;
-    private Region region;
-    private List<PeriodeFav> periodeFav;
-    private List<TypeRocher> typeRocher;
+    private String region;
+    private List<String> periodeFav;
+    private List<String> typeRocher;
     private Integer nbSecteurs;
     private Integer nbVoies;
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
     private String niveauPratique;
-    private Image image;
+    private String image;
     private Utilisateur utilisateur;
     private boolean publication;
     private List<Commentaire> commentaires;
@@ -79,27 +80,27 @@ public class Site {
         this.secteurs = secteurs;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(String region) {
         this.region = region;
     }
 
-    public List<PeriodeFav> getPeriodeFav() {
+    public List<String> getPeriodeFav() {
         return periodeFav;
     }
 
-    public void setPeriodeFav(List<PeriodeFav> periodeFav) {
+    public void setPeriodeFav(List<String> periodeFav) {
         this.periodeFav = periodeFav;
     }
 
-    public List<TypeRocher> getTypeRocher() {
+    public List<String> getTypeRocher() {
         return typeRocher;
     }
 
-    public void setTypeRocher(List<TypeRocher> typeRocher) {
+    public void setTypeRocher(List<String> typeRocher) {
         this.typeRocher = typeRocher;
     }
 
@@ -135,11 +136,11 @@ public class Site {
         this.niveauPratique = niveauPratique;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image images) {
+    public void setImage(String image) {
         this.image = image;
     }
 

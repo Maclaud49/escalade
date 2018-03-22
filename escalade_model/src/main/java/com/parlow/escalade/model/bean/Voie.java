@@ -1,5 +1,6 @@
 package com.parlow.escalade.model.bean;
 
+import com.parlow.escalade.model.bean.deleted.Cotation;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class Voie {
     private List<Longueur> longueurs;
     private Integer nbLongueurs;
     private double hauteurVoie;
-    private Cotation cotation;
+    private String cotation;
     private Integer nbPoints;
     private boolean equipee;
     private Secteur secteur;
@@ -112,11 +113,11 @@ public class Voie {
         this.commentaires = commentaires;
     }
 
-    public Cotation getCotation() {
+    public String getCotation() {
         return cotation;
     }
 
-    public void setCotation(Cotation cotation) {
+    public void setCotation(String cotation) {
         this.cotation = cotation;
     }
 }

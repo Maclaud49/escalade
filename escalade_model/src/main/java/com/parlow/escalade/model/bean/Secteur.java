@@ -1,5 +1,6 @@
 package com.parlow.escalade.model.bean;
 
+import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 import java.util.List;

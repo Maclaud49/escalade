@@ -35,7 +35,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public int insert(Longueur pLongueur) throws FunctionalException {
-        String vSQL_insert = "INSERT INTO t_longueur (relai, voie_fk_id, cotation_fk_id, utilisateur_fk_id) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_longueur (relai, voie, cotation_fk_id, utilisateur_fk_id) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
@@ -43,7 +43,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
                                           pst.setDouble(1, pLongueur.getRelai());
                                           pst.setInt(2, pLongueur.getVoie().getId());
-                                          pst.setInt(3, pLongueur.getCotation().getId());
+                                          pst.setString(3, pLongueur.getCotation());
                                           pst.setInt(4, pLongueur.getUtilisateur().getId());
                                           return pst;
                                       }
@@ -61,8 +61,8 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public void update(Longueur pLongueur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_longueur SET relai = ?,voie_fk_id = ?,cotation_fk_id = ?,utilisateur_fk_id = ? WHERE id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation().getId(),
+        String vSQL_update = "UPDATE t_longueur SET relai = ?,voie_fk_id = ?,cotation = ?,utilisateur_fk_id = ? WHERE id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation(),
                 pLongueur.getUtilisateur().getId(), pLongueur.getId());
     }
 }

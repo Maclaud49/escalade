@@ -1,6 +1,8 @@
 package com.parlow.escalade.business.manager.contract;
 
 
+import com.parlow.escalade.business.manager.contract.deleted.*;
+
 public interface ManagerFactory {
 
     SiteManager getSiteManager();

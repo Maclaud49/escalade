@@ -28,7 +28,7 @@ public interface UtilisateurManager {
      * @return Le {@link Utilisateur}
      * @throws NotFoundException Si l'Utilisateur n'est pas trouvé
      */
-    Utilisateur getUtilisateur(String pLogin, String pPassword) throws NotFoundException;
+    Utilisateur login(String pLogin, String pPassword) throws NotFoundException;
 
     /**
      * Renvoie le {@link Utilisateur} demandé

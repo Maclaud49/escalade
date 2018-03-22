@@ -1,6 +1,7 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.AdresseDao;
+import com.parlow.escalade.consumer.dao.contract.rowMapper.AdresseMapper;
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -21,8 +22,8 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
     @Override
     public Adresse findById(int pId) throws NotFoundException {
         String vSQL_findById = "SELECT * FROM t_adresse WHERE id = ?";
-        Adresse adresse = (Adresse) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Adresse.class));
+        Adresse adresse = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
+                new AdresseMapper());
         return adresse;
     }
 

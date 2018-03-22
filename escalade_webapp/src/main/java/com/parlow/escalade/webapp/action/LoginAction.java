@@ -67,7 +67,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware, S
             try {
                 Utilisateur vUtilisateur
                         = managerFactory.getUtilisateurManager()
-                        .getUtilisateur(email, password);
+                        .login(email, password);
                 // Ajout de l'utilisateur en session
                 this.session.put("user", vUtilisateur);
                 vResult = ActionSupport.SUCCESS;

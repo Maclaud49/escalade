@@ -1,5 +1,6 @@
 package com.parlow.escalade.model.bean;
 
+import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public class Topo {
     // ==================== Attributs ====================
     private Integer id;
     private String nom;
-    private Region region;
+    private String region;
     private Integer nbSites;
     private Integer nbSecteurs;
     private Integer nbVoies;
@@ -84,11 +85,11 @@ public class Topo {
         this.utilisateur = utilisateur;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(String region) {
         this.region = region;
     }
 

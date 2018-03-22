@@ -1,6 +1,7 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.*;
+import com.parlow.escalade.consumer.dao.contract.deleted.*;
 
 import javax.inject.Named;
 import javax.inject.Inject;

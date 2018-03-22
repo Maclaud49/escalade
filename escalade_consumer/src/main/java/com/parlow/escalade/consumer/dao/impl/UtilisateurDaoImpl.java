@@ -1,6 +1,7 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
+import com.parlow.escalade.consumer.dao.contract.rowMapper.UtilisateurMapper;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -31,8 +32,8 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
         String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ?";
 
         try {
-            Utilisateur user = (Utilisateur) this.vJdbcTemplate.queryForObject(
-                    sql_findByEmail, new Object[]{email}, new BeanPropertyRowMapper(Utilisateur.class));
+            Utilisateur user = this.vJdbcTemplate.queryForObject(
+                    sql_findByEmail, new Object[]{email}, new UtilisateurMapper());
             return user;
         }catch(Exception e){
             throw new NotFoundException("Aucun utilisateur correspondant à cette adresse email fourni.");
@@ -70,7 +71,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public int insert(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_utilisateur (nom, prenom, email, password, profil_fk_id) VALUES(?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_utilisateur (nom, prenom, email, password, profil) VALUES(?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
@@ -80,7 +81,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
                                            pst.setString(2,pUtilisateur.getPrenom());
                                            pst.setString(3,pUtilisateur.getEmail());
                                            pst.setString(4, pUtilisateur.getPassword());
-                                           pst.setInt(5, pUtilisateur.getProfil().getId());
+                                           pst.setString(5, pUtilisateur.getProfil());
                                            return pst;
                                        }
                                    },
@@ -98,10 +99,10 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public void update(Utilisateur pUtilisateur) throws FunctionalException {
         String vSQL_update = "UPDATE t_utilisateur SET nom = ?, prenom = ?, dateNaissance = ?, email = ?," +
-                " password = ?, cotation_fk_id = ?, adresse_fk_id = ?, profil_fk_id = ? WHERE id = ?";
+                " password = ?, cotation = ?, adresse_fk_id = ?, profil = ? WHERE id = ?";
         this.vJdbcTemplate.update(vSQL_update, pUtilisateur.getNom(), pUtilisateur.getPrenom(),
                 pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
-                pUtilisateur.getCotation().getId(), pUtilisateur.getAdresse().getId(),
-                pUtilisateur.getProfil().getId(), pUtilisateur.getId());
+                pUtilisateur.getCotation(), pUtilisateur.getAdresse().getId(),
+                pUtilisateur.getProfil(), pUtilisateur.getId());
     }
 }

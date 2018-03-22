@@ -64,8 +64,8 @@
                     <div class="form-group">
                         <label >Région</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:select  class="form-control" name="site.region.id"
-                                       list="listRegions" listKey="id" listValue="region" emptyOption="true" required="true"/>
+                            <s:select  class="form-control" name="site.region"
+                                       list="listRegions"  emptyOption="true" required="true"/>
                         </div>
                     </div>
                 </div>
