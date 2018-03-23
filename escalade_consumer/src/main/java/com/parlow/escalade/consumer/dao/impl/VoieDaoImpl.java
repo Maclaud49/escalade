@@ -20,7 +20,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public Voie findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_voie WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_voie WHERE voie_id = ?";
         Voie voie = (Voie) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Voie.class));
         return voie;
@@ -35,12 +35,12 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public int insert(Voie pVoie) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_voie (nom, cotation, nbPoints, equipee,secteur_fk_id,interet,utilisateur_fk_id) VALUES(?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_voie (voie_nom, voie_cotation, voie_nbPoints, voie_equipee,secteur_fk_id,voie_interet,voie_utilisateur_fk_id) VALUES(?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"voie_id"});
                                            pst.setString(1, pVoie.getNom());
                                            pst.setString(2,pVoie.getCotation());
                                            pst.setInt(3,pVoie.getNbPoints());
@@ -58,14 +58,14 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_voie WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_voie WHERE voie_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Voie pVoie) throws FunctionalException {
-        String vSQL_update = "UPDATE t_voie SET nom = ?, cotation = ?, nbPoints = ?, equipee = ?," +
-                " secteur_fk_id = ?, interet = ?, utilisateur_fk_id = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_voie SET voie_nom = ?, voie_cotation = ?, voie_nbPoints = ?, voie_equipee = ?," +
+                " voie_secteur_fk_id = ?, voie_interet = ?, voie_utilisateur_fk_id = ? WHERE voie_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(), pVoie.getCotation(), pVoie.getNbPoints(),
                 pVoie.isEquipee(), pVoie.getSecteur().getId(), pVoie.getInteret(), pVoie.getUtilisateur().getId(), pVoie.getId());
     }

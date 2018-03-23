@@ -98,18 +98,8 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
                 logger.error("id du site" + id);
 
                 site = managerFactory.getSiteManager().findById(id);
-                Utilisateur utilisateur = managerFactory.getUtilisateurManager().findById(2);
-                logger.error("nom du utilisateur" + utilisateur.getNom());
-                logger.error("email du utilisateur" + utilisateur.getEmail());
-                logger.error("region du site" + site.getRegion());
-                logger.error("region du nom" + site.getNom());
-                logger.error("region du image" + site.getImage());
-                logger.error("region du datecreation" + site.getDateCreation());
-                logger.error("region du lastupdate" + site.getDateCreation());
-                logger.error("region du site" + site.getUtilisateur());
-
-               // logger.error("id du utilisateur" + site.getUtilisateur().getId());
-                //logger.error("nom du utilisateur" + site.getUtilisateur().getNom());
+                logger.error("id du utilisateur" + site.getUtilisateur().getId());
+                logger.error("nom du utilisateur" + site.getUtilisateur().getNom());
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
             }
@@ -123,10 +113,7 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
      */
     public String doCreate() {
         logger.error("I m here");
-        // Si (this.site == null) c'est que l'on entre dans l'ajout de site
-        // Sinon, c'est que l'on vient de valider le formulaire d'ajout
 
-        // Par défaut, le result est "input"
         String vResult = ActionSupport.INPUT;
 
         // ===== Validation de l'ajout de site (site != null)
@@ -144,41 +131,21 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
                     this.addActionMessage("Site ajouté avec succès");
 
                 } catch (FunctionalException pEx) {
-                    // Sur erreur fonctionnelle on reste sur la page de saisie
-                    // et on affiche un message d'erreur
                     this.addActionError(pEx.getMessage());
 
                 } catch (TechnicalException pEx) {
-                    // Sur erreur technique on part sur le result "error"
+
                     this.addActionError(pEx.getMessage());
                     vResult = ActionSupport.ERROR;
                 }
         }
 
-        // Si on doit aller sur le formulaire de saisie, il faut ajouter les info nécessaires
+        //Ajout des infos nécessaires pour le formulaire de saisie
         if (vResult.equals(ActionSupport.INPUT)) {
             this.listRegions = Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
             "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
             "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
-           /* Utilisateur user = new Utilisateur();
-            try {
-                 user = managerFactory.getUtilisateurManager().findById(3);
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println("user present en base et trouvable" + user.getNom());
-            System.out.println("user.adresse present en base et trouvable" + user.getAdresse().getAdresse1());
-
-            Site site2 = new Site();
-            try {
-                site2 = managerFactory.getSiteManager().findById(4);
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println("site.user present en base et trouvable nom " + site2.getUtilisateur().getNom());
-            System.out.println("site.user present en base et trouvable id " + site2.getUtilisateur().getId());*/
         }
-
         return vResult;
     }
 

@@ -9,7 +9,7 @@
         <default-action-ref name="site_new" />
 
         <!-- Action "index" -->
-        <action name="index">
+        <action name="index" class="IndexAction" method="doIndex">
             <result>/jsp/main/index.jsp</result>
         </action>
 

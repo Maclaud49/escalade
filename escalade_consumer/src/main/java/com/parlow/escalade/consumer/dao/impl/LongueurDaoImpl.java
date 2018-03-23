@@ -20,7 +20,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public Longueur findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_longueur WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_longueur WHERE longueur_id = ?";
         Longueur longueur = (Longueur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Longueur.class));
         return longueur;
@@ -35,12 +35,12 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public int insert(Longueur pLongueur) throws FunctionalException {
-        String vSQL_insert = "INSERT INTO t_longueur (relai, voie, cotation_fk_id, utilisateur_fk_id) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_longueur (longueur_relai, longueur_voie, longueur_cotation_fk_id, longueur_utilisateur_fk_id) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"longueur_id"});
                                           pst.setDouble(1, pLongueur.getRelai());
                                           pst.setInt(2, pLongueur.getVoie().getId());
                                           pst.setString(3, pLongueur.getCotation());
@@ -55,13 +55,13 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_longueur WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_longueur WHERE longueur_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Longueur pLongueur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_longueur SET relai = ?,voie_fk_id = ?,cotation = ?,utilisateur_fk_id = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_longueur SET longueur_relai = ?,longueur_voie_fk_id = ?,longueur_cotation = ?,longueur_utilisateur_fk_id = ? WHERE longueur_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation(),
                 pLongueur.getUtilisateur().getId(), pLongueur.getId());
     }
