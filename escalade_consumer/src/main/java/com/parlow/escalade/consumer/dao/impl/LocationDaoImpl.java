@@ -20,7 +20,7 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     @Override
     public Location findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_location WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_location WHERE loc_id = ?";
         Location location = (Location) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Location.class));
         return location;
@@ -35,12 +35,12 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     @Override
     public int insert(Location pLocation) throws FunctionalException {
-        String vSQL_insert = "INSERT INTO t_location (dateDebut, topoProprioUtilisateur_fk_id, topoLoueurUtilisateur_fk_id, topo_fk_id) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_location (loc_dateDebut, loc_topoProprioUtilisateur_fk_id, loc_topoLoueurUtilisateur_fk_id, loc_topo_fk_id) VALUES(?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                          PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"loc_id"});
                                           pst.setTimestamp(1, pLocation.getDateDebut());
                                           pst.setInt(2, pLocation.getTopoProprio().getId());
                                           pst.setInt(3, pLocation.getTopoLoueur().getId());
@@ -55,14 +55,14 @@ public class LocationDaoImpl extends AbstractDaoImpl implements LocationDao {
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_location WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_location WHERE loc_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Location pLocation) throws FunctionalException {
-        String vSQL_update = "UPDATE t_location SET dateDebut = ?, dateFin = ?, topoProprioUtilisateur_fk_id = ?," +
-                " topoLoueurUtilisateur_fk_id = ?, topo_fk_id = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_location SET loc_dateDebut = ?, loc_dateFin = ?, loc_topoProprioUtilisateur_fk_id = ?," +
+                " loc_topoLoueurUtilisateur_fk_id = ?, loc_topo_fk_id = ? WHERE id = ?";
         this.vJdbcTemplate.update(vSQL_update, pLocation.getDateDebut(), pLocation.getDateFin(),pLocation.getTopoProprio().getId(),
                 pLocation.getTopoLoueur().getId(),pLocation.getTopo().getId(),pLocation.getId());
     }

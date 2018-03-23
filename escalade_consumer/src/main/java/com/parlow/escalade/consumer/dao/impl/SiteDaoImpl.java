@@ -44,12 +44,12 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public int insert(Site pSite) throws FunctionalException, TechnicalException{
-        String vSQL_insert = "INSERT into t_site (nom, region, description,lastUpdate, image, dateCreation, utilisateur_fk_id, publication) VALUES(?,?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_site (site_nom, site_region, site_description,site_lastUpdate, site_image, site_dateCreation, site_utilisateur_fk_id, site_publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"id"});
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"site_id"});
                                                pst.setString(1, pSite.getNom());
                                                pst.setString(2, pSite.getRegion());
                                                pst.setString(3, pSite.getDescription());
@@ -68,14 +68,14 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public void delete(int pId) throws NotFoundException, TechnicalException {
-        String vSQL_delete = "DELETE FROM t_site WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_site WHERE site_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Site pSite) throws FunctionalException {
-        String vSQL_update = "UPDATE t_site SET nom = ?, region = ?, description = ?, lastUpdate = ?, image = ?," +
-                " dateCreation = ?, utilisateur_fk_id = ?, publication = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_site SET site_nom = ?, site_region = ?, site_description = ?, site_lastUpdate = ?, site_image = ?," +
+                " site_dateCreation = ?, site_utilisateur_fk_id = ?, site_publication = ? WHERE site_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pSite.getNom(), pSite.getRegion(),pSite.getDescription(),pSite.getLastUpdate(),
                 pSite.getImage(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
     }

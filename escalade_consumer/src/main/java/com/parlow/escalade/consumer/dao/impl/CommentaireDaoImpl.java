@@ -20,7 +20,7 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public Commentaire findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_commentaire WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_commentaire WHERE com_id = ?";
         Commentaire commentaire = (Commentaire) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Commentaire.class));
         return commentaire;
@@ -35,12 +35,12 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public int insert(Commentaire pCommentaire) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_commentaire (commentaire) VALUES(?)";
+        String vSQL_insert = "INSERT into t_commentaire (com_commentaire) VALUES(?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"com_id"});
                                            pst.setString(1, pCommentaire.getCommentaire());
                                            return pst;
                                        }
@@ -52,13 +52,13 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_commentaire WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_commentaire WHERE com_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Commentaire pCommentaire) throws FunctionalException {
-        String vSQL_update = "UPDATE t_commentaire SET commentaire = ?, dateCommentaire = ?, utilisateur_fk_id = ?, table_fk_id = ?, target_table = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_commentaire SET com_commentaire = ?, com_dateCommentaire = ?, com_utilisateur_fk_id = ?, com_table_fk_id = ?, com_target_table = ? WHERE com_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pCommentaire.getCommentaire(),pCommentaire.getDateCommentaire(),
                 pCommentaire.getUtilisateur().getId(),pCommentaire.getReference_id(),pCommentaire.getTable(),pCommentaire.getId());
     }

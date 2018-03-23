@@ -20,7 +20,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public Topo findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_topo WHERE id = ?";
+        String vSQL_findById = "SELECT * FROM t_topo WHERE topo_id = ?";
         Topo topo = (Topo) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new BeanPropertyRowMapper(Topo.class));
         return topo;
@@ -35,12 +35,12 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public int insert(Topo pTopo) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_topo (nom, region, disponible, description, utilisateur_fk_id, image) VALUES(?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_topo (topo_nom, topo_region, topo_disponible, topo_description, topo_utilisateur_fk_id, topo_image) VALUES(?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"topo_id"});
                                            pst.setString(1, pTopo.getNom());
                                            pst.setString(2,pTopo.getRegion());
                                            pst.setBoolean(3,pTopo.isDisponible());
@@ -57,13 +57,13 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_topo WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_topo WHERE topo_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Topo pTopo) throws FunctionalException {
-        String vSQL_update = "UPDATE t_topo SET nom = ?, region = ?, disponible = ?, description = ?, utilisateur_fk_id = ?, image = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_topo SET topo_nom = ?, topo_region = ?, topo_disponible = ?, topo_description = ?, topo_utilisateur_fk_id = ?, topo_image = ? WHERE topo_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pTopo.getNom(), pTopo.getRegion(), pTopo.isDisponible(), pTopo.getDescription(),
                 pTopo.getUtilisateur().getId(), pTopo.getImage(), pTopo.getId());
     }

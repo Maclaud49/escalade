@@ -34,7 +34,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmail(String email) throws NotFoundException {
 
-        String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE email = ?";
+        String sql_findByEmail = "SELECT * FROM t_utilisateur WHERE utilisateur_email = ?";
 
         try {
             Utilisateur user = this.vJdbcTemplate.queryForObject(
@@ -48,13 +48,14 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException {
 
-            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur WHERE email = ? AND password = ?";
+            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur, t_adresse WHERE utilisateur_email = ? AND utilisateur_password = ?";
 
             try {
                 Utilisateur user = this.vJdbcTemplate.queryForObject(
                         sql_findByEmailAndPass, new Object[]{email, password}, new UtilisateurMapper());
                 return user;
             }catch(Exception e){
+                System.out.println("Utilisateur non trouvé");
                 throw new NotFoundException("Aucun utilisateur correspondant au couple email/mot de passe fourni.");
             }
     }
@@ -78,12 +79,12 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public int insert(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_utilisateur (nom, prenom, email, password, profil) VALUES(?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_utilisateur (utilisateur_nom, utilisateur_prenom, utilisateur_email, utilisateur_password, utilisateur_profil) VALUES(?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"id"});
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"utilisateur_id"});
                                            pst.setString(1, pUtilisateur.getNom());
                                            pst.setString(2,pUtilisateur.getPrenom());
                                            pst.setString(3,pUtilisateur.getEmail());
@@ -99,14 +100,14 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public void delete(int pId) throws NotFoundException {
-        String vSQL_delete = "DELETE FROM t_utilisateur WHERE id=?";
+        String vSQL_delete = "DELETE FROM t_utilisateur WHERE utilisateur_id=?";
         this.vJdbcTemplate.update(vSQL_delete, pId);
     }
 
     @Override
     public void update(Utilisateur pUtilisateur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_utilisateur SET nom = ?, prenom = ?, dateNaissance = ?, email = ?," +
-                " password = ?, cotation = ?, adresse_fk_id = ?, profil = ? WHERE id = ?";
+        String vSQL_update = "UPDATE t_utilisateur SET utilisateur_nom = ?, utilisateur_prenom = ?, utilisateur_dateNaissance = ?, utilisateur_email = ?," +
+                " utilisateur_password = ?, utilisateur_cotation = ?, utilisateur_adresse_fk_id = ?, utilisateur_profil = ? WHERE utilisateur_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pUtilisateur.getNom(), pUtilisateur.getPrenom(),
                 pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
                 pUtilisateur.getCotation(), pUtilisateur.getAdresse().getId(),
