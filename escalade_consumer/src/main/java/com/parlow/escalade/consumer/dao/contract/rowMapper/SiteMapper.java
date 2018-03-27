@@ -34,7 +34,7 @@ public class SiteMapper implements RowMapper<Site> {
         Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
         site.setUtilisateur(utilisateur);
         System.out.println("nom du utilisateur " + site.getUtilisateur().getNom());
-        site.setPublication(rs.getBoolean("publication"));
+        site.setPublication(rs.getBoolean("site_publication"));
 
         return site;
     }

@@ -80,6 +80,3 @@
         </div>
     </div>
 </nav>
-
-
-<s:actionmessage/>

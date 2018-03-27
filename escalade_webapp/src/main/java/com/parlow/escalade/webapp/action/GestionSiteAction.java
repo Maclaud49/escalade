@@ -42,6 +42,8 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
 
     // ----- Paramètres en entrée
     private Integer id;
+    private Date createdDate;
+    private Date lastUpdate;
 
     // ----- Eléments en sortie
     private List<Site> listSite;
@@ -69,12 +71,26 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
         return listUtilisateur;
     }
     public List<String> getListRegions() {
+        if(this.listRegions==null){
+            this.listRegions=selectRegion();
+        }
         return listRegions;
     }
     public void setListRegions(List<String> listRegions) {
         this.listRegions = listRegions;
     }
-
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Site}
@@ -98,6 +114,8 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
                 logger.error("id du site" + id);
 
                 site = managerFactory.getSiteManager().findById(id);
+                this.createdDate = site.getDateCreation();
+                this.lastUpdate = site.getLastUpdate();
                 logger.error("id du utilisateur" + site.getUtilisateur().getId());
                 logger.error("nom du utilisateur" + site.getUtilisateur().getNom());
             } catch (NotFoundException pE) {
@@ -142,17 +160,24 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
 
         //Ajout des infos nécessaires pour le formulaire de saisie
         if (vResult.equals(ActionSupport.INPUT)) {
-            this.listRegions = Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
-            "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
-            "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
+            this.listRegions = selectRegion();
         }
         return vResult;
+    }
+
+    public List<String> selectRegion(){
+        List<String> list = new ArrayList<>();
+        list =  Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
+                "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
+                "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
+        return list;
     }
 
     @Override
     public void validate() {
         if (this.site != null) {
             if (site.getNom().length() < 3) {
+
                 addFieldError("siteNom", "Le nom du site doit faire au moins 3 lettres");
             }
         }

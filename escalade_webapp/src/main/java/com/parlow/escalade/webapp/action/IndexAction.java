@@ -3,6 +3,7 @@ package com.parlow.escalade.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import com.parlow.escalade.model.exception.NotFoundException;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -38,6 +39,16 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
      */
     public String doIndex() {
 
+        if (rememberMeLoad() >0){
+            Utilisateur vUtilisateur = null;
+            try {
+                vUtilisateur = managerFactory.getUtilisateurManager().findById(rememberMeLoad());
+            } catch (NotFoundException pEx) {
+                this.addActionError(getText("error.login.incorrect"));
+            }
+            this.session.put("user", vUtilisateur);
+        }
+
         String vResult = ActionSupport.SUCCESS;
 
         return vResult;
@@ -45,9 +56,12 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
 
     public int rememberMeLoad() {
         int vUtilisateurId = 0;
-        for(Cookie c : servletRequest.getCookies()) {
-            if (c.getName().equals("escalade_user"))
-                vUtilisateurId=Integer.parseInt(c.getValue());
+        Cookie[] cookies = servletRequest.getCookies();
+        for(int i=0;cookies!=null&&i<cookies.length;i++) {
+            if (cookies[i].getName().equals("escalade_user")) {
+                vUtilisateurId = Integer.parseInt(cookies[i].getValue());
+                System.out.println("id du user en session" + cookies[i].getValue());
+            }
         }
         return vUtilisateurId;
     }

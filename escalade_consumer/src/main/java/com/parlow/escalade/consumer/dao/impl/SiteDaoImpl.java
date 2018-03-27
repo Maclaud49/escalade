@@ -29,7 +29,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public Site findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_site,t_utilisateur,t_adresse WHERE site_id = ?";
+        String vSQL_findById = "SELECT * FROM t_site,t_utilisateur,t_adresse WHERE site_id = ? AND site_utilisateur_fk_id=utilisateur_id AND utilisateur_adresse_fk_id=adresse_id";
         Site site = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new SiteMapper());
         return site;
@@ -37,8 +37,8 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public List<Site> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_site";
-        List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Site.class));
+        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur,t_adresse where site_utilisateur_fk_id = utilisateur_id and utilisateur_adresse_fk_id=adresse_id";
+        List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new SiteMapper());
         return sites;
     }
 
@@ -80,31 +80,6 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
                 pSite.getImage(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
     }
 
-    public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("Site mapRow");
-        Site site = new Site();
-        site.setId(rs.getInt("id"));
-        site.setNom(rs.getString("nom"));
-        site.setRegion(rs.getString("region"));
-        site.setDescription(rs.getString("description"));
-        site.setLastUpdate(rs.getTimestamp("lastUpdate"));
-        site.setImage(rs.getString("image"));
-        site.setDateCreation(rs.getTimestamp("dateCreation"));
-        UtilisateurDao utilisateurDao = new UtilisateurDaoImpl();
-        Utilisateur utilisateur = new Utilisateur();
-        try {
-            System.out.println("id du utilisateur " + rs.getInt("utilisateur_fk_id"));
-            utilisateur = daoFactory.getUtilisateurDao().findById(rs.getInt("utilisateur_fk_id"));
-            System.out.println("nom du utilisateur " + utilisateur.getNom());
-
-        } catch (NotFoundException e) {
-            System.out.println("Utilisateur non trouvé");
-        }
-        site.setUtilisateur(utilisateur);
-        System.out.println("nom du utilisateur " + site.getUtilisateur().getNom());
-        site.setPublication(rs.getBoolean("publication"));
-        return site;
-    }
 }
 
 

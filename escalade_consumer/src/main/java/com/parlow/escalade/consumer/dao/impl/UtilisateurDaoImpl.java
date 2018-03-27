@@ -48,8 +48,8 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException {
 
-            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur, t_adresse WHERE utilisateur_email = ? AND utilisateur_password = ?";
-
+            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur, t_adresse WHERE utilisateur_email = ? AND utilisateur_password = ? AND utilisateur_adresse_fk_id=adresse_id";
+            System.out.println("email " + email + " password " + password);
             try {
                 Utilisateur user = this.vJdbcTemplate.queryForObject(
                         sql_findByEmailAndPass, new Object[]{email, password}, new UtilisateurMapper());

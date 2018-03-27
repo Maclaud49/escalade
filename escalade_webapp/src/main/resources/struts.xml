@@ -6,10 +6,10 @@
     <package name="default" extends="struts-default">
 
         <!-- Action par défaut -->
-        <default-action-ref name="site_new" />
+        <default-action-ref name="index" />
 
         <!-- Action "index" -->
-        <action name="index" class="IndexAction" method="doIndex">
+        <action name="index" class="indexAction" method="doIndex">
             <result>/jsp/main/index.jsp</result>
         </action>
 

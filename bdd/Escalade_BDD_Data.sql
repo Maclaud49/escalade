@@ -29,6 +29,14 @@ INSERT INTO t_utilisateur(utilisateur_nom, utilisateur_prenom, utilisateur_daten
 VALUES ('Parlow', 'Mickaël', '13/04/2018','mickael@parlow-co.com','escalade2018','admin','1');
 
 
+INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('Site N°1', 'Corse', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '05/01/2018', '07/02/2018', '../../ressources/images/etiquette1.jpg', '3', 'false');
+INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('Site N°2', 'Bretagne', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '13/07/2017', '22/02/2018', '../../ressources/images/etiquette2.jpg', '3', 'true');
+INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('Site N°3', 'Centre-Val de Loire', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '18/09/2017', '15/03/2018', '../../ressources/images/etiquette3.jpg', '3', 'true');
+
+
 INSERT INTO t_region(id,region) VALUES('1','Grand-Est');
 INSERT INTO t_region(id,region) VALUES('2','Nouvelle-Aquitaine');
 INSERT INTO t_region(id,region) VALUES('3','Auvergne-Rhône-Alpes');

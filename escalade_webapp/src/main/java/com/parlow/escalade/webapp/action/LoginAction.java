@@ -50,11 +50,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
     public void setPassword(String pPassword) {
         password = pPassword;
     }
-
     public boolean isRemember() {
         return remember;
     }
-
     public void setRemember(boolean remember) {
         this.remember = remember;
     }
@@ -103,8 +101,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
     public void rememberMe(int vUtilisateurId) {
 
         Cookie cookie = new Cookie("escalade_user", String.format("%d", vUtilisateurId));
-        cookie.setMaxAge(60 * 60 * 24 * 365); // Make the cookie last a year!
-        servletResponse.addCookie(cookie);
+        cookie.setMaxAge(60 * 60 * 24 * 365);
+        System.out.println("cookie is set");
+        this.servletResponse.addCookie(cookie);
     }
 
 

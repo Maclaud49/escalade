@@ -23,9 +23,13 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
     @Override
     public Adresse findById(int pId) throws NotFoundException {
         String vSQL_findById = "SELECT * FROM t_adresse WHERE adresse_id = ?";
-        Adresse adresse = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new AdresseMapper());
-        return adresse;
+        try {
+            Adresse adresse = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
+                    new AdresseMapper());
+            return adresse;
+        } catch (Exception e) {
+            throw new NotFoundException("Aucune adresse correspondante.");
+        }
     }
 
     @Override
@@ -66,15 +70,4 @@ public class AdresseDaoImpl extends AbstractDaoImpl implements AdresseDao {
                 pAdresse.getVille(),pAdresse.getPays(),pAdresse.getId());
     }
 
-    public Adresse mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("Adresse mapRow");
-        Adresse adresse = new Adresse();
-        adresse.setId(rs.getInt("adresse_id"));
-        adresse.setAdresse1(rs.getString("adresse_adresse1"));
-        adresse.setAdresse2(rs.getString("adresse_adresse2"));
-        adresse.setCodePostal(rs.getString("adresse_codePostal"));
-        adresse.setVille(rs.getString("adresse_ville"));
-        adresse.setPays(rs.getString("adresse_pays"));
-        return adresse;
-    }
 }

@@ -29,47 +29,26 @@
 
             <div class="col-md-8">
 
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    <img class="card-img-top" src="../../../ressources/images/etiquette1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title">Nom du site</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        <a href="#" class="btn btn-primary">En savoir plus &rarr;</a>
+                <s:iterator value="listSite">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="<s:property value="image" />" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title"><s:property value="nom" /></h2>
+                            <p class="card-text"><s:property value="description" /></p>
+                            <s:a action="site_detail" class="btn btn-primary">
+                                <s:param name="id" value="id" />
+                                En savoir plus &rarr;
+                            </s:a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posté le <s:date name="dateCreation" format="dd/MM/yyyy" /> par
+                            <s:a action="utilisateur_detail">
+                                <s:param name="id" value="utilisateur.id" />
+                                <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
+                            </s:a>
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        Posté le 1 janvier 2018 par Mickaëll Parlow
-                        <a href="#">Site 1</a>
-                    </div>
-                </div>
-
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    <img class="card-img-top" src="../../../ressources/images/etiquette2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title">Nom du site</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        <a href="#" class="btn btn-primary">En savoir plus &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posté le 1 janvier 2018 par Mickaëll Parlow
-                        <a href="#">Site 2</a>
-                    </div>
-                </div>
-
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                    <img class="card-img-top" src="../../../ressources/images/etiquette3.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title">Nom du site</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        <a href="#" class="btn btn-primary">En savoir plus &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posté le 1 janvier 2018 par Mickaëll Parlow
-                        <a href="#">Site 3</a>
-                    </div>
-                </div>
+                </s:iterator>
 
                 <!-- Pagination -->
                 <ul class="pagination justify-content-center mb-4">
