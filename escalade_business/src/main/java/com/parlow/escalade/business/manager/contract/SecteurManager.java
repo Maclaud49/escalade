@@ -1,6 +1,7 @@
 package com.parlow.escalade.business.manager.contract;
 
 import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
@@ -8,6 +9,7 @@ import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 import java.util.List;
 
 public interface SecteurManager {
+
     /**
      * Renvoie la le {@link Secteur} demandé
      * @param pId du {@link Secteur}
@@ -46,4 +48,11 @@ public interface SecteurManager {
      * @throws FunctionalException si le secteur est null
      */
     void update ( Secteur pSecteur ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Secteur} liés à un site
+     * @param siteId du {@link Site}
+     * @return List
+     */
+    List<Secteur> findAllBySiteId(int siteId) throws NotFoundException;
 }

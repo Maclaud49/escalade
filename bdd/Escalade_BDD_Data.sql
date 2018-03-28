@@ -36,6 +36,16 @@ VALUES ('Site N°2', 'Bretagne', 'Lorem ipsum dolor sit amet, consectetur adipis
 INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
 VALUES ('Site N°3', 'Centre-Val de Loire', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '18/09/2017', '15/03/2018', '../../ressources/images/etiquette3.jpg', '3', 'true');
 
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°1','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°2','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°3','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°4','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°5','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°6','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°7','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°8','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°9','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+
 
 INSERT INTO t_region(id,region) VALUES('1','Grand-Est');
 INSERT INTO t_region(id,region) VALUES('2','Nouvelle-Aquitaine');

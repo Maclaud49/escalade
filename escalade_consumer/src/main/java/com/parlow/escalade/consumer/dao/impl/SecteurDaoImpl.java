@@ -1,6 +1,7 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.SecteurDao;
+import com.parlow.escalade.consumer.dao.contract.rowMapper.SecteurMapper;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -8,12 +9,14 @@ import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.inject.Named;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -72,5 +75,19 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
         this.vJdbcTemplate.update(vSQL_update, pSecteur.getNom(), pSecteur.getSite().getId(),pSecteur.getUtilisateur().getId(),
                 pSecteur.isPublication(),pSecteur.getId());
     }
-    
+
+    @Override
+    public List<Secteur> findAllBySiteId(int siteId) throws NotFoundException {
+        String vSQL_findAll = "SELECT * FROM t_secteur, t_utilisateur, t_adresse WHERE secteur_site_fk_id = ? AND secteur_utilisateur_fk_id = utilisateur_id AND utilisateur_adresse_fk_id=adresse_id ";
+        List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { siteId }, new RowMapper<Secteur>() {
+            @Override
+            public Secteur mapRow(ResultSet rs, int rowNum) throws SQLException {
+               SecteurMapper secteurMapper = new SecteurMapper();
+               return secteurMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return secteurs;
+    }
+
 }

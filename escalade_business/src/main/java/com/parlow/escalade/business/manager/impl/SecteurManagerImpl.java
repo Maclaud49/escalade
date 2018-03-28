@@ -69,4 +69,20 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
         }
         daoFactory.getSecteurDao().update(pSecteur);
     }
+
+    @Override
+    public List<Secteur> findAllBySiteId(int siteId) throws NotFoundException{
+        if (siteId < 1) {
+            throw new NotFoundException("Pas de secteur rattaché à ce site");
+        }
+        List<Secteur> vList = daoFactory.getSecteurDao().findAllBySiteId(siteId);
+        if (vList == null) {
+            Secteur secteur = new Secteur();
+            secteur.setId(1);
+            secteur.setNom("Pas de données");
+            vList.add(secteur);
+        }
+        return vList;
+
+    }
 }

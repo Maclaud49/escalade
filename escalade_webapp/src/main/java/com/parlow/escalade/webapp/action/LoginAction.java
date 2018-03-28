@@ -71,8 +71,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
         if (!StringUtils.isAllEmpty(email, password)) {
             try {
                 Utilisateur vUtilisateur
-                        = managerFactory.getUtilisateurManager()
-                        .login(email, password);
+                        = managerFactory.getUtilisateurManager().login(email, password);
                 // Ajout de l'utilisateur en session
                 this.session.put("user", vUtilisateur);
                 if(remember){

@@ -1,36 +1,24 @@
 package com.parlow.escalade.webapp.action;
 
-import java.util.*;
-import java.sql.Timestamp;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Secteur;
-import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.deleted.Region;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.*;
 
-
-/**
- * Action de gestion des {@link Site}
- */
-public class GestionSiteAction extends ActionSupport implements ServletRequestAware, SessionAware {
-
-
-
+public class GestionSecteurAction extends ActionSupport implements ServletRequestAware, SessionAware {
 
     // ==================== Attributs ====================
     @Inject
@@ -69,12 +57,6 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
     public void setSite(Site pSite){
         site = pSite;
     }
-    public List<String> getListRegions() {
-        if(this.listRegions==null){
-            this.listRegions=selectRegion();
-        }
-        return listRegions;
-    }
     public void setListRegions(List<String> listRegions) {
         this.listRegions = listRegions;
     }
@@ -91,19 +73,20 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
         this.lastUpdate = lastUpdate;
     }
 
-    public List<Secteur> getListSecteur() {
-        return listSecteur;
-    }
-
-    public void setListSecteur(List<Secteur> listSecteur) {
-        this.listSecteur = listSecteur;
-    }
     public Secteur getSecteur() {
         return secteur;
     }
 
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
+    }
+
+    public List<Secteur> getListSecteur() {
+        return listSecteur;
+    }
+
+    public void setListSecteur(List<Secteur> listSecteur) {
+        this.listSecteur = listSecteur;
     }
     // ==================== Méthodes ====================
     /**
@@ -124,23 +107,9 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
         if (id == null) {
             this.addActionError(getText("error.site.missing.id"));
         } else {
-            try {
-                logger.error("id du site" + id);
 
-                site = managerFactory.getSiteManager().findById(id);
-            } catch (NotFoundException pE) {
-                this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
-            }
-            this.createdDate = site.getDateCreation();
-            this.lastUpdate = site.getLastUpdate();
+                logger.error("id du secteur" + id);
 
-            try {
-                this.listSecteur = managerFactory.getSecteurManager().findAllBySiteId(id);
-            } catch (NotFoundException pE) {
-               // this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
-            }
-            site.setSecteurs(this.listSecteur);
-            site.setNbSecteurs(this.listSecteur.size());
         }
 
         return ActionSupport.SUCCESS;
@@ -159,39 +128,33 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
             Date date = new Date();
             this.site.setUtilisateur((Utilisateur)this.session.get("user"));
             this.site.setDateCreation(new Timestamp(date.getTime()));
-                try {
-                    if(this.site.getImage()==null){
-                        String image = "../../ressources/images/750x300.png";
-                        this.site.setImage(image);
-                    }
-                    this.site.setId(managerFactory.getSiteManager().insert(this.site));
-                    vResult = ActionSupport.SUCCESS;
-                    this.addActionMessage("Site ajouté avec succès");
-
-                } catch (FunctionalException pEx) {
-                    this.addActionError(pEx.getMessage());
-
-                } catch (TechnicalException pEx) {
-
-                    this.addActionError(pEx.getMessage());
-                    vResult = ActionSupport.ERROR;
+            try {
+                if(this.site.getImage()==null){
+                    String image = "../../ressources/images/750x300.png";
+                    this.site.setImage(image);
                 }
+                this.site.setId(managerFactory.getSiteManager().insert(this.site));
+                vResult = ActionSupport.SUCCESS;
+                this.addActionMessage("Site ajouté avec succès");
+
+            } catch (FunctionalException pEx) {
+                this.addActionError(pEx.getMessage());
+
+            } catch (TechnicalException pEx) {
+
+                this.addActionError(pEx.getMessage());
+                vResult = ActionSupport.ERROR;
+            }
         }
 
         //Ajout des infos nécessaires pour le formulaire de saisie
         if (vResult.equals(ActionSupport.INPUT)) {
-            this.listRegions = selectRegion();
+
         }
         return vResult;
     }
 
-    public List<String> selectRegion(){
-        List<String> list = new ArrayList<>();
-        list =  Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
-                "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
-                "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
-        return list;
-    }
+
 
     @Override
     public void validate() {
@@ -212,5 +175,4 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
     public void setServletRequest(HttpServletRequest pRequest) {
         this.servletRequest = pRequest;
     }
-
 }

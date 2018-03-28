@@ -6,6 +6,8 @@ import com.parlow.escalade.consumer.dao.impl.UtilisateurDaoImpl;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 
 
@@ -16,12 +18,13 @@ import java.sql.SQLException;
 
 @Named
 public class SiteMapper implements RowMapper<Site> {
+    private static final Logger logger = LogManager.getLogger(SiteMapper.class);
 
     @Inject
     protected DaoFactory daoFactory;
 
     public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("Site mapRow");
+        logger.info("Site mapRow");
         Site site = new Site();
         site.setId(rs.getInt("site_id"));
         site.setNom(rs.getString("site_nom"));
@@ -33,7 +36,7 @@ public class SiteMapper implements RowMapper<Site> {
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
         Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
         site.setUtilisateur(utilisateur);
-        System.out.println("nom du utilisateur " + site.getUtilisateur().getNom());
+        logger.info("nom du utilisateur " + site.getUtilisateur().getNom());
         site.setPublication(rs.getBoolean("site_publication"));
 
         return site;

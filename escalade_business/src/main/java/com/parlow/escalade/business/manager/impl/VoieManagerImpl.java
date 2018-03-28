@@ -58,4 +58,19 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager{
         }
         daoFactory.getVoieDao().update(pVoie);
     }
+
+    @Override
+    public List<Voie> findAllBySecteurId(int secteurId)  throws NotFoundException{
+        if (secteurId < 1) {
+            throw new NotFoundException("Pas de voie rattaché à ce secteur");
+        }
+        List<Voie> vList = daoFactory.getVoieDao().findAllBySecteurId(secteurId);
+        if (vList == null) {
+            Voie voie = new Voie();
+            voie.setId(1);
+            voie.setNom("Pas de données");
+            vList.add(voie);
+        }
+        return vList;
+    }
 }

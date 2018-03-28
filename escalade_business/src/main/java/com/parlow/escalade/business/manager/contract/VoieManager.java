@@ -1,5 +1,6 @@
 package com.parlow.escalade.business.manager.contract;
 
+import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -46,4 +47,11 @@ public interface VoieManager {
      * @throws FunctionalException si le voie est null
      */
     void update ( Voie pVoie ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Voie} liés à un secteur
+     * @param secteurId du {@link Secteur}
+     * @return List
+     */
+    List<Voie> findAllBySecteurId(int secteurId) throws NotFoundException;
 }

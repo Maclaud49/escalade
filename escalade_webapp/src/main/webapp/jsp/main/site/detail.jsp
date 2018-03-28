@@ -38,9 +38,33 @@
             <div class="card mb-4">
                 <img class="card-img-top" alt="Card image cap" src="<s:property value="site.image" />" >
                 <div class="card-body">
-                    <h2 class="card-title"><s:property value="site.nom" /></h2>
-                    <p class="card-text"><s:property value="site.description" /></p>
-                    <a href="#" class="btn btn-primary">En savoir plus &rarr;</a>
+                    <p class="card-text"><strong>Description : </strong> <s:property value="site.description" /></p>
+                    <p class="card-text"><strong>Région : </strong> <s:property value="site.region" /></p>
+                    <p class="card-text"><strong>Nombres de secteurs : </strong> </strong><s:property value="site.nbSecteurs" /></p>
+                    <p class="card-text"><strong>Nombres de voies : </strong> <s:property value="site.description" /></p>
+                    <p class="card-text"><strong>Site publié : </strong>
+                        <s:if test="site.ispublication">
+                            Oui
+                        </s:if>
+                        <s:else>
+                            Non
+                        </s:else>
+                    </p>
+                    <div>
+                    <p class="card-text"><strong>Liste des secteurs : </strong>
+                        <ul class="text-center">
+                            <s:iterator value="listSecteur">
+                                    <li style = "list-style: none;margin:10px">
+                                        <s:a action="secteur_detail" class="btn btn-primary">
+                                            <s:param name="id" value="id" />
+                                            <s:property value="nom" />
+                                        </s:a>
+
+                                    </li>
+                            </s:iterator>
+                         </ul>
+                    </p>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     Posté le <s:date name="createdDate" format="dd/MM/yyyy" /> par
@@ -48,6 +72,7 @@
                             <s:param name="id" value="site.utilisateur.id" />
                             <s:property value="site.utilisateur.prenom"/> <s:property value="site.utilisateur.nom"/>
                         </s:a>
+                    Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" />
                 </div>
             </div>
         </div>

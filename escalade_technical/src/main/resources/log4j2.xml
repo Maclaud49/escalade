@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
+    <!-- ===== Appenders ===== -->
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %p (%F:%L) : %m%n"/>
+        <!-- == Sortie sur la console == -->
+        <Console name="ConsoleXwork2" target="SYSTEM_OUT">
+            <PatternLayout pattern="xwork2 : %d{dd MMM yyy HH:mm:ss} %highlight{ %l %-5level: %msg%n%throwable}{STYLE=Logback}"/>
         </Console>
+        <Console name="ConsoleStruts2" target="SYSTEM_OUT">
+            <PatternLayout pattern="Struts2 : %d{dd MMM yyy HH:mm:ss} %highlight{ %l %-5level: %msg%n%throwable}{STYLE=Logback}"/>
+        </Console>
+        <Console name="ConsoleEscalade" target="SYSTEM_OUT">
+            <PatternLayout pattern="Escalade :  %d{dd MMM yyy HH:mm:ss} %highlight{ %l %-5level: %msg%n%throwable}{STYLE=Logback}"/>
+        </Console>
+        <Servlet name="Servlet">
+            <PatternLayout pattern="%m%n%ex{none}"/>
+        </Servlet>
+        <File name="File" fileName="C:\Mickael\log\out.txt">
+            <PatternLayout pattern="%d{dd MMM yyy HH:mm:ss} %-5level %logger{36} - %msg%n" />
+        </File>
     </Appenders>
+
+    <!-- ===== Loggers ===== -->
     <Loggers>
-        <Root level="error">
-            <AppenderRef ref="Console"/>
+        <Logger name="com.opensymphony.xwork2" level="error">
+            <AppenderRef ref="ConsoleXwork2"/>
+        </Logger>
+        <Logger name="org.apache.struts2" level="error">
+            <AppenderRef ref="ConsoleStruts2"/>
+        </Logger>
+        <Logger name="com.parlow.escalade" level="info" additivity="false">
+            <AppenderRef ref="ConsoleEscalade"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <!-- == Logger de base == -->
+
+        <Root level="debug">
+            <AppenderRef ref="ConsoleEscalade"/>
+            <AppenderRef ref="File"/>
         </Root>
     </Loggers>
 </Configuration>

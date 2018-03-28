@@ -61,11 +61,9 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
     public String getPassword2() {
         return password2;
     }
-
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
@@ -89,9 +87,9 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             try {
                 int id = managerFactory.getUtilisateurManager().insert(vUtilisateur);
                 // Ajout de l'utilisateur en session
-                logger.debug("id" + id);
+                logger.info("id" + id);
                 vUtilisateur.setId(id);
-                logger.debug("nom" + vUtilisateur.getNom());
+                logger.info("nom" + vUtilisateur.getNom());
                 this.session.put("user", vUtilisateur);
                 vResult = ActionSupport.SUCCESS;
             } catch (FunctionalException e) {

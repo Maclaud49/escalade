@@ -1,6 +1,7 @@
 package com.parlow.escalade.consumer.dao.contract;
 
 import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
@@ -49,4 +50,11 @@ public interface SecteurDao {
      * @throws FunctionalException si le secteur est null
      */
     void update ( Secteur pSecteur ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Secteur} liés à un site
+     * @param siteId du {@link Site}
+     * @return List
+     */
+    List<Secteur> findAllBySiteId(int siteId) throws NotFoundException;
 }

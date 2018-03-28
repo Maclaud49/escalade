@@ -3,6 +3,7 @@ package com.parlow.escalade.model.bean;
 import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Secteur {
@@ -10,6 +11,7 @@ public class Secteur {
     // ==================== Attributs ====================
     private Integer id;
     private String nom;
+    private String description;
     private List<Voie> voies;
     private Site site;
     private Integer nbVoies;
@@ -17,6 +19,8 @@ public class Secteur {
     private Utilisateur utilisateur;
     private boolean publication;
     private List<Commentaire> commentaires;
+    private Timestamp dateCreation;
+    private Timestamp lastUpdate;
 
     // ==================== Constructeurs ==============
 
@@ -108,5 +112,30 @@ public class Secteur {
     public void setCommentaires(List<Commentaire> commentaires) {
         this.commentaires = commentaires;
     }
+
+    public Timestamp getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Timestamp dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     // ==================== Méthodes =====================
 }

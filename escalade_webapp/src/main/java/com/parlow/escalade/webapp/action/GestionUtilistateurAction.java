@@ -64,10 +64,4 @@ public class GestionUtilistateurAction extends ActionSupport {
         return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
     }
 
-    public String doRegister(){
-
-
-
-        return (this.hasErrors()) ? ActionSupport.ERROR : ActionSupport.SUCCESS;
-    }
 }

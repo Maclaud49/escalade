@@ -65,7 +65,10 @@ CREATE TABLE t_secteur (
 	secteur_nom CHARACTER VARYING(15) NOT NULL,
 	secteur_site_fk_id INTEGER,
 	secteur_utilisateur_fk_id INTEGER,
-	secteur_publication boolean
+	secteur_publication boolean,
+	secteur_lastUpdate TIMESTAMP,
+	secteur_dateCreation TIMESTAMP,
+	secteur_description CHARACTER VARYING(500)
 );
    
 CREATE TABLE t_voie (
@@ -76,7 +79,11 @@ CREATE TABLE t_voie (
 	voie_equipee BOOLEAN,
 	voie_secteur_fk_id INTEGER,
 	voie_interet INTEGER,
-	voie_utilisateur_fk_id INTEGER
+	voie_utilisateur_fk_id INTEGER,
+	voie_lastUpdate TIMESTAMP,
+	voie_dateCreation TIMESTAMP,
+	voie_description CHARACTER VARYING(500),
+	voie_publication boolean
 );
 
 CREATE TABLE t_longueur (

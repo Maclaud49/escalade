@@ -69,4 +69,12 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
         this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(), pVoie.getCotation(), pVoie.getNbPoints(),
                 pVoie.isEquipee(), pVoie.getSecteur().getId(), pVoie.getInteret(), pVoie.getUtilisateur().getId(), pVoie.getId());
     }
+
+    @Override
+    public List<Voie> findAllBySecteurId(int secteurId) throws NotFoundException {
+        String vSQL_findAll = "SELECT * FROM t_voie WHERE voie_secteur_fk_id = ?";
+        List<Voie> voies  = (List<Voie>) this.vJdbcTemplate.queryForObject(vSQL_findAll, new Object[]{secteurId},
+                new BeanPropertyRowMapper(Voie.class));
+        return voies;
+    }
 }

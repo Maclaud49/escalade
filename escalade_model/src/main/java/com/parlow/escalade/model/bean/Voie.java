@@ -3,6 +3,7 @@ package com.parlow.escalade.model.bean;
 import com.parlow.escalade.model.bean.deleted.Cotation;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Voie {
@@ -10,6 +11,7 @@ public class Voie {
     // ==================== Attributs ====================
     private Integer id;
     private String nom;
+    private String description;
     private List<Longueur> longueurs;
     private Integer nbLongueurs;
     private double hauteurVoie;
@@ -20,6 +22,9 @@ public class Voie {
     private Integer interet;
     private Utilisateur utilisateur;
     private List<Commentaire> commentaires;
+    private Timestamp dateCreation;
+    private Timestamp lastUpdate;
+    private boolean publication;
 
 
     // ==================== Getters/Setters ==============
@@ -119,5 +124,29 @@ public class Voie {
 
     public void setCotation(String cotation) {
         this.cotation = cotation;
+    }
+
+    public Timestamp getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Timestamp dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPublication(boolean publication) {
+        this.publication = publication;
     }
 }

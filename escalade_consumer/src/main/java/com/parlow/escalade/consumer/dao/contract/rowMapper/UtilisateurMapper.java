@@ -6,6 +6,8 @@ import com.parlow.escalade.consumer.dao.impl.AdresseDaoImpl;
 import com.parlow.escalade.consumer.dao.impl.UtilisateurDaoImpl;
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
@@ -15,11 +17,13 @@ import java.sql.SQLException;
 
 @Named
 public class UtilisateurMapper implements RowMapper<Utilisateur> {
+    private static final Logger logger = LogManager.getLogger(UtilisateurMapper.class);
+
     @Inject
     protected DaoFactory daoFactory;
 
     public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("Utilisateur mapRow");
+        logger.info("Utilisateur mapRow");
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(rs.getInt("utilisateur_id"));
         utilisateur.setNom(rs.getString("utilisateur_nom"));

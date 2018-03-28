@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -16,6 +18,8 @@ import java.util.Map;
 public class IndexAction extends ActionSupport implements ServletRequestAware, SessionAware {
 
     // ==================== Attributs ====================
+
+    private static final Logger logger = LogManager.getLogger(IndexAction.class);
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
@@ -24,9 +28,6 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     // ----- Element en sortie
 
     private Utilisateur vutilisateur;
-
-
-
 
     // ==================== Getters/Setters ====================
 
@@ -38,6 +39,10 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
      * @return input / success
      */
     public String doIndex() {
+
+        logger.debug("debug test");
+        logger.info("info test");
+        logger.error("error test");
 
         if (rememberMeLoad() >0){
             Utilisateur vUtilisateur = null;
@@ -60,7 +65,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         for(int i=0;cookies!=null&&i<cookies.length;i++) {
             if (cookies[i].getName().equals("escalade_user")) {
                 vUtilisateurId = Integer.parseInt(cookies[i].getValue());
-                System.out.println("id du user en session" + cookies[i].getValue());
+                logger.info("id du user en session" + cookies[i].getValue());
             }
         }
         return vUtilisateurId;

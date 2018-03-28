@@ -31,6 +31,9 @@
     <bean id="indexAction"
           class="com.parlow.escalade.webapp.action.IndexAction"
           scope= "prototype"  />
+    <bean id="gestionSecteurAction"
+          class="com.parlow.escalade.webapp.action.GestionSecteurAction"
+          scope= "prototype"  />
 
 </beans>
 

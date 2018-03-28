@@ -116,7 +116,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Créer un nouveau site</h5>
                     <div class="card-body text-center">
-                      <button class="btn btn-secondary" type="button">Moi aussi je partage !</button>
+                        <s:a action="site_new" class="btn btn-secondary">Moi aussi je partage !</s:a>
                     </div>
                 </div>
 
