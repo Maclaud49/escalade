@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file="../include/head.jsp" %>
+        <%@ include file="../../include/head.jsp" %>
     </head>
 
     <body>
-        <%@ include file="../include/header.jsp" %>
+        <%@ include file="../../include/header.jsp" %>
 
 
         <div class="container" style="margin-top:50px">
@@ -17,6 +17,7 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <h2><s:text name="login.connexion"/></h2>
+                        <smal><s:a action="register">Je m'enregistre</s:a></smal>
                         <hr>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
            </form>
         </div>
 
-        <%@ include file="../include/script.jsp" %>
+        <%@ include file="../../include/script.jsp" %>
 
     </body>
 </html>

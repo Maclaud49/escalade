@@ -1,7 +1,8 @@
-package com.parlow.escalade.consumer.dao.impl;
+package com.parlow.escalade.consumer.dao.impl.deleted;
 
-import com.parlow.escalade.consumer.dao.contract.AdresseDao;
-import com.parlow.escalade.consumer.dao.contract.rowMapper.AdresseMapper;
+import com.parlow.escalade.consumer.dao.contract.deleted.AdresseDao;
+import com.parlow.escalade.consumer.dao.contract.deleted.AdresseMapper;
+import com.parlow.escalade.consumer.dao.impl.AbstractDaoImpl;
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -13,7 +14,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import javax.inject.Named;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 

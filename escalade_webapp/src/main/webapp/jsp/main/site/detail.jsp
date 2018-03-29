@@ -81,16 +81,11 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Search Widget -->
+            <!-- Modification site -->
             <div class="card mb-4">
-                <h5 class="card-header">Rechercher</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
-                    </div>
+                <h5 class="card-header">Modifier ce site</h5>
+                <div class="card-body text-center">
+                    A faire
                 </div>
             </div>
 
@@ -132,7 +127,7 @@
             <div class="card mb-4">
                 <h5 class="card-header">Créer un nouveau site</h5>
                 <div class="card-body text-center">
-                    <button class="btn btn-secondary" type="button">Moi aussi je partage !</button>
+                    <s:a action="site_new" class="btn btn-secondary">Et un de plus !</s:a>
                 </div>
             </div>
 

@@ -1,9 +1,6 @@
 package com.parlow.escalade.consumer.dao.contract.rowMapper;
 
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
-import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
-import com.parlow.escalade.consumer.dao.impl.AdresseDaoImpl;
-import com.parlow.escalade.consumer.dao.impl.UtilisateurDaoImpl;
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.apache.logging.log4j.LogManager;
@@ -33,19 +30,13 @@ public class UtilisateurMapper implements RowMapper<Utilisateur> {
         utilisateur.setPassword(rs.getString("utilisateur_password"));
         utilisateur.setCotation(rs.getString("utilisateur_cotation"));
         utilisateur.setProfil(rs.getString("utilisateur_profil"));
-        AdresseMapper adresseMapper = new AdresseMapper();
-        Adresse adresse = adresseMapper.mapRow(rs,rowNum);
-        utilisateur.setAdresse(adresse);
+        utilisateur.setAdresse1(rs.getString("adresse_adresse1"));
+        utilisateur.setAdresse2(rs.getString("adresse_adresse2"));
+        utilisateur.setCodePostal(rs.getString("adresse_codePostal"));
+        utilisateur.setVille(rs.getString("adresse_ville"));
+        utilisateur.setPays(rs.getString("adresse_pays"));
 
         return utilisateur;
     }
 }
 
-        /*Adresse adresse = new Adresse();
-        try {
-            System.out.println("adresse id " + rs.getInt("adresse_fk_id"));
-            adresse = daoFactory.getAdresseDao().findById(rs.getInt("adresse_fk_id"));
-        } catch (Exception e) {
-            System.out.println("Adresse non trouvée");
-        }
-        utilisateur.setAdresse(adresse);*/

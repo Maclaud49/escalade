@@ -1,4 +1,4 @@
-package com.parlow.escalade.business.manager.contract;
+package com.parlow.escalade.consumer.dao.contract.deleted;
 
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -6,7 +6,7 @@ import com.parlow.escalade.model.exception.NotFoundException;
 
 import java.util.List;
 
-public interface AdresseManager {
+public interface AdresseDao {
 
     /**
      * Renvoie la le {@link Adresse} demandé
@@ -14,7 +14,7 @@ public interface AdresseManager {
      * @return {@link Adresse}
      * @throws NotFoundException si non trouvé
      */
-    Adresse findById(int pId )throws NotFoundException;
+    Adresse findById( int pId )throws NotFoundException;
 
     /**
      * Renvoie la liste des {@link Adresse}

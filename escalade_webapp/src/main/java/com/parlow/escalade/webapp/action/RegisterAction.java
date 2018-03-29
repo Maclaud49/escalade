@@ -81,8 +81,6 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             vUtilisateur.setPrenom(prenom);
             vUtilisateur.setEmail(email);
             vUtilisateur.setPassword(password);
-            Profil vProfil = new Profil();
-            vProfil.setId(1);
             vUtilisateur.setProfil("ADMIN");
             try {
                 int id = managerFactory.getUtilisateurManager().insert(vUtilisateur);
@@ -112,21 +110,18 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     @Override
     public void validate() {
         if (!StringUtils.isAllEmpty(nom, prenom, email, password)) {
-            logger.error("I m here");
-            logger.debug("I m here");
-            logger.info("I m here");
             boolean userExist = false;
 
             if (nom.length() < 2 || nom.length() >15) {
                 addFieldError("registerNom", "Votre nom doit faire entre 2 et 15 caratères ");
             }
-            if (prenom.length() < 2 || nom.length() >15) {
+            if (prenom.length() < 2 || prenom.length() >15) {
                 addFieldError("registerPrenom", "Votre prénom doit faire entre 2 et 15 caratères ");
             }
-            if (email.length() < 5 || nom.length() >30) {
+            if (email.length() < 5 || email.length() >30) {
                 addFieldError("registerEmail", "Votre email doit faire entre 5 et 30 caratères ");
             }
-            if (password.length() < 6 || nom.length() >60) {
+            if (password.length() < 6 || password.length() >60) {
                 addFieldError("registerPassword", "Votre mot de passe doit faire entre 6 et 60 caratères ");
             }
             try {

@@ -170,6 +170,7 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
 
                 } catch (FunctionalException pEx) {
                     this.addActionError(pEx.getMessage());
+                    vResult = ActionSupport.ERROR;
 
                 } catch (TechnicalException pEx) {
 

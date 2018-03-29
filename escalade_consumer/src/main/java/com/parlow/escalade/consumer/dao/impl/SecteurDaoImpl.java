@@ -78,7 +78,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public List<Secteur> findAllBySiteId(int siteId) throws NotFoundException {
-        String vSQL_findAll = "SELECT * FROM t_secteur, t_utilisateur, t_adresse WHERE secteur_site_fk_id = ? AND secteur_utilisateur_fk_id = utilisateur_id AND utilisateur_adresse_fk_id=adresse_id ";
+        String vSQL_findAll = "SELECT * FROM t_secteur, t_utilisateur WHERE secteur_site_fk_id = ? AND secteur_utilisateur_fk_id = utilisateur_id";
         List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { siteId }, new RowMapper<Secteur>() {
             @Override
             public Secteur mapRow(ResultSet rs, int rowNum) throws SQLException {

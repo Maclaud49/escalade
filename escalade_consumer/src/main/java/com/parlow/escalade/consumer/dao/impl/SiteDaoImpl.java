@@ -29,7 +29,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public Site findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_site,t_utilisateur,t_adresse WHERE site_id = ? AND site_utilisateur_fk_id=utilisateur_id AND utilisateur_adresse_fk_id=adresse_id";
+        String vSQL_findById = "SELECT * FROM t_site,t_utilisateur WHERE site_id = ? AND site_utilisateur_fk_id=utilisateur_id";
         Site site = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new SiteMapper());
         return site;
@@ -37,7 +37,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public List<Site> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur,t_adresse where site_utilisateur_fk_id = utilisateur_id and utilisateur_adresse_fk_id=adresse_id";
+        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur where site_utilisateur_fk_id = utilisateur_id";
         List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new SiteMapper());
         return sites;
     }

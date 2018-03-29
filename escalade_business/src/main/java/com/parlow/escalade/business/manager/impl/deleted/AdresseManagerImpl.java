@@ -1,12 +1,11 @@
-package com.parlow.escalade.business.manager.impl;
+package com.parlow.escalade.business.manager.impl.deleted;
 
-import com.parlow.escalade.business.manager.contract.AdresseManager;
-import com.parlow.escalade.consumer.dao.contract.DaoFactory;
+import com.parlow.escalade.business.manager.contract.deleted.AdresseManager;
+import com.parlow.escalade.business.manager.impl.AbstractManager;
 import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 

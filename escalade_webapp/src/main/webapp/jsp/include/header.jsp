@@ -28,20 +28,19 @@
                         <a class="dropdown-item" href="#">Créer un nouveau secteur</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Recherche</a>
-                </li>
-                <s:if test="#session.user">
+                <s:if test="#session.escalade_user">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"> <s:property value="#session.user.prenom" /></i>
-                            <s:property value="#session.user.nom" />
+                            <i class="fa fa-user"> <s:property value="#session.escalade_user.prenom" /></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <s:a action="logout" class="dropdown-item">Déconnexion</s:a>
+                            <s:a action="utilisateur_detail" class="dropdown-item">
+                                <s:param name="id" value="#session.escalade_user.id" />
+                                Profil
+                            </s:a>
                         </div>
                     </li>
-
                 </s:if>
                 <s:else>
                     <li class="nav-item dropdown">
@@ -59,22 +58,34 @@
                         Langue
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="locale" class="dropdown-item">
                             <s:param name="request_locale">fr</s:param>
                             <span class="lang-sm lang-lbl" lang="fr"/>
                         </s:a>
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="locale" class="dropdown-item">
                             <s:param name="request_locale">en</s:param>
                             <span class="lang-sm lang-lbl" lang="en"></span>
                         </s:a>
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="locale" class="dropdown-item">
                             <s:param name="request_locale">jp</s:param>
                             <span class="lang-sm lang-lbl-full" lang="ja"></span>
                         </s:a>
                     </div>
                 </li>
+                <s:if test="#session.escalade_user.profil =='admin'">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin</a>
+                </li>
+                </s:if>
+                <li class="nav-item">
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher...">
+                            <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                        </div>
+
                 </li>
             </ul>
         </div>

@@ -6,6 +6,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -24,6 +26,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
 
 
     // ==================== Attributs ====================
+
+    private static final Logger logger = LogManager.getLogger(LoginAction.class);
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
@@ -73,7 +77,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
                 Utilisateur vUtilisateur
                         = managerFactory.getUtilisateurManager().login(email, password);
                 // Ajout de l'utilisateur en session
-                this.session.put("user", vUtilisateur);
+                this.session.put("escalade_user", vUtilisateur);
                 if(remember){
                     rememberMe(vUtilisateur.getId());
                 }
@@ -91,9 +95,21 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
      * @return success
      */
     public String doLogout() {
-        // Suppression de l'utilisateur en session
-        this.session.remove("user");
+        // Suppression de l'utilisateur en session et du cookie
+        logger.error("deconnexion");
+        this.session.remove("escalade_user");
         this.servletRequest.getSession().invalidate();
+        Cookie[] cookies = this.servletRequest.getCookies();
+            for(int i=0;cookies!=null&&i<cookies.length;i++) {
+                if (cookies[i].getName().equals("escalade_user")) {
+                    cookies[i].setValue("");
+                    cookies[i].setPath("/");
+                    cookies[i].setMaxAge(0);
+                    servletResponse.addCookie(cookies[i]);
+                    logger.info("cookie supprimé" + cookies[i].getValue());
+                }
+        }
+
         return ActionSupport.SUCCESS;
     }
 

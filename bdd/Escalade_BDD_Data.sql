@@ -23,28 +23,70 @@ SET search_path = sch_escalade,pg_catalog;
 -----------------------------------------------------DONNEES-----------------------------------------------------------
 -- ====================================================================================================================
 
-INSERT INTO sch_escalade.t_adresse( adresse_adresse1, adresse_adresse2, adresse_codepostal, adresse_ville, adresse_pays) VALUES ('5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
-
-INSERT INTO t_utilisateur(utilisateur_nom, utilisateur_prenom, utilisateur_datenaissance,utilisateur_email,utilisateur_password, utilisateur_profil, utilisateur_adresse_fk_id)
-VALUES ('Parlow', 'Mickaël', '13/04/2018','mickael@parlow-co.com','escalade2018','admin','1');
 
 
-INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
-VALUES ('Site N°1', 'Corse', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '05/01/2018', '07/02/2018', '../../ressources/images/etiquette1.jpg', '3', 'false');
-INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
-VALUES ('Site N°2', 'Bretagne', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '13/07/2017', '22/02/2018', '../../ressources/images/etiquette2.jpg', '3', 'true');
-INSERT INTO sch_escalade.t_site(site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
-VALUES ('Site N°3', 'Centre-Val de Loire', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '18/09/2017', '15/03/2018', '../../ressources/images/etiquette3.jpg', '3', 'true');
+INSERT INTO t_utilisateur(utilisateur_id,utilisateur_nom, utilisateur_prenom, utilisateur_datenaissance,utilisateur_email,utilisateur_password,utilisateur_cotation, utilisateur_profil, adresse_adresse1, adresse_adresse2, adresse_codepostal, adresse_ville, adresse_pays)
+VALUES ('1','Parlow', 'Mickaël', '13/04/1981','mickael@parlow-co.com','escalade', '3c', 'admin','5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
+INSERT INTO t_utilisateur(utilisateur_id,utilisateur_nom, utilisateur_prenom, utilisateur_datenaissance,utilisateur_email,utilisateur_password, utilisateur_cotation, utilisateur_profil, adresse_adresse1, adresse_adresse2, adresse_codepostal, adresse_ville, adresse_pays)
+VALUES ('2','Parlow', 'Aimée', '28/09/1976','aimee@parlow-co.com','escalade','4b','utilisateur','5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
+INSERT INTO t_utilisateur(utilisateur_id,utilisateur_nom, utilisateur_prenom, utilisateur_datenaissance,utilisateur_email,utilisateur_password, utilisateur_cotation, utilisateur_profil, adresse_adresse1, adresse_adresse2, adresse_codepostal, adresse_ville, adresse_pays)
+VALUES ('3','Cloëz', 'Jurgens', '22/08/1983','jurgens@parlow-co.com','escalade','6c','utilisateur','5 route d''Ouvrouer', '', '45510', 'Tigy', 'France');
 
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°1','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°2','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°3','4','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°4','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°5','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°6','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°7','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°8','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
-INSERT INTO sch_escalade.t_secteur(secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)	VALUES ('secteur N°9','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum');
+
+INSERT INTO t_site(site_id,site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('1','Site N°1', 'Corse', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '05/01/2018', '07/02/2018', '../../ressources/images/etiquette1.jpg', '1', 'false');
+INSERT INTO t_site(site_id, site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('2','Site N°2', 'Bretagne', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '13/07/2017', '22/02/2018', '../../ressources/images/etiquette2.jpg', '2', 'true');
+INSERT INTO t_site(site_id, site_nom, site_region, site_description, site_lastupdate, site_datecreation, site_image, site_utilisateur_fk_id, site_publication)
+VALUES ('3','Site N°3', 'Centre-Val de Loire', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!', '18/09/2017', '15/03/2018', '../../ressources/images/etiquette3.jpg', '3', 'true');
+
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('1','secteur N°1','1','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('2','secteur N°2','1','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('3','secteur N°3','1','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('4','secteur N°4','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('5','secteur N°5','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('6','secteur N°6','2','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('7','secteur N°7','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('8','secteur N°8','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+INSERT INTO t_secteur(secteur_id, secteur_nom, secteur_site_fk_id, secteur_utilisateur_fk_id, secteur_publication, secteur_lastupdate, secteur_datecreation, secteur_description)
+VALUES ('9','secteur N°9','3','3', 'true', '25/03/2018', '17/01/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.');
+
+INSERT INTO t_voie(voie_id, voie_nom, voie_cotation, voie_nbpoints, voie_equipee, voie_secteur_fk_id, voie_interet, voie_utilisateur_fk_id, voie_lastupdate, voie_datecreation, voie_description, voie_publication)
+VALUES ('1', 'Voie N°1', '3c', '2', 'true', '2', '5', '1', '02/03/2018', '01/02/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.', 'true');
+INSERT INTO t_voie(voie_id, voie_nom, voie_cotation, voie_nbpoints, voie_equipee, voie_secteur_fk_id, voie_interet, voie_utilisateur_fk_id, voie_lastupdate, voie_datecreation, voie_description, voie_publication)
+VALUES ('2', 'Voie N°2', '5a', '1', 'true', '2', '5', '1', '02/03/2018', '01/02/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.', 'true');
+INSERT INTO t_voie(voie_id, voie_nom, voie_cotation, voie_nbpoints, voie_equipee, voie_secteur_fk_id, voie_interet, voie_utilisateur_fk_id, voie_lastupdate, voie_datecreation, voie_description, voie_publication)
+VALUES ('3', 'Voie N°3', '6b', '3', 'true', '2', '5', '2', '02/03/2018', '01/02/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.', 'true');
+INSERT INTO t_voie(voie_id, voie_nom, voie_cotation, voie_nbpoints, voie_equipee, voie_secteur_fk_id, voie_interet, voie_utilisateur_fk_id, voie_lastupdate, voie_datecreation, voie_description, voie_publication)
+VALUES ('4', 'Voie N°4', '4a', '2', 'true', '2', '5', '3', '02/03/2018', '01/02/2018', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.', 'true');
+
+
+-- ====================================================================================================================
+--------------------------------------------------------- CONTRAINTES -------------------------------------------------
+-- ====================================================================================================================
+
+ALTER TABLE t_topo ADD CONSTRAINT t_topo_utilisateur_fk FOREIGN KEY (topo_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_site ADD CONSTRAINT t_site_utilisateur_fk FOREIGN KEY (site_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_site_fk FOREIGN KEY (secteur_site_fk_id) REFERENCES t_site ON DELETE SET NULL;
+ALTER TABLE t_secteur ADD CONSTRAINT t_secteur_utilisateur_fk FOREIGN KEY (secteur_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_voie ADD CONSTRAINT t_voie_secteur_fk FOREIGN KEY (voie_secteur_fk_id) REFERENCES t_secteur ON DELETE SET NULL;
+ALTER TABLE t_voie ADD CONSTRAINT t_voie_utilisateur_fk FOREIGN KEY (voie_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_voie_fk FOREIGN KEY (longueur_voie_fk_id) REFERENCES t_voie ON DELETE SET NULL;
+ALTER TABLE t_longueur ADD CONSTRAINT t_longueur_utilisateur_fk FOREIGN KEY (longueur_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk FOREIGN KEY (loc_topoProprioUser_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_utilisateur_fk2 FOREIGN KEY (loc_topoLoueurUser_fk_id) REFERENCES t_utilisateur ON DELETE RESTRICT;
+ALTER TABLE t_location_topo ADD CONSTRAINT t_location_topo_fk FOREIGN KEY (loc_topo_fk_id) REFERENCES t_topo ON DELETE RESTRICT;
+ALTER TABLE t_commentaire ADD CONSTRAINT t_commentaire_utilisateur_fk FOREIGN KEY (com_utilisateur_fk_id) REFERENCES t_utilisateur ON DELETE SET NULL;
+
+
 
 
 INSERT INTO t_region(id,region) VALUES('1','Grand-Est');
@@ -158,37 +200,7 @@ INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Bouches-du-Rhô
 INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Var');
 INSERT INTO t_departement(region_fk_id,departement) VALUES('13','Vaucluse');
 
-INSERT INTO t_cotation(cotation, niveau)VALUES (3, 1);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('3a', 2);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('3b', 3);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('3c', 4);
-INSERT INTO t_cotation(cotation, niveau)VALUES (4, 1);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('4a', 5);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('4b', 6);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('4c', 7);
-INSERT INTO t_cotation(cotation, niveau)VALUES (5, 8);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('5a', 9);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('5b', 10);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('5c', 11);
-INSERT INTO t_cotation(cotation, niveau)VALUES (6, 12);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('6a', 13);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('6b', 14);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('6c', 15);
-INSERT INTO t_cotation(cotation, niveau)VALUES (7, 16);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('7a', 17);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('7b', 18);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('7c', 19);
-INSERT INTO t_cotation(cotation, niveau)VALUES (8, 20);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('8a', 21);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('8b', 22);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('8c', 23);
-INSERT INTO t_cotation(cotation, niveau)VALUES (9, 24);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('9a', 25);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('9b', 26);
-INSERT INTO t_cotation(cotation, niveau)VALUES ('9c', 27);
 
-INSERT INTO t_profil(profil) VALUES ('Editor');
-INSERT INTO t_profil(profil) VALUES ('Admin');
 
 INSERT INTO t_image(chemin) VALUES ('../../ressources/images/750x300.png');
 

@@ -12,15 +12,15 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/escalade?currentSchema=sch_escalade" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/escalade" />
         <property name="username" value="escalade_user" />
         <property name="password" value="Escalade_2018" />
     </bean>
     <bean id="gestionSiteAction"
           class="com.parlow.escalade.webapp.action.GestionSiteAction"
           scope= "prototype"  />
-    <bean id="gestionUtilistateurAction"
-          class="com.parlow.escalade.webapp.action.GestionUtilistateurAction"
+    <bean id="gestionUtilisateurAction"
+          class="com.parlow.escalade.webapp.action.GestionUtilisateurAction"
           scope= "prototype"  />
     <bean id="loginAction"
           class="com.parlow.escalade.webapp.action.LoginAction"

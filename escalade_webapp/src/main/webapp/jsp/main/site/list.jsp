@@ -70,10 +70,10 @@
                     <h5 class="card-header">Rechercher</h5>
                     <div class="card-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
+                            <input type="text" class="form-control" placeholder="Rechercher...">
                             <span class="input-group-btn">
-                      <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
+                            <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,12 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Créer un nouveau site</h5>
                     <div class="card-body text-center">
-                        <s:a action="site_new" class="btn btn-secondary">Moi aussi je partage !</s:a>
+                        <s:if test="#session.escalade_user">
+                            <s:a action="site_new" class="btn btn-secondary">Moi aussi je partage !</s:a>
+                        </s:if>
+                        <s:else>
+                            <s:a action="login" class="btn btn-secondary">Je me connecte !</s:a>
+                        </s:else>
                     </div>
                 </div>
 

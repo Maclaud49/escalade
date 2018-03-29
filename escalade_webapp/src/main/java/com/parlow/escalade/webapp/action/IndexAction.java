@@ -27,10 +27,17 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
 
     // ----- Element en sortie
 
-    private Utilisateur vutilisateur;
+    protected Utilisateur utilisateur;
 
     // ==================== Getters/Setters ====================
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur vutilisateur) {
+        this.utilisateur = vutilisateur;
+    }
 
 
     // ==================== Méthodes ====================
@@ -45,13 +52,13 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         logger.error("error test");
 
         if (rememberMeLoad() >0){
-            Utilisateur vUtilisateur = null;
+
             try {
-                vUtilisateur = managerFactory.getUtilisateurManager().findById(rememberMeLoad());
+                this.utilisateur = managerFactory.getUtilisateurManager().findById(rememberMeLoad());
             } catch (NotFoundException pEx) {
                 this.addActionError(getText("error.login.incorrect"));
             }
-            this.session.put("user", vUtilisateur);
+            this.session.put("escalade_user", this.utilisateur);
         }
 
         String vResult = ActionSupport.SUCCESS;

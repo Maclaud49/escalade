@@ -48,7 +48,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findByEmailAndPassword(String email, String password) throws NotFoundException {
 
-            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur, t_adresse WHERE utilisateur_email = ? AND utilisateur_password = ? AND utilisateur_adresse_fk_id=adresse_id";
+            String sql_findByEmailAndPass = "SELECT * FROM t_utilisateur WHERE utilisateur_email = ? AND utilisateur_password = ?";
             System.out.println("email " + email + " password " + password);
             try {
                 Utilisateur user = this.vJdbcTemplate.queryForObject(
@@ -63,7 +63,7 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public Utilisateur findById(int pId) throws NotFoundException {
         System.out.println("utilisateur findById");
-        String vSQL_findById = "SELECT * FROM t_utilisateur,t_adresse WHERE utilisateur_id = ? AND utilisateur_adresse_fk_id=adresse_id";
+        String vSQL_findById = "SELECT * FROM t_utilisateur WHERE utilisateur_id = ?";
 
         Utilisateur utilisateur = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
                 new UtilisateurMapper());
@@ -107,32 +107,13 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public void update(Utilisateur pUtilisateur) throws FunctionalException {
         String vSQL_update = "UPDATE t_utilisateur SET utilisateur_nom = ?, utilisateur_prenom = ?, utilisateur_dateNaissance = ?, utilisateur_email = ?," +
-                " utilisateur_password = ?, utilisateur_cotation = ?, utilisateur_adresse_fk_id = ?, utilisateur_profil = ? WHERE utilisateur_id = ?";
+                " utilisateur_password = ?, utilisateur_cotation = ?,  utilisateur_profil = ?, adresse_adresse1 = ?,adresse_adresse2 = ?,adresse_codePostal = ?,adresse_ville = ?,adresse_pays = ? WHERE utilisateur_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pUtilisateur.getNom(), pUtilisateur.getPrenom(),
                 pUtilisateur.getDateNaissance(), pUtilisateur.getEmail(), pUtilisateur.getPassword(),
-                pUtilisateur.getCotation(), pUtilisateur.getAdresse().getId(),
-                pUtilisateur.getProfil(), pUtilisateur.getId());
+                pUtilisateur.getCotation(),
+                pUtilisateur.getProfil(),pUtilisateur.getAdresse1(),pUtilisateur.getAdresse2(),pUtilisateur.getCodePostal(),
+                pUtilisateur.getVille(),pUtilisateur.getPays(), pUtilisateur.getId());
     }
 
-    public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("Utilisateur mapRow");
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setId(rs.getInt("id"));
-        utilisateur.setNom(rs.getString("nom"));
-        utilisateur.setPrenom(rs.getString("prenom"));
-        utilisateur.setDateNaissance(rs.getDate("dateNaissance"));
-        utilisateur.setEmail(rs.getString("email"));
-        utilisateur.setPassword(rs.getString("password"));
-        utilisateur.setCotation(rs.getString("cotation"));
-        Adresse adresse = new Adresse();
-        try {
-            System.out.println("adresse id " + rs.getInt("adresse_fk_id"));
-            adresse = daoFactory.getAdresseDao().findById(rs.getInt("adresse_fk_id"));
-        } catch (Exception e) {
-            System.out.println("Adresse non trouvée");
-        }
-        utilisateur.setAdresse(adresse);
-        utilisateur.setProfil(rs.getString("profil"));
-        return utilisateur;
-    }
+
 }

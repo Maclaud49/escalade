@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="../include/head.jsp" %>
+    <%@ include file="../../include/head.jsp" %>
 </head>
 
 <body>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../../include/header.jsp" %>
 
 
 <div class="container" style="margin-top:50px">
@@ -136,7 +136,7 @@
     </form>
 </div>
 
-<%@ include file="../include/script.jsp" %>
+<%@ include file="../../include/script.jsp" %>
 
 </body>
 </html>

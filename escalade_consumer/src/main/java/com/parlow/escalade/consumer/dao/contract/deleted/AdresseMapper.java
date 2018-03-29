@@ -1,4 +1,4 @@
-package com.parlow.escalade.consumer.dao.contract.rowMapper;
+package com.parlow.escalade.consumer.dao.contract.deleted;
 
 import com.parlow.escalade.model.bean.Adresse;
 import org.apache.logging.log4j.LogManager;
