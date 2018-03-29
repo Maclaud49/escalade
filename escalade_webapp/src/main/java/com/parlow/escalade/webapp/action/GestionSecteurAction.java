@@ -149,7 +149,7 @@ public class GestionSecteurAction extends ActionSupport implements ServletReques
 
         //Ajout des infos nécessaires pour le formulaire de saisie
         if (vResult.equals(ActionSupport.INPUT)) {
-
+            // todo
         }
         return vResult;
     }
