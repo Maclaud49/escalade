@@ -17,10 +17,8 @@
 -- ====================================================================================================================
 
 
-CREATE ROLE escalade_admin WITH PASSWORD 'Escalade_2018' LOGIN SUPERUSER CREATEROLE INHERIT;
-CREATE ROLE escalade_user WITH PASSWORD 'Escalade_2018' LOGIN;
-
-CREATE DATABASE escalade WITH OWNER = escalade_admin ENCODING = 'UTF8' CONNECTION LIMIT = -1;
+CREATE ROLE jeeparlo_escalade_user WITH PASSWORD 'Escalade_2018' LOGIN SUPERUSER CREATEROLE INHERIT;
+CREATE DATABASE jeeparlo_escalade WITH OWNER = jeeparlo_escalade_user ENCODING = 'UTF8' CONNECTION LIMIT = -1;
 
 
 -- ====================================================================================================================
@@ -127,34 +125,26 @@ CREATE TABLE t_commentaire (
 	com_target_table CHARACTER VARYING(20)
 );
 
-
-
-
-
-
-
-
 -- ====================================================================================================================
 ---------------------------------------------------- DROITS SUR TABLES ------------------------------------------------
 -- ====================================================================================================================
 
-ALTER TABLE t_topo OWNER TO escalade_admin;
-ALTER TABLE t_site OWNER TO escalade_admin;
-ALTER TABLE t_secteur OWNER TO escalade_admin;
-ALTER TABLE t_voie OWNER TO escalade_admin;
-ALTER TABLE t_longueur OWNER TO escalade_admin;
-ALTER TABLE t_utilisateur OWNER TO escalade_admin;
-ALTER TABLE t_location_topo OWNER TO escalade_admin;
-ALTER TABLE t_commentaire OWNER TO escalade_admin;
+ALTER TABLE t_topo OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_site OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_secteur OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_voie OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_longueur OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_utilisateur OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_location_topo OWNER TO jeeparlo_escalade_user;
+ALTER TABLE t_commentaire OWNER TO jeeparlo_escalade_user;
 
 
-GRANT ALL ON SCHEMA public TO escalade_admin;
-GRANT USAGE ON SCHEMA public TO escalade_user;
+GRANT ALL ON SCHEMA public TO jeeparlo_escalade_user;
 
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO escalade_user;
-GRANT UPDATE ON ALL TABLES IN SCHEMA public TO escalade_user;
-GRANT INSERT ON ALL TABLES IN SCHEMA public TO escalade_user;
-GRANT DELETE ON ALL TABLES IN SCHEMA public TO escalade_user;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO jeeparlo_escalade_user;
+GRANT UPDATE ON ALL TABLES IN SCHEMA public TO jeeparlo_escalade_user;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO jeeparlo_escalade_user;
+GRANT DELETE ON ALL TABLES IN SCHEMA public TO jeeparlo_escalade_user;
 
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO escalade_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO jeeparlo_escalade_user;
 

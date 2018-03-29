@@ -88,7 +88,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
                 logger.info("id" + id);
                 vUtilisateur.setId(id);
                 logger.info("nom" + vUtilisateur.getNom());
-                this.session.put("user", vUtilisateur);
+                this.session.put("escalade_user", vUtilisateur);
                 vResult = ActionSupport.SUCCESS;
             } catch (FunctionalException e) {
                 this.addActionError(getText("problème technique"));

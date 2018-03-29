@@ -4,9 +4,9 @@
               auth="Container"
               type="javax.sql.DataSource"
 
-              url="jdbc:postgresql://localhost:5432/escalade?currentSchema=sch_escalade"
+              url="jdbc:postgresql:jeeparlo_escalade"
               driverClassName="org.postgresql.Driver"
-              username="escalade_user"
+              username="jeeparlo_escalade_user"
               password="Escalade_2018"
               defaultAutoCommit="false"
               defaultTransactionIsolation="READ_COMMITTED"
