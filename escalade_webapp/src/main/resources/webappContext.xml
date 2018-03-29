@@ -12,8 +12,15 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/escalade" />
-        <property name="username" value="escalade_user" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/jeeparlo_escalade" />
+        <property name="username" value="jeeparlo_escalade_user" />
+        <property name="password" value="Escalade_2018" />
+    </bean>
+    <bean id="dataSource1"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql:jeeparlo_escalade" />
+        <property name="username" value="jeeparlo_escalade_user" />
         <property name="password" value="Escalade_2018" />
     </bean>
     <bean id="gestionSiteAction"
