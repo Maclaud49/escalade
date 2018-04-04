@@ -1,32 +1,28 @@
 package com.parlow.escalade.webapp.action;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-import java.sql.Timestamp;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
-
-/**
- * Action de gestion des {@link Secteur}
- */
-public class GestionSecteurAction extends ActionSupport implements  SessionAware {
+public class GestionVoieAction extends ActionSupport implements SessionAware {
 
 
 
@@ -37,7 +33,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private Map<String, Object> session;
 
 
-    private static final Logger logger = LogManager.getLogger(GestionSecteurAction.class);
+    private static final Logger logger = LogManager.getLogger(GestionVoieAction.class);
 
 
     // ----- Paramètres en entrée
@@ -49,8 +45,8 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private String imageTempFileName;
 
     // ----- Eléments en sortie
-    private List<Secteur> listSecteur;
-    private Secteur secteur;
+    private List<Longueur> listLongueur;
+    private Longueur longueur;
     private List<Voie> listVoie;
     private Voie voie;
 
@@ -74,19 +70,20 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         this.lastUpdate = lastUpdate;
     }
 
-    public List<Secteur> getListSecteur() {
-        return listSecteur;
+    public List<Longueur> getListLongueur() {
+        return listLongueur;
     }
 
-    public void setListSecteur(List<Secteur> listSecteur) {
-        this.listSecteur = listSecteur;
-    }
-    public Secteur getSecteur() {
-        return secteur;
+    public void setListLongueur(List<Longueur> listLongueur) {
+        this.listLongueur = listLongueur;
     }
 
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
+    public Longueur getLongueur() {
+        return longueur;
+    }
+
+    public void setLongueur(Longueur longueur) {
+        this.longueur = longueur;
     }
 
     public File getImageTemp() {
@@ -131,46 +128,46 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     // ==================== Méthodes ====================
     /**
-     * Action listant les {@link Secteur}
+     * Action listant les {@link Voie}
      * @return success
      */
     public String doList() {
-        listSecteur = managerFactory.getSecteurManager().findAll();
+        listVoie = managerFactory.getVoieManager().findAll();
         return ActionSupport.SUCCESS;
     }
 
 
     /**
-     * Action affichant les détails d'un {@link Secteur}
+     * Action affichant les détails d'un {@link Voie}
      * @return success / error
      */
     public String doDetail() {
         if (id == null) {
-            this.addActionError(getText("error.secteur.missing.id"));
+            this.addActionError(getText("error.voie.missing.id"));
         } else {
             try {
-                logger.error("id du secteur" + id);
+                logger.error("id du voie" + id);
 
-                secteur = managerFactory.getSecteurManager().findById(id);
+                voie = managerFactory.getVoieManager().findById(id);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.secteur.notfound", Collections.singletonList(id)));
+                this.addActionError(getText("error.voie.notfound", Collections.singletonList(id)));
             }
-            this.createdDate = secteur.getDateCreation();
-            this.lastUpdate = secteur.getLastUpdate();
+            this.createdDate = voie.getDateCreation();
+            this.lastUpdate = voie.getLastUpdate();
 
             try {
-                this.listVoie = managerFactory.getVoieManager().findAllBySecteurId(id);
+                this.listLongueur = managerFactory.getLongueurManager().findAllByVoieId(id);
             } catch (NotFoundException pE) {
-                // this.addActionError(getText("error.secteur.notfound", Collections.singletonList(id)));
+                // this.addActionError(getText("error.voie.notfound", Collections.singletonList(id)));
             }
-            secteur.setVoies(this.listVoie);
-            secteur.setNbVoies(this.listVoie.size());
+            voie.setLongueurs(this.listLongueur);
+            voie.setNbLongueurs(this.listLongueur.size());
         }
 
         return ActionSupport.SUCCESS;
     }
     /**
-     * Action permettant de créer un nouveau {@link Secteur}
+     * Action permettant de créer un nouveau {@link Voie}
      * @return input / success / error
      */
     public String doCreate() {
@@ -178,19 +175,19 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
         String vResult = ActionSupport.INPUT;
 
-        // ===== Validation de l'ajout de secteur (secteur != null)
-        if (this.secteur != null) {
+        // ===== Validation de l'ajout de voie (voie != null)
+        if (this.voie != null) {
             Date date = new Date();
-            this.secteur.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
-            this.secteur.setDateCreation(new Timestamp(date.getTime()));
+            this.voie.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
+            this.voie.setDateCreation(new Timestamp(date.getTime()));
             try {
-                if(this.secteur.getImage()==null){
+                if(this.voie.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
-                    this.secteur.setImage(image);
+                    this.voie.setImage(image);
                 }
-                this.secteur.setId(managerFactory.getSecteurManager().insert(this.secteur));
+                this.voie.setId(managerFactory.getVoieManager().insert(this.voie));
                 vResult = ActionSupport.SUCCESS;
-                this.addActionMessage("Secteur ajouté avec succès");
+                this.addActionMessage("Voie ajouté avec succès");
 
             } catch (FunctionalException pEx) {
                 this.addActionError(pEx.getMessage());
@@ -212,7 +209,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
 
     /**
-     * Action permetttant la modification d'un {@link Secteur}
+     * Action permetttant la modification d'un {@link Voie}
      * @return success / error
      */
     public String doModifier() throws IOException {
@@ -220,9 +217,9 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         String vResult = ActionSupport.INPUT;
 
         //vérification si affiche les données ou les update
-        if (this.secteur != null) {
+        if (this.voie != null) {
             Date date = new Date();
-            this.secteur.setLastUpdate(new Timestamp(date.getTime()));
+            this.voie.setLastUpdate(new Timestamp(date.getTime()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
@@ -236,11 +233,11 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
 
             if(imageTemp!=null){
-                this.secteur.setImage("../../ressources/images/"+ getImageTempFileName());
+                this.voie.setImage("../../ressources/images/"+ getImageTempFileName());
             }
-            logger.error("id du secteur" + secteur.getId());
+            logger.error("id du voie" + voie.getId());
             try {
-                managerFactory.getSecteurManager().update(secteur);
+                managerFactory.getVoieManager().update(voie);
                 vResult = ActionSupport.SUCCESS;
             } catch (FunctionalException e) {
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
@@ -250,7 +247,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         else {
 
             try {
-                this.secteur = managerFactory.getSecteurManager().findById(id);
+                this.voie = managerFactory.getVoieManager().findById(id);
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
             }
@@ -262,10 +259,10 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     @Override
     public void validate() {
-        if (this.secteur != null) {
-            if (secteur.getNom().length() < 3) {
+        if (this.voie != null) {
+            if (voie.getNom().length() < 3) {
 
-                addFieldError("secteurNom", "Le nom du secteur doit faire au moins 3 lettres");
+                addFieldError("voieNom", "Le nom du voie doit faire au moins 3 lettres");
             }
         }
     }

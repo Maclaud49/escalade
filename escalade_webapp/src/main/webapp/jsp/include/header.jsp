@@ -24,8 +24,8 @@
                         Secteur
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="#">Liste des secteurs</a>
-                        <a class="dropdown-item" href="#">Créer un nouveau secteur</a>
+                        <s:a action="secteur_list" class="dropdown-item">Liste des secteurs</s:a>
+                        <s:a action="secteur_new" class="dropdown-item">Créer un nouveau secteur</s:a>
                     </div>
                 </li>
                 <s:if test="#session.escalade_user">

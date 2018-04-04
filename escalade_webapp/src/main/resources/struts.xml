@@ -89,6 +89,80 @@
                 <param name="id">${secteur.id}</param>
             </result>
         </action>
+        <!-- Action affichant la page de modification d'un site -->
+        <action name="secteur_modifier" class="gestionSecteurAction" method="doModifier">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png</param>
+                <param name="maximumSize">2048000</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="input">/jsp/main/secteur/modification.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">secteur_detail</param>
+                <param name="id">${secteur.id}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <!-- Action listant les voies -->
+        <action name="voie_list" class="gestionVoieAction" method="doList">
+            <result>/jsp/main/voie/list.jsp</result>
+        </action>
+        <!-- Action affichant le détail d'un voie -->
+        <action name="voie_detail" class="gestionVoieAction" method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success">/jsp/main/voie/detail.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de créer un voie -->
+        <action name="voie_new" class="gestionVoieAction" method="doCreate">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/main/voie/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">voie_detail</param>
+                <param name="id">${voie.id}</param>
+            </result>
+        </action>
+        <!-- Action affichant la page de modification d'un site -->
+        <action name="voie_modifier" class="gestionVoieAction" method="doModifier">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png</param>
+                <param name="maximumSize">2048000</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="input">/jsp/main/voie/modification.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">voie_detail</param>
+                <param name="id">${voie.id}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
 
         <!-- Action affichant le détail d'un utilisateur -->
         <action name="utilisateur_detail" class="gestionUtilisateurAction" method="doDetail">

@@ -15,7 +15,7 @@ public class Secteur {
     private List<Voie> voies;
     private Site site;
     private Integer nbVoies;
-    private Image image;
+    private String image;
     private Utilisateur utilisateur;
     private boolean publication;
     private List<Commentaire> commentaires;
@@ -81,11 +81,11 @@ public class Secteur {
         this.nbVoies = nbVoies;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image images) {
+    public void setImage(String images) {
         this.image = image;
     }
 

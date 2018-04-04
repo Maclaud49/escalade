@@ -25,6 +25,7 @@ public class Voie {
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
     private boolean publication;
+    private String image;
 
 
     // ==================== Getters/Setters ==============
@@ -148,5 +149,21 @@ public class Voie {
 
     public void setPublication(boolean publication) {
         this.publication = publication;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isPublication() {
+        return publication;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -47,4 +47,34 @@
         </dependency>
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- =============================================================== -->
+    <!-- Profils -->
+    <!-- =============================================================== -->
+    <profiles>
+        <!-- Profil pour l'environnement de développement -->
+        <profile>
+            <id>target-dev</id>
+
+        </profile>
+
+        <!-- Profil pour l'environnement de test -->
+        <profile>
+            <id>target-test</id>
+
+        </profile>
+
+        <!-- Profil pour l'environnement de production -->
+        <profile>
+            <id>target-prod</id>
+
+        </profile>
+    </profiles>
 </project>

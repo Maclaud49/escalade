@@ -83,5 +83,93 @@
     </dependencies>
     <build>
         <finalName>escalade-webapp</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>jsp/include/footer.jsp</include>
+                                <include>META-INF/jdbc.properties</include>
+                                <include>META-INF/context.xml</include>
+                                <include>META-INF/webappContext.xml</include>
+                            </includes>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>webappContext.xml</include>
+                                <include>jdbc.properties</include>
+                            </includes>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+
+        </plugins>
     </build>
+    <!-- =============================================================== -->
+    <!-- Propriétés -->
+    <!-- =============================================================== -->
+    <properties>
+        <!-- Le nom "public" de l'application -->
+        <application.name>Escalade</application.name>
+        <!-- Le format à utiliser pour afficher la date du build -->
+        <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
+        <!-- Propriété servant à contourner le bug du non remplacement
+             de la propriété maven.build.timestamp lors du filtrage des ressources -->
+        <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+    </properties>
+    <!-- =============================================================== -->
+    <!-- Profils -->
+    <!-- =============================================================== -->
+    <profiles>
+        <!-- Profil pour l'environnement de développement -->
+        <profile>
+            <id>target-dev</id>
+            <properties>
+                <application.images.path>D:\IdeaWorkspace\projectsRep\escalade\escalade_webapp\src\main\webapp\ressources\images</application.images.path>
+                <dataSource.url>jdbc:postgresql://localhost:5432/jeeparlo_escalade</dataSource.url>
+
+            </properties>
+
+        </profile>
+
+        <!-- Profil pour l'environnement de test -->
+        <profile>
+            <id>target-test</id>
+
+        </profile>
+
+        <!-- Profil pour l'environnement de production -->
+        <profile>
+            <id>target-prod</id>
+            <properties>
+                <application.images.path>/maven/repository</application.images.path>
+                <dataSource.url>jdbc:postgresql:jeeparlo_escalade</dataSource.url>
+                <dataSource.driverClassName>org.postgresql.Driver</dataSource.driverClassName>
+                <dataSource.username>jeeparlo_escalade_user</dataSource.username>
+                <dataSource.password>Escalade_2018</dataSource.password>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -1,8 +1,10 @@
 package com.parlow.escalade.business.manager.contract;
 
 import com.parlow.escalade.model.bean.Longueur;
+import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public interface LongueurManager {
      * @return Le {@link Longueur}
      * @throws FunctionalException si le longueur est null
      */
-    int insert( Longueur pLongueur )throws FunctionalException;
+    int insert( Longueur pLongueur )throws FunctionalException, TechnicalException;
 
     /**
      * Supprime un {@link Longueur}
@@ -46,4 +48,11 @@ public interface LongueurManager {
      * @throws FunctionalException si le longueur est null
      */
     void update ( Longueur pLongueur ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Longueur} liés à un site
+     * @param voieId du {@link Voie}
+     * @return List
+     */
+    List<Longueur> findAllByVoieId(int voieId) throws NotFoundException;
 }

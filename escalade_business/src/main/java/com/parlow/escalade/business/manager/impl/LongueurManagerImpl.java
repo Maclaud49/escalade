@@ -5,6 +5,7 @@ import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -35,7 +36,7 @@ public class LongueurManagerImpl extends AbstractManager implements LongueurMana
     }
 
     @Override
-    public int insert(Longueur pLongueur) throws FunctionalException {
+    public int insert(Longueur pLongueur) throws FunctionalException, TechnicalException {
         if (pLongueur == null) {
             throw new FunctionalException("L'objet Longueur ne doit pas être null !");
         }
@@ -56,5 +57,20 @@ public class LongueurManagerImpl extends AbstractManager implements LongueurMana
             throw new FunctionalException("L'objet Longueur ne doit pas être null !");
         }
         daoFactory.getLongueurDao().update(pLongueur);
+    }
+
+    @Override
+    public List<Longueur> findAllByVoieId(int voieId) throws NotFoundException{
+        if (voieId < 1) {
+            throw new NotFoundException("Pas de longueur rattaché à cette voie");
+        }
+        List<Longueur> vList = daoFactory.getLongueurDao().findAllByVoieId(voieId);
+        if (vList == null) {
+            Longueur longueur = new Longueur();
+            longueur.setId(1);
+            vList.add(longueur);
+        }
+        return vList;
+
     }
 }

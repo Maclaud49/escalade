@@ -6,12 +6,13 @@ import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Inject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VoieMapper {
+public class VoieMapper implements RowMapper<Voie> {
 
     private static final Logger logger = LogManager.getLogger(SecteurMapper.class);
 

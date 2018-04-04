@@ -4,6 +4,7 @@ import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public interface VoieManager {
      * @return Le {@link Voie}
      * @throws FunctionalException si le voie est null
      */
-    int insert( Voie pVoie )throws FunctionalException;
+    int insert( Voie pVoie )throws FunctionalException, TechnicalException;
 
     /**
      * Supprime un {@link Voie}

@@ -1,17 +1,20 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.LongueurDao;
+import com.parlow.escalade.consumer.dao.contract.rowMapper.LongueurMapper;
 import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.inject.Named;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -64,5 +67,19 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
         String vSQL_update = "UPDATE t_longueur SET longueur_relai = ?,longueur_voie_fk_id = ?,longueur_cotation = ?,longueur_utilisateur_fk_id = ? WHERE longueur_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation(),
                 pLongueur.getUtilisateur().getId(), pLongueur.getId());
+    }
+
+    @Override
+    public List<Longueur> findAllByVoieId(int voieId) throws NotFoundException {
+        String vSQL_findAll = "SELECT * FROM t_longueur, t_utilisateur,t_voie WHERE longueur_site_fk_id = ? AND longueur_utilisateur_fk_id = utilisateur_id AND longueur_voie_fk_id=voie_id ";
+        List<Longueur> longueurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { voieId }, new RowMapper<Longueur>() {
+            @Override
+            public Longueur mapRow(ResultSet rs, int rowNum) throws SQLException {
+                LongueurMapper longueurMapper = new LongueurMapper();
+                return longueurMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return longueurs;
     }
 }

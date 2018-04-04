@@ -1,17 +1,20 @@
 package com.parlow.escalade.consumer.dao.impl;
 
 import com.parlow.escalade.consumer.dao.contract.VoieDao;
+import com.parlow.escalade.consumer.dao.contract.rowMapper.VoieMapper;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.inject.Named;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -72,9 +75,17 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public List<Voie> findAllBySecteurId(int secteurId) throws NotFoundException {
-        String vSQL_findAll = "SELECT * FROM t_voie WHERE voie_secteur_fk_id = ?";
-        List<Voie> voies  = (List<Voie>) this.vJdbcTemplate.queryForObject(vSQL_findAll, new Object[]{secteurId},
-                new BeanPropertyRowMapper(Voie.class));
+        String vSQL_findAll = "SELECT * FROM t_voie, t_utilisateur WHERE voie_secteur_fk_id = ? AND voie_utilisateur_fk_id = utilisateur_id";
+        List<Voie> voies  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { secteurId }, new RowMapper<Voie>() {
+            @Override
+            public Voie mapRow(ResultSet rs, int rowNum) throws SQLException {
+                VoieMapper voieMapper = new VoieMapper();
+                return voieMapper.mapRow(rs, rowNum);
+            }
+        });
+
         return voies;
     }
+
+
 }

@@ -8,9 +8,7 @@ import java.sql.Timestamp;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Secteur;
-import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.deleted.Region;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -30,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Action de gestion des {@link Site}
  */
-public class GestionSiteAction extends ActionSupport implements ServletRequestAware, SessionAware {
+public class GestionSiteAction extends ActionSupport implements  SessionAware {
 
 
 
@@ -39,7 +37,6 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
-    private HttpServletRequest servletRequest;
 
     private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
 
@@ -288,9 +285,5 @@ public class GestionSiteAction extends ActionSupport implements ServletRequestAw
         this.session = pSession;
     }
 
-    @Override
-    public void setServletRequest(HttpServletRequest pRequest) {
-        this.servletRequest = pRequest;
-    }
 
 }

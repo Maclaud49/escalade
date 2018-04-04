@@ -30,16 +30,15 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public Secteur findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_secteur WHERE secteur_id = ?";
-        Secteur secteur = (Secteur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Secteur.class));
+        String vSQL_findById = "SELECT * FROM t_secteur,t_utilisateur WHERE secteur_id = ? AND secteur_utilisateur_fk_id=utilisateur_id";
+        Secteur secteur = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId}, new SecteurMapper());
         return secteur;
     }
 
     @Override
     public List<Secteur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_secteur";
-        List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Secteur.class));
+        String vSQL_findAll = "SELECT * FROM t_secteur,t_utilisateur where secteur_utilisateur_fk_id = utilisateur_id";
+        List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new SecteurMapper());
         return secteurs;
     }
 
