@@ -23,7 +23,7 @@
             <li class="breadcrumb-item active">Création site</li>
         </ol>
 
-        <form class="form-horizontal" method="POST" action="site_new.action" enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action="site_new.action">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-8">
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label>Decription</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:textarea  class="form-control" name="site.description" />
+                            <s:textarea  rows="10" class="form-control" name="site.description" />
                         </div>
                         <small id="descriptionHelp" class="form-text text-muted">Decription limité à 500 caractères</small>
                     </div>
@@ -67,18 +67,6 @@
                             <s:select  class="form-control" name="site.region"
                                        list="listRegions"  emptyOption="true" required="true"/>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label >Image</label>
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:file name="site.images"/>
-                        </div>
-                        <small id="imageHelp" class="form-text text-muted">Image de dimensions : 750x300 </small>
                     </div>
                 </div>
             </div>

@@ -108,7 +108,7 @@ public class GestionUtilisateurAction extends ActionSupport {
     }
 
     /**
-     * Action affichant les détails d'un {@link Utilisateur}
+     * Action permettant la modification d'un {@link Utilisateur}
      * @return success / error
      */
     public String doModifier() {
@@ -117,7 +117,6 @@ public class GestionUtilisateurAction extends ActionSupport {
 
         //vérification si affiche les données ou les update
         if (this.utilisateur != null) {
-
             try {
                 managerFactory.getUtilisateurManager().update(utilisateur);
                 vResult = ActionSupport.SUCCESS;
@@ -134,8 +133,6 @@ public class GestionUtilisateurAction extends ActionSupport {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
             }
         }
-
-
         return vResult;
     }
 

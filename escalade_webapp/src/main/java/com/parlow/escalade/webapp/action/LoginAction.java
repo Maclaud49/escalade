@@ -38,7 +38,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
     private String email;
     private String password;
     private boolean remember;
-    //todo mettre dans cookie
 
 
     // ==================== Getters/Setters ====================

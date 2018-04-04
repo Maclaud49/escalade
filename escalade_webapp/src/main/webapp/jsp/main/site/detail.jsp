@@ -40,8 +40,8 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Description : </strong> <s:property value="site.description" /></p>
                     <p class="card-text"><strong>Région : </strong> <s:property value="site.region" /></p>
-                    <p class="card-text"><strong>Nombres de secteurs : </strong> </strong><s:property value="site.nbSecteurs" /></p>
-                    <p class="card-text"><strong>Nombres de voies : </strong> <s:property value="site.description" /></p>
+                    <p class="card-text"><strong>Nombres de secteurs : </strong> <s:property value="site.nbSecteurs" /></p>
+                    <p class="card-text"><strong>Nombres de voies : </strong> <s:property value="site.nbVoies" /></p>
                     <p class="card-text"><strong>Site publié : </strong>
                         <s:if test="site.ispublication">
                             Oui
@@ -51,7 +51,7 @@
                         </s:else>
                     </p>
                     <div>
-                    <p class="card-text"><strong>Liste des secteurs : </strong>
+                    <div class="card-text"><strong>Liste des secteurs : </strong>
                         <ul class="text-center">
                             <s:iterator value="listSecteur">
                                     <li style = "list-style: none;margin:10px">
@@ -63,7 +63,7 @@
                                     </li>
                             </s:iterator>
                          </ul>
-                    </p>
+                    </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
@@ -72,7 +72,7 @@
                             <s:param name="id" value="site.utilisateur.id" />
                             <s:property value="site.utilisateur.prenom"/> <s:property value="site.utilisateur.nom"/>
                         </s:a>
-                    Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" />
+                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
                 </div>
             </div>
         </div>
@@ -82,47 +82,16 @@
         <div class="col-md-4">
 
             <!-- Modification site -->
-            <div class="card mb-4">
-                <h5 class="card-header">Modifier ce site</h5>
-                <div class="card-body text-center">
-                    A faire
-                </div>
-            </div>
-
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Méthode de tri</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Date</a>
-                                </li>
-                                <li>
-                                    <a href="#">Commentaires</a>
-                                </li>
-                                <li>
-                                    <a href="#">Difficulté</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Saison</a>
-                                </li>
-                                <li>
-                                    <a href="#">Région</a>
-                                </li>
-                                <li>
-                                    <a href="#">Appéciations</a>
-                                </li>
-                            </ul>
-                        </div>
+            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
+                <div class="card mb-4">
+                    <h5 class="card-header">Modifier le site</h5>
+                    <div class="card-body text-center">
+                        <s:a action="site_modifier" class="btn btn-secondary"><s:param name="id" value="site.id" />Modifier</s:a>
                     </div>
                 </div>
-            </div>
+            </s:if>
+
+
             <!-- Creation site Widget -->
             <div class="card mb-4">
                 <h5 class="card-header">Créer un nouveau site</h5>

@@ -46,6 +46,7 @@
                                 <s:param name="id" value="utilisateur.id" />
                                 <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
                             </s:a>
+                            <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
                         </div>
                     </div>
                 </s:iterator>
@@ -64,19 +65,6 @@
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">
-
-                <!-- Search Widget -->
-                <div class="card mb-4">
-                    <h5 class="card-header">Rechercher</h5>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Rechercher...">
-                            <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Categories Widget -->
                 <div class="card my-4">

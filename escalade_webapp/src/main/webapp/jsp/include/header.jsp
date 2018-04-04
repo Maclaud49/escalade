@@ -58,15 +58,15 @@
                         Langue
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="request_locale" class="dropdown-item">
                             <s:param name="request_locale">fr</s:param>
                             <span class="lang-sm lang-lbl" lang="fr"/>
                         </s:a>
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="request_locale" class="dropdown-item">
                             <s:param name="request_locale">en</s:param>
                             <span class="lang-sm lang-lbl" lang="en"></span>
                         </s:a>
-                        <s:a action="index" class="dropdown-item">
+                        <s:a action="request_locale" class="dropdown-item">
                             <s:param name="request_locale">jp</s:param>
                             <span class="lang-sm lang-lbl-full" lang="ja"></span>
                         </s:a>

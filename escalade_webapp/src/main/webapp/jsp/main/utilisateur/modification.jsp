@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <fieldset class="form-group">
-                    <legend>Vos informations</legend>
+                    <legend>Informations</legend>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
@@ -54,16 +54,6 @@
                         <s:textfield name="utilisateur.password" value="%{utilisateur.password}"/>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8" style="padding-top: .35rem">
-                                    <span class="text-danger align-middle">
-                                        <s:if test="hasFieldErrors()">
-                                            <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword2"/></small>
-                                        </s:if>
-                                    </span>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
@@ -126,7 +116,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
-                    <legend>Votre adresse</legend>
+                    <legend>Adresse</legend>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
@@ -204,7 +194,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
-                    <legend>Vos Topos</legend>
+                    <legend>Topos</legend>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">

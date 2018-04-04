@@ -75,9 +75,9 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     @Override
     public void update(Site pSite) throws FunctionalException {
         String vSQL_update = "UPDATE t_site SET site_nom = ?, site_region = ?, site_description = ?, site_lastUpdate = ?, site_image = ?," +
-                " site_dateCreation = ?, site_utilisateur_fk_id = ?, site_publication = ? WHERE site_id = ?";
+                "  site_publication = ? WHERE site_id = ?";
         this.vJdbcTemplate.update(vSQL_update, pSite.getNom(), pSite.getRegion(),pSite.getDescription(),pSite.getLastUpdate(),
-                pSite.getImage(),pSite.getDateCreation(),pSite.getUtilisateur().getId(),pSite.isPublication(),pSite.getId());
+                pSite.getImage(),pSite.isPublication(),pSite.getId());
     }
 
 }

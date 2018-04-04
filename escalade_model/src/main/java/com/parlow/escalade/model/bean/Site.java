@@ -17,13 +17,10 @@ public class Site {
     private String description;
     private List<Secteur> secteurs;
     private String region;
-    private List<String> periodeFav;
-    private List<String> typeRocher;
     private Integer nbSecteurs;
     private Integer nbVoies;
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
-    private String niveauPratique;
     private String image;
     private Utilisateur utilisateur;
     private boolean publication;
@@ -88,22 +85,6 @@ public class Site {
         this.region = region;
     }
 
-    public List<String> getPeriodeFav() {
-        return periodeFav;
-    }
-
-    public void setPeriodeFav(List<String> periodeFav) {
-        this.periodeFav = periodeFav;
-    }
-
-    public List<String> getTypeRocher() {
-        return typeRocher;
-    }
-
-    public void setTypeRocher(List<String> typeRocher) {
-        this.typeRocher = typeRocher;
-    }
-
     public Integer getNbSecteurs() {
         return nbSecteurs;
     }
@@ -126,14 +107,6 @@ public class Site {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    public String getNiveauPratique() {
-        return niveauPratique;
-    }
-
-    public void setNiveauPratique(String niveauPratique) {
-        this.niveauPratique = niveauPratique;
     }
 
     public String getImage() {

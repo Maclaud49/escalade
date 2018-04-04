@@ -33,7 +33,6 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     private String nom;
     private String prenom;
 
-    //todo mettre dans cookie
 
 
     // ==================== Getters/Setters ====================
