@@ -37,22 +37,27 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public List<Secteur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_secteur,t_utilisateur where secteur_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_secteur,t_utilisateur WHERE secteur_utilisateur_fk_id = utilisateur_id";
         List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new SecteurMapper());
         return secteurs;
     }
 
     @Override
     public int insert(Secteur pSecteur) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_secteur (secteur_nom, secteur_utilisateur_fk_id,secteur_publication) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT into t_secteur (secteur_nom,secteur_description, secteur_departement, secteur_lastUpdate, secteur_image, secteur_dateCreation, secteur_utilisateur_fk_id, secteur_publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"secteur_id"});
                                            pst.setString(1, pSecteur.getNom());
-                                           pst.setInt(3,pSecteur.getUtilisateur().getId());
-                                           pst.setBoolean(4,pSecteur.isPublication());
+                                           pst.setString(2, pSecteur.getDescription());
+                                           pst.setString(3, pSecteur.getDepartement());
+                                           pst.setTimestamp(4, pSecteur.getDateCreation());
+                                           pst.setString(5, pSecteur.getImage());
+                                           pst.setTimestamp(6, pSecteur.getDateCreation());
+                                           pst.setInt(7, pSecteur.getUtilisateur().getId());
+                                           pst.setBoolean(8, false);
                                            return pst;
                                        }
                                    },
@@ -69,23 +74,10 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public void update(Secteur pSecteur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_secteur SET secteur_nom = ?, secteur_utilisateur_fk_id = ?,secteur_publication = ? WHERE secteur_id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pSecteur.getNom(),pSecteur.getUtilisateur().getId(),
-                pSecteur.isPublication(),pSecteur.getId());
-    }
-
-    @Override
-    public List<Secteur> findAllBySiteId(int siteId) throws NotFoundException {
-        String vSQL_findAll = "SELECT * FROM t_secteur, t_utilisateur WHERE secteur_site_fk_id = ? AND secteur_utilisateur_fk_id = utilisateur_id";
-        List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { siteId }, new RowMapper<Secteur>() {
-            @Override
-            public Secteur mapRow(ResultSet rs, int rowNum) throws SQLException {
-               SecteurMapper secteurMapper = new SecteurMapper();
-               return secteurMapper.mapRow(rs, rowNum);
-            }
-        });
-
-        return secteurs;
+        String vSQL_update = "UPDATE t_secteur SET secteur_nom = ?, secteur_departement = ?, secteur_description = ?, secteur_lastUpdate = ?, secteur_image = ?," +
+                "  secteur_publication = ? WHERE secteur_id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pSecteur.getNom(), pSecteur.getDepartement(),pSecteur.getDescription(),pSecteur.getLastUpdate(),
+                pSecteur.getImage(),pSecteur.isPublication(),pSecteur.getId());
     }
 
 }

@@ -47,10 +47,6 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
      */
     public String doIndex() {
 
-        logger.debug("debug test");
-        logger.info("info test");
-        logger.error("error test");
-
         if (rememberMeLoad() >0){
 
             try {
@@ -72,7 +68,6 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
         for(int i=0;cookies!=null&&i<cookies.length;i++) {
             if (cookies[i].getName().equals("escalade_user")) {
                 vUtilisateurId = Integer.parseInt(cookies[i].getValue());
-                logger.info("id du user en session" + cookies[i].getValue());
             }
         }
         return vUtilisateurId;

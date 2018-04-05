@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label >Département</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:select  class="form-control" name="secteur.region"
+                            <s:select  class="form-control" name="secteur.departement"
                                        list="listDepartements"  emptyOption="true" required="true"/>
                         </div>
                     </div>

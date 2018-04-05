@@ -14,8 +14,8 @@
 <div class="container">
 
     <s:if test="hasActionMessages()">
-        <div class="alert alert-success" style="margin-top:20px">
-            <strong>Merci pour ta contribution !</strong><s:actionmessage />
+        <div class="alert alert-success text-center" style="margin-top:20px">
+            <strong>Merci pour ta contribution !</strong><s:actionmessage style="list-style:none" />
         </div>
     </s:if>
 
@@ -41,7 +41,7 @@
                     <p class="card-text"><strong>Description : </strong> <s:property value="longueur.description" /></p>
                     <p class="card-text"><strong>Relai : </strong> <s:property value="longueur.relai" /></p>
                     <p class="card-text"><strong>Cotation : </strong> <s:property value="longueur.cotation" /></p>
-                    <p class="card-text"><strong>Longueur publié : </strong>
+                    <p class="card-text"><strong>Publié : </strong>
                         <s:if test="longueur.ispublication">
                             Oui
                         </s:if>
@@ -54,7 +54,7 @@
                 <div class="card-footer text-muted">
                     Posté le <s:date name="createdDate" format="dd/MM/yyyy" /> par
                         <s:a action="utilisateur_detail">
-                            <s:param name="id" value="longueur.utilisateur.id" />
+                            <s:param name="utilisateurId" value="longueur.utilisateur.id" />
                             <s:property value="longueur.utilisateur.prenom"/> <s:property value="longueur.utilisateur.nom"/>
                         </s:a>
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
@@ -71,7 +71,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier la longueur</h5>
                     <div class="card-body text-center">
-                        <s:a action="longueur_modifier" class="btn btn-secondary"><s:param name="id" value="longueur.id" />Modifier</s:a>
+                        <s:a action="longueur_modifier" class="btn btn-secondary"><s:param name="longueurId" value="longueur.id" />Modifier</s:a>
                     </div>
                 </div>
             </s:if>

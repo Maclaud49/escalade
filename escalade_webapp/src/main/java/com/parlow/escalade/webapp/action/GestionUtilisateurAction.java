@@ -30,7 +30,7 @@ public class GestionUtilisateurAction extends ActionSupport {
     @Inject
     private ManagerFactory managerFactory;
     // ----- Paramètres en entrée
-    private Integer UtilisateurId;
+    private Integer utilisateurId;
     private String nom;
     private String prenom;
 
@@ -45,12 +45,13 @@ public class GestionUtilisateurAction extends ActionSupport {
 
     // ==================== Getters/Setters ====================
 
+
     public Integer getUtilisateurId() {
-        return UtilisateurId;
+        return utilisateurId;
     }
 
     public void setUtilisateurId(Integer utilisateurId) {
-        UtilisateurId = utilisateurId;
+        this.utilisateurId = utilisateurId;
     }
 
     public Utilisateur getUtilisateur() {
@@ -96,13 +97,13 @@ public class GestionUtilisateurAction extends ActionSupport {
      */
     public String doDetail() {
 
-        if (UtilisateurId == null) {
+        if (utilisateurId == null) {
             this.addActionError(getText("error.user.missing.id"));
         } else {
             try {
-                utilisateur = managerFactory.getUtilisateurManager().findById(UtilisateurId);
+                utilisateur = managerFactory.getUtilisateurManager().findById(utilisateurId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(UtilisateurId)));
+                this.addActionError(getText("error.user.notfound", Collections.singletonList(utilisateurId)));
 
             }
         }
@@ -131,9 +132,9 @@ public class GestionUtilisateurAction extends ActionSupport {
         else {
 
             try {
-                this.utilisateur = managerFactory.getUtilisateurManager().findById(UtilisateurId);
+                this.utilisateur = managerFactory.getUtilisateurManager().findById(utilisateurId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(UtilisateurId)));
+                this.addActionError(getText("error.user.notfound", Collections.singletonList(utilisateurId)));
             }
         }
         return vResult;

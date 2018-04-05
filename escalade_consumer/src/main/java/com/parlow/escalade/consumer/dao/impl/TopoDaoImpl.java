@@ -46,7 +46,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
                                            pst.setBoolean(3,pTopo.isDisponible());
                                            pst.setString(4,pTopo.getDescription());
                                            pst.setInt(3,pTopo.getUtilisateur().getId());
-                                           pst.setInt(4,pTopo.getImage().getId());
+                                           pst.setString(4,pTopo.getImage());
                                            return pst;
                                        }
                                    },

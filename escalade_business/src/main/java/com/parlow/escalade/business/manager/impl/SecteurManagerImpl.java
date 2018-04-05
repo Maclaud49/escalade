@@ -8,8 +8,10 @@ import com.parlow.escalade.business.manager.contract.SecteurManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 import com.parlow.escalade.model.recherche.secteur.RechercheSecteur;
 
 import javax.inject.Inject;
@@ -26,11 +28,13 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
 
 
     @Override
-    public Secteur findById(int pId) throws NotFoundException {
+    public Secteur findById(int pId) throws NotFoundException,TechnicalException, FunctionalException {
         if (pId < 1) {
             throw new NotFoundException("Secteur non trouvé : ID=" + pId);
         }
         Secteur vSecteur = daoFactory.getSecteurDao().findById(pId);
+        List<Voie> list = daoFactory.getSecteurVoieAssoDao().findAllBySecteur(pId);
+        vSecteur.setVoies(list);
         return vSecteur;
     }
 
@@ -70,19 +74,5 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
         daoFactory.getSecteurDao().update(pSecteur);
     }
 
-    @Override
-    public List<Secteur> findAllBySiteId(int siteId) throws NotFoundException{
-        if (siteId < 1) {
-            throw new NotFoundException("Pas de secteur rattaché à ce site");
-        }
-        List<Secteur> vList = daoFactory.getSecteurDao().findAllBySiteId(siteId);
-        if (vList == null) {
-            Secteur secteur = new Secteur();
-            secteur.setId(1);
-            secteur.setNom("Pas de données");
-            vList.add(secteur);
-        }
-        return vList;
 
-    }
 }

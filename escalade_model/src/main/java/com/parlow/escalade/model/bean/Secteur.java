@@ -1,6 +1,6 @@
 package com.parlow.escalade.model.bean;
 
-import com.parlow.escalade.model.bean.deleted.Image;
+
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 import java.sql.Timestamp;
@@ -74,14 +74,6 @@ public class Secteur {
         this.nbVoies = nbVoies;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String images) {
-        this.image = image;
-    }
-
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
@@ -136,6 +128,14 @@ public class Secteur {
 
     public void setDepartement(String departement) {
         this.departement = departement;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     // ==================== Méthodes =====================

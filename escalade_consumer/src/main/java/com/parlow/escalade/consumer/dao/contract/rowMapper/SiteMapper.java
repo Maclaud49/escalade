@@ -24,31 +24,25 @@ public class SiteMapper implements RowMapper<Site> {
     protected DaoFactory daoFactory;
 
     public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
-        logger.info("Site mapRow");
+
         Site site = new Site();
         site.setId(rs.getInt("site_id"));
         site.setNom(rs.getString("site_nom"));
-        site.setRegion(rs.getString("site_region"));
         site.setDescription(rs.getString("site_description"));
-        site.setLastUpdate(rs.getTimestamp("site_lastUpdate"));
-        site.setImage(rs.getString("site_image"));
         site.setDateCreation(rs.getTimestamp("site_dateCreation"));
+        site.setLastUpdate(rs.getTimestamp("site_lastUpdate"));
+        site.setPublication(rs.getBoolean("site_publication"));
+        site.setImage(rs.getString("site_image"));
+
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
         Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
         site.setUtilisateur(utilisateur);
-        logger.info("nom du utilisateur " + site.getUtilisateur().getNom());
-        site.setPublication(rs.getBoolean("site_publication"));
+
+
+        site.setRegion(rs.getString("site_region"));
 
         return site;
     }
 
 }
 
-        /*try {
-            System.out.println("id du utilisateur " + rs.getInt("utilisateur_fk_id"));
-            utilisateur = daoFactory.getUtilisateurDao().findById(rs.getInt("utilisateur_fk_id"));
-            System.out.println("nom du utilisateur " + utilisateur.getNom());
-
-        } catch (NotFoundException e) {
-            System.out.println("Utilisateur non trouvé");
-        }*/

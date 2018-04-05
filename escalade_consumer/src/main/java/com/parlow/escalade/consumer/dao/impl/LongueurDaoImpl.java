@@ -23,16 +23,16 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public Longueur findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_longueur WHERE longueur_id = ?";
+        String vSQL_findById = "SELECT * FROM t_longueur,t_utilisateur WHERE longueur_id = ? AND longueur_utilisateur_fk_id=utilisateur_id";
         Longueur longueur = (Longueur) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Longueur.class));
+                new LongueurMapper());
         return longueur;
     }
 
     @Override
     public List<Longueur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_longueur";
-        List<Longueur> longueurs = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Longueur.class));
+        String vSQL_findAll = "SELECT * FROM t_longueur,t_utilisateur WHERE longueur_utilisateur_fk_id = utilisateur_id";
+        List<Longueur> longueurs = this.vJdbcTemplate.query(vSQL_findAll, new LongueurMapper());
         return longueurs;
     }
 
@@ -71,7 +71,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public List<Longueur> findAllByVoieId(int voieId) throws NotFoundException {
-        String vSQL_findAll = "SELECT * FROM t_longueur, t_utilisateur,t_voie WHERE longueur_site_fk_id = ? AND longueur_utilisateur_fk_id = utilisateur_id AND longueur_voie_fk_id=voie_id ";
+        String vSQL_findAll = "SELECT * FROM t_longueur, t_utilisateur,t_voie WHERE longueur_voie_fk_id = ? AND longueur_utilisateur_fk_id = utilisateur_id AND longueur_voie_fk_id=voie_id ";
         List<Longueur> longueurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { voieId }, new RowMapper<Longueur>() {
             @Override
             public Longueur mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -39,6 +39,12 @@
     <bean id="gestionSecteurAction"
           class="com.parlow.escalade.webapp.action.GestionSecteurAction"
           scope= "prototype"  />
+    <bean id="gestionVoieAction"
+          class="com.parlow.escalade.webapp.action.GestionVoieAction"
+          scope= "prototype"  />
+    <bean id="gestionLongueurAction"
+          class="com.parlow.escalade.webapp.action.GestionLongueurAction"
+          scope= "prototype"  />
 
 </beans>
 

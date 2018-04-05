@@ -37,7 +37,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public List<Site> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur where site_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur WHERE site_utilisateur_fk_id = utilisateur_id";
         List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new SiteMapper());
         return sites;
     }

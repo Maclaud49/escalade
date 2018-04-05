@@ -14,8 +14,8 @@
 <div class="container">
 
     <s:if test="hasActionMessages()">
-        <div class="alert alert-success" style="margin-top:20px">
-            <strong>Merci pour ta contribution !</strong><s:actionmessage />
+        <div class="alert alert-success text-center" style="margin-top:20px">
+            <strong>Merci pour ta contribution !</strong><s:actionmessage style="list-style:none" />
         </div>
     </s:if>
 
@@ -43,18 +43,18 @@
                     <p class="card-text"><strong>Hauteur de la voie : </strong> <s:property value="voie.hauteurVoie" /></p>
                     <p class="card-text"><strong>Cotation : </strong> <s:property value="voie.cotation" /></p>
                     <p class="card-text"><strong>Equipée : </strong>
-                        <s:if test="voie.isequipee">
+                        <s:if test="voie.equipee">
                             Oui
                         </s:if>
                         <s:else>
                             Non
                         </s:else>
                     </p>
-                    <s:if test="voie.isequipee">
+                    <s:if test="voie.equipee">
                     <p class="card-text"><strong>Nombre de points de la voie : </strong> <s:property value="voie.nbPoints" /></p>
                     </s:if>
-                    <p class="card-text"><strong>Voie publié : </strong>
-                        <s:if test="voie.ispublication">
+                    <p class="card-text"><strong>Publié : </strong>
+                        <s:if test="voie.publication">
                             Oui
                         </s:if>
                         <s:else>
@@ -63,24 +63,29 @@
                     </p>
                     <div>
                     <div class="card-text"><strong>Liste des longueurs : </strong>
+                        <s:if test="voie.longueurs.size() == 0">
+                            Pas de longueurs rattachées à cette voie
+                        </s:if>
+                        <s:else>
                         <ul class="text-center">
-                            <s:iterator value="listVoie">
+                            <s:iterator value="voie.longueurs">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="longueur_detail" class="btn btn-primary">
-                                            <s:param name="id" value="id" />
+                                            <s:param name="longueurId" value="id" />
                                             <s:property value="nom" />
                                         </s:a>
 
                                     </li>
                             </s:iterator>
                          </ul>
+                        </s:else>
                     </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
                     Posté le <s:date name="createdDate" format="dd/MM/yyyy" /> par
                         <s:a action="utilisateur_detail">
-                            <s:param name="id" value="voie.utilisateur.id" />
+                            <s:param name="utilisateurId" value="voie.utilisateur.id" />
                             <s:property value="voie.utilisateur.prenom"/> <s:property value="voie.utilisateur.nom"/>
                         </s:a>
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
@@ -97,7 +102,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier la voie</h5>
                     <div class="card-body text-center">
-                        <s:a action="voie_modifier" class="btn btn-secondary"><s:param name="id" value="voie.id" />Modifier</s:a>
+                        <s:a action="voie_modifier" class="btn btn-secondary"><s:param name="voieId" value="voie.id" />Modifier</s:a>
                     </div>
                 </div>
             </s:if>

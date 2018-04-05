@@ -14,8 +14,8 @@
 <div class="container">
 
     <s:if test="hasActionMessages()">
-        <div class="alert alert-success" style="margin-top:20px">
-            <strong>Merci pour ta contribution !</strong><s:actionmessage />
+        <div class="alert alert-success text-center" style="margin-top:20px">
+            <strong>Merci pour ta contribution !</strong><s:actionmessage style="list-style:none" />
         </div>
     </s:if>
 
@@ -42,7 +42,7 @@
                     <p class="card-text"><strong>Région : </strong> <s:property value="site.region" /></p>
                     <p class="card-text"><strong>Nombre de secteurs : </strong> <s:property value="site.nbSecteurs" /></p>
                     <p class="card-text"><strong>Nombre de voies : </strong> <s:property value="site.nbVoies" /></p>
-                    <p class="card-text"><strong>Site publié : </strong>
+                    <p class="card-text"><strong>Publié : </strong>
                         <s:if test="site.ispublication">
                             Oui
                         </s:if>
@@ -52,24 +52,31 @@
                     </p>
                     <div>
                     <div class="card-text"><strong>Liste des secteurs : </strong>
+                        <s:if test="site.secteurs.size() == 0">
+                            Pas de secteurs rattachés à ce site
+                        </s:if>
+                        <s:else>
                         <ul class="text-center">
+
+
                             <s:iterator value="site.secteurs">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="secteur_detail" class="btn btn-primary">
-                                            <s:param name="secteurId" value="secteur.id" />
+                                            <s:param name="secteurId" value="id" />
                                             <s:property value="nom" />
                                         </s:a>
 
                                     </li>
                             </s:iterator>
                          </ul>
+                        </s:else>
                     </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
                     Posté le <s:date name="createdDate" format="dd/MM/yyyy" /> par
                         <s:a action="utilisateur_detail">
-                            <s:param name="id" value="site.utilisateur.id" />
+                            <s:param name="utilisateurId" value="site.utilisateur.id" />
                             <s:property value="site.utilisateur.prenom"/> <s:property value="site.utilisateur.nom"/>
                         </s:a>
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
@@ -86,7 +93,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier le site</h5>
                     <div class="card-body text-center">
-                        <s:a action="site_modifier" class="btn btn-secondary"><s:param name="id" value="site.id" />Modifier</s:a>
+                        <s:a action="site_modifier" class="btn btn-secondary"><s:param name="siteId" value="site.id" />Modifier</s:a>
                     </div>
                 </div>
             </s:if>

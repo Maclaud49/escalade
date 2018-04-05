@@ -39,7 +39,7 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }
         Site vSite = daoFactory.getSiteDao().findById(pId);
-        List<Secteur> list = daoFactory.getSiteSecteurAssoDao().findAllBySite(vSite.getId());
+        List<Secteur> list = daoFactory.getSiteSecteurAssoDao().findAllBySite(pId);
         vSite.setSecteurs(list);
 
         return vSite;

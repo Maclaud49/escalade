@@ -69,53 +69,73 @@ VALUES ('6','Secteur N°6',
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('1','Voie N°1',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '1', '05/01/2018', '07/02/2018', 'false', '../../ressources/images/etiquette1.jpg', '5,2','5b','3','true');
+            '1', '05/01/2018', '07/02/2018', 'false', '../../ressources/images/etiquette1.jpg', '5.2','5b','3','true');
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('2','Voie N°2',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette2.jpg', '5,2','5b','3','true');
+            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette2.jpg', '5.2','5b','3','true');
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('3','Voie N°3',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette3.jpg', '5,2','5b','3','true');
+            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette3.jpg', '5.2','5b','3','true');
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('4','Voie N°4',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '1', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '5,2','5b','3','true');
+            '1', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '5.2','5b','3','true');
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('5','Voie N°5',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette2.jpg', '5,2','5b','3','true');
+            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette2.jpg', '5.2','5b','3','true');
 INSERT INTO t_voie(voie_id, voie_nom, voie_description,voie_utilisateur_fk_id,voie_dateCreation, voie_lastUpdate,voie_publication, voie_image,voie_hauteurVoie,voie_cotation,voie_nbPoints,voie_equipee)
 VALUES ('6','Voie N°6',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette3.jpg', '5,2','5b','3','true');
+            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette3.jpg', '5.2','5b','3','true');
 
 
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('1','Longueur N°1',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '1', '05/01/2018', '07/02/2018', 'false', '../../ressources/images/etiquette1.jpg', '3,1','1','3c');
+            '1', '05/01/2018', '07/02/2018', 'false', '../../ressources/images/etiquette1.jpg', '3.1','1','3c');
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('2','Longueur N°2',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3,1','1','3c');
+            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','1','3c');
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('3','Longueur N°3',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3,1','2','3c');
+            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','2','3c');
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('4','Longueur N°4',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '1', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3,1','2','3c');
+            '1', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','2','3c');
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('5','Longueur N°5',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3,1','3','3c');
+            '2', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','3','3c');
 INSERT INTO t_longueur(longueur_id, longueur_nom, longueur_description,longueur_utilisateur_fk_id,longueur_dateCreation, longueur_lastUpdate,longueur_publication, longueur_image,longueur_relai,longueur_voie_fk_id,longueur_cotation)
 VALUES ('6','Longueur N°6',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
-            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3,1','3','3c');
+            '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','3','3c');
+
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 1);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 2);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 3);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 1);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 2);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 3);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 1);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 2);
+INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 3);
+
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 1);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 2);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 3);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 1);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 2);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 3);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 1);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 2);
+INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 3);
 
 -- ====================================================================================================================
 --------------------------------------------------------- CONTRAINTES -------------------------------------------------
@@ -136,7 +156,15 @@ ALTER TABLE t_site_secteur_asso ADD CONSTRAINT t_site_secteur_asso_secteur_fk FO
 ALTER TABLE t_secteur_voie_asso ADD CONSTRAINT t_secteur_voie_asso_secteur_fk FOREIGN KEY (secteur_fk_id) REFERENCES t_secteur ON DELETE CASCADE;
 ALTER TABLE t_secteur_voie_asso ADD CONSTRAINT t_secteur_voie_asso_voie_fk FOREIGN KEY (voie_fk_id) REFERENCES t_voie ON DELETE CASCADE;
 
+-- ====================================================================================================================
+--------------------------------------------------------- SEQUENCES -------------------------------------------------
+-- ====================================================================================================================
 
+ALTER SEQUENCE t_utilisateur_utilisateur_id_seq RESTART WITH 4;
+ALTER SEQUENCE t_site_site_id_seq RESTART WITH 4;
+ALTER SEQUENCE t_secteur_secteur_id_seq RESTART WITH 7;
+ALTER SEQUENCE t_voie_voie_id_seq RESTART WITH 7;
+ALTER SEQUENCE t_longueur_longueur_id_seq RESTART WITH 7;
 
 
 

@@ -36,14 +36,14 @@
                             <h2 class="card-title"><s:property value="nom" /></h2>
                             <p class="card-text"><s:property value="description" /></p>
                             <s:a action="site_detail" class="btn btn-primary">
-                                <s:param name="id" value="id" />
+                                <s:param name="siteId" value="id" />
                                 En savoir plus &rarr;
                             </s:a>
                         </div>
                         <div class="card-footer text-muted">
                             Posté le <s:date name="dateCreation" format="dd/MM/yyyy" /> par
                             <s:a action="utilisateur_detail">
-                                <s:param name="id" value="utilisateur.id" />
+                                <s:param name="utilisateurId" value="utilisateur.id" />
                                 <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
                             </s:a>
                             <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />

@@ -10,7 +10,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class SecteurVoieManagerImpl implements SecteurVoieManager {
+public class SecteurVoieManagerImpl extends AbstractManager implements SecteurVoieManager {
 
 
     @Override
@@ -20,11 +20,15 @@ public class SecteurVoieManagerImpl implements SecteurVoieManager {
 
     @Override
     public List<Voie> findAllBySecteur(int pSecteurId) throws FunctionalException, TechnicalException {
-        return null;
+        List<Voie> vList = daoFactory.getSecteurVoieAssoDao().findAllBySecteur(pSecteurId);
+
+        return vList;
     }
 
     @Override
     public List<Secteur> findAllByVoie(int pVoieId) throws FunctionalException, TechnicalException {
-        return null;
+        List<Secteur> vList = daoFactory.getSecteurVoieAssoDao().findAllByVoie(pVoieId);
+
+        return vList;
     }
 }

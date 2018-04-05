@@ -1,6 +1,5 @@
 package com.parlow.escalade.consumer.dao.contract;
 
-import com.parlow.escalade.consumer.dao.contract.deleted.*;
 
 public interface DaoFactory {
 

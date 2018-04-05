@@ -202,7 +202,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier le profil</h5>
                     <div class="card-body text-center">
-                        <s:a action="utilisateur_modifier" class="btn btn-secondary"><s:param name="id" value="utilisateur.id" />Modifier</s:a>
+                        <s:a action="utilisateur_modifier" class="btn btn-secondary"><s:param name="utilisateurId" value="utilisateur.id" />Modifier</s:a>
                     </div>
                 </div>
             </s:if>

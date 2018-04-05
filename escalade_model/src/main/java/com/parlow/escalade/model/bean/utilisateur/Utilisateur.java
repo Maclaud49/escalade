@@ -1,7 +1,6 @@
 package com.parlow.escalade.model.bean.utilisateur;
 
 import com.parlow.escalade.model.bean.*;
-import com.parlow.escalade.model.bean.deleted.Image;
 
 import java.sql.Date;
 import java.util.List;
@@ -15,7 +14,6 @@ public class Utilisateur {
     private String cotation;
     private Date dateNaissance;
     private List<Topo> topos;
-    private Image profiImage;
     private String email;
     private String password;
     private String profil;
@@ -72,14 +70,6 @@ public class Utilisateur {
 
     public void setTopos(List<Topo> topos) {
         this.topos = topos;
-    }
-
-    public Image getProfiImage() {
-        return profiImage;
-    }
-
-    public void setProfiImage(Image profiImage) {
-        this.profiImage = profiImage;
     }
 
     public String getEmail() {

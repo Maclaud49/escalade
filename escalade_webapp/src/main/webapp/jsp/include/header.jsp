@@ -28,6 +28,15 @@
                         <s:a action="secteur_new" class="dropdown-item">Créer un nouveau secteur</s:a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVoie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Voie
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <s:a action="voie_list" class="dropdown-item">Liste des voies</s:a>
+                        <s:a action="voie_new" class="dropdown-item">Créer un nouveau voie</s:a>
+                    </div>
+                </li>
                 <s:if test="#session.escalade_user">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +45,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <s:a action="logout" class="dropdown-item">Déconnexion</s:a>
                             <s:a action="utilisateur_detail" class="dropdown-item">
-                                <s:param name="id" value="#session.escalade_user.id" />
+                                <s:param name="utilisateurId" value="#session.escalade_user.id" />
                                 Profil
                             </s:a>
                         </div>

@@ -14,8 +14,8 @@
 <div class="container">
 
     <s:if test="hasActionMessages()">
-        <div class="alert alert-success" style="margin-top:20px">
-            <strong>Merci pour ta contribution !</strong><s:actionmessage />
+        <div class="alert alert-success text-center" style="margin-top:20px">
+            <strong>Merci pour ta contribution !</strong><s:actionmessage style="list-style:none" />
         </div>
     </s:if>
 
@@ -41,7 +41,7 @@
                     <p class="card-text"><strong>Description : </strong> <s:property value="secteur.description" /></p>
                     <p class="card-text"><strong>Département : </strong> <s:property value="secteur.departement" /></p>
                     <p class="card-text"><strong>Nombre de voies : </strong> <s:property value="secteur.nbVoies" /></p>
-                    <p class="card-text"><strong>Secteur publié : </strong>
+                    <p class="card-text"><strong>Publié : </strong>
                         <s:if test="secteur.ispublication">
                             Oui
                         </s:if>
@@ -51,24 +51,29 @@
                     </p>
                     <div>
                     <div class="card-text"><strong>Liste des voies : </strong>
+                        <s:if test="secteur.voies.size() == 0">
+                            Pas de voies rattachées à ce secteur
+                        </s:if>
+                        <s:else>
                         <ul class="text-center">
                             <s:iterator value="secteur.voies">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="voie_detail" class="btn btn-primary">
-                                            <s:param name="id" value="voie.id" />
+                                            <s:param name="voieId" value="id" />
                                             <s:property value="nom" />
                                         </s:a>
 
                                     </li>
                             </s:iterator>
                          </ul>
+                        </s:else>
                     </div>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
                     Posté le <s:date name="createdDate" format="dd/MM/yyyy" /> par
                         <s:a action="utilisateur_detail">
-                            <s:param name="id" value="secteur.utilisateur.id" />
+                            <s:param name="utilisateurId" value="secteur.utilisateur.id" />
                             <s:property value="secteur.utilisateur.prenom"/> <s:property value="secteur.utilisateur.nom"/>
                         </s:a>
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
@@ -85,7 +90,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier le secteur</h5>
                     <div class="card-body text-center">
-                        <s:a action="secteur_modifier" class="btn btn-secondary"><s:param name="id" value="secteur.id" />Modifier</s:a>
+                        <s:a action="secteur_modifier" class="btn btn-secondary"><s:param name="secteurId" value="secteur.id" />Modifier</s:a>
                     </div>
                 </div>
             </s:if>

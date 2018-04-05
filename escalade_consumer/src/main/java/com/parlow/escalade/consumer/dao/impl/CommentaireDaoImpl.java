@@ -59,7 +59,7 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
     @Override
     public void update(Commentaire pCommentaire) throws FunctionalException {
         String vSQL_update = "UPDATE t_commentaire SET com_commentaire = ?, com_dateCommentaire = ?, com_utilisateur_fk_id = ?, com_table_fk_id = ?, com_target_table = ? WHERE com_id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pCommentaire.getCommentaire(),pCommentaire.getDateCommentaire(),
+        this.vJdbcTemplate.update(vSQL_update, pCommentaire.getCommentaire(),pCommentaire.getDateCreation(),
                 pCommentaire.getUtilisateur().getId(),pCommentaire.getReference_id(),pCommentaire.getTable(),pCommentaire.getId());
     }
 }

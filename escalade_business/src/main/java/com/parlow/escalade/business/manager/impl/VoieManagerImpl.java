@@ -2,6 +2,7 @@ package com.parlow.escalade.business.manager.impl;
 
 import com.parlow.escalade.business.manager.contract.VoieManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
+import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -20,6 +21,8 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager{
             throw new NotFoundException("Voie non trouvé : ID=" + pId);
         }
         Voie vVoie = daoFactory.getVoieDao().findById(pId);
+        List<Longueur> list = daoFactory.getLongueurDao().findAllByVoieId(pId);
+        vVoie.setLongueurs(list);
         return vVoie;
     }
 

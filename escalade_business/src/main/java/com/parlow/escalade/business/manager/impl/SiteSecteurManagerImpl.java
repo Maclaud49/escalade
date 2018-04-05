@@ -10,7 +10,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-public class SiteSecteurManagerImpl implements SiteSecteurManager {
+public class SiteSecteurManagerImpl extends AbstractManager implements SiteSecteurManager {
     @Override
     public int insert(Site pSite, Secteur pSecteur) throws FunctionalException, TechnicalException {
         return 0;
@@ -18,11 +18,15 @@ public class SiteSecteurManagerImpl implements SiteSecteurManager {
 
     @Override
     public List<Site> findAllBySecteur(int pSecteurId) throws FunctionalException, TechnicalException {
-        return null;
+        List<Site> vList = daoFactory.getSiteSecteurAssoDao().findAllBySecteur(pSecteurId);
+
+        return vList;
     }
 
     @Override
     public List<Secteur> findAllBySite(int pSiteId) throws FunctionalException, TechnicalException {
-        return null;
+        List<Secteur> vList = daoFactory.getSiteSecteurAssoDao().findAllBySite(pSiteId);
+
+        return vList;
     }
 }

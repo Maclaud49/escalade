@@ -157,7 +157,6 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
             this.addActionError(getText("error.longueur.missing.id"));
         } else {
             try {
-                logger.error("id du longueur" + longueurId);
 
                 longueur = managerFactory.getLongueurManager().findById(longueurId);
             } catch (NotFoundException pE) {

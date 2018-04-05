@@ -16,8 +16,10 @@ public interface SecteurManager {
      * @param pId du {@link Secteur}
      * @return {@link Secteur}
      * @throws NotFoundException si non trouvé
+     * @throws TechnicalException si problème avec la base de données
+     * @throws FunctionalException si id est null
      */
-    Secteur findById( int pId )throws NotFoundException;
+    Secteur findById( int pId )throws NotFoundException, TechnicalException,FunctionalException;
 
     /**
      * Renvoie la liste des {@link Secteur}
@@ -50,10 +52,5 @@ public interface SecteurManager {
      */
     void update ( Secteur pSecteur ) throws FunctionalException;
 
-    /**
-     * Renvoie la liste des {@link Secteur} liés à un site
-     * @param siteId du {@link Site}
-     * @return List
-     */
-    List<Secteur> findAllBySiteId(int siteId) throws NotFoundException;
+
 }

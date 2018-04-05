@@ -23,34 +23,38 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public Voie findById(int pId) throws NotFoundException {
-        String vSQL_findById = "SELECT * FROM t_voie WHERE voie_id = ?";
+        String vSQL_findById = "SELECT * FROM t_voie,t_utilisateur WHERE voie_id = ? AND voie_utilisateur_fk_id=utilisateur_id";
         Voie voie = (Voie) this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},
-                new BeanPropertyRowMapper(Voie.class));
+                new VoieMapper());
         return voie;
     }
 
     @Override
     public List<Voie> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_voie";
-        List<Voie> voies  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Voie.class));
+        String vSQL_findAll = "SELECT * FROM t_voie,t_utilisateur WHERE voie_utilisateur_fk_id = utilisateur_id";
+        List<Voie> voies  = this.vJdbcTemplate.query(vSQL_findAll, new VoieMapper());
         return voies;
     }
 
     @Override
     public int insert(Voie pVoie) throws FunctionalException {
-        String vSQL_insert = "INSERT into t_voie (voie_nom, voie_cotation, voie_nbPoints, voie_equipee,secteur_fk_id,voie_interet,voie_utilisateur_fk_id) VALUES(?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_voie (voie_nom,voie_description, voie_lastUpdate, voie_image, voie_dateCreation, voie_utilisateur_fk_id, voie_publication, voie_hauteurVoie, voie_nbPoints, voie_cotation, voie_equipee) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"voie_id"});
                                            pst.setString(1, pVoie.getNom());
-                                           pst.setString(2,pVoie.getCotation());
-                                           pst.setInt(3,pVoie.getNbPoints());
-                                           pst.setBoolean(4,pVoie.isEquipee());
-                                           pst.setInt(5,pVoie.getSecteur().getId());
-                                           pst.setInt(6,pVoie.getInteret());
-                                           pst.setInt(7,pVoie.getUtilisateur().getId());
+                                           pst.setString(2, pVoie.getDescription());
+                                           pst.setTimestamp(3, pVoie.getDateCreation());
+                                           pst.setString(4, pVoie.getImage());
+                                           pst.setTimestamp(5, pVoie.getDateCreation());
+                                           pst.setInt(6, pVoie.getUtilisateur().getId());
+                                           pst.setBoolean(7, false);
+                                           pst.setDouble(8, pVoie.getHauteurVoie());
+                                           pst.setInt(9, pVoie.getNbPoints());
+                                           pst.setString(10, pVoie.getCotation());
+                                           pst.setBoolean(11, pVoie.isEquipee());
                                            return pst;
                                        }
                                    },
@@ -67,10 +71,10 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public void update(Voie pVoie) throws FunctionalException {
-        String vSQL_update = "UPDATE t_voie SET voie_nom = ?, voie_cotation = ?, voie_nbPoints = ?, voie_equipee = ?," +
-                " voie_secteur_fk_id = ?, voie_interet = ?, voie_utilisateur_fk_id = ? WHERE voie_id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(), pVoie.getCotation(), pVoie.getNbPoints(),
-                pVoie.isEquipee(), pVoie.getSecteur().getId(), pVoie.getInteret(), pVoie.getUtilisateur().getId(), pVoie.getId());
+        String vSQL_update = "UPDATE t_voie SET voie_nom = ?, voie_description = ?, voie_lastUpdate = ?, voie_image = ?," +
+                "  voie_publication = ?, voie_hauteurVoie =?, voie_cotation =?, voie_nbPoints = ?, voie_equipee = ? WHERE voie_id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pVoie.getNom(),pVoie.getDescription(),pVoie.getLastUpdate(),
+                pVoie.getImage(),pVoie.isPublication(),pVoie.getHauteurVoie(),pVoie.getCotation(),pVoie.getNbPoints(),pVoie.isEquipee(),pVoie.getId());
     }
 
     @Override

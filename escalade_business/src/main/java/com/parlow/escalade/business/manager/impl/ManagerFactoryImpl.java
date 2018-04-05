@@ -1,7 +1,6 @@
 package com.parlow.escalade.business.manager.impl;
 
 import com.parlow.escalade.business.manager.contract.*;
-import com.parlow.escalade.business.manager.contract.deleted.*;
 import com.parlow.escalade.consumer.dao.contract.SecteurVoieAssoDao;
 import com.parlow.escalade.consumer.dao.contract.SiteSecteurAssoDao;
 
@@ -11,8 +10,7 @@ import javax.inject.Inject;
 @Named
 public final class ManagerFactoryImpl implements ManagerFactory {
 
-    @Inject
-    private AdresseManager adresseManager;
+
     @Inject
     private CommentaireManager commentaireManager;
     @Inject
@@ -30,9 +28,9 @@ public final class ManagerFactoryImpl implements ManagerFactory {
     @Inject
     private VoieManager voieManager;
     @Inject
-    private SiteSecteurAssoDao siteSecteurAssoDao;
+    private SiteSecteurManager siteSecteurManager;
     @Inject
-    private SecteurVoieAssoDao secteurVoieAssoDao;
+    private SecteurVoieManager secteurVoieManager;
 
 
 
@@ -64,15 +62,6 @@ public final class ManagerFactoryImpl implements ManagerFactory {
     @Override
     public void setUtilisateurManager(UtilisateurManager pUtilisateurManager) {
         this.utilisateurManager = pUtilisateurManager;
-    }
-
-    @Override
-    public AdresseManager getAdresseManager() {
-        return adresseManager;
-    }
-    @Override
-    public void setAdresseManager(AdresseManager adresseManager) {
-        this.adresseManager = adresseManager;
     }
     @Override
     public CommentaireManager getCommentaireManager() {
@@ -117,22 +106,20 @@ public final class ManagerFactoryImpl implements ManagerFactory {
 
     @Override
     public SiteSecteurManager getSiteSecteurManager() {
-        return null;
+        return siteSecteurManager;
     }
 
     @Override
-    public void setSiteSecteurManager(SiteSecteurManager siteSecteurManager) {
-
-    }
+    public void setSiteSecteurManager(SiteSecteurManager siteSecteurManager) {this.siteSecteurManager = siteSecteurManager;}
 
     @Override
     public SecteurVoieManager getSecteurVoieManager() {
-        return null;
+        return secteurVoieManager;
     }
 
     @Override
-    public void setSecteurVoieManager(SecteurVoieManager secteurVoieManager) {
+    public void setSecteurVoieManager(SecteurVoieManager secteurVoieManager) {this.secteurVoieManager = secteurVoieManager;}
 
     }
 
-}
+

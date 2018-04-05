@@ -51,10 +51,5 @@ public interface SecteurDao {
      */
     void update ( Secteur pSecteur ) throws FunctionalException;
 
-    /**
-     * Renvoie la liste des {@link Secteur} liés à un site
-     * @param siteId du {@link Site}
-     * @return List
-     */
-    List<Secteur> findAllBySiteId(int siteId) throws NotFoundException;
+
 }

@@ -23,21 +23,21 @@ public class LongueurMapper implements RowMapper<Longueur> {
     protected DaoFactory daoFactory;
 
     public Longueur mapRow(ResultSet rs, int rowNum) throws SQLException {
-        logger.info("Longueur mapRow");
         Longueur longueur = new Longueur();
         longueur.setId(rs.getInt("longueur_id"));
-        longueur.setRelai(rs.getDouble("longueur_relai"));
-        VoieMapper voieMapper = new VoieMapper();
-        Voie voie = voieMapper.mapRow(rs,rowNum);
-        longueur.setVoie(voie);
-        longueur.setCotation(rs.getString("longueur_cotation"));
-        longueur.setLastUpdate(rs.getTimestamp("longueur_lastUpdate"));
+        longueur.setNom(rs.getString("longueur_nom"));
+        longueur.setDescription(rs.getString("longueur_description"));
         longueur.setDateCreation(rs.getTimestamp("longueur_dateCreation"));
+        longueur.setLastUpdate(rs.getTimestamp("longueur_lastUpdate"));
+        longueur.setPublication(rs.getBoolean("longueur_publication"));
+        longueur.setImage(rs.getString("longueur_image"));
+
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
         Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
         longueur.setUtilisateur(utilisateur);
-        longueur.setImage(rs.getString("longueur_image"));
-        longueur.setPublication(rs.getBoolean("longueur_publication"));
+
+        longueur.setRelai(rs.getDouble("longueur_relai"));
+        longueur.setCotation(rs.getString("longueur_cotation"));
 
         return longueur;
     }

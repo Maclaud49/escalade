@@ -20,20 +20,25 @@ public class VoieMapper implements RowMapper<Voie> {
     protected DaoFactory daoFactory;
 
     public Voie mapRow(ResultSet rs, int rowNum) throws SQLException {
-        logger.info("Voie mapRow");
+
         Voie voie = new Voie();
         voie.setId(rs.getInt("voie_id"));
         voie.setNom(rs.getString("voie_nom"));
-        voie.setNbPoints(Integer.parseInt(rs.getString("voie_nbPoints")));
-        voie.setEquipee(Boolean.parseBoolean(rs.getString("voie_equipee")));
         voie.setDescription(rs.getString("voie_description"));
-        voie.setLastUpdate(rs.getTimestamp("voie_lastUpdate"));
         voie.setDateCreation(rs.getTimestamp("voie_dateCreation"));
+        voie.setLastUpdate(rs.getTimestamp("voie_lastUpdate"));
+        voie.setPublication(rs.getBoolean("voie_publication"));
+        voie.setImage(rs.getString("voie_image"));
+
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
         Utilisateur utilisateur = utilisateurMapper.mapRow(rs,rowNum);
         voie.setUtilisateur(utilisateur);
-        logger.info("nom du utilisateur " + voie.getUtilisateur().getNom());
-        voie.setPublication(rs.getBoolean("voie_publication"));
+
+        voie.setHauteurVoie(rs.getDouble("voie_hauteurVoie"));
+        voie.setCotation(rs.getString("voie_cotation"));
+        voie.setNbPoints(rs.getInt("voie_nbPoints"));
+        voie.setEquipee(rs.getBoolean("voie_equipee"));
+        logger.info("equipee "+ voie.isEquipee());
 
         return voie;
     }

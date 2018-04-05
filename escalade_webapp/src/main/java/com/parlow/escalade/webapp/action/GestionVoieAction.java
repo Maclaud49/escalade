@@ -43,8 +43,6 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     private List<String> listCotations;
 
     // ----- Eléments en sortie
-    private List<Longueur> listLongueur;
-    private Longueur longueur;
     private List<Voie> listVoie;
     private Voie voie;
 
@@ -69,22 +67,6 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     }
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    public List<Longueur> getListLongueur() {
-        return listLongueur;
-    }
-
-    public void setListLongueur(List<Longueur> listLongueur) {
-        this.listLongueur = listLongueur;
-    }
-
-    public Longueur getLongueur() {
-        return longueur;
-    }
-
-    public void setLongueur(Longueur longueur) {
-        this.longueur = longueur;
     }
 
     public File getImageTemp() {
@@ -158,7 +140,6 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
             this.addActionError(getText("error.voie.missing.id"));
         } else {
             try {
-                logger.error("id du voie" + voieId);
 
                 voie = managerFactory.getVoieManager().findById(voieId);
             } catch (NotFoundException pE) {
@@ -167,13 +148,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
             this.createdDate = voie.getDateCreation();
             this.lastUpdate = voie.getLastUpdate();
 
-            try {
-                this.listLongueur = managerFactory.getLongueurManager().findAllByVoieId(voieId);
-            } catch (NotFoundException pE) {
-                // this.addActionError(getText("error.voie.notfound", Collections.singletonList(id)));
-            }
-            voie.setLongueurs(this.listLongueur);
-            voie.setNbLongueurs(this.listLongueur.size());
+            voie.setNbLongueurs(this.voie.getLongueurs().size());
         }
 
         return ActionSupport.SUCCESS;
@@ -183,7 +158,6 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
      * @return input / success / error
      */
     public String doCreate() {
-        logger.error("I m here");
 
         String vResult = ActionSupport.INPUT;
 
@@ -192,6 +166,10 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
             Date date = new Date();
             this.voie.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
             this.voie.setDateCreation(new Timestamp(date.getTime()));
+            this.voie.setHauteurVoie(0);
+            this.voie.setNbPoints(0);
+            this.voie.setCotation("3");
+            this.voie.setEquipee(false);
             try {
                 if(this.voie.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
@@ -235,19 +213,19 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
-            try{
-                String filePath = "D:\\IdeaWorkspace\\projectsRep\\escalade\\escalade_webapp\\src\\main\\webapp\\ressources\\images";
-                File file2 = new File(filePath, getImageTempFileName());
-                FileUtils.copyFile(imageTemp, file2);
+            if(imageTemp !=null) {
+                try {
+                    String filePath = "D:\\IdeaWorkspace\\projectsRep\\escalade\\escalade_webapp\\src\\main\\webapp\\ressources\\images";
+                    File file2 = new File(filePath, getImageTempFileName());
+                    FileUtils.copyFile(imageTemp, file2);
 
-            }catch (Exception e)
-            {logger.error("problème lors du upload de l'image " +e);}
+                } catch (Exception e) {
+                    logger.error("problème lors du upload de l'image " + e);
+                }
+                    this.voie.setImage("../../ressources/images/" + getImageTempFileName());
+                }
 
-
-            if(imageTemp!=null){
-                this.voie.setImage("../../ressources/images/"+ getImageTempFileName());
-            }
-            logger.error("id du voie" + voie.getId());
+            logger.info("equipee" + voie.isEquipee());
             try {
                 managerFactory.getVoieManager().update(voie);
                 vResult = ActionSupport.SUCCESS;

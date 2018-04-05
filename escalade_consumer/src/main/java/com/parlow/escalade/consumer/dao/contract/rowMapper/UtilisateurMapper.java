@@ -19,7 +19,7 @@ public class UtilisateurMapper implements RowMapper<Utilisateur> {
     protected DaoFactory daoFactory;
 
     public Utilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
-        logger.info("Utilisateur mapRow");
+
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(rs.getInt("utilisateur_id"));
         utilisateur.setNom(rs.getString("utilisateur_nom"));

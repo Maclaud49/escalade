@@ -153,6 +153,10 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
             this.lastUpdate = site.getLastUpdate();
 
             site.setNbSecteurs(site.getSecteurs().size());
+
+
+
+
         }
 
         return ActionSupport.SUCCESS;

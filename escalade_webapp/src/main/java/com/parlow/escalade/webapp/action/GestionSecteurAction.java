@@ -143,11 +143,14 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
             this.addActionError(getText("error.secteur.missing.id"));
         } else {
             try {
-                logger.error("id du secteur" + secteurId);
 
                 secteur = managerFactory.getSecteurManager().findById(secteurId);
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.secteur.notfound", Collections.singletonList(secteurId)));
+            } catch (TechnicalException e) {
+                e.printStackTrace();
+            } catch (FunctionalException e) {
+                e.printStackTrace();
             }
             this.createdDate = secteur.getDateCreation();
             this.lastUpdate = secteur.getLastUpdate();
@@ -241,6 +244,10 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 this.secteur = managerFactory.getSecteurManager().findById(secteurId);
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(secteurId)));
+            } catch (TechnicalException e) {
+                e.printStackTrace();
+            } catch (FunctionalException e) {
+                e.printStackTrace();
             }
         }
 
