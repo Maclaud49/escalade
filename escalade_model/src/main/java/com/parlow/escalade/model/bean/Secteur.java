@@ -12,15 +12,16 @@ public class Secteur {
     private Integer id;
     private String nom;
     private String description;
-    private List<Voie> voies;
-    private Site site;
-    private Integer nbVoies;
-    private String image;
     private Utilisateur utilisateur;
-    private boolean publication;
     private List<Commentaire> commentaires;
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
+    private boolean publication;
+    private String image;
+
+    private List<Voie> voies;
+    private Integer nbVoies;
+    private String departement;
 
     // ==================== Constructeurs ==============
 
@@ -63,14 +64,6 @@ public class Secteur {
 
     public void setVoies(List<Voie> voies) {
         this.voies = voies;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
     }
 
     public Integer getNbVoies() {
@@ -135,6 +128,14 @@ public class Secteur {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
     }
 
     // ==================== Méthodes =====================

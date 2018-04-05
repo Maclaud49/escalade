@@ -12,20 +12,20 @@ public class Voie {
     private Integer id;
     private String nom;
     private String description;
-    private List<Longueur> longueurs;
-    private Integer nbLongueurs;
-    private double hauteurVoie;
-    private String cotation;
-    private Integer nbPoints;
-    private boolean equipee;
-    private Secteur secteur;
-    private Integer interet;
     private Utilisateur utilisateur;
     private List<Commentaire> commentaires;
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
     private boolean publication;
     private String image;
+
+    private List<Longueur> longueurs;
+    private Integer nbLongueurs;
+    private double hauteurVoie;
+    private String cotation;
+    private Integer nbPoints;
+    private boolean equipee;
+
 
 
     // ==================== Getters/Setters ==============
@@ -85,22 +85,6 @@ public class Voie {
 
     public void setEquipee(boolean equipee) {
         this.equipee = equipee;
-    }
-
-    public Secteur getSecteur() {
-        return secteur;
-    }
-
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
-    }
-
-    public Integer getInteret() {
-        return interet;
-    }
-
-    public void setInteret(Integer interet) {
-        this.interet = interet;
     }
 
     public Utilisateur getUtilisateur() {

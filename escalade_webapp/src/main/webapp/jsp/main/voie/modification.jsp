@@ -13,24 +13,24 @@
 <div class="container" style="margin-top:50px">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Modification des informations du secteur</h1>
+    <h1 class="mt-4 mb-3">Modification des informations du voie</h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <s:a action="index" ><s:text name="home.home"/></s:a>
         </li>
-        <li class="breadcrumb-item active">Modification secteur</li>
+        <li class="breadcrumb-item active">Modification voie</li>
     </ol>
 
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" method="POST" action="secteur_modifier.action" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="voie_modifier.action" enctype="multipart/form-data">
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
                                 <label>Image actuelle</label>
-                                <img class="card-img-top" alt="Card image cap" src="<s:property value="secteur.image" />" >
+                                <img class="card-img-top" alt="Card image cap" src="<s:property value="voie.image" />" >
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <s:file name="imageTemp" class="form-control-file" label="Modifier l'image"/>
                                 </div>
@@ -39,21 +39,21 @@
                         </div>
                     </div>
                     <div style="display: none;">
-                        <s:textfield name="secteur.id" value="%{secteur.id}"/>
-                        <s:textfield name="secteur.utilisateur.id" value="%{secteur.utilisateur.id}"/>
-                        <s:textfield name="secteur.dateCreation" value="%{secteur.dateCreation}"/>
-                        <s:textfield name="secteur.image" value="%{secteur.image}"/>
+                        <s:textfield name="voie.id" value="%{voie.id}"/>
+                        <s:textfield name="voie.utilisateur.id" value="%{voie.utilisateur.id}"/>
+                        <s:textfield name="voie.dateCreation" value="%{voie.dateCreation}"/>
+                        <s:textfield name="voie.image" value="%{voie.image}"/>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
-                                <label>Nom du secteur</label>
+                                <label>Nom de la voie</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:textfield name="secteur.nom" class="form-control" value="%{secteur.nom}" title="Nom du secteur" required="true"/>
+                                    <s:textfield name="voie.nom" class="form-control" value="%{voie.nom}" title="Nom de la voie" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomSecteur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomVoie"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -63,10 +63,10 @@
                             <div class="form-group has-danger">
                                 <label>Description</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:textarea rows="10" name="secteur.description" class="form-control" value="%{secteur.description}" title="Description du secteur" required="true"/>
+                                    <s:textarea rows="10" name="voie.description" class="form-control" value="%{voie.description}" title="Description de la voie" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionSecteur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionVoie"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -74,10 +74,23 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
-                                <label>Département</label>
+                                <label>Hauteur de la voie</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:select  class="form-control" name="secteur.departement"
-                                               list="listDepartements"  emptyOption="true" required="true" value="%{secteur.departement}"/>
+                                    <s:textarea rows="10" name="voie.hauteurVoie" class="form-control" value="%{voie.hauteurVoie}" title="Hauteur de la voie" required="true"/>
+                                </div>
+                                <s:if test="hasFieldErrors()">
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="hauteurVoie"/></small>
+                                </s:if>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-danger">
+                                <label>Cotation</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <s:select  class="form-control" name="voie.cotation"
+                                               list="listCotations"  emptyOption="true" required="true" value="%{voie.cotation}"/>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +98,27 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-check">
-                                <s:checkbox class="form-check-input" name="secteur.publication"  value="%{secteur.publication}" label="Publication"/>
+                                <s:checkbox class="form-check-input" name="voie.equipee"  value="%{voie.equipee}" label="Equipée"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-danger">
+                                <label>Nombre de points</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <s:textarea rows="10" name="voie.nbPoints" class="form-control" value="%{voie.nbPoints}" title="Nombre de points de la voie" required="true"/>
+                                </div>
+                                <s:if test="hasFieldErrors()">
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="nbPointsVoie"/></small>
+                                </s:if>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <s:checkbox class="form-check-input" name="voie.publication"  value="%{voie.publication}" label="Publication"/>
                             </div>
                         </div>
                     </div>
@@ -115,7 +148,7 @@
 
             <!-- Ajouter un secteur -->
             <div class="card mb-4">
-                <h5 class="card-header">Ajouter un secteur à ce secteur</h5>
+                <h5 class="card-header">Ajouter une longueur à cette voie</h5>
                 <div class="card-body text-center">
                     <s:a action="index" class="btn btn-secondary">Ajouter</s:a>
                 </div>

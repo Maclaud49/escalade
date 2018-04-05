@@ -11,23 +11,11 @@ import javax.inject.Inject;
 public class DaoFactoryImpl implements DaoFactory {
 
     @Inject
-    private AdresseDao adresseDao;
-    @Inject
     private CommentaireDao commentaireDao;
-    @Inject
-    private CotationDao cotationDao;
-    @Inject
-    private ImageDao imageDao;
     @Inject
     private LocationDao locationDao;
     @Inject
     private LongueurDao longueurDao;
-    @Inject
-    private PeriodeFavDao periodeFavDao;
-    @Inject
-    private ProfilDao profilDao;
-    @Inject
-    private RegionDao regionDao;
     @Inject
     private SecteurDao secteurDao;
     @Inject
@@ -35,22 +23,14 @@ public class DaoFactoryImpl implements DaoFactory {
     @Inject
     private TopoDao topoDao;
     @Inject
-    private TypeRocherDao typeRocherDao;
-    @Inject
     private UtilisateurDao utilisateurDao;
     @Inject
     private VoieDao voieDao;
     @Inject
-    private DepartementDao departementDao;
+    private SiteSecteurAssoDao siteSecteurAssoDao;
+    @Inject
+    private SecteurVoieAssoDao secteurVoieAssoDao;
 
-    @Override
-    public AdresseDao getAdresseDao() {
-        return adresseDao;
-    }
-    @Override
-    public void setAdresseDao(AdresseDao adresseDao) {
-        this.adresseDao = adresseDao;
-    }
     @Override
     public CommentaireDao getCommentaireDao() {
         return commentaireDao;
@@ -58,22 +38,6 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setCommentaireDao(CommentaireDao commentaireDao) {
         this.commentaireDao = commentaireDao;
-    }
-    @Override
-    public CotationDao getCotationDao() {
-        return cotationDao;
-    }
-    @Override
-    public void setCotationDao(CotationDao cotationDao) {
-        this.cotationDao = cotationDao;
-    }
-    @Override
-    public ImageDao getImageDao() {
-        return imageDao;
-    }
-    @Override
-    public void setImageDao(ImageDao imageDao) {
-        this.imageDao = imageDao;
     }
     @Override
     public LocationDao getLocationDao() {
@@ -90,30 +54,6 @@ public class DaoFactoryImpl implements DaoFactory {
     @Override
     public void setLongueurDao(LongueurDao longueurDao) {
         this.longueurDao = longueurDao;
-    }
-    @Override
-    public PeriodeFavDao getPeriodeFavDao() {
-        return periodeFavDao;
-    }
-    @Override
-    public void setPeriodeFavDao(PeriodeFavDao periodeFavDao) {
-        this.periodeFavDao = periodeFavDao;
-    }
-    @Override
-    public ProfilDao getProfilDao() {
-        return profilDao;
-    }
-    @Override
-    public void setProfilDao(ProfilDao profilDao) {
-        this.profilDao = profilDao;
-    }
-    @Override
-    public RegionDao getRegionDao() {
-        return regionDao;
-    }
-    @Override
-    public void setRegionDao(RegionDao regionDao) {
-        this.regionDao = regionDao;
     }
     @Override
     public SecteurDao getSecteurDao() {
@@ -140,14 +80,6 @@ public class DaoFactoryImpl implements DaoFactory {
         this.topoDao = topoDao;
     }
     @Override
-    public TypeRocherDao getTypeRocherDao() {
-        return typeRocherDao;
-    }
-    @Override
-    public void setTypeRocherDao(TypeRocherDao typeRocherDao) {
-        this.typeRocherDao = typeRocherDao;
-    }
-    @Override
     public UtilisateurDao getUtilisateurDao() {
         return utilisateurDao;
     }
@@ -163,12 +95,25 @@ public class DaoFactoryImpl implements DaoFactory {
     public void setVoieDao(VoieDao voieDao) {
         this.voieDao = voieDao;
     }
+
     @Override
-    public DepartementDao getDepartementDao() {
-        return departementDao;
+    public SiteSecteurAssoDao getSiteSecteurAssoDao() {
+        return null;
     }
+
     @Override
-    public void setDepartementDao(DepartementDao departementDao) {
-        this.departementDao = departementDao;
+    public void setSiteSecteurAssoDao(SiteSecteurAssoDao siteSecteurAssoDao) {
+
     }
+
+    @Override
+    public SecteurVoieAssoDao getSecteurVoieAssoDao() {
+        return null;
+    }
+
+    @Override
+    public void setSecteurVoieAssoDao(SecteurVoieAssoDao secteurVoieAssoDao) {
+
+    }
+
 }

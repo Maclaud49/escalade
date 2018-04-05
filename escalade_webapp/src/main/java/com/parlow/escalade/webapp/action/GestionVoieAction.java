@@ -17,10 +17,7 @@ import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GestionVoieAction extends ActionSupport implements SessionAware {
 
@@ -37,12 +34,13 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
 
 
     // ----- Paramètres en entrée
-    private Integer id;
+    private Integer voieId;
     private Date createdDate;
     private Date lastUpdate;
     private File imageTemp;
     private String imageTempContentType;
     private String imageTempFileName;
+    private List<String> listCotations;
 
     // ----- Eléments en sortie
     private List<Longueur> listLongueur;
@@ -51,12 +49,15 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     private Voie voie;
 
     // ==================== Getters/Setters ====================
-    public Integer getId() {
-        return id;
+
+    public Integer getVoieId() {
+        return voieId;
     }
-    public void setId(Integer pId) {
-        id = pId;
+
+    public void setVoieId(Integer voieId) {
+        this.voieId = voieId;
     }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -126,6 +127,17 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
         this.voie = voie;
     }
 
+    public List<String> getListCotations() {
+        if(this.listCotations==null){
+            this.listCotations=selectCotation();
+        }
+        return listCotations;
+    }
+
+    public void setListCotations(List<String> cotations) {
+        this.listCotations = cotations;
+    }
+
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Voie}
@@ -142,21 +154,21 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
      * @return success / error
      */
     public String doDetail() {
-        if (id == null) {
+        if (voieId == null) {
             this.addActionError(getText("error.voie.missing.id"));
         } else {
             try {
-                logger.error("id du voie" + id);
+                logger.error("id du voie" + voieId);
 
-                voie = managerFactory.getVoieManager().findById(id);
+                voie = managerFactory.getVoieManager().findById(voieId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.voie.notfound", Collections.singletonList(id)));
+                this.addActionError(getText("error.voie.notfound", Collections.singletonList(voieId)));
             }
             this.createdDate = voie.getDateCreation();
             this.lastUpdate = voie.getLastUpdate();
 
             try {
-                this.listLongueur = managerFactory.getLongueurManager().findAllByVoieId(id);
+                this.listLongueur = managerFactory.getLongueurManager().findAllByVoieId(voieId);
             } catch (NotFoundException pE) {
                 // this.addActionError(getText("error.voie.notfound", Collections.singletonList(id)));
             }
@@ -247,14 +259,20 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
         else {
 
             try {
-                this.voie = managerFactory.getVoieManager().findById(id);
+                this.voie = managerFactory.getVoieManager().findById(voieId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
+                this.addActionError(getText("error.user.notfound", Collections.singletonList(voieId)));
             }
         }
 
 
         return vResult;
+    }
+
+    public List<String> selectCotation(){
+        List<String> list = new ArrayList<>();
+        list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
+        return list;
     }
 
     @Override

@@ -164,6 +164,56 @@
             <result name="error">/jsp/error.jsp</result>
         </action>
 
+        <!-- Action listant les longueurs -->
+        <action name="longueur_list" class="gestionLongueurAction" method="doList">
+            <result>/jsp/main/longueur/list.jsp</result>
+        </action>
+        <!-- Action affichant le détail d'un longueur -->
+        <action name="longueur_detail" class="gestionLongueurAction" method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success">/jsp/main/longueur/detail.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de créer un longueur -->
+        <action name="longueur_new" class="gestionLongueurAction" method="doCreate">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/main/longueur/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">longueur_detail</param>
+                <param name="id">${longueur.id}</param>
+            </result>
+        </action>
+        <!-- Action affichant la page de modification d'un site -->
+        <action name="longueur_modifier" class="gestionLongueurAction" method="doModifier">
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png</param>
+                <param name="maximumSize">2048000</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="input">/jsp/main/longueur/modification.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">longueur_detail</param>
+                <param name="id">${longueur.id}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
         <!-- Action affichant le détail d'un utilisateur -->
         <action name="utilisateur_detail" class="gestionUtilisateurAction" method="doDetail">
             <result name="success">/jsp/main/utilisateur/detail.jsp</result>

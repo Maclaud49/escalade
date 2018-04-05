@@ -1,7 +1,6 @@
 package com.parlow.escalade.consumer.dao.contract.rowMapper;
 
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
-import com.parlow.escalade.model.bean.Adresse;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

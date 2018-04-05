@@ -10,7 +10,7 @@ import java.util.List;
 public interface SiteDao {
 
     /**
-     * Renvoie la le {@link Site} demandé
+     * Renvoie le {@link Site} demandé
      * @param pId du {@link Site}
      * @return {@link Site}
      * @throws NotFoundException si non trouvé
@@ -27,7 +27,7 @@ public interface SiteDao {
     /**
      * Insert l'{@link Site} dans la bdd
      * @param pSite le {@link Site}
-     * @return Le {@link Site}
+     * @return Le id généré du {@link Site}
      * @throws FunctionalException si le site est null
      * @throws TechnicalException si problème avec la base de données
      */

@@ -39,7 +39,8 @@
                 <img class="card-img-top" alt="Card image cap" src="<s:property value="secteur.image" />" >
                 <div class="card-body">
                     <p class="card-text"><strong>Description : </strong> <s:property value="secteur.description" /></p>
-                    <p class="card-text"><strong>Nombres de voies : </strong> <s:property value="secteur.nbVoies" /></p>
+                    <p class="card-text"><strong>Département : </strong> <s:property value="secteur.departement" /></p>
+                    <p class="card-text"><strong>Nombre de voies : </strong> <s:property value="secteur.nbVoies" /></p>
                     <p class="card-text"><strong>Secteur publié : </strong>
                         <s:if test="secteur.ispublication">
                             Oui
@@ -51,10 +52,10 @@
                     <div>
                     <div class="card-text"><strong>Liste des voies : </strong>
                         <ul class="text-center">
-                            <s:iterator value="listVoie">
+                            <s:iterator value="secteur.voies">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="voie_detail" class="btn btn-primary">
-                                            <s:param name="id" value="id" />
+                                            <s:param name="id" value="voie.id" />
                                             <s:property value="nom" />
                                         </s:a>
 

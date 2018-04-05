@@ -1,6 +1,5 @@
 package com.parlow.escalade.model.bean;
 
-import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
 
@@ -15,16 +14,17 @@ public class Site {
     //@Size(min = 3, max = 100, message="Le nom doit être supérieur à 3 lettres")
     private String nom;
     private String description;
+    private Utilisateur utilisateur;
+    private List<Commentaire> commentaires;
+    private Timestamp dateCreation;
+    private Timestamp lastUpdate;
+    private boolean publication;
+    private String image;
+
     private List<Secteur> secteurs;
     private String region;
     private Integer nbSecteurs;
     private Integer nbVoies;
-    private Timestamp dateCreation;
-    private Timestamp lastUpdate;
-    private String image;
-    private Utilisateur utilisateur;
-    private boolean publication;
-    private List<Commentaire> commentaires;
 
     // ==================== Constructeurs ==============
 

@@ -14,8 +14,10 @@ public interface SiteManager {
      * @param pId du {@link Site}
      * @return {@link Site}
      * @throws NotFoundException si non trouvé
+     * @throws TechnicalException si problème avec la base de données
+     * @throws FunctionalException si id est null
      */
-    Site findById( int pId )throws NotFoundException;
+    Site findById( int pId )throws NotFoundException, TechnicalException, FunctionalException;
 
     /**
      * Renvoie la liste des {@link Site}

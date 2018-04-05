@@ -1,32 +1,25 @@
 package com.parlow.escalade.webapp.action;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-import java.sql.Timestamp;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.*;
 
-
-/**
- * Action de gestion des {@link Secteur}
- */
-public class GestionSecteurAction extends ActionSupport implements  SessionAware {
+public class GestionLongueurAction  extends ActionSupport implements SessionAware {
 
 
 
@@ -37,30 +30,32 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private Map<String, Object> session;
 
 
-    private static final Logger logger = LogManager.getLogger(GestionSecteurAction.class);
+    private static final Logger logger = LogManager.getLogger(GestionLongueurAction.class);
 
 
     // ----- Paramètres en entrée
-    private Integer secteurId;
+    private Integer longueurId;
     private Date createdDate;
     private Date lastUpdate;
     private File imageTemp;
     private String imageTempContentType;
     private String imageTempFileName;
-    private List<String> listDepartements;
+    private List<String> listCotations;
 
     // ----- Eléments en sortie
-    private List<Secteur> listSecteur;
-    private Secteur secteur;
+    private List<Longueur> listLongueur;
+    private Longueur longueur;
+    private List<Voie> listVoie;
+    private Voie voie;
 
     // ==================== Getters/Setters ====================
 
-    public Integer getSecteurId() {
-        return secteurId;
+    public Integer getLongueurId() {
+        return longueurId;
     }
 
-    public void setSecteurId(Integer secteurId) {
-        this.secteurId = secteurId;
+    public void setLongueurId(Integer longueurId) {
+        this.longueurId = longueurId;
     }
 
     public Date getCreatedDate() {
@@ -76,19 +71,19 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         this.lastUpdate = lastUpdate;
     }
 
-    public List<Secteur> getListSecteur() {
-        return listSecteur;
+    public List<Longueur> getListLongueur() {
+        return listLongueur;
     }
 
-    public void setListSecteur(List<Secteur> listSecteur) {
-        this.listSecteur = listSecteur;
+    public void setListLongueur(List<Longueur> listLongueur) {
+        this.listLongueur = listLongueur;
     }
-    public Secteur getSecteur() {
-        return secteur;
+    public Longueur getLongueur() {
+        return longueur;
     }
 
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
+    public void setLongueur(Longueur longueur) {
+        this.longueur = longueur;
     }
 
     public File getImageTemp() {
@@ -114,51 +109,70 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     public void setImageTempFileName(String imageTempFileName) {
         this.imageTempFileName = imageTempFileName;
     }
-    
-    public List<String> getListDepartements() {
-        if(this.listDepartements==null){
-            this.listDepartements=selectDepartement();
-        }
-        return listDepartements;
+
+    public List<Voie> getListVoie() {
+        return listVoie;
     }
-    
+
+    public void setListVoie(List<Voie> listVoie) {
+        this.listVoie = listVoie;
+    }
+
+    public Voie getVoie() {
+        return voie;
+    }
+
+    public void setVoie(Voie voie) {
+        this.voie = voie;
+    }
+
+    public List<String> getListCotations() {
+        if(this.listCotations==null){
+            this.listCotations=selectCotation();
+        }
+        return listCotations;
+    }
+
+    public void setListCotations(List<String> cotations) {
+        this.listCotations = cotations;
+    }
 
     // ==================== Méthodes ====================
     /**
-     * Action listant les {@link Secteur}
+     * Action listant les {@link Longueur}
      * @return success
      */
     public String doList() {
-        listSecteur = managerFactory.getSecteurManager().findAll();
+        listLongueur = managerFactory.getLongueurManager().findAll();
         return ActionSupport.SUCCESS;
     }
 
 
     /**
-     * Action affichant les détails d'un {@link Secteur}
+     * Action affichant les détails d'un {@link Longueur}
      * @return success / error
      */
     public String doDetail() {
-        if (secteurId == null) {
-            this.addActionError(getText("error.secteur.missing.id"));
+        if (longueurId == null) {
+            this.addActionError(getText("error.longueur.missing.id"));
         } else {
             try {
-                logger.error("id du secteur" + secteurId);
+                logger.error("id du longueur" + longueurId);
 
-                secteur = managerFactory.getSecteurManager().findById(secteurId);
+                longueur = managerFactory.getLongueurManager().findById(longueurId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.secteur.notfound", Collections.singletonList(secteurId)));
+                this.addActionError(getText("error.longueur.notfound", Collections.singletonList(longueurId)));
             }
-            this.createdDate = secteur.getDateCreation();
-            this.lastUpdate = secteur.getLastUpdate();
+            this.createdDate = longueur.getDateCreation();
+            this.lastUpdate = longueur.getLastUpdate();
 
-            secteur.setNbVoies(secteur.getVoies().size());
+
         }
 
         return ActionSupport.SUCCESS;
     }
     /**
-     * Action permettant de créer un nouveau {@link Secteur}
+     * Action permettant de créer un nouveau {@link Longueur}
      * @return input / success / error
      */
     public String doCreate() {
@@ -166,19 +180,19 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
         String vResult = ActionSupport.INPUT;
 
-        // ===== Validation de l'ajout de secteur (secteur != null)
-        if (this.secteur != null) {
+        // ===== Validation de l'ajout de longueur (longueur != null)
+        if (this.longueur != null) {
             Date date = new Date();
-            this.secteur.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
-            this.secteur.setDateCreation(new Timestamp(date.getTime()));
+            this.longueur.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
+            this.longueur.setDateCreation(new Timestamp(date.getTime()));
             try {
-                if(this.secteur.getImage()==null){
+                if(this.longueur.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
-                    this.secteur.setImage(image);
+                    this.longueur.setImage(image);
                 }
-                this.secteur.setId(managerFactory.getSecteurManager().insert(this.secteur));
+                this.longueur.setId(managerFactory.getLongueurManager().insert(this.longueur));
                 vResult = ActionSupport.SUCCESS;
-                this.addActionMessage("Secteur ajouté avec succès");
+                this.addActionMessage("Longueur ajouté avec succès");
 
             } catch (FunctionalException pEx) {
                 this.addActionError(pEx.getMessage());
@@ -200,7 +214,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
 
     /**
-     * Action permetttant la modification d'un {@link Secteur}
+     * Action permetttant la modification d'un {@link Longueur}
      * @return success / error
      */
     public String doModifier() throws IOException {
@@ -208,9 +222,9 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         String vResult = ActionSupport.INPUT;
 
         //vérification si affiche les données ou les update
-        if (this.secteur != null) {
+        if (this.longueur != null) {
             Date date = new Date();
-            this.secteur.setLastUpdate(new Timestamp(date.getTime()));
+            this.longueur.setLastUpdate(new Timestamp(date.getTime()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
@@ -224,11 +238,11 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
 
             if(imageTemp!=null){
-                this.secteur.setImage("../../ressources/images/"+ getImageTempFileName());
+                this.longueur.setImage("../../ressources/images/"+ getImageTempFileName());
             }
-            logger.error("id du secteur" + secteur.getId());
+            logger.error("id du longueur" + longueur.getId());
             try {
-                managerFactory.getSecteurManager().update(secteur);
+                managerFactory.getLongueurManager().update(longueur);
                 vResult = ActionSupport.SUCCESS;
             } catch (FunctionalException e) {
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
@@ -238,9 +252,9 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         else {
 
             try {
-                this.secteur = managerFactory.getSecteurManager().findById(secteurId);
+                this.longueur = managerFactory.getLongueurManager().findById(longueurId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(secteurId)));
+                this.addActionError(getText("error.user.notfound", Collections.singletonList(longueurId)));
             }
         }
 
@@ -248,18 +262,18 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         return vResult;
     }
 
-    public List<String> selectDepartement(){
+    public List<String> selectCotation(){
         List<String> list = new ArrayList<>();
-        list =  Arrays.asList("Ardennes","Aube","Marne","Haute-Marne","Meurthe-et-Moselle","Meuse","Moselle","Bas-Rhin","Haut-Rhin","Vosges","Charente","Charente-Maritime","Corrèze","Creuse","Deux-Sèvres","Dordogne","Gironde","Landes","Lot-et-Garonne","Pyrénées-Atlantiques","Haute-Vienne","Vienne","Ain","Allier","Ardèche","Cantal","Drôme","Haute-Loire","Isère","Loire","Puy-de-Dôme","Rhône","Savois","Haute-Savoie","Côte-d''Or","Doubs","Jura","Nièvre","Saône-et-Loire","Haute-Saône","Territoire de Belfort","Yonne","Côtes-d''Armor","Finistère","Ille-et-Vilaine","Morbihan","Cher","Eure-et-Loir","Indre","Indre-et-Loire","Loir-et-Cher","Loiret","Corse-du-Sud","Haute-Corse","Essonne","Hauts-de-Seine","Paris","Seine-Saint-Denis","Seine-et-Marne","Val-de-Marne","Val-d''Oise","Yvelines","Ariège","Aude","Aveyron","Gard","Haute-Garonne","Gers","Lot","Hautes-Pyrénées","Hérault","Lozère","Pyrénées-Orientales","Tarn","Tarn-et-Garonne","Aisne","Nord","Oise","Pas-de-Calais","Somme","Calvados","Eure","Manche","Orne","Seine-Maritime","Loire-Atlantique","Maine-et-Loire","Mayenne","Sarthe","Vendée","Alpes-de-Haute-Provence","Hautes-Alpes","Alpes-Maritimes","Bouches-du-Rhône","Var","Vaucluse");
+        list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
         return list;
     }
 
     @Override
     public void validate() {
-        if (this.secteur != null) {
-            if (secteur.getNom().length() < 3) {
+        if (this.longueur != null) {
+            if (longueur.getNom().length() < 3) {
 
-                addFieldError("secteurNom", "Le nom du secteur doit faire au moins 3 lettres");
+                addFieldError("longueurNom", "Le nom du longueur doit faire au moins 3 lettres");
             }
         }
     }

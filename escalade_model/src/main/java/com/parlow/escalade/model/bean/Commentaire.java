@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Commentaire {
     // ==================== Attributs ====================
     private Integer id;
-    private Timestamp dateCommentaire;
+    private Timestamp dateCreation;
     private String commentaire;
     private Utilisateur utilisateur;
     private Integer reference_id;
@@ -22,14 +22,6 @@ public class Commentaire {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Timestamp getDateCommentaire() {
-        return dateCommentaire;
-    }
-
-    public void setDateCommentaire(Timestamp dateCommentaire) {
-        this.dateCommentaire = dateCommentaire;
     }
 
     public Utilisateur getUtilisateur() {
@@ -62,6 +54,14 @@ public class Commentaire {
 
     public void setTable(String table) {
         this.target_table = table;
+    }
+
+    public Timestamp getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Timestamp dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
     // ==================== Méthodes =====================

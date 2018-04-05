@@ -44,15 +44,15 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public int insert(Site pSite) throws FunctionalException, TechnicalException{
-        String vSQL_insert = "INSERT into t_site (site_nom, site_region, site_description,site_lastUpdate, site_image, site_dateCreation, site_utilisateur_fk_id, site_publication) VALUES(?,?,?,?,?,?,?,?)";
+        String vSQL_insert = "INSERT into t_site (site_nom,site_description, site_region, site_lastUpdate, site_image, site_dateCreation, site_utilisateur_fk_id, site_publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update( new PreparedStatementCreator() {
                                        public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                            PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"site_id"});
                                                pst.setString(1, pSite.getNom());
-                                               pst.setString(2, pSite.getRegion());
-                                               pst.setString(3, pSite.getDescription());
+                                               pst.setString(2, pSite.getDescription());
+                                               pst.setString(3, pSite.getRegion());
                                                pst.setTimestamp(4, pSite.getDateCreation());
                                                pst.setString(5, pSite.getImage());
                                                pst.setTimestamp(6, pSite.getDateCreation());

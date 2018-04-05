@@ -17,10 +17,6 @@ public interface ManagerFactory {
 
     void setUtilisateurManager(UtilisateurManager pUtilisateurManager);
 
-    RegionManager getRegionManager();
-
-    void setRegionManager(RegionManager pRegionManager);
-
     AdresseManager getAdresseManager();
 
     void setAdresseManager(AdresseManager adresseManager);
@@ -28,14 +24,6 @@ public interface ManagerFactory {
     CommentaireManager getCommentaireManager();
 
     void setCommentaireManager(CommentaireManager commentaireManager);
-
-    CotationManager getCotationManager();
-
-    void setCotationManager(CotationManager cotationManager);
-
-    ImageManager getImageManager();
-
-    void setImageManager(ImageManager imageManager);
 
     LocationManager getLocationManager();
 
@@ -45,27 +33,19 @@ public interface ManagerFactory {
 
     void setLongueurManager(LongueurManager longueurManager);
 
-    PeriodeFavManager getPeriodeFavManager();
-
-    void setPeriodeFavManager(PeriodeFavManager periodeFavManager);
-
-    ProfilManager getProfilManager();
-
-    void setProfilManager(ProfilManager profilManager);
-
     TopoManager getTopoManager();
 
     void setTopoManager(TopoManager topoManager);
-
-    TypeRocherManager getTypeRocher();
-
-    void setTypeRocher(TypeRocherManager typeRocher);
 
     VoieManager getVoieManager();
 
     void setVoieManager(VoieManager voieManager);
 
-    DepartementManager getDepartementManager();
+    SiteSecteurManager getSiteSecteurManager();
 
-    void setDepartementManager(DepartementManager departementManager);
+    void setSiteSecteurManager(SiteSecteurManager siteSecteurManager);
+
+    SecteurVoieManager getSecteurVoieManager();
+
+    void setSecteurVoieManager(SecteurVoieManager secteurVoieManager);
 }

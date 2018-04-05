@@ -3,22 +3,28 @@ package com.parlow.escalade.model.bean;
 import com.parlow.escalade.model.bean.deleted.Image;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Topo {
 
     // ==================== Attributs ====================
-    private Integer id;
+    private Integer id;;
     private String nom;
+    private String description;
+    private Utilisateur utilisateur;
+    private List<Commentaire> commentaires;
+    private Timestamp dateCreation;
+    private Timestamp lastUpdate;
+    private boolean publication;
+    private String image;
+
     private String region;
     private Integer nbSites;
     private Integer nbSecteurs;
     private Integer nbVoies;
     private boolean disponible;
-    private String description;
-    private Image image;
-    private Utilisateur utilisateur;
-    private List<Commentaire> commentaires;
+
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -93,20 +99,44 @@ public class Topo {
         this.region = region;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public List<Commentaire> getCommentaires() {
         return commentaires;
     }
 
     public void setCommentaires(List<Commentaire> commentaires) {
         this.commentaires = commentaires;
+    }
+
+    public Timestamp getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Timestamp dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public boolean isPublication() {
+        return publication;
+    }
+
+    public void setPublication(boolean publication) {
+        this.publication = publication;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     // ==================== Méthodes =====================

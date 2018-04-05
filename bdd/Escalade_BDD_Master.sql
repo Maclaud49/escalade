@@ -42,53 +42,54 @@ CREATE TABLE t_topo (
 CREATE TABLE t_site (
   site_id SERIAL PRIMARY KEY,
 	site_nom CHARACTER VARYING(20) NOT NULL,
-	site_region CHARACTER VARYING(30),
 	site_description CHARACTER VARYING(500),
-	site_lastUpdate TIMESTAMP,
-	site_dateCreation TIMESTAMP,
-	site_image CHARACTER VARYING(100),
 	site_utilisateur_fk_id INTEGER,
-	site_publication boolean
-);
-
-CREATE TABLE t_departement (
-	departement_id SERIAL PRIMARY KEY,
-	departement_departement CHARACTER VARYING(30) NOT NULL,
-	departement_region CHARACTER VARYING(30)
+	site_dateCreation TIMESTAMP,
+	site_lastUpdate TIMESTAMP,
+	site_publication boolean,
+	site_image CHARACTER VARYING(100),
+	site_region CHARACTER VARYING(50)
 );
 
 CREATE TABLE t_secteur (
 	secteur_id SERIAL PRIMARY KEY,
-	secteur_nom CHARACTER VARYING(15) NOT NULL,
-	secteur_site_fk_id INTEGER,
+	secteur_nom CHARACTER VARYING(20) NOT NULL,
+	secteur_description CHARACTER VARYING(500),
 	secteur_utilisateur_fk_id INTEGER,
-	secteur_publication boolean,
-	secteur_lastUpdate TIMESTAMP,
 	secteur_dateCreation TIMESTAMP,
-	secteur_description CHARACTER VARYING(500)
+	secteur_lastUpdate TIMESTAMP,
+	secteur_publication boolean,
+	secteur_image CHARACTER VARYING(100),
+	secteur_departement CHARACTER VARYING(50)
 );
    
 CREATE TABLE t_voie (
 	voie_id SERIAL PRIMARY KEY,
-	voie_nom CHARACTER VARYING(15) NOT NULL,
+	voie_nom CHARACTER VARYING(20) NOT NULL,
+	voie_description CHARACTER VARYING(500),
+	voie_utilisateur_fk_id INTEGER,
+	voie_dateCreation TIMESTAMP,
+	voie_lastUpdate TIMESTAMP,
+	voie_publication boolean,
+	voie_image CHARACTER VARYING(100),
+	voie_hauteurVoie NUMERIC(2),
 	voie_cotation CHARACTER VARYING(15),
 	voie_nbPoints INTEGER,
-	voie_equipee BOOLEAN,
-	voie_secteur_fk_id INTEGER,
-	voie_interet INTEGER,
-	voie_utilisateur_fk_id INTEGER,
-	voie_lastUpdate TIMESTAMP,
-	voie_dateCreation TIMESTAMP,
-	voie_description CHARACTER VARYING(500),
-	voie_publication boolean
+	voie_equipee BOOLEAN
 );
 
 CREATE TABLE t_longueur (
 	longueur_id SERIAL PRIMARY KEY,
+	longueur_nom CHARACTER VARYING(20) NOT NULL,
+	longueur_description CHARACTER VARYING(500),
+	longueur_utilisateur_fk_id INTEGER,
+	longueur_dateCreation TIMESTAMP,
+	longueur_lastUpdate TIMESTAMP,
+	longueur_publication boolean,
+	longueur_image CHARACTER VARYING(100),
 	longueur_relai NUMERIC(2),
 	longueur_voie_fk_id INTEGER,
-	longueur_cotation CHARACTER VARYING(15),
-	longueur_utilisateur_fk_id INTEGER
+	longueur_cotation CHARACTER VARYING(15)
 );
 
 CREATE TABLE t_utilisateur(
@@ -118,11 +119,23 @@ CREATE TABLE t_location_topo(
 
 CREATE TABLE t_commentaire (
 	com_id  SERIAL PRIMARY KEY,
-	com_dateCommentaire TIMESTAMP,
+	com_dateCreation TIMESTAMP,
 	com_commentaire CHARACTER VARYING(200),
 	com_utilisateur_fk_id INTEGER,
 	com_table_fk_id INTEGER,
 	com_target_table CHARACTER VARYING(20)
+);
+
+CREATE TABLE t_site_secteur_asso (
+	site_secteur_asso_id SERIAL PRIMARY KEY,
+	site_fk_id INTEGER,
+	secteur_fk_id INTEGER
+);
+
+CREATE TABLE t_secteur_voie_asso (
+	secteur_voie_asso_id SERIAL PRIMARY KEY,
+	secteur_fk_id INTEGER,
+	voie_fk_id INTEGER
 );
 
 -- ====================================================================================================================

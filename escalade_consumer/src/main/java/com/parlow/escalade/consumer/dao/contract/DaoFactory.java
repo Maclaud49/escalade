@@ -5,21 +5,10 @@ import com.parlow.escalade.consumer.dao.contract.deleted.*;
 public interface DaoFactory {
 
 
-    AdresseDao getAdresseDao();
-
-    void setAdresseDao(AdresseDao adresseDao);
 
     CommentaireDao getCommentaireDao();
 
     void setCommentaireDao(CommentaireDao commentaireDao);
-
-    CotationDao getCotationDao();
-
-    void setCotationDao(CotationDao cotationDao);
-
-    ImageDao getImageDao();
-
-    void setImageDao(ImageDao imageDao);
 
     LocationDao getLocationDao();
 
@@ -28,18 +17,6 @@ public interface DaoFactory {
     LongueurDao getLongueurDao();
 
     void setLongueurDao(LongueurDao longueurDao);
-
-    PeriodeFavDao getPeriodeFavDao();
-
-    void setPeriodeFavDao(PeriodeFavDao periodeFavDao);
-
-    ProfilDao getProfilDao();
-
-    void setProfilDao(ProfilDao profilDao);
-
-    RegionDao getRegionDao();
-
-    void setRegionDao(RegionDao regionDao);
 
     SecteurDao getSecteurDao();
 
@@ -53,10 +30,6 @@ public interface DaoFactory {
 
     void setTopoDao(TopoDao topoDao);
 
-    TypeRocherDao getTypeRocherDao();
-
-    void setTypeRocherDao(TypeRocherDao typeRocherDao);
-
     UtilisateurDao getUtilisateurDao();
 
     void setUtilisateurDao(UtilisateurDao utilisateurDao);
@@ -65,7 +38,12 @@ public interface DaoFactory {
 
     void setVoieDao(VoieDao voieDao);
 
-    DepartementDao getDepartementDao();
+    SiteSecteurAssoDao getSiteSecteurAssoDao();
 
-    void setDepartementDao  (DepartementDao departementDao);
+    void setSiteSecteurAssoDao(SiteSecteurAssoDao siteSecteurAssoDao);
+
+    SecteurVoieAssoDao getSecteurVoieAssoDao();
+
+    void setSecteurVoieAssoDao(SecteurVoieAssoDao secteurVoieAssoDao);
+
 }

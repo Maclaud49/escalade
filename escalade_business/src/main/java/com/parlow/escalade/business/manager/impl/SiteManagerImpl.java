@@ -9,6 +9,7 @@ import com.parlow.escalade.business.manager.contract.SiteManager;
 import com.parlow.escalade.business.manager.contract.UtilisateurManager;
 import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.consumer.dao.contract.SiteDao;
+import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -33,11 +34,13 @@ import javax.validation.ConstraintViolationException;
 public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
     @Override
-    public Site findById(int pId) throws NotFoundException {
+    public Site findById(int pId) throws NotFoundException, TechnicalException, FunctionalException {
         if (pId < 1) {
             throw new NotFoundException("Site non trouvé : ID=" + pId);
         }
         Site vSite = daoFactory.getSiteDao().findById(pId);
+        List<Secteur> list = daoFactory.getSiteSecteurAssoDao().findAllBySite(vSite.getId());
+        vSite.setSecteurs(list);
 
         return vSite;
     }

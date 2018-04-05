@@ -42,7 +42,7 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
 
 
     // ----- Paramètres en entrée
-    private Integer id;
+    private Integer siteId;
     private Date createdDate;
     private Date lastUpdate;
     private File imageTemp;
@@ -53,16 +53,17 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     private List<Site> listSite;
     private List<String> listRegions;
     private Site site;
-    private List<Secteur> listSecteur;
-    private Secteur secteur;
 
     // ==================== Getters/Setters ====================
-    public Integer getId() {
-        return id;
+
+    public Integer getSiteId() {
+        return siteId;
     }
-    public void setId(Integer pId) {
-        id = pId;
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
     }
+
     public List<Site> getListSite() {
         return listSite;
     }
@@ -94,20 +95,6 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
         this.lastUpdate = lastUpdate;
     }
 
-    public List<Secteur> getListSecteur() {
-        return listSecteur;
-    }
-
-    public void setListSecteur(List<Secteur> listSecteur) {
-        this.listSecteur = listSecteur;
-    }
-    public Secteur getSecteur() {
-        return secteur;
-    }
-
-    public void setSecteur(Secteur secteur) {
-        this.secteur = secteur;
-    }
 
     public File getImageTemp() {
         return imageTemp;
@@ -148,26 +135,24 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
      * @return success / error
      */
     public String doDetail() {
-        if (id == null) {
+        if (siteId == null) {
             this.addActionError(getText("error.site.missing.id"));
         } else {
             try {
-                logger.error("id du site" + id);
+                logger.error("id du site" + siteId);
 
-                site = managerFactory.getSiteManager().findById(id);
+                site = managerFactory.getSiteManager().findById(siteId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
+                this.addActionError(getText("error.site.notfound", Collections.singletonList(siteId)));
+            } catch (TechnicalException e) {
+                this.addActionError(e.getMessage());
+            } catch (FunctionalException e) {
+                this.addActionError(e.getMessage());
             }
             this.createdDate = site.getDateCreation();
             this.lastUpdate = site.getLastUpdate();
 
-            try {
-                this.listSecteur = managerFactory.getSecteurManager().findAllBySiteId(id);
-            } catch (NotFoundException pE) {
-               // this.addActionError(getText("error.site.notfound", Collections.singletonList(id)));
-            }
-            site.setSecteurs(this.listSecteur);
-            site.setNbSecteurs(this.listSecteur.size());
+            site.setNbSecteurs(site.getSecteurs().size());
         }
 
         return ActionSupport.SUCCESS;
@@ -260,9 +245,13 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
         else {
 
             try {
-                this.site = managerFactory.getSiteManager().findById(id);
-            } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(id)));
+                this.site = managerFactory.getSiteManager().findById(siteId);
+            } catch (NotFoundException e) {
+                this.addActionError(e.getMessage());
+            } catch (TechnicalException e) {
+                this.addActionError(e.getMessage());
+            } catch (FunctionalException e) {
+                this.addActionError(e.getMessage());
             }
         }
 

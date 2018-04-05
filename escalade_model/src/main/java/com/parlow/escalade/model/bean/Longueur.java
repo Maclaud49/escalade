@@ -9,15 +9,19 @@ public class Longueur {
 
     // ==================== Attributs ====================
     private Integer id;
-    private double relai;
-    private Voie voie;
-    private String cotation;
+    private String nom;
+    private String description;
     private Utilisateur utilisateur;
     private List<Commentaire> commentaires;
     private Timestamp dateCreation;
     private Timestamp lastUpdate;
     private boolean publication;
     private String image;
+
+    private double relai;
+    private Voie voie;
+    private String cotation;
+
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -100,5 +104,21 @@ public class Longueur {
         this.image = image;
     }
 
-// ==================== Méthodes =====================
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    // ==================== Méthodes =====================
 }
