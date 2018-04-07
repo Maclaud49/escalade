@@ -19,7 +19,7 @@
         <li class="breadcrumb-item">
             <s:a action="index" ><s:text name="home.home"/></s:a>
         </li>
-        <li class="breadcrumb-item active">Modification longueur</li>
+        <li class="breadcrumb-item active">Modification de la longueur</li>
     </ol>
 
     <div class="row">

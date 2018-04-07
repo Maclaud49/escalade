@@ -38,7 +38,7 @@ public class VoieMapper implements RowMapper<Voie> {
         voie.setCotation(rs.getString("voie_cotation"));
         voie.setNbPoints(rs.getInt("voie_nbPoints"));
         voie.setEquipee(rs.getBoolean("voie_equipee"));
-        logger.info("equipee "+ voie.isEquipee());
+
 
         return voie;
     }

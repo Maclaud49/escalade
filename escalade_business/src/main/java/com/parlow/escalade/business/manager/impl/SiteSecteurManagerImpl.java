@@ -12,8 +12,8 @@ import java.util.List;
 @Named
 public class SiteSecteurManagerImpl extends AbstractManager implements SiteSecteurManager {
     @Override
-    public int insert(Site pSite, Secteur pSecteur) throws FunctionalException, TechnicalException {
-        return 0;
+    public int insert(int pSiteId, int pSecteurId) throws FunctionalException, TechnicalException {
+        return daoFactory.getSiteSecteurAssoDao().insert(pSiteId,pSecteurId);
     }
 
     @Override

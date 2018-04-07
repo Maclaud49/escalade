@@ -93,7 +93,7 @@
                             <directory>src/main/webapp</directory>
                             <includes>
                                 <include>jsp/include/footer.jsp</include>
-                                <include>META-INF/jdbc.properties</include>
+                                <include>META-INF/app.properties</include>
                                 <include>META-INF/context.xml</include>
                                 <include>META-INF/webappContext.xml</include>
                             </includes>
@@ -103,7 +103,7 @@
                             <directory>src/main/resources</directory>
                             <includes>
                                 <include>webappContext.xml</include>
-                                <include>jdbc.properties</include>
+                                <include>app.properties</include>
                             </includes>
                             <filtering>true</filtering>
                         </resource>
@@ -147,7 +147,7 @@
         <profile>
             <id>target-dev</id>
             <properties>
-                <application.images.path>D:\IdeaWorkspace\projectsRep\escalade\escalade_webapp\src\main\webapp\ressources\images</application.images.path>
+                <images.path>D:\IdeaWorkspace\projectsRep\escalade\escalade_webapp\src\main\webapp\ressources\images</images.path>
                 <dataSource.url>jdbc:postgresql://localhost:5432/jeeparlo_escalade</dataSource.url>
 
             </properties>

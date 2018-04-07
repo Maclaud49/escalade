@@ -11,12 +11,12 @@ public interface SecteurVoieAssoDao {
 
     /**
      * Insert l'association entre le {@link Voie} et le {@link Secteur}
-     * @param pVoie,pSecteur le {@link Voie} et le {@link Secteur} 
+     * @param pVoieId,pSecteurId le id du {@link Voie} et le id du {@link Secteur}
      * @return Le id généré
      * @throws FunctionalException si le voie ou le secteur est null
      * @throws TechnicalException si problème avec la base de données
      */
-    int insert( Voie pVoie, Secteur pSecteur )throws FunctionalException, TechnicalException;
+    int insert( int pSecteurId, int pVoieId )throws FunctionalException, TechnicalException;
 
     /**
      * Renvoie la liste des {@link Voie}

@@ -2,7 +2,6 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.deleted.Profil;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
@@ -76,8 +75,8 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
         String vResult = ActionSupport.INPUT;
         if (!StringUtils.isAllEmpty(nom, prenom, email, password)) {
             Utilisateur vUtilisateur = new Utilisateur();
-            vUtilisateur.setNom(nom);
-            vUtilisateur.setPrenom(prenom);
+            vUtilisateur.setNom(premiereLettreMaj(nom));
+            vUtilisateur.setPrenom(premiereLettreMaj(prenom));
             vUtilisateur.setEmail(email);
             vUtilisateur.setPassword(password);
             vUtilisateur.setProfil("ADMIN");
@@ -94,6 +93,12 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             }
         }
         return vResult;
+    }
+
+    //transforme la premiere lettre d'un string en majuscule
+    public String premiereLettreMaj(String str){
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
+@PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
 public class GestionLongueurAction  extends ActionSupport implements SessionAware {
 
 
@@ -28,7 +31,8 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
-
+    @Value("${images.path}")
+    private String cheminImages;
 
     private static final Logger logger = LogManager.getLogger(GestionLongueurAction.class);
 
@@ -184,6 +188,8 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
             Date date = new Date();
             this.longueur.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
             this.longueur.setDateCreation(new Timestamp(date.getTime()));
+            longueur.setDescription(premiereLettreMaj(this.longueur.getDescription()));
+            longueur.setNom(premiereLettreMaj(this.longueur.getNom()));
             try {
                 if(this.longueur.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
@@ -224,11 +230,13 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
         if (this.longueur != null) {
             Date date = new Date();
             this.longueur.setLastUpdate(new Timestamp(date.getTime()));
+            longueur.setDescription(premiereLettreMaj(this.longueur.getDescription()));
+            longueur.setNom(premiereLettreMaj(this.longueur.getNom()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
             try{
-                String filePath = "D:\\IdeaWorkspace\\projectsRep\\escalade\\escalade_webapp\\src\\main\\webapp\\ressources\\images";
+                String filePath = cheminImages;
                 File file2 = new File(filePath, getImageTempFileName());
                 FileUtils.copyFile(imageTemp, file2);
 
@@ -259,6 +267,12 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
 
 
         return vResult;
+    }
+
+    //transforme la premiere lettre d'un string en majuscule
+    public String premiereLettreMaj(String str){
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     public List<String> selectCotation(){

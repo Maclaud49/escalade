@@ -18,6 +18,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 
 import javax.inject.Inject;
@@ -26,6 +28,7 @@ import javax.inject.Inject;
 /**
  * Action de gestion des {@link Secteur}
  */
+@PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
 public class GestionSecteurAction extends ActionSupport implements  SessionAware {
 
 
@@ -35,6 +38,8 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
+    @Value("${images.path}")
+    private String cheminImages;
 
 
     private static final Logger logger = LogManager.getLogger(GestionSecteurAction.class);
@@ -48,6 +53,8 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private String imageTempContentType;
     private String imageTempFileName;
     private List<String> listDepartements;
+    private Integer siteId;
+
 
     // ----- Eléments en sortie
     private List<Secteur> listSecteur;
@@ -121,8 +128,14 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         }
         return listDepartements;
     }
-    
 
+    public Integer getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
+    }
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Secteur}
@@ -165,7 +178,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
      * @return input / success / error
      */
     public String doCreate() {
-        logger.error("I m here");
+        logger.info("site id " + siteId);
 
         String vResult = ActionSupport.INPUT;
 
@@ -174,6 +187,8 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
             Date date = new Date();
             this.secteur.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
             this.secteur.setDateCreation(new Timestamp(date.getTime()));
+            secteur.setDescription(premiereLettreMaj(this.secteur.getDescription()));
+            secteur.setNom(premiereLettreMaj(this.secteur.getNom()));
             try {
                 if(this.secteur.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
@@ -191,6 +206,22 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
                 this.addActionError(pEx.getMessage());
                 vResult = ActionSupport.ERROR;
+            }
+            if(siteId >0){
+                logger.info("site id " + siteId);
+                try {
+                    managerFactory.getSiteSecteurManager().insert(siteId,this.secteur.getId());
+                } catch (FunctionalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                } catch (TechnicalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                }
+
+            }
+            else{
+                logger.info("for test");
             }
         }
 
@@ -214,11 +245,13 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         if (this.secteur != null) {
             Date date = new Date();
             this.secteur.setLastUpdate(new Timestamp(date.getTime()));
+            secteur.setDescription(premiereLettreMaj(this.secteur.getDescription()));
+            secteur.setNom(premiereLettreMaj(this.secteur.getNom()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
             try{
-                String filePath = "D:\\IdeaWorkspace\\projectsRep\\escalade\\escalade_webapp\\src\\main\\webapp\\ressources\\images";
+                String filePath = cheminImages;
                 File file2 = new File(filePath, getImageTempFileName());
                 FileUtils.copyFile(imageTemp, file2);
 
@@ -259,6 +292,12 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("Ardennes","Aube","Marne","Haute-Marne","Meurthe-et-Moselle","Meuse","Moselle","Bas-Rhin","Haut-Rhin","Vosges","Charente","Charente-Maritime","Corrèze","Creuse","Deux-Sèvres","Dordogne","Gironde","Landes","Lot-et-Garonne","Pyrénées-Atlantiques","Haute-Vienne","Vienne","Ain","Allier","Ardèche","Cantal","Drôme","Haute-Loire","Isère","Loire","Puy-de-Dôme","Rhône","Savois","Haute-Savoie","Côte-d''Or","Doubs","Jura","Nièvre","Saône-et-Loire","Haute-Saône","Territoire de Belfort","Yonne","Côtes-d''Armor","Finistère","Ille-et-Vilaine","Morbihan","Cher","Eure-et-Loir","Indre","Indre-et-Loire","Loir-et-Cher","Loiret","Corse-du-Sud","Haute-Corse","Essonne","Hauts-de-Seine","Paris","Seine-Saint-Denis","Seine-et-Marne","Val-de-Marne","Val-d''Oise","Yvelines","Ariège","Aude","Aveyron","Gard","Haute-Garonne","Gers","Lot","Hautes-Pyrénées","Hérault","Lozère","Pyrénées-Orientales","Tarn","Tarn-et-Garonne","Aisne","Nord","Oise","Pas-de-Calais","Somme","Calvados","Eure","Manche","Orne","Seine-Maritime","Loire-Atlantique","Maine-et-Loire","Mayenne","Sarthe","Vendée","Alpes-de-Haute-Provence","Hautes-Alpes","Alpes-Maritimes","Bouches-du-Rhône","Var","Vaucluse");
         return list;
+    }
+
+    //transforme la premiere lettre d'un string en majuscule
+    public String premiereLettreMaj(String str){
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     @Override

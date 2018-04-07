@@ -19,7 +19,7 @@
         <li class="breadcrumb-item">
             <s:a action="index" ><s:text name="home.home"/></s:a>
         </li>
-        <li class="breadcrumb-item active">Modification secteur</li>
+        <li class="breadcrumb-item active">Modification du secteur</li>
     </ol>
 
     <div class="row">
@@ -112,14 +112,6 @@
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
-
-            <!-- Ajouter un secteur -->
-            <div class="card mb-4">
-                <h5 class="card-header">Ajouter un secteur à ce secteur</h5>
-                <div class="card-body text-center">
-                    <s:a action="index" class="btn btn-secondary">Ajouter</s:a>
-                </div>
-            </div>
 
 
         </div>

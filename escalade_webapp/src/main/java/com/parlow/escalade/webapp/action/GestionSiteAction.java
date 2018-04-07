@@ -7,33 +7,42 @@ import java.sql.Timestamp;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+
 
 
 /**
  * Action de gestion des {@link Site}
  */
+@PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
 public class GestionSiteAction extends ActionSupport implements  SessionAware {
 
 
 
 
+
     // ==================== Attributs ====================
+    @Value("@images.path@")
+    private String cheminImages2;
+    @Value("${images.path}")
+    private String cheminImages;
+    @Value("${images.path2}")
+    private String cheminImages3;
+
+
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
@@ -125,6 +134,11 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
      * @return success
      */
     public String doList() {
+
+        logger.info("chemin image2 " + cheminImages2);
+        logger.info("chemin image " + cheminImages);
+        logger.info("chemin image3 " + cheminImages3);
+
         listSite = managerFactory.getSiteManager().findAll();
         return ActionSupport.SUCCESS;
     }
@@ -139,7 +153,6 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
             this.addActionError(getText("error.site.missing.id"));
         } else {
             try {
-                logger.error("id du site" + siteId);
 
                 site = managerFactory.getSiteManager().findById(siteId);
             } catch (NotFoundException pE) {
@@ -175,6 +188,9 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
             Date date = new Date();
             this.site.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
             this.site.setDateCreation(new Timestamp(date.getTime()));
+            site.setDescription(premiereLettreMaj(this.site.getDescription()));
+            site.setNom(premiereLettreMaj(this.site.getNom()));
+
                 try {
                     if(this.site.getImage()==null){
                         String image = "../../ressources/images/750x300.png";
@@ -222,11 +238,13 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
         if (this.site != null) {
             Date date = new Date();
             this.site.setLastUpdate(new Timestamp(date.getTime()));
+            site.setDescription(premiereLettreMaj(this.site.getDescription()));
+            site.setNom(premiereLettreMaj(this.site.getNom()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
             try{
-                String filePath = "D:\\IdeaWorkspace\\projectsRep\\escalade\\escalade_webapp\\src\\main\\webapp\\ressources\\images";
+                String filePath = cheminImages;
                 File file2 = new File(filePath, getImageTempFileName());
                 FileUtils.copyFile(imageTemp, file2);
 
@@ -238,6 +256,7 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
                 this.site.setImage("../../ressources/images/"+ getImageTempFileName());
             }
             logger.error("id du site" + site.getId());
+
             try {
                 managerFactory.getSiteManager().update(site);
                 vResult = ActionSupport.SUCCESS;
@@ -261,6 +280,12 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
 
 
         return vResult;
+    }
+
+    //transforme la premiere lettre d'un string en majuscule
+    public String premiereLettreMaj(String str){
+
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     @Override

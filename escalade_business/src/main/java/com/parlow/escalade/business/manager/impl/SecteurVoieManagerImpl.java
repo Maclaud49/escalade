@@ -14,8 +14,8 @@ public class SecteurVoieManagerImpl extends AbstractManager implements SecteurVo
 
 
     @Override
-    public int insert(Voie pVoie, Secteur pSecteur) throws FunctionalException, TechnicalException {
-        return 0;
+    public int insert(int pSecteurId, int pVoieId) throws FunctionalException, TechnicalException {
+        return daoFactory.getSecteurVoieAssoDao().insert(pSecteurId,pVoieId);
     }
 
     @Override

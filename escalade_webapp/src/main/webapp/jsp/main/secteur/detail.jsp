@@ -104,6 +104,16 @@
                 </div>
             </div>
 
+            <!-- Ajouter un secteur -->
+            <div class="card mb-4">
+                <h5 class="card-header">Ajouter une voie à ce secteur</h5>
+                <div class="card-body text-center">
+                    <s:a action="voie_new" class="btn btn-secondary">
+                        <s:param name="secteurId" value="%{secteur.id}" />
+                        Ajouter</s:a>
+                </div>
+            </div>
+
         </div>
 
     </div>

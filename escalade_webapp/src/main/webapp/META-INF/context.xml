@@ -4,7 +4,7 @@
               auth="Container"
               type="javax.sql.DataSource"
 
-              url="${dataSource.url}"
+              url="jdbc:postgresql://localhost:5432/jeeparlo_escalade"
               driverClassName="org.postgresql.Driver"
               username="jeeparlo_escalade_user"
               password="Escalade_2018"

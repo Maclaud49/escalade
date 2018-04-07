@@ -19,7 +19,7 @@
         <li class="breadcrumb-item">
             <s:a action="index" ><s:text name="home.home"/></s:a>
         </li>
-        <li class="breadcrumb-item active">Modification profil</li>
+        <li class="breadcrumb-item active">Modification du profil</li>
     </ol>
 
     <div class="row">

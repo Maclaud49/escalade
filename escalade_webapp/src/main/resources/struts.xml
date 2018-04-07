@@ -88,6 +88,7 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">secteur_detail</param>
                 <param name="secteurId">${secteur.id}</param>
+
             </result>
         </action>
         <!-- Action affichant la page de modification d'un secteur -->

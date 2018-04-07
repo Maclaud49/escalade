@@ -19,7 +19,7 @@
         <li class="breadcrumb-item">
             <s:a action="index" ><s:text name="home.home"/></s:a>
         </li>
-        <li class="breadcrumb-item active">Modification voie</li>
+        <li class="breadcrumb-item active">Modification de la voie</li>
     </ol>
 
     <div class="row">

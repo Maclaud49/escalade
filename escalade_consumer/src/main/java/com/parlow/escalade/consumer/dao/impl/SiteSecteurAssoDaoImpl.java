@@ -9,10 +9,15 @@ import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,8 +27,21 @@ public class SiteSecteurAssoDaoImpl extends AbstractDaoImpl implements SiteSecte
     private static final Logger logger = LogManager.getLogger(SiteSecteurAssoDaoImpl.class);
 
     @Override
-    public int insert(Site pSite, Secteur pSecteur) throws FunctionalException, TechnicalException {
-        return 0;
+    public int insert(int pSiteId, int pSecteurId) throws FunctionalException, TechnicalException {
+        String vSQL_insert = "INSERT into t_site_secteur_asso (site_fk_id,secteur_fk_id) VALUES(?,?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        this.vJdbcTemplate.update( new PreparedStatementCreator() {
+                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[] {"site_secteur_asso_id"});
+                                           pst.setInt(1, pSiteId);
+                                           pst.setInt(2, pSecteurId);
+                                           return pst;
+                                       }
+                                   },
+                keyHolder);
+        int key = (Integer)keyHolder.getKey();
+        return key;
     }
 
     @Override

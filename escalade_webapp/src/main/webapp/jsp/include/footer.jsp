@@ -6,7 +6,7 @@
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Mickaël Parlow 2018 <br>
             Version @project.version@ - Build du @maven.build.timestamp@ <br>
-            Chemin image @application.images.path@
+            Chemin image @images.path@
         </p>
 
         <div class="text-center text-white"><s:debug /></div>

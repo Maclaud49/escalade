@@ -55,7 +55,6 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
 
     @Override
     public Utilisateur findById(int pId) throws NotFoundException {
-        System.out.println("utilisateur findById");
         String vSQL_findById = "SELECT * FROM t_utilisateur WHERE utilisateur_id = ?";
 
         Utilisateur utilisateur = this.vJdbcTemplate.queryForObject(vSQL_findById, new Object[]{pId},

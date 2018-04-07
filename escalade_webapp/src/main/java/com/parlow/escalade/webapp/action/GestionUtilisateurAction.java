@@ -121,6 +121,10 @@ public class GestionUtilisateurAction extends ActionSupport {
 
         //vérification si affiche les données ou les update
         if (this.utilisateur != null) {
+            this.utilisateur.setNom(premiereLettreMaj(utilisateur.getNom()));
+            this.utilisateur.setPrenom(premiereLettreMaj(utilisateur.getPrenom()));
+            this.utilisateur.setVille(premiereLettreMaj(utilisateur.getVille()));
+            this.utilisateur.setPays(premiereLettreMaj(utilisateur.getPays()));
             try {
                 managerFactory.getUtilisateurManager().update(utilisateur);
                 vResult = ActionSupport.SUCCESS;
@@ -140,7 +144,11 @@ public class GestionUtilisateurAction extends ActionSupport {
         return vResult;
     }
 
+    //transforme la premiere lettre d'un string en majuscule
+    public String premiereLettreMaj(String str){
 
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
 
     public List<String> selectCotation(){
         List<String> list = new ArrayList<>();
