@@ -62,4 +62,12 @@ public class SiteSecteurAssoDaoImpl extends AbstractDaoImpl implements SiteSecte
 
         return secteurs;
     }
+
+    @Override
+    public int findBySiteAndSecteur(int pSiteId, int pSecteurId) throws FunctionalException, TechnicalException {
+        String vSQL_findBySiteAndSecteur = "SELECT count(*) FROM t_site_secteur_asso WHERE site_fk_id = ? AND secteur_fk_id=?";
+        int result  = this.vJdbcTemplate.queryForObject(vSQL_findBySiteAndSecteur, new Object[] { pSiteId, pSecteurId }, Integer.class);
+
+        return result ;
+    }
 }

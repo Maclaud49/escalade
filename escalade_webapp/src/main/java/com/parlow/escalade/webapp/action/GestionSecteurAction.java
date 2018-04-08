@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Secteur;
+import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -54,7 +55,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private String imageTempFileName;
     private List<String> listDepartements;
     private Integer siteId;
-
+    private List<Site> siteList;
 
     // ----- Eléments en sortie
     private List<Secteur> listSecteur;
@@ -136,6 +137,18 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     public void setSiteId(Integer siteId) {
         this.siteId = siteId;
     }
+
+    public List<Site> getSiteList() {
+        if(this.siteList==null){
+            this.siteList=selectSite();
+        }
+        return siteList;
+    }
+
+    public void setSiteList(List<Site> siteList) {
+        this.siteList = siteList;
+    }
+
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Secteur}
@@ -207,10 +220,13 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 this.addActionError(pEx.getMessage());
                 vResult = ActionSupport.ERROR;
             }
+
             if(siteId >0){
                 logger.info("site id " + siteId);
+                //Verification de l'existence de l'association
+                int result = 0;
                 try {
-                    managerFactory.getSiteSecteurManager().insert(siteId,this.secteur.getId());
+                    result = managerFactory.getSiteSecteurManager().findBySiteAndSecteur(siteId,secteurId);
                 } catch (FunctionalException e) {
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
@@ -218,7 +234,6 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
                 }
-
             }
             else{
                 logger.info("for test");
@@ -270,6 +285,35 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
                 vResult = ActionSupport.ERROR;
             }
+            if(siteId >0){
+                logger.info("site id " + siteId);
+                //Verification de l'existence de l'association
+                int result = 0;
+                try {
+                    result = managerFactory.getSiteSecteurManager().findBySiteAndSecteur(siteId,this.secteur.getId());
+                } catch (FunctionalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                } catch (TechnicalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                }
+                //Si association non existante, création de celle-ci
+                if(result==0){
+                    try {
+                        managerFactory.getSiteSecteurManager().insert(siteId,this.secteur.getId());
+                    } catch (FunctionalException e) {
+                        this.addActionError(e.getMessage());
+                        vResult = ActionSupport.ERROR;
+                    } catch (TechnicalException e) {
+                        this.addActionError(e.getMessage());
+                        vResult = ActionSupport.ERROR;
+                    }
+                }
+            }
+            else{
+                logger.info("for test");
+            }
         }
         else {
 
@@ -292,6 +336,10 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("Ardennes","Aube","Marne","Haute-Marne","Meurthe-et-Moselle","Meuse","Moselle","Bas-Rhin","Haut-Rhin","Vosges","Charente","Charente-Maritime","Corrèze","Creuse","Deux-Sèvres","Dordogne","Gironde","Landes","Lot-et-Garonne","Pyrénées-Atlantiques","Haute-Vienne","Vienne","Ain","Allier","Ardèche","Cantal","Drôme","Haute-Loire","Isère","Loire","Puy-de-Dôme","Rhône","Savois","Haute-Savoie","Côte-d''Or","Doubs","Jura","Nièvre","Saône-et-Loire","Haute-Saône","Territoire de Belfort","Yonne","Côtes-d''Armor","Finistère","Ille-et-Vilaine","Morbihan","Cher","Eure-et-Loir","Indre","Indre-et-Loire","Loir-et-Cher","Loiret","Corse-du-Sud","Haute-Corse","Essonne","Hauts-de-Seine","Paris","Seine-Saint-Denis","Seine-et-Marne","Val-de-Marne","Val-d''Oise","Yvelines","Ariège","Aude","Aveyron","Gard","Haute-Garonne","Gers","Lot","Hautes-Pyrénées","Hérault","Lozère","Pyrénées-Orientales","Tarn","Tarn-et-Garonne","Aisne","Nord","Oise","Pas-de-Calais","Somme","Calvados","Eure","Manche","Orne","Seine-Maritime","Loire-Atlantique","Maine-et-Loire","Mayenne","Sarthe","Vendée","Alpes-de-Haute-Provence","Hautes-Alpes","Alpes-Maritimes","Bouches-du-Rhône","Var","Vaucluse");
         return list;
+    }
+
+    public List<Site> selectSite(){
+        return managerFactory.getSiteManager().findAll();
     }
 
     //transforme la premiere lettre d'un string en majuscule

@@ -122,6 +122,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-danger">
+                                <label>Rattacher cette voie au secteur</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <s:select  class="form-control" name="secteurId"
+                                               list="secteurList" listKey="id"  listValue="nom" emptyOption="true" required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 

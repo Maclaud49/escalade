@@ -137,7 +137,7 @@
         <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
         <!-- Propriété servant à contourner le bug du non remplacement
              de la propriété maven.build.timestamp lors du filtrage des ressources -->
-        <buildTimestamp>@maven.build.timestamp@</buildTimestamp>
+        <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
     </properties>
     <!-- =============================================================== -->
     <!-- Profils -->

@@ -3,6 +3,7 @@ package com.parlow.escalade.webapp.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Longueur;
+import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -46,6 +47,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     private String imageTempFileName;
     private List<String> listCotations;
     private Integer secteurId;
+    private List<Secteur> secteurList;
 
     // ----- Eléments en sortie
     private List<Voie> listVoie;
@@ -131,6 +133,17 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
 
     public void setSecteurId(Integer secteurId) {
         this.secteurId = secteurId;
+    }
+
+    public List<Secteur> getSecteurList() {
+        if(this.secteurList==null){
+            this.secteurList=selectSecteur();
+        }
+        return secteurList;
+    }
+
+    public void setSecteurList(List<Secteur> secteurList) {
+        this.secteurList = secteurList;
     }
 
     // ==================== Méthodes ====================
@@ -266,6 +279,35 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
                 vResult = ActionSupport.ERROR;
             }
+            if(secteurId >0){
+                logger.info("secteur id " + secteurId);
+                //Verification de l'existence de l'association
+                int result = 0;
+                try {
+                    result = managerFactory.getSecteurVoieManager().findBySecteurAndVoie(secteurId,this.voie.getId());
+                } catch (FunctionalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                } catch (TechnicalException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
+                }
+                //Si association non existante, création de celle-ci
+                if(result==0){
+                    try {
+                        managerFactory.getSecteurVoieManager().insert(secteurId,this.voie.getId());
+                    } catch (FunctionalException e) {
+                        this.addActionError(e.getMessage());
+                        vResult = ActionSupport.ERROR;
+                    } catch (TechnicalException e) {
+                        this.addActionError(e.getMessage());
+                        vResult = ActionSupport.ERROR;
+                    }
+                }
+            }
+            else{
+                logger.info("for test");
+            }
         }
         else {
 
@@ -285,6 +327,10 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
         list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
         return list;
     }
+    public List<Secteur> selectSecteur(){
+        return managerFactory.getSecteurManager().findAll();
+    }
+    
 
     //transforme la premiere lettre d'un string en majuscule
     public String premiereLettreMaj(String str){

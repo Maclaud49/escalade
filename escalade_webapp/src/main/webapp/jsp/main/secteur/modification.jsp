@@ -89,7 +89,17 @@
                             </div>
                         </div>
                     </div>
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group has-danger">
+                            <label>Rattacher ce secteur au site</label>
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <s:select  class="form-control" name="siteId"
+                                           list="siteList" listKey="id"  listValue="nom" emptyOption="true" required="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="row">

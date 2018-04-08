@@ -61,4 +61,12 @@ public class SecteurVoieAssoDaoImpl extends AbstractDaoImpl implements SecteurVo
     public List<Secteur> findAllByVoie(int pVoieId) throws FunctionalException, TechnicalException {
         return null;
     }
+
+    @Override
+    public int findBySecteurAndVoie(int pSecteurId, int pVoieId) throws FunctionalException, TechnicalException {
+        String vSQL_findBySecteurAndVoie = "SELECT count(*) FROM t_secteur_voie_asso WHERE secteur_fk_id = ? AND voie_fk_id=?";
+        int result  = this.vJdbcTemplate.queryForObject(vSQL_findBySecteurAndVoie, new Object[] { pSecteurId, pVoieId }, Integer.class);
+
+        return result ;
+    }
 }

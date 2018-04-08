@@ -36,4 +36,13 @@ public interface SecteurVoieManager {
      */
 
     List<Secteur> findAllByVoie(int pVoieId)throws FunctionalException, TechnicalException;
+
+    /**
+     * Renvoie l'association entre le {@link Secteur} et le {@link Voie}
+     * @param pSecteurId,pVoieId le id du {@link Secteur} et le id du {@link Voie}
+     * @return Le id généré
+     * @throws FunctionalException si le id du secteur ou le id du voie est null
+     * @throws TechnicalException si problème avec la base de données
+     */
+    int findBySecteurAndVoie(int pSecteurId, int pVoieId ) throws FunctionalException, TechnicalException;
 }

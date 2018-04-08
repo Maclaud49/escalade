@@ -31,4 +31,9 @@ public class SecteurVoieManagerImpl extends AbstractManager implements SecteurVo
 
         return vList;
     }
+
+    @Override
+    public int findBySecteurAndVoie(int pSecteurId, int pVoieId) throws FunctionalException, TechnicalException {
+        return daoFactory.getSecteurVoieAssoDao().findBySecteurAndVoie(pSecteurId,pVoieId);
+    }
 }

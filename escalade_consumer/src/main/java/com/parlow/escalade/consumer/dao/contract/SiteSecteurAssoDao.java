@@ -37,4 +37,13 @@ public interface SiteSecteurAssoDao {
      */
 
     List<Secteur> findAllBySite(int pSiteId)throws FunctionalException, TechnicalException;
+
+    /**
+     * Renvoie l'association entre le {@link Site} et le {@link Secteur}
+     * @param pSiteId,pSecteurId le id du {@link Site} et le id du {@link Secteur}
+     * @return Le id généré
+     * @throws FunctionalException si le id du site ou le id du secteur est null
+     * @throws TechnicalException si problème avec la base de données
+     */
+    int findBySiteAndSecteur(int pSiteId, int pSecteurId ) throws FunctionalException, TechnicalException;
 }

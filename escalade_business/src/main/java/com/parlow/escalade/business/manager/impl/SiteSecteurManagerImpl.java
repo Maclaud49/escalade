@@ -29,4 +29,11 @@ public class SiteSecteurManagerImpl extends AbstractManager implements SiteSecte
 
         return vList;
     }
+
+    @Override
+    public int findBySiteAndSecteur(int pSiteId, int pSecteurId) throws FunctionalException, TechnicalException {
+        return daoFactory.getSiteSecteurAssoDao().findBySiteAndSecteur(pSiteId,pSecteurId);
+    }
+
+
 }
