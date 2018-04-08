@@ -98,15 +98,6 @@
                 </div>
             </s:if>
 
-
-            <!-- Creation site Widget -->
-            <div class="card mb-4">
-                <h5 class="card-header">Créer un nouveau site</h5>
-                <div class="card-body text-center">
-                    <s:a action="site_new" class="btn btn-secondary">Et un de plus !</s:a>
-                </div>
-            </div>
-
             <!-- Ajouter un secteur -->
             <div class="card mb-4">
                 <h5 class="card-header">Ajouter un secteur à ce site</h5>

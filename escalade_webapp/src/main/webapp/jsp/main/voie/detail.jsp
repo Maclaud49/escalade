@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Description : </strong> <s:property value="voie.description" /></p>
                     <p class="card-text"><strong>Nombre de longueurs : </strong> <s:property value="voie.nbVoies" /></p>
-                    <p class="card-text"><strong>Hauteur de la voie : </strong> <s:property value="voie.hauteurVoie" /></p>
+                    <p class="card-text"><strong>Hauteur de la voie (en m) : </strong> <s:property value="voie.hauteurVoie" /></p>
                     <p class="card-text"><strong>Cotation : </strong> <s:property value="voie.cotation" /></p>
                     <p class="card-text"><strong>Equipée : </strong>
                         <s:if test="voie.equipee">
@@ -108,11 +108,13 @@
             </s:if>
 
 
-            <!-- Creation voie Widget -->
+            <!-- Ajouter une longueur -->
             <div class="card mb-4">
-                <h5 class="card-header">Créer une nouvelle voie</h5>
+                <h5 class="card-header">Ajouter une longueur à cette voie</h5>
                 <div class="card-body text-center">
-                    <s:a action="voie_new" class="btn btn-secondary">Et une de plus !</s:a>
+                    <s:a action="longueur_new" class="btn btn-secondary">
+                        <s:param name="voieId" value="%{voie.id}" />
+                        Ajouter</s:a>
                 </div>
             </div>
 

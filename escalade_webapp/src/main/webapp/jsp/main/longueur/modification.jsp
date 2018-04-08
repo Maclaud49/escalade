@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
-                                <label>Relai</label>
+                                <label>Relai (en m)</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <s:textfield name="longueur.relai" class="form-control" value="%{longueur.relai}" title="Relai de la longueur"/>
                                 </div>
@@ -89,8 +89,8 @@
                             <div class="form-group has-danger">
                                 <label>Cotation</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:select  class="form-control" name="longueur.region"
-                                               list="listCotations"  emptyOption="true" required="true" value="%{longueur.region}"/>
+                                    <s:select  class="form-control" name="longueur.cotation"
+                                               list="listCotations"  emptyOption="true" required="true" value="%{longueur.cotation}"/>
                                 </div>
                             </div>
                         </div>

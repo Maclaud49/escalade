@@ -72,7 +72,7 @@ CREATE TABLE t_voie (
 	voie_lastUpdate TIMESTAMP,
 	voie_publication boolean,
 	voie_image CHARACTER VARYING(100),
-	voie_hauteurVoie NUMERIC(2),
+	voie_hauteurVoie NUMERIC(10,1),
 	voie_cotation CHARACTER VARYING(15),
 	voie_nbPoints INTEGER,
 	voie_equipee BOOLEAN
@@ -87,7 +87,7 @@ CREATE TABLE t_longueur (
 	longueur_lastUpdate TIMESTAMP,
 	longueur_publication boolean,
 	longueur_image CHARACTER VARYING(100),
-	longueur_relai NUMERIC(2),
+	longueur_relai NUMERIC(10,1),
 	longueur_voie_fk_id INTEGER,
 	longueur_cotation CHARACTER VARYING(15)
 );

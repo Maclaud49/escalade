@@ -45,12 +45,11 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
     private String imageTempContentType;
     private String imageTempFileName;
     private List<String> listCotations;
+    private Integer voieId;
 
     // ----- Eléments en sortie
     private List<Longueur> listLongueur;
     private Longueur longueur;
-    private List<Voie> listVoie;
-    private Voie voie;
 
     // ==================== Getters/Setters ====================
 
@@ -114,22 +113,6 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
         this.imageTempFileName = imageTempFileName;
     }
 
-    public List<Voie> getListVoie() {
-        return listVoie;
-    }
-
-    public void setListVoie(List<Voie> listVoie) {
-        this.listVoie = listVoie;
-    }
-
-    public Voie getVoie() {
-        return voie;
-    }
-
-    public void setVoie(Voie voie) {
-        this.voie = voie;
-    }
-
     public List<String> getListCotations() {
         if(this.listCotations==null){
             this.listCotations=selectCotation();
@@ -139,6 +122,14 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
 
     public void setListCotations(List<String> cotations) {
         this.listCotations = cotations;
+    }
+
+    public Integer getVoieId() {
+        return voieId;
+    }
+
+    public void setVoieId(Integer voieId) {
+        this.voieId = voieId;
     }
 
     // ==================== Méthodes ====================
@@ -179,7 +170,6 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
      * @return input / success / error
      */
     public String doCreate() {
-        logger.error("I m here");
 
         String vResult = ActionSupport.INPUT;
 
@@ -190,6 +180,14 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
             this.longueur.setDateCreation(new Timestamp(date.getTime()));
             longueur.setDescription(premiereLettreMaj(this.longueur.getDescription()));
             longueur.setNom(premiereLettreMaj(this.longueur.getNom()));
+            Voie voie = new Voie();
+            try {
+                voie = managerFactory.getVoieManager().findById(voieId);
+            } catch (NotFoundException e) {
+                this.addActionError(e.getMessage());
+                vResult = ActionSupport.ERROR;
+            }
+            this.longueur.setVoie(voie);
             try {
                 if(this.longueur.getImage()==null){
                     String image = "../../ressources/images/750x300.png";
@@ -208,6 +206,7 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
                 this.addActionError(pEx.getMessage());
                 vResult = ActionSupport.ERROR;
             }
+
         }
 
         //Ajout des infos nécessaires pour le formulaire de saisie
@@ -233,7 +232,6 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
             longueur.setDescription(premiereLettreMaj(this.longueur.getDescription()));
             longueur.setNom(premiereLettreMaj(this.longueur.getNom()));
             //Gestion image
-            logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
             try{
                 String filePath = cheminImages;
@@ -247,7 +245,6 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
             if(imageTemp!=null){
                 this.longueur.setImage("../../ressources/images/"+ getImageTempFileName());
             }
-            logger.error("id du longueur" + longueur.getId());
             try {
                 managerFactory.getLongueurManager().update(longueur);
                 vResult = ActionSupport.SUCCESS;

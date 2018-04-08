@@ -45,6 +45,9 @@
                     </div>
                 </div>
             </div>
+            <div style="display: none;">
+                <s:textfield name="voieId" value="%{voieId}"/>
+            </div>
 
             <div class="row">
                 <div class="col-md-2"></div>

@@ -39,7 +39,7 @@
                 <img class="card-img-top" alt="Card image cap" src="<s:property value="longueur.image" />" >
                 <div class="card-body">
                     <p class="card-text"><strong>Description : </strong> <s:property value="longueur.description" /></p>
-                    <p class="card-text"><strong>Relai : </strong> <s:property value="longueur.relai" /></p>
+                    <p class="card-text"><strong>Relai (en m) : </strong> <s:property value="longueur.relai" /></p>
                     <p class="card-text"><strong>Cotation : </strong> <s:property value="longueur.cotation" /></p>
                     <p class="card-text"><strong>Publié : </strong>
                         <s:if test="longueur.ispublication">

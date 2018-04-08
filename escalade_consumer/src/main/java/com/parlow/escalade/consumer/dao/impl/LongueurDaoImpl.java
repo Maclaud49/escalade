@@ -38,16 +38,20 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public int insert(Longueur pLongueur) throws FunctionalException {
-        String vSQL_insert = "INSERT INTO t_longueur (longueur_relai, longueur_voie, longueur_cotation_fk_id, longueur_utilisateur_fk_id) VALUES(?,?,?,?)";
+        String vSQL_insert = "INSERT INTO t_longueur (longueur_nom,longueur_description,longueur_voie_fk_id, longueur_lastUpdate, longueur_image, longueur_dateCreation, longueur_utilisateur_fk_id, longueur_publication) VALUES(?,?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         this.vJdbcTemplate.update(new PreparedStatementCreator() {
                                       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                                           PreparedStatement pst = con.prepareStatement(vSQL_insert, new String[]{"longueur_id"});
-                                          pst.setDouble(1, pLongueur.getRelai());
-                                          pst.setInt(2, pLongueur.getVoie().getId());
-                                          pst.setString(3, pLongueur.getCotation());
-                                          pst.setInt(4, pLongueur.getUtilisateur().getId());
+                                          pst.setString(1, pLongueur.getNom());
+                                          pst.setString(2, pLongueur.getDescription());
+                                          pst.setInt(3, pLongueur.getVoie().getId());
+                                          pst.setTimestamp(4, pLongueur.getDateCreation());
+                                          pst.setString(5, pLongueur.getImage());
+                                          pst.setTimestamp(6, pLongueur.getDateCreation());
+                                          pst.setInt(7, pLongueur.getUtilisateur().getId());
+                                          pst.setBoolean(8, false);
                                           return pst;
                                       }
                                   },
@@ -64,9 +68,11 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public void update(Longueur pLongueur) throws FunctionalException {
-        String vSQL_update = "UPDATE t_longueur SET longueur_relai = ?,longueur_voie_fk_id = ?,longueur_cotation = ?,longueur_utilisateur_fk_id = ? WHERE longueur_id = ?";
-        this.vJdbcTemplate.update(vSQL_update, pLongueur.getRelai(), pLongueur.getVoie().getId(), pLongueur.getCotation(),
-                pLongueur.getUtilisateur().getId(), pLongueur.getId());
+        String vSQL_update = "UPDATE t_longueur SET longueur_nom = ?, longueur_description = ?, longueur_lastUpdate = ?, longueur_image = ?," +
+                "  longueur_publication = ?, longueur_relai = ?, longueur_cotation = ? WHERE longueur_id = ?";
+        this.vJdbcTemplate.update(vSQL_update, pLongueur.getNom(), pLongueur.getDescription(),pLongueur.getLastUpdate(),
+                pLongueur.getImage(),pLongueur.isPublication(),pLongueur.getRelai(), pLongueur.getCotation(),pLongueur.getId());
+
     }
 
     @Override

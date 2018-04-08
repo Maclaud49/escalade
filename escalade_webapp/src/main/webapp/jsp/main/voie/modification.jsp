@@ -74,7 +74,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
-                                <label>Hauteur de la voie</label>
+                                <label>Hauteur de la voie (en m)</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <s:textarea rows="10" name="voie.hauteurVoie" class="form-control" value="%{voie.hauteurVoie}" title="Hauteur de la voie" required="true"/>
                                 </div>

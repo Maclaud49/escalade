@@ -95,15 +95,6 @@
                 </div>
             </s:if>
 
-
-            <!-- Creation secteur Widget -->
-            <div class="card mb-4">
-                <h5 class="card-header">Créer un nouveau secteur</h5>
-                <div class="card-body text-center">
-                    <s:a action="secteur_new" class="btn btn-secondary">Et un de plus !</s:a>
-                </div>
-            </div>
-
             <!-- Ajouter un secteur -->
             <div class="card mb-4">
                 <h5 class="card-header">Ajouter une voie à ce secteur</h5>
