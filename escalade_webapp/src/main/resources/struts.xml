@@ -270,6 +270,11 @@
             <result name="error">/jsp/error.jsp</result>
         </action>
 
+        <!-- Action de recherche-->
+        <action name="search" class="gestionRechercheAction" method="doListSearchResult">
+            <result>/jsp/main/resultatsRecherche.jsp</result>
+        </action>
+
 
 
         <!-- Actions Login/Logout/Register -->

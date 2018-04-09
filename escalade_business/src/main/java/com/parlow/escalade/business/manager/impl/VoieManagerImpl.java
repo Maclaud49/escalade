@@ -76,4 +76,9 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager{
         }
         return vList;
     }
+
+    @Override
+    public List<Voie> searchResult(String keyWord) {
+        return daoFactory.getVoieDao().searchResult(keyWord);
+    }
 }

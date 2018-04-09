@@ -54,4 +54,11 @@ public interface VoieDao {
      * @return List
      */
     List<Voie> findAllBySecteurId(int secteurId) throws NotFoundException;
+
+    /**
+     * Renvoie la liste des résultats de la recherche
+     * @param keyWord
+     * @return List
+     */
+    List<Voie> searchResult(String keyWord);
 }

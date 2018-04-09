@@ -89,10 +89,12 @@
                 <li class="nav-item">
 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Rechercher...">
-                            <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
+                            <form method="POST" action="search.action" class="form-inline">
+                                <s:textfield name="keyWord" class="form-control" placeholder="Rechercher..." required="true"></s:textfield>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-secondary">Go!</button>
+                                </span>
+                            </form>
                         </div>
 
                 </li>

@@ -74,5 +74,8 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
         daoFactory.getSecteurDao().update(pSecteur);
     }
 
-
+    @Override
+    public List<Secteur> searchResult(String keyWord) {
+        return daoFactory.getSecteurDao().searchResult(keyWord);
+    }
 }

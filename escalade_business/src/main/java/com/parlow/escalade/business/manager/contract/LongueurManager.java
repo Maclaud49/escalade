@@ -55,4 +55,11 @@ public interface LongueurManager {
      * @return List
      */
     List<Longueur> findAllByVoieId(int voieId) throws NotFoundException;
+
+    /**
+     * Renvoie la liste des résultats de la recherche
+     * @param keyWord
+     * @return List
+     */
+    List<Longueur> searchResult(String keyWord);
 }

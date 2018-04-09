@@ -21,7 +21,7 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
 
-    private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
+    private static final Logger logger = LogManager.getLogger(GestionCommentaireAction.class);
 
     // ----- Paramètres en entrée
 

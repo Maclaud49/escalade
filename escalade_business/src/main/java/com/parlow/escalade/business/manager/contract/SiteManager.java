@@ -51,4 +51,11 @@ public interface SiteManager {
      * @throws FunctionalException si le site est null
      */
     void update ( Site pSite ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des résultats de la recherche
+     * @param keyWord
+     * @return List
+     */
+    List<Site> searchResult(String keyWord);
 }

@@ -80,4 +80,10 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
         }
         daoFactory.getSiteDao().update(pSite);
     }
+
+    @Override
+    public List<Site> searchResult(String keyWord) {
+        return daoFactory.getSiteDao().searchResult(keyWord);
+    }
+
 }

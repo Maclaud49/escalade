@@ -73,4 +73,9 @@ public class LongueurManagerImpl extends AbstractManager implements LongueurMana
         return vList;
 
     }
+
+    @Override
+    public List<Longueur> searchResult(String keyWord) {
+        return daoFactory.getLongueurDao().searchResult(keyWord);
+    }
 }

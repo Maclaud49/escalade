@@ -80,4 +80,9 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
                 pSecteur.getImage(),pSecteur.isPublication(),pSecteur.getId());
     }
 
+    @Override
+    public List<Secteur> searchResult(String keyWord) {
+        return null;
+    }
+
 }

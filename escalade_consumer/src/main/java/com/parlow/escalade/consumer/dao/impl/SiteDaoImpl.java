@@ -80,6 +80,20 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
                 pSite.getImage(),pSite.isPublication(),pSite.getId());
     }
 
+    @Override
+    public List<Site> searchResult(String keyWord) {
+        String vSQL_findAll = "SELECT * FROM t_site, t_utilisateur where concat(site_nom,site_description,site_datecreation,site_region,utilisateur_nom,utilisateur_prenom)  ILIKE ? AND site_utilisateur_fk_id = utilisateur_id ORDER BY site_datecreation DESC";
+        List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { keyWord }, new RowMapper<Site>() {
+            @Override
+            public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
+                SiteMapper siteMapper = new SiteMapper();
+                return siteMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return sites;
+    }
+
 }
 
 

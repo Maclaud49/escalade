@@ -88,4 +88,9 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
         return longueurs;
     }
+
+    @Override
+    public List<Longueur> searchResult(String keyWord) {
+        return null;
+    }
 }

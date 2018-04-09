@@ -51,5 +51,11 @@ public interface SecteurDao {
      */
     void update ( Secteur pSecteur ) throws FunctionalException;
 
+    /**
+     * Renvoie la liste des résultats de la recherche
+     * @param keyWord
+     * @return List
+     */
+    List<Secteur> searchResult(String keyWord);
 
 }
