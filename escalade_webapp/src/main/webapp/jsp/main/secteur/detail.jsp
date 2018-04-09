@@ -96,6 +96,7 @@
             </s:if>
 
             <!-- Ajouter un secteur -->
+            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
             <div class="card mb-4">
                 <h5 class="card-header">Ajouter une voie à ce secteur</h5>
                 <div class="card-body text-center">
@@ -104,7 +105,7 @@
                         Ajouter</s:a>
                 </div>
             </div>
-
+            </s:if>
         </div>
 
     </div>

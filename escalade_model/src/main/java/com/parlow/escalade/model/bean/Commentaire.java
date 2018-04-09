@@ -48,20 +48,20 @@ public class Commentaire {
         this.reference_id = reference_id;
     }
 
-    public String getTable() {
-        return target_table;
-    }
-
-    public void setTable(String table) {
-        this.target_table = table;
-    }
-
     public Timestamp getDateCreation() {
         return dateCreation;
     }
 
     public void setDateCreation(Timestamp dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public String getTarget_table() {
+        return target_table;
+    }
+
+    public void setTarget_table(String target_table) {
+        this.target_table = target_table;
     }
 
     // ==================== Méthodes =====================

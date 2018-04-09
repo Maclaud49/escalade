@@ -47,6 +47,12 @@
     <bean id="gestionLongueurAction"
           class="com.parlow.escalade.webapp.action.GestionLongueurAction"
           scope= "prototype"  />
+    <bean id="commentsAjaxAction"
+          class="com.parlow.escalade.webapp.action.CommentsAjaxAction"
+          scope= "prototype"  />
+    <bean id="gestionCommentaireAction"
+          class="com.parlow.escalade.webapp.action.GestionCommentaireAction"
+          scope= "prototype"  />
 
 </beans>
 

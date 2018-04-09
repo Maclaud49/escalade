@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommentaireManager {
 
     /**
-     * Renvoie la le {@link Commentaire} demandé
+     * Renvoie le {@link Commentaire} demandé
      * @param pId du {@link Commentaire}
      * @return {@link Commentaire}
      * @throws NotFoundException si non trouvé
@@ -24,7 +24,7 @@ public interface CommentaireManager {
     List<Commentaire> findAll();
 
     /**
-     * Insert l'{@link Commentaire} dans la bdd
+     * Insert le {@link Commentaire} dans la bdd
      * @param pCommentaire le {@link Commentaire}
      * @return Le {@link Commentaire}
      * @throws FunctionalException si le commentaire est null
@@ -46,4 +46,11 @@ public interface CommentaireManager {
      * @throws FunctionalException si le commentaire est null
      */
     void update ( Commentaire pCommentaire ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Commentaire} liée à une section et à un article
+     * @param pSection,pArticle les id de la section et de l'article
+     * @return List de {@link Commentaire}
+     */
+    List<Commentaire> findAllBySectionAndArticle(String pSection, int pArticle);
 }

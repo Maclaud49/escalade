@@ -82,6 +82,45 @@
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
                 </div>
             </div>
+
+
+            <!-- Comments Form -->
+            <s:if test="#session.escalade_user.profil =='admin'">
+            <div class="card my-4">
+                <h5 class="card-header">Ajouter un commentaire</h5>
+                <div class="card-body">
+                    <form method="POST" action="comment_new.action">
+                        <div class="form-group">
+                            <textarea name="commentaire.commentaire" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div style="display: none;">
+                            <s:textfield name="commentaire.target_table" value="SITE"/>
+                            <s:textfield name="commentaire.reference_id" value="%{site.id}"/>
+                            <s:textfield name="siteId" value="%{site.id}"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+            </s:if>
+            <s:else>
+                <div class="card my-4">
+                    <h5 class="card-header">Commentaires</h5>
+                </div>
+            </s:else>
+
+
+            <!-- Single Comment -->
+            <s:iterator value="listCommentaires">
+            <div id="commentsList" class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/> le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></h5>
+                    <s:property value="commentaire"/>
+                </div>
+            </div>
+            </s:iterator>
+
         </div>
 
 
@@ -99,6 +138,7 @@
             </s:if>
 
             <!-- Ajouter un secteur -->
+            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
             <div class="card mb-4">
                 <h5 class="card-header">Ajouter un secteur à ce site</h5>
                 <div class="card-body text-center">
@@ -107,6 +147,7 @@
                         Ajouter</s:a>
                 </div>
             </div>
+            </s:if>
 
         </div>
 
@@ -120,6 +161,37 @@
 <%@ include file="../../include/footer.jsp" %>
 
 <%@ include file="../../include/script.jsp" %>
+
+<script>
+    function saveAndReloadListCommentaires() {
+        // URL de l'action AJAX
+        var url = "<s:url action="getListCommentaires"><s:param name="pSection" value="SITE" /><s:param name="pArticle" value="site.id" /></s:url>";
+
+        // Action AJAX en POST
+        jQuery.post(
+            url,
+            function (data) {
+                var commentsList = jQuery("#commentsList");
+                commentsList.empty();
+                jQuery.each(data, function (key, val) {
+                    commentsList.append(
+                        jQuery('<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">')
+                            .append('<div class="media-body">')
+                            .append('<h5 class="mt-0">')
+                            .append(val.utilisateur.prenom)
+                            .append(val.utilisateur.nom)
+                            .append(dateCreation)
+                            .append('</h5>')
+                            .append('</div>')
+                    );
+                });
+            })
+            .fail(function () {
+                alert("Une erreur s'est produite.");
+            });
+    }
+</script>
+
 
 </body>
 

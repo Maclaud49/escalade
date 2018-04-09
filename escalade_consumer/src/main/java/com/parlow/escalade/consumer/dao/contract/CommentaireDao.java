@@ -46,4 +46,11 @@ public interface CommentaireDao {
      * @throws FunctionalException si le commentaire est null
      */
     void update ( Commentaire pCommentaire ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des {@link Commentaire} liée à une section et à un article
+     * @param pSection,pArticle les id de la section et de l'article
+     * @return List de {@link Commentaire}
+     */
+    List<Commentaire> findAllBySectionAndArticle(String pSection, int pArticle);
 }

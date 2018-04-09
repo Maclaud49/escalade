@@ -78,13 +78,14 @@
 
 
             <!-- Creation longueur Widget -->
+            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
             <div class="card mb-4">
                 <h5 class="card-header">Créer une nouvelle longueur</h5>
                 <div class="card-body text-center">
                     <s:a action="longueur_new" class="btn btn-secondary">Et une de plus !</s:a>
                 </div>
             </div>
-
+            </s:if>
         </div>
 
     </div>

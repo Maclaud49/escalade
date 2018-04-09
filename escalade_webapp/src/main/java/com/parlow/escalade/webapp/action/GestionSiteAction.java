@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.Commentaire;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
@@ -57,10 +58,12 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     private File imageTemp;
     private String imageTempContentType;
     private String imageTempFileName;
-
-    // ----- Eléments en sortie
     private List<Site> listSite;
     private List<String> listRegions;
+    private List<Commentaire> listCommentaires;
+
+    // ----- Eléments en sortie
+
     private Site site;
 
     // ==================== Getters/Setters ====================
@@ -128,6 +131,18 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     public void setImageTempFileName(String imageTempFileName) {
         this.imageTempFileName = imageTempFileName;
     }
+
+    public List<Commentaire> getListCommentaires() {
+        if(this.listCommentaires==null){
+            this.listCommentaires=selectCommentaires();
+        }
+        return listCommentaires;
+    }
+
+    public void setListCommentaires(List<Commentaire> listCommentaires) {
+        this.listCommentaires = listCommentaires;
+    }
+
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Site}
@@ -178,8 +193,7 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
      * Action permettant de créer un nouveau {@link Site}
      * @return input / success / error
      */
-    public String doCreate() {
-        logger.error("I m here");
+        public String doCreate() {
 
         String vResult = ActionSupport.INPUT;
 
@@ -216,14 +230,6 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
             this.listRegions = selectRegion();
         }
         return vResult;
-    }
-
-    public List<String> selectRegion(){
-        List<String> list = new ArrayList<>();
-        list =  Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
-                "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
-                "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
-        return list;
     }
 
     /**
@@ -282,8 +288,27 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
         return vResult;
     }
 
+    private List<String> selectRegion(){
+        List<String> list = new ArrayList<>();
+        list =  Arrays.asList("Grand-Est", "Nouvelle-Aquitaine", "Auvergne-Rhône-Alpes","Bourgogne-Franche-Comté",
+                "Bretagne", "Centre-Val de Loire", "Corse", "Île-de-France", "Occitanie", "Hauts-de-France", "Normandie",
+                "Pays de la Loire", "Provence-Alpes-Côte d'Azur");
+        return list;
+    }
+
+    private List<Commentaire> selectCommentaires(){
+        logger.info("siteId " + siteId);
+        List<Commentaire> listCommentaires = new ArrayList<>();
+            if(siteId != null) {
+                listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("SITE", siteId);
+            }
+
+        return listCommentaires;
+
+    }
+
     //transforme la premiere lettre d'un string en majuscule
-    public String premiereLettreMaj(String str){
+    private String premiereLettreMaj(String str){
 
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }

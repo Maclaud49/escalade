@@ -117,15 +117,15 @@ VALUES ('6','Longueur N°6',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!',
             '3', '05/01/2018', '07/02/2018', 'true', '../../ressources/images/etiquette1.jpg', '3.1','3','3c');
 
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 1);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 2);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 3);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 1);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 2);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 3);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 1);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 2);
-INSERT INTO t_site_secteur_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 3);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (1, 1);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (1, 2);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (1, 3);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (2, 1);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (2, 2);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (2, 3);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (3, 1);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (3, 2);
+INSERT INTO t_site_secteur_asso(site_fk_id, secteur_fk_id)	VALUES (3, 3);
 
 INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 1);
 INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (1, 2);
@@ -136,6 +136,9 @@ INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (2, 3);
 INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 1);
 INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 2);
 INSERT INTO t_secteur_voie_asso(secteur_fk_id, voie_fk_id)	VALUES (3, 3);
+
+INSERT INTO public.t_commentaire(com_datecreation, com_commentaire, com_utilisateur_fk_id, com_table_fk_id, com_target_table)
+VALUES ('09/04/2018 15:00', 'Ceci est un commentaire', '1', '1', 'SITE');
 
 -- ====================================================================================================================
 --------------------------------------------------------- CONTRAINTES -------------------------------------------------
@@ -165,6 +168,7 @@ ALTER SEQUENCE t_site_site_id_seq RESTART WITH 4;
 ALTER SEQUENCE t_secteur_secteur_id_seq RESTART WITH 7;
 ALTER SEQUENCE t_voie_voie_id_seq RESTART WITH 7;
 ALTER SEQUENCE t_longueur_longueur_id_seq RESTART WITH 7;
+ALTER SEQUENCE t_commentaire_com_id_seq RESTART WITH 2;
 
 
 

@@ -57,4 +57,9 @@ public class CommentaireManagerImpl extends AbstractManager implements Commentai
         }
         daoFactory.getCommentaireDao().update(pCommentaire);
     }
+
+    @Override
+    public List<Commentaire> findAllBySectionAndArticle(String pSection, int pArticle) {
+        return daoFactory.getCommentaireDao().findAllBySectionAndArticle(pSection,pArticle);
+    }
 }
