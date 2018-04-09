@@ -235,13 +235,41 @@
         </action>
 
         <!-- Action permettant de créer un commentaire sur la page site-->
-        <action name="comment_new" class="gestionCommentaireAction" method="doCreateForSite">
+        <action name="site_comment_new" class="gestionCommentaireAction" method="doCreate">
             <result name="success" type="redirectAction">
                 <param name="actionName">site_detail</param>
-                <param name="siteId">${siteId}</param>
+                <param name="siteId">${sectionId}</param>
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+
+        <!-- Action permettant de créer un commentaire sur la page secteur-->
+        <action name="secteur_comment_new" class="gestionCommentaireAction" method="doCreate">
+            <result name="success" type="redirectAction">
+                <param name="actionName">secteur_detail</param>
+                <param name="secteurId">${sectionId}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <!-- Action permettant de créer un commentaire sur la page voie-->
+        <action name="voie_comment_new" class="gestionCommentaireAction" method="doCreate">
+            <result name="success" type="redirectAction">
+                <param name="actionName">voie_detail</param>
+                <param name="voieId">${sectionId}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <!-- Action permettant de créer un commentaire sur la page longueur-->
+        <action name="longueur_comment_new" class="gestionCommentaireAction" method="doCreate">
+            <result name="success" type="redirectAction">
+                <param name="actionName">longueur_detail</param>
+                <param name="longueurId">${sectionId}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
 
 
         <!-- Actions Login/Logout/Register -->

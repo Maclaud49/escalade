@@ -91,6 +91,43 @@
                     <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
                 </div>
             </div>
+
+            <!-- Comments Form -->
+            <s:if test="#session.escalade_user.profil =='admin'">
+                <div class="card my-4">
+                    <h5 class="card-header">Ajouter un commentaire</h5>
+                    <div class="card-body">
+                        <form method="POST" action="voie_comment_new.action">
+                            <div class="form-group">
+                                <textarea name="commentaire.commentaire" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div style="display: none;">
+                                <s:textfield name="commentaire.target_table" value="VOIE"/>
+                                <s:textfield name="commentaire.reference_id" value="%{voie.id}"/>
+                                <s:textfield name="sectionId" value="%{voie.id}"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </s:if>
+            <s:else>
+                <div class="card my-4">
+                    <h5 class="card-header">Commentaires</h5>
+                </div>
+            </s:else>
+
+
+            <!-- Single Comment -->
+            <s:iterator value="listCommentaires">
+                <div id="commentsList" class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                    <div class="media-body">
+                        <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/> le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></h5>
+                        <s:property value="commentaire"/>
+                    </div>
+                </div>
+            </s:iterator>
         </div>
 
 

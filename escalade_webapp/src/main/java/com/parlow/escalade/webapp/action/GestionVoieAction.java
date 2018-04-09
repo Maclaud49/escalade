@@ -2,6 +2,7 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.Commentaire;
 import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Voie;
@@ -48,6 +49,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     private List<String> listCotations;
     private Integer secteurId;
     private List<Secteur> secteurList;
+    private List<Commentaire> listCommentaires;
 
     // ----- Eléments en sortie
     private List<Voie> listVoie;
@@ -144,6 +146,17 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
 
     public void setSecteurList(List<Secteur> secteurList) {
         this.secteurList = secteurList;
+    }
+
+    public List<Commentaire> getListCommentaires() {
+        if(this.listCommentaires==null){
+            this.listCommentaires=selectCommentaires();
+        }
+        return listCommentaires;
+    }
+
+    public void setListCommentaires(List<Commentaire> listCommentaires) {
+        this.listCommentaires = listCommentaires;
     }
 
     // ==================== Méthodes ====================
@@ -336,6 +349,16 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
     public String premiereLettreMaj(String str){
 
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    private List<Commentaire> selectCommentaires(){
+        List<Commentaire> listCommentaires = new ArrayList<>();
+        if(voieId != null) {
+            listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("VOIE", voieId);
+        }
+
+        return listCommentaires;
+
     }
 
     @Override

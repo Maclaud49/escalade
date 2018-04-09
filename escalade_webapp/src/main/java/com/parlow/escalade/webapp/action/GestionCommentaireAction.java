@@ -26,7 +26,7 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
     // ----- Paramètres en entrée
 
     private Commentaire commentaire;
-    private Integer siteId;
+    private Integer sectionId;
 
     // ==================== Getters/Setters ====================
 
@@ -39,21 +39,21 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
         this.commentaire = commentaire;
     }
 
-    public Integer getSiteId() {
-        return siteId;
+    public Integer getSectionId() {
+        return sectionId;
     }
 
-    public void setSiteId(Integer siteId) {
-        this.siteId = siteId;
+    public void setSectionId(Integer sectionId) {
+        this.sectionId = sectionId;
     }
 
-    // ==================== Méthodes ====================
+// ==================== Méthodes ====================
 
     /**
      * Action permettant de créer un nouveau {@link Commentaire}
      * @return success
      */
-    public String doCreateForSite() {
+    public String doCreate() {
 
         String vResult = ActionSupport.SUCCESS;
 

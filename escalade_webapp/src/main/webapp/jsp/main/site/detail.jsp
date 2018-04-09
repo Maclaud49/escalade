@@ -89,14 +89,14 @@
             <div class="card my-4">
                 <h5 class="card-header">Ajouter un commentaire</h5>
                 <div class="card-body">
-                    <form method="POST" action="comment_new.action">
+                    <form method="POST" action="site_comment_new.action">
                         <div class="form-group">
                             <textarea name="commentaire.commentaire" class="form-control" rows="3"></textarea>
                         </div>
                         <div style="display: none;">
                             <s:textfield name="commentaire.target_table" value="SITE"/>
                             <s:textfield name="commentaire.reference_id" value="%{site.id}"/>
-                            <s:textfield name="siteId" value="%{site.id}"/>
+                            <s:textfield name="sectionId" value="%{site.id}"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Envoyer</button>
                     </form>

@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.Commentaire;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.bean.Voie;
@@ -56,6 +57,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
     private List<String> listDepartements;
     private Integer siteId;
     private List<Site> siteList;
+    private List<Commentaire> listCommentaires;
 
     // ----- Eléments en sortie
     private List<Secteur> listSecteur;
@@ -147,6 +149,17 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     public void setSiteList(List<Site> siteList) {
         this.siteList = siteList;
+    }
+
+    public List<Commentaire> getListCommentaires() {
+        if(this.listCommentaires==null){
+            this.listCommentaires=selectCommentaires();
+        }
+        return listCommentaires;
+    }
+
+    public void setListCommentaires(List<Commentaire> listCommentaires) {
+        this.listCommentaires = listCommentaires;
     }
 
     // ==================== Méthodes ====================
@@ -340,6 +353,17 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     public List<Site> selectSite(){
         return managerFactory.getSiteManager().findAll();
+    }
+
+    private List<Commentaire> selectCommentaires(){
+
+        List<Commentaire> listCommentaires = new ArrayList<>();
+        if(secteurId != null) {
+            listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("SECTEUR", secteurId);
+        }
+
+        return listCommentaires;
+
     }
 
     //transforme la premiere lettre d'un string en majuscule

@@ -297,14 +297,11 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     }
 
     private List<Commentaire> selectCommentaires(){
-        logger.info("siteId " + siteId);
         List<Commentaire> listCommentaires = new ArrayList<>();
             if(siteId != null) {
                 listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("SITE", siteId);
             }
-
         return listCommentaires;
-
     }
 
     //transforme la premiere lettre d'un string en majuscule

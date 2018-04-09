@@ -2,6 +2,7 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.Commentaire;
 import com.parlow.escalade.model.bean.Longueur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
@@ -46,6 +47,7 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
     private String imageTempFileName;
     private List<String> listCotations;
     private Integer voieId;
+    private List<Commentaire> listCommentaires;
 
     // ----- Eléments en sortie
     private List<Longueur> listLongueur;
@@ -130,6 +132,17 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
 
     public void setVoieId(Integer voieId) {
         this.voieId = voieId;
+    }
+
+    public List<Commentaire> getListCommentaires() {
+        if(this.listCommentaires==null){
+            this.listCommentaires=selectCommentaires();
+        }
+        return listCommentaires;
+    }
+
+    public void setListCommentaires(List<Commentaire> listCommentaires) {
+        this.listCommentaires = listCommentaires;
     }
 
     // ==================== Méthodes ====================
@@ -276,6 +289,14 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
         return list;
+    }
+
+    private List<Commentaire> selectCommentaires(){
+        List<Commentaire> listCommentaires = new ArrayList<>();
+        if(longueurId != null) {
+            listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("LONGUEUR", longueurId);
+        }
+        return listCommentaires;
     }
 
     @Override
