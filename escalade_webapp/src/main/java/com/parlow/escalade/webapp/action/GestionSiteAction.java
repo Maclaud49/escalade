@@ -233,6 +233,16 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     }
 
     /**
+     * Action permettant de supprimer {@link Site}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        String vResult = ActionSupport.INPUT;
+        return vResult;
+    }
+
+
+    /**
      * Action permetttant la modification d'un {@link Site}
      * @return success / error
      */

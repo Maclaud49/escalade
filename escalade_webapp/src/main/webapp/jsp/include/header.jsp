@@ -83,7 +83,9 @@
                 </li>
                 <s:if test="#session.escalade_user.profil =='admin'">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Admin</a>
+                    <s:a action="console" class="nav-link">
+                        <i class="fa fa-cog"> Admin</i>
+                    </s:a>
                 </li>
                 </s:if>
                 <li class="nav-item">

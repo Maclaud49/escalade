@@ -56,6 +56,9 @@
     <bean id="gestionRechercheAction"
           class="com.parlow.escalade.webapp.action.GestionRechercheAction"
           scope= "prototype"  />
+    <bean id="gestionConsoleAction"
+          class="com.parlow.escalade.webapp.action.GestionConsoleAction"
+          scope= "prototype"  />
 
 </beans>
 

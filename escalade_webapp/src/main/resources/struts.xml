@@ -64,6 +64,17 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <!-- Actions permettant de supprimer un site -->
+        <action name="site_supprimer" class="gestionSiteAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/main/site/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
+        </action>
 
         <!-- Action listant les secteurs -->
         <action name="secteur_list" class="gestionSecteurAction" method="doList">
@@ -273,6 +284,11 @@
         <!-- Action de recherche-->
         <action name="search" class="gestionRechercheAction" method="doListSearchResult">
             <result>/jsp/main/resultatsRecherche.jsp</result>
+        </action>
+
+        <!-- Action de console-->
+        <action name="console" class="gestionConsoleAction" method="doListItems">
+            <result>/jsp/admin/console.jsp</result>
         </action>
 
 

@@ -25,6 +25,7 @@ public class Site {
     private String region;
     private Integer nbSecteurs;
     private Integer nbVoies;
+    private Integer nbCommentaires;
 
     // ==================== Constructeurs ==============
 
@@ -147,6 +148,14 @@ public class Site {
 
     public void setCommentaires(List<Commentaire> commentaires) {
         this.commentaires = commentaires;
+    }
+
+    public Integer getNbCommentaires() {
+        return nbCommentaires;
+    }
+
+    public void setNbCommentaires(Integer nbCommentaires) {
+        this.nbCommentaires = nbCommentaires;
     }
 
     // ==================== Méthodes =====================
