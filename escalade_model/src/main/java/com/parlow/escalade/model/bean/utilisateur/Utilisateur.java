@@ -22,6 +22,7 @@ public class Utilisateur {
     private String codePostal;
     private String ville;
     private String pays;
+    private Integer nbCommentaires;
 
     // ==================== Getters/Setters ==============
     public Integer getId() {
@@ -134,6 +135,14 @@ public class Utilisateur {
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+
+    public Integer getNbCommentaires() {
+        return nbCommentaires;
+    }
+
+    public void setNbCommentaires(Integer nbCommentaires) {
+        this.nbCommentaires = nbCommentaires;
     }
 
     // ==================== Méthodes =====================

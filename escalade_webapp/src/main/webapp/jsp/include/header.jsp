@@ -64,7 +64,7 @@
                 </s:else>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLangue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Langue
+                        <i class="fa fa-language"> Langue</i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <s:a action="request_locale" class="dropdown-item">

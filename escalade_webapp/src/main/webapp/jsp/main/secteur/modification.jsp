@@ -82,51 +82,58 @@
                             </div>
                         </div>
                     </div>
+                    <s:if test="#session.escalade_user.profil =='admin'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <s:checkbox class="form-check-input" name="secteur.publication"  value="%{secteur.publication}" label="Publication"/>
+                                </div>
+                            </div>
+                        </div>
+                    </s:if>
+                    <s:else >
+                        <div style="display: none;">
+                            <s:textfield name="secteur.publication" value="false"/>
+                        </div>
+                    </s:else>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-check">
-                                <s:checkbox class="form-check-input" name="secteur.publication"  value="%{secteur.publication}" label="Publication"/>
+                            <div class="form-group has-danger">
+                                <label>Rattacher ce secteur au site</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <s:select  class="form-control" name="siteId"
+                                               list="siteList" listKey="id"  listValue="nom" emptyOption="true" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group has-danger">
-                            <label>Rattacher ce secteur au site</label>
-                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                <s:select  class="form-control" name="siteId"
-                                           list="siteList" listKey="id"  listValue="nom" emptyOption="true" required="true"/>
-                            </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12" style="padding-top: .35rem">
+                                    <span class="text-danger align-middle">
+                                        <s:actionerror class="text-danger align-middle"/>
+                                    </span>
                         </div>
                     </div>
-                </div>
 
-
-                <div class="row">
-                    <div class="col-md-12" style="padding-top: .35rem">
-                                <span class="text-danger align-middle">
-                                    <s:actionerror class="text-danger align-middle"/>
-                                </span>
+                    <div class="row" style="padding-top: 1rem">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-7">
+                            <button type="submit" class="btn btn-success" style="margin-bottom: 20px;"><i class="fa fa-sign-in"></i> Modifier</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row" style="padding-top: 1rem">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-7">
-                        <button type="submit" class="btn btn-success" style="margin-bottom: 20px;"><i class="fa fa-sign-in"></i> Modifier</button>
-                    </div>
-                </div>
+                </form>
+            </div>
 
-            </form>
-        </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
 
 
+            </div>
         </div>
     </div>
-</div>
 
 <%@ include file="../../include/footer.jsp" %>
 

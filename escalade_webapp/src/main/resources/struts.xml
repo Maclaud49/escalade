@@ -70,7 +70,6 @@
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
-            <result name="input">/jsp/main/site/new.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">/jsp/admin/console.jsp</param>
             </result>
@@ -127,6 +126,16 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <!-- Actions permettant de supprimer un secteur -->
+        <action name="secteur_supprimer" class="gestionSecteurAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
+        </action>
 
         <!-- Action listant les voies -->
         <action name="voie_list" class="gestionVoieAction" method="doList">
@@ -178,6 +187,16 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <action name="voie_supprimer" class="gestionVoieAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
+        </action>
+        
 
         <!-- Action listant les longueurs -->
         <action name="longueur_list" class="gestionLongueurAction" method="doList">
@@ -229,6 +248,16 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <action name="longueur_supprimer" class="gestionLongueurAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/main/longueur/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
+        </action>
 
         <!-- Action affichant le détail d'un utilisateur -->
         <action name="utilisateur_detail" class="gestionUtilisateurAction" method="doDetail">
@@ -243,6 +272,15 @@
                 <param name="utilisateurId">${utilisateur.id}</param>
             </result>
             <result name="error">/jsp/error.jsp</result>
+        </action>
+        <action name="utilisateur_supprimer" class="gestionUtilisateurAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
         </action>
 
         <!-- Action permettant de créer un commentaire sur la page site-->
@@ -279,6 +317,23 @@
                 <param name="longueurId">${sectionId}</param>
             </result>
             <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <!-- Action permettant de créer un commentaire sur la page longueur-->
+        <action name="commentaire_modifier" class="gestionCommentaireAction" method="doModifier">
+            <result name="success"></result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+
+        <!-- Action permettant de créer un commentaire sur la page longueur-->
+        <action name="commentaire_supprimer" class="gestionCommentaireAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">/jsp/admin/console.jsp</param>
+            </result>
         </action>
 
         <!-- Action de recherche-->

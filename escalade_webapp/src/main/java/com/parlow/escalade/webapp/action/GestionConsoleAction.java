@@ -2,10 +2,8 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
-import com.parlow.escalade.model.bean.Longueur;
-import com.parlow.escalade.model.bean.Secteur;
-import com.parlow.escalade.model.bean.Site;
-import com.parlow.escalade.model.bean.Voie;
+import com.parlow.escalade.model.bean.*;
+import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,6 +22,8 @@ public class GestionConsoleAction extends ActionSupport {
     private List<Secteur> listSecteur;
     private List<Voie> listVoie;
     private List<Longueur> listLongueur;
+    private List<Utilisateur> listUtilisateur;
+    private List<Commentaire> listCommentaire;
 
 
 
@@ -62,6 +62,21 @@ public class GestionConsoleAction extends ActionSupport {
         this.listLongueur = listLongueur;
     }
 
+    public List<Utilisateur> getListUtilisateur() {
+        return listUtilisateur;
+    }
+
+    public void setListUtilisateur(List<Utilisateur> listUtilisateur) {
+        this.listUtilisateur = listUtilisateur;
+    }
+
+    public List<Commentaire> getListCommentaire() {
+        return listCommentaire;
+    }
+
+    public void setListCommentaire(List<Commentaire> listCommentaire) {
+        this.listCommentaire = listCommentaire;
+    }
 
     // ==================== Méthodes ====================
     /**
@@ -74,6 +89,11 @@ public class GestionConsoleAction extends ActionSupport {
         listSecteur = managerFactory.getSecteurManager().findAll();
         listVoie = managerFactory.getVoieManager().findAll();
         listLongueur = managerFactory.getLongueurManager().findAll();
+        listCommentaire = managerFactory.getCommentaireManager().findAll();
+        listUtilisateur = managerFactory.getUtilisateurManager().findAll();
+
+        //todo ajouter le nb de commentaires par utilisateur
+
         return ActionSupport.SUCCESS;
     }
 }

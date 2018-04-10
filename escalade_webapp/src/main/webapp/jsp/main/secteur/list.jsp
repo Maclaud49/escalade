@@ -30,6 +30,7 @@
             <div class="col-md-8">
 
                 <s:iterator value="listSecteur">
+                    <s:if test="#session.escalade_user.profil =='admin'">
                     <div class="card mb-4">
                         <img class="card-img-top" src="<s:property value="image" />" alt="Card image cap">
                         <div class="card-body">
@@ -49,6 +50,43 @@
                             <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
                         </div>
                     </div>
+                    </s:if>
+                    <s:elseif test="publication == false && utilisateur.id == #session.escalade_user.id">
+                        <div class="card-footer text-muted">
+                            Secteur en cours de validation de modification
+                        </div>
+                        <div class="card mb-4">
+                            <h5 class="card-header">Modifier le secteur</h5>
+                            <div class="card-body text-center">
+                                <s:a action="secteur_modifier" class="btn btn-secondary"><s:param name="secteurId" value="id" />Modifier</s:a>
+                            </div>
+                        </div>
+                    </s:elseif>
+                    <s:elseif test="publication == false">
+
+                    </s:elseif>
+                    <s:else>
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="<s:property value="image" />" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title"><s:property value="nom" /></h2>
+                                <p class="card-text"><s:property value="description" /></p>
+                                <s:a action="secteur_detail" class="btn btn-primary">
+                                    <s:param name="secteurId" value="id" />
+                                    En savoir plus &rarr;
+                                </s:a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Posté le <s:date name="dateCreation" format="dd/MM/yyyy" /> par
+                                <s:a action="utilisateur_detail">
+                                    <s:param name="utilisateurId" value="utilisateur.id" />
+                                    <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
+                                </s:a>
+                                <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                            </div>
+                        </div>
+                    </s:else>
+
                 </s:iterator>
 
                 <!-- Pagination -->

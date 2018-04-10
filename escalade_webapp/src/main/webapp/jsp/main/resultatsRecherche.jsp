@@ -35,6 +35,7 @@
             </div>
             <s:if test="!listSite.isEmpty()">
             <s:iterator value="listSite">
+                <s:if test="publication == true">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2>
@@ -53,6 +54,7 @@
                         </s:a>
                     </div>
                 </div>
+                </s:if>
             </s:iterator>
             </s:if>
             <s:else>
@@ -68,6 +70,7 @@
             </div>
             <s:if test="!listSecteur.isEmpty()">
             <s:iterator value="listSecteur">
+                <s:if test="publication == true">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2>
@@ -86,6 +89,7 @@
                         </s:a>
                     </div>
                 </div>
+                </s:if>
             </s:iterator>
             </s:if>
             <s:else>
@@ -101,6 +105,7 @@
             </div>
             <s:if test="!listVoie.isEmpty()">
             <s:iterator value="listVoie">
+                <s:if test="publication == true">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2>
@@ -119,6 +124,7 @@
                         </s:a>
                     </div>
                 </div>
+                </s:if>
             </s:iterator>
             </s:if>
             <s:else>
@@ -134,6 +140,7 @@
             </div>
             <s:if test="!listLongueur.isEmpty()">
             <s:iterator value="listLongueur">
+                <s:if test="publication == true">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2>
@@ -152,6 +159,7 @@
                         </s:a>
                     </div>
                 </div>
+                </s:if>
             </s:iterator>
             </s:if>
             <s:else>

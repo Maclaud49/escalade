@@ -115,25 +115,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-check">
-                                <s:checkbox class="form-check-input" name="voie.publication"  value="%{voie.publication}" label="Publication"/>
+                    <s:if test="#session.escalade_user.profil =='admin'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    <s:checkbox class="form-check-input" name="voie.publication"  value="%{voie.publication}" label="Publication"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </s:if>
+                    <s:else >
+                        <div style="display: none;">
+                            <s:textfield name="voie.publication" value="false"/>
+                        </div>
+                    </s:else>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-danger">
                                 <label>Rattacher cette voie au secteur</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <s:select  class="form-control" name="secteurId"
-                                               list="secteurList" listKey="id"  listValue="nom" emptyOption="true" required="true"/>
+                                               list="secteurList" listKey="id"  listValue="nom" emptyOption="true" />
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                <s:if test="#session.escalade_user.profil =='admin'">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <s:checkbox class="form-check-input" name="site.publication"  value="%{site.publication}" label="Publication"/>
+                            </div>
+                        </div>
+                    </div>
+                </s:if>
+                <s:else >
+                    <div style="display: none;">
+                        <s:textfield name="site.publication" value="false"/>
+                    </div>
+                </s:else>
 
 
                 <div class="row">

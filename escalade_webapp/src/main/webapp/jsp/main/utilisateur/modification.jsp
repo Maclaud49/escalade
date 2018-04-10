@@ -114,6 +114,22 @@
                             </div>
                         </div>
                     </div>
+                    <s:if test="#session.escalade_user.profil =='admin'">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-danger">
+                                    <label>Profil</label>
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <s:select  class="form-control" name="profil"
+                                                   list="{'utilisateur','admin'}"  emptyOption="true" value="utilisateur"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </s:if>
+                    <s:else>
+                        <s:textfield name="profil" value="utilisateur"/>
+                    </s:else>
                 </fieldset>
                 <fieldset class="form-group">
                     <legend>Adresse</legend>

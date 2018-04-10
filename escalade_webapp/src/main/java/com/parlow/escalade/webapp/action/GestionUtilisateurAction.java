@@ -144,6 +144,16 @@ public class GestionUtilisateurAction extends ActionSupport {
         return vResult;
     }
 
+    /**
+     * Action permettant de supprimer {@link Utilisateur}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
+        return vResult;
+    }
+
     //transforme la premiere lettre d'un string en majuscule
     public String premiereLettreMaj(String str){
 

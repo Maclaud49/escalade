@@ -69,6 +69,7 @@
                         <s:else>
                         <ul class="text-center">
                             <s:iterator value="voie.longueurs">
+                                <s:if test="publication == true">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="longueur_detail" class="btn btn-primary">
                                             <s:param name="longueurId" value="id" />
@@ -76,6 +77,7 @@
                                         </s:a>
 
                                     </li>
+                                </s:if>
                             </s:iterator>
                          </ul>
                         </s:else>

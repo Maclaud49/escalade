@@ -31,6 +31,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     private String password2;
     private String nom;
     private String prenom;
+    private String profil;
 
 
 
@@ -65,6 +66,14 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
+
+    public String getProfil() {
+        return profil;
+    }
+
+    public void setProfil(String profil) {
+        this.profil = profil;
+    }
     // ==================== Méthodes ====================
 
     /**
@@ -79,7 +88,8 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             vUtilisateur.setPrenom(premiereLettreMaj(prenom));
             vUtilisateur.setEmail(email);
             vUtilisateur.setPassword(password);
-            vUtilisateur.setProfil("ADMIN");
+            vUtilisateur.setProfil(profil);
+
             try {
                 int id = managerFactory.getUtilisateurManager().insert(vUtilisateur);
                 // Ajout de l'utilisateur en session

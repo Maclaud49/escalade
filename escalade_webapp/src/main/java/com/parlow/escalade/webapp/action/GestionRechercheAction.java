@@ -81,9 +81,7 @@ public class GestionRechercheAction extends ActionSupport {
         String keyWordForSearch = '%'+keyWord+'%';
 
         listSite = managerFactory.getSiteManager().searchResult(keyWordForSearch);
-        logger.info("listSite" + listSite);
         listSecteur = managerFactory.getSecteurManager().searchResult(keyWordForSearch);
-        logger.info("listSecteur" + listSecteur);
         listVoie = managerFactory.getVoieManager().searchResult(keyWordForSearch);
         listLongueur = managerFactory.getLongueurManager().searchResult(keyWordForSearch);
         return ActionSupport.SUCCESS;

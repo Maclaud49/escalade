@@ -95,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                <s:if test="#session.escalade_user.profil =='admin'">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-check">
@@ -102,7 +103,12 @@
                             </div>
                         </div>
                     </div>
-
+                </s:if>
+                <s:else >
+                    <div style="display: none;">
+                        <s:textfield name="longueur.publication" value="false"/>
+                    </div>
+                </s:else>
 
 
                 <div class="row">

@@ -16,20 +16,22 @@ import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 
 
 import javax.inject.Inject;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 /**
  * Action de gestion des {@link Site}
  */
 @PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
-public class GestionSiteAction extends ActionSupport implements  SessionAware {
+public class GestionSiteAction extends ActionSupport implements SessionAware, ServletRequestAware {
 
 
 
@@ -47,6 +49,7 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
+    private HttpServletRequest servletRequest;
 
     private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
 
@@ -143,6 +146,10 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
         this.listCommentaires = listCommentaires;
     }
 
+
+
+
+
     // ==================== Méthodes ====================
     /**
      * Action listant les {@link Site}
@@ -237,7 +244,8 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
      * @return input / success / error
      */
     public String doDelete() {
-        String vResult = ActionSupport.INPUT;
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
         return vResult;
     }
 
@@ -259,6 +267,7 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
+            if(imageTemp!=null){
             try{
                 String filePath = cheminImages;
                 File file2 = new File(filePath, getImageTempFileName());
@@ -268,10 +277,9 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
                  {logger.error("problème lors du upload de l'image " +e);}
 
 
-            if(imageTemp!=null){
                 this.site.setImage("../../ressources/images/"+ getImageTempFileName());
             }
-            logger.error("id du site" + site.getId());
+
 
             try {
                 managerFactory.getSiteManager().update(site);
@@ -322,6 +330,8 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
 
     @Override
     public void validate() {
+
+        //Todo validation des donnees
         if (this.site != null) {
             if (site.getNom().length() < 3) {
 
@@ -336,4 +346,8 @@ public class GestionSiteAction extends ActionSupport implements  SessionAware {
     }
 
 
+    @Override
+    public void setServletRequest(HttpServletRequest pRequest) {
+        this.servletRequest = pRequest;
+    }
 }

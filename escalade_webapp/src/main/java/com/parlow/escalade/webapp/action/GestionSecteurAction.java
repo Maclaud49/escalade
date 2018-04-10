@@ -204,7 +204,6 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
      * @return input / success / error
      */
     public String doCreate() {
-        logger.info("site id " + siteId);
 
         String vResult = ActionSupport.INPUT;
 
@@ -298,7 +297,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
                 vResult = ActionSupport.ERROR;
             }
-            if(siteId >0){
+            if(siteId != null && siteId >0){
                 logger.info("site id " + siteId);
                 //Verification de l'existence de l'association
                 int result = 0;
@@ -345,6 +344,16 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
         return vResult;
     }
 
+    /**
+     * Action permettant de supprimer {@link Secteur}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
+        return vResult;
+    }
+
     public List<String> selectDepartement(){
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("Ardennes","Aube","Marne","Haute-Marne","Meurthe-et-Moselle","Meuse","Moselle","Bas-Rhin","Haut-Rhin","Vosges","Charente","Charente-Maritime","Corrèze","Creuse","Deux-Sèvres","Dordogne","Gironde","Landes","Lot-et-Garonne","Pyrénées-Atlantiques","Haute-Vienne","Vienne","Ain","Allier","Ardèche","Cantal","Drôme","Haute-Loire","Isère","Loire","Puy-de-Dôme","Rhône","Savois","Haute-Savoie","Côte-d''Or","Doubs","Jura","Nièvre","Saône-et-Loire","Haute-Saône","Territoire de Belfort","Yonne","Côtes-d''Armor","Finistère","Ille-et-Vilaine","Morbihan","Cher","Eure-et-Loir","Indre","Indre-et-Loire","Loir-et-Cher","Loiret","Corse-du-Sud","Haute-Corse","Essonne","Hauts-de-Seine","Paris","Seine-Saint-Denis","Seine-et-Marne","Val-de-Marne","Val-d''Oise","Yvelines","Ariège","Aude","Aveyron","Gard","Haute-Garonne","Gers","Lot","Hautes-Pyrénées","Hérault","Lozère","Pyrénées-Orientales","Tarn","Tarn-et-Garonne","Aisne","Nord","Oise","Pas-de-Calais","Somme","Calvados","Eure","Manche","Orne","Seine-Maritime","Loire-Atlantique","Maine-et-Loire","Mayenne","Sarthe","Vendée","Alpes-de-Haute-Provence","Hautes-Alpes","Alpes-Maritimes","Bouches-du-Rhône","Var","Vaucluse");
@@ -374,6 +383,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     @Override
     public void validate() {
+        //Todo validation des donnees
         if (this.secteur != null) {
             if (secteur.getNom().length() < 3) {
 

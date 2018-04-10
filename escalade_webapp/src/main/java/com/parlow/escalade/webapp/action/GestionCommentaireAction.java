@@ -27,6 +27,7 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
 
     private Commentaire commentaire;
     private Integer sectionId;
+    private Integer commentaireId;
 
     // ==================== Getters/Setters ====================
 
@@ -47,7 +48,15 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
         this.sectionId = sectionId;
     }
 
-// ==================== Méthodes ====================
+    public Integer getCommentaireId() {
+        return commentaireId;
+    }
+
+    public void setCommentaireId(Integer commentaireId) {
+        this.commentaireId = commentaireId;
+    }
+
+    // ==================== Méthodes ====================
 
     /**
      * Action permettant de créer un nouveau {@link Commentaire}
@@ -75,6 +84,45 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
             }
         }
 
+        return vResult;
+    }
+
+    /**
+     * Action permettant de modifier un {@link Commentaire}
+     * @return success
+     */
+    public String doModifier() {
+    // todo modifier commentaire
+        String vResult = ActionSupport.SUCCESS;
+
+        // ===== Validation de l'ajout de site (site != null)
+        if (this.commentaire != null) {
+            Date date = new Date();
+            this.commentaire.setUtilisateur((Utilisateur) this.session.get("escalade_user"));
+            //this.commentaire.setDateCreation(new Timestamp(date.getTime()));
+            this.commentaire.setCommentaire(premiereLettreMaj(this.commentaire.getCommentaire()));
+
+            try {
+                managerFactory.getCommentaireManager().insert(this.commentaire);
+                vResult = ActionSupport.SUCCESS;
+
+            } catch (FunctionalException pEx) {
+                this.addActionError(pEx.getMessage());
+                vResult = ActionSupport.ERROR;
+
+            }
+        }
+
+        return vResult;
+    }
+
+    /**
+     * Action permettant de supprimer {@link Commentaire}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
         return vResult;
     }
 

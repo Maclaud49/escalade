@@ -65,9 +65,10 @@ public class UtilisateurDaoImpl extends AbstractDaoImpl  implements UtilisateurD
     @Override
     public List<Utilisateur> findAll() {
         String vSQL_findAll = "SELECT * FROM t_utilisateur";
-        List<Utilisateur> utilisateurs  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Utilisateur.class));
+        List<Utilisateur> utilisateurs  = this.vJdbcTemplate.query(vSQL_findAll, new UtilisateurMapper());
         return utilisateurs;
     }
+
 
     @Override
     public int insert(Utilisateur pUtilisateur) throws FunctionalException {

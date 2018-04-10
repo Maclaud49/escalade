@@ -32,8 +32,8 @@ public class CommentaireDaoImpl extends AbstractDaoImpl implements CommentaireDa
 
     @Override
     public List<Commentaire> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_commentaire";
-        List<Commentaire> commentaires  = this.vJdbcTemplate.query(vSQL_findAll, new BeanPropertyRowMapper(Commentaire.class));
+        String vSQL_findAll = "SELECT * FROM t_commentaire, t_utilisateur WHERE com_utilisateur_fk_id = utilisateur_id";
+        List<Commentaire> commentaires  = this.vJdbcTemplate.query(vSQL_findAll, new CommentaireMapper());
         return commentaires;
     }
 

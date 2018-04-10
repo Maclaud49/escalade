@@ -117,6 +117,26 @@
                 </div>
             </div>
         </div>
+        <s:if test="#session.escalade_user.profil =='admin'">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <label>Profil</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:select  class="form-control" name="profil"
+                                       list="{'utilisateur','admin'}" value="utilisateur"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </s:if>
+        <s:else>
+            <div style="display: none;">
+                <s:textfield name="profil" value="utilisateur"/>
+            </div>
+        </s:else>
+
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6" style="padding-top: .35rem">

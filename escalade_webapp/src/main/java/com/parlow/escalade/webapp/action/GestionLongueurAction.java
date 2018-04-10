@@ -279,6 +279,16 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
         return vResult;
     }
 
+    /**
+     * Action permettant de supprimer {@link Longueur}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
+        return vResult;
+    }
+
     //transforme la premiere lettre d'un string en majuscule
     public String premiereLettreMaj(String str){
 
@@ -301,6 +311,7 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
 
     @Override
     public void validate() {
+        //Todo validation des donnees
         if (this.longueur != null) {
             if (longueur.getNom().length() < 3) {
 

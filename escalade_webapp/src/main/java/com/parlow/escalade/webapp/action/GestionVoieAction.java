@@ -335,6 +335,16 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
         return vResult;
     }
 
+    /**
+     * Action permettant de supprimer {@link Voie}
+     * @return input / success / error
+     */
+    public String doDelete() {
+        //todo delete
+        String vResult = ActionSupport.SUCCESS;
+        return vResult;
+    }
+
     public List<String> selectCotation(){
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
@@ -363,6 +373,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
 
     @Override
     public void validate() {
+        //Todo validation des donnees
         if (this.voie != null) {
             if (voie.getNom().length() < 3) {
 

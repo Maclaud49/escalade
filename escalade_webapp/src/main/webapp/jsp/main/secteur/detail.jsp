@@ -58,11 +58,12 @@
                         <ul class="text-center">
                             <s:iterator value="secteur.voies">
                                     <li style = "list-style: none;margin:10px">
+                                        <s:if test="publication == true">
                                         <s:a action="voie_detail" class="btn btn-primary">
                                             <s:param name="voieId" value="id" />
                                             <s:property value="nom" />
                                         </s:a>
-
+                                        </s:if>
                                     </li>
                             </s:iterator>
                          </ul>
