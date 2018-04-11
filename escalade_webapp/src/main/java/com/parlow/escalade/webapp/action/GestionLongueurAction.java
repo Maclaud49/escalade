@@ -284,7 +284,11 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+        try {
+            managerFactory.getLongueurManager().delete(longueurId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }

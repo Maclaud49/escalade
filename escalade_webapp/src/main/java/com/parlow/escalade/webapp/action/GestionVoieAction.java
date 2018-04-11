@@ -229,7 +229,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                 this.addActionError(pEx.getMessage());
                 vResult = ActionSupport.ERROR;
             }
-            if(secteurId >0){
+            if(secteurId != null && secteurId >0){
                 logger.info("secteur id " + secteurId);
                 try {
                     managerFactory.getSecteurVoieManager().insert(secteurId,this.voie.getId());
@@ -241,9 +241,6 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                     vResult = ActionSupport.ERROR;
                 }
 
-            }
-            else{
-                logger.info("for test");
             }
         }
 
@@ -340,7 +337,11 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+        try {
+            managerFactory.getVoieManager().delete(voieId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }

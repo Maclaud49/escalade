@@ -91,6 +91,15 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public List<Longueur> searchResult(String keyWord) {
-        return null;
+        String vSQL_findAll = "SELECT * FROM t_longueur, t_utilisateur where concat(longueur_nom,longueur_description,longueur_datecreation,utilisateur_nom,utilisateur_prenom)  ILIKE ? AND longueur_utilisateur_fk_id = utilisateur_id ORDER BY longueur_datecreation DESC";
+        List<Longueur> longueurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { keyWord }, new RowMapper<Longueur>() {
+            @Override
+            public Longueur mapRow(ResultSet rs, int rowNum) throws SQLException {
+                LongueurMapper longueurMapper = new LongueurMapper();
+                return longueurMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return longueurs;
     }
 }

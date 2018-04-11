@@ -116,7 +116,8 @@
                     </div>
                     <s:if test="#session.escalade_user.profil =='admin'">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
                                 <div class="form-group has-danger">
                                     <label>Profil</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
@@ -128,7 +129,9 @@
                         </div>
                     </s:if>
                     <s:else>
-                        <s:textfield name="profil" value="utilisateur"/>
+                        <div style="display: none;">
+                            <s:textfield name="profil" value="utilisateur"/>
+                        </div>
                     </s:else>
                 </fieldset>
                 <fieldset class="form-group">

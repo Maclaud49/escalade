@@ -244,7 +244,14 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+    //todo mettre au propre toutes les méthodes
+        try {
+            managerFactory.getSiteManager().delete(siteId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        } catch (TechnicalException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }

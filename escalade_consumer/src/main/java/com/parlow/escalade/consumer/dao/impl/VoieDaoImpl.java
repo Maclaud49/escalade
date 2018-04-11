@@ -93,7 +93,18 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public List<Voie> searchResult(String keyWord) {
-        return null;
+
+        String vSQL_findAll = "SELECT * FROM t_voie, t_utilisateur where concat(voie_nom,voie_description,voie_datecreation,utilisateur_nom,utilisateur_prenom)  ILIKE ? AND voie_utilisateur_fk_id = utilisateur_id ORDER BY voie_datecreation DESC";
+        List<Voie> voies  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { keyWord }, new RowMapper<Voie>() {
+            @Override
+            public Voie mapRow(ResultSet rs, int rowNum) throws SQLException {
+                VoieMapper voieMapper = new VoieMapper();
+                return voieMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return voies;
+        
     }
 
 

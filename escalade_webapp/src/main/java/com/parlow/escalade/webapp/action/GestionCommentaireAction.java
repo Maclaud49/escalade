@@ -5,6 +5,7 @@ import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Commentaire;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
+import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -121,7 +122,11 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+        try {
+            managerFactory.getCommentaireManager().delete(commentaireId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }

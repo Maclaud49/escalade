@@ -82,7 +82,17 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public List<Secteur> searchResult(String keyWord) {
-        return null;
+
+        String vSQL_findAll = "SELECT * FROM t_secteur, t_utilisateur where concat(secteur_nom,secteur_description,secteur_datecreation,secteur_departement,utilisateur_nom,utilisateur_prenom)  ILIKE ? AND secteur_utilisateur_fk_id = utilisateur_id ORDER BY secteur_datecreation DESC";
+        List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new Object[] { keyWord }, new RowMapper<Secteur>() {
+            @Override
+            public Secteur mapRow(ResultSet rs, int rowNum) throws SQLException {
+                SecteurMapper secteurMapper = new SecteurMapper();
+                return secteurMapper.mapRow(rs, rowNum);
+            }
+        });
+
+        return secteurs;
     }
 
 }

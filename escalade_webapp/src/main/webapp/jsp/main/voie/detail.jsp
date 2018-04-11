@@ -15,7 +15,7 @@
 
     <s:if test="hasActionMessages()">
         <div class="alert alert-success text-center" style="margin-top:20px">
-            <strong>Merci pour ta contribution !</strong><s:actionmessage style="list-style:none" />
+            <s:actionmessage style="list-style:none" />
         </div>
     </s:if>
 
@@ -125,7 +125,7 @@
                 <div id="commentsList" class="media mb-4">
                     <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                     <div class="media-body">
-                        <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/> le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></h5>
+                        <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/> <small>le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></small></h5>
                         <s:property value="commentaire"/>
                     </div>
                 </div>

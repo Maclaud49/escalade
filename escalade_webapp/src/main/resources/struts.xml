@@ -71,8 +71,9 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirectAction">
-                <param name="actionName">/jsp/admin/console.jsp</param>
+                <param name="actionName">console</param>
             </result>
+            <result name="error">/jsp/error.jsp</result>
         </action>
 
         <!-- Action listant les secteurs -->
@@ -98,7 +99,6 @@
             <result name="success" type="redirectAction">
                 <param name="actionName">secteur_detail</param>
                 <param name="secteurId">${secteur.id}</param>
-
             </result>
         </action>
         <!-- Action affichant la page de modification d'un secteur -->
@@ -133,8 +133,9 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirectAction">
-                <param name="actionName">/jsp/admin/console.jsp</param>
+                <param name="actionName">console</param>
             </result>
+            <result name="error">/jsp/error.jsp</result>
         </action>
 
         <!-- Action listant les voies -->
@@ -187,14 +188,16 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <!-- Actions permettant de supprimer une voie -->
         <action name="voie_supprimer" class="gestionVoieAction" method="doDelete">
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirectAction">
-                <param name="actionName">/jsp/admin/console.jsp</param>
+                <param name="actionName">console</param>
             </result>
+            <result name="error">/jsp/error.jsp</result>
         </action>
         
 
@@ -248,6 +251,7 @@
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>
+        <!-- Actions permettant de supprimer une longueur -->
         <action name="longueur_supprimer" class="gestionLongueurAction" method="doDelete">
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
@@ -255,8 +259,9 @@
             <interceptor-ref name="defaultStack" />
             <result name="input">/jsp/main/longueur/new.jsp</result>
             <result name="success" type="redirectAction">
-                <param name="actionName">/jsp/admin/console.jsp</param>
+                <param name="actionName">console</param>
             </result>
+            <result name="error">/jsp/error.jsp</result>
         </action>
 
         <!-- Action affichant le détail d'un utilisateur -->

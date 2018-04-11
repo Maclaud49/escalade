@@ -233,8 +233,7 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 vResult = ActionSupport.ERROR;
             }
 
-            if(siteId >0){
-                logger.info("site id " + siteId);
+            if(siteId !=null && siteId >0){
                 //Verification de l'existence de l'association
                 int result = 0;
                 try {
@@ -246,9 +245,6 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
                 }
-            }
-            else{
-                logger.info("for test");
             }
         }
 
@@ -349,7 +345,11 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+        try {
+            managerFactory.getSecteurManager().delete(secteurId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }
