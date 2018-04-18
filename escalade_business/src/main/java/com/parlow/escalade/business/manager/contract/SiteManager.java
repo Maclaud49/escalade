@@ -58,4 +58,12 @@ public interface SiteManager {
      * @return List
      */
     List<Site> searchResult(String keyWord);
+
+    /**
+     * Renvoie le {@link Site} demandé
+     * @param pNom du {@link Site}
+     * @return {@link Site}
+     * @throws NotFoundException si non trouvé
+     */
+    Site findByName( String pNom )throws NotFoundException;
 }

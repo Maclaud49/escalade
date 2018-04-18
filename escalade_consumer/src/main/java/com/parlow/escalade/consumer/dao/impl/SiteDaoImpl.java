@@ -94,6 +94,16 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
         return sites;
     }
 
+    @Override
+    public Site findByName(String pNom) throws NotFoundException {
+        String sql_findByName = "SELECT * FROM t_site, t_utilisateur WHERE site_nom = ? AND site_utilisateur_fk_id = utilisateur_id";
+
+            Site site = this.vJdbcTemplate.queryForObject(
+                    sql_findByName, new Object[]{pNom}, new SiteMapper());
+            return site;
+
+    }
+
 }
 
 

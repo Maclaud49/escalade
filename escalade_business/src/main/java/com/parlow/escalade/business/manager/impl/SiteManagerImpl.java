@@ -33,6 +33,9 @@ import javax.validation.ConstraintViolationException;
 @Named
 public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
+    private static final Logger logger = LogManager.getLogger(SiteManagerImpl.class);
+
+
     @Override
     public Site findById(int pId) throws NotFoundException, TechnicalException, FunctionalException {
         if (pId < 1) {
@@ -84,6 +87,20 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     @Override
     public List<Site> searchResult(String keyWord) {
         return daoFactory.getSiteDao().searchResult(keyWord);
+    }
+
+    @Override
+    public Site findByName(String pNom) throws NotFoundException {
+        logger.info("manager");
+        Site site = daoFactory.getSiteDao().findByName(pNom);
+        if(site != null){
+            logger.info("not null");
+            return site;
+        }
+        else {
+            logger.info("null");
+            throw new NotFoundException("Aucun site correspondant à ce nom.");
+        }
     }
 
 }

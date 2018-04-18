@@ -124,7 +124,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
     @Override
     public void validate() {
         if (!StringUtils.isAllEmpty(nom, prenom, email, password)) {
-            boolean userExist = false;
+            boolean userExist = true;
 
             if (nom.length() < 2 || nom.length() >15) {
                 addFieldError("registerNom", "Votre nom doit faire entre 2 et 15 caratères ");
@@ -141,9 +141,9 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
             try {
                 managerFactory.getUtilisateurManager().findByEmail(email);
             } catch (NotFoundException e) {
-                userExist = true;
+                userExist = false;
             }
-            if(!userExist){
+            if(userExist){
                 addFieldError("registerEmail", "Cet email est déjà utilisée ");
             }
             if(!password.equals(password2)){

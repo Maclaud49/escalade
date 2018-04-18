@@ -14,6 +14,7 @@ import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -340,9 +341,24 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
 
         //Todo validation des donnees
         if (this.site != null) {
-            if (site.getNom().length() < 3) {
 
-                addFieldError("siteNom", "Le nom du site doit faire au moins 3 lettres");
+            if (this.site != null) {
+                boolean siteNomExist = true;
+
+                if (site.getNom().length() < 2 || site.getNom().length() >15) {
+                    addFieldError("siteNom", "Le nom du site doit faire entre 2 et 15 caratères ");
+                }
+                try {
+                    managerFactory.getSiteManager().findByName(premiereLettreMaj(this.site.getNom()));
+                    siteNomExist = true;
+                    logger.info("here ");
+                } catch (NotFoundException e) {
+                    siteNomExist = false;
+                    logger.info("there");
+                }
+                if(siteNomExist){
+                    addFieldError("siteNom", "Cet nom de site est déjà utilisé ");
+                }
             }
         }
     }

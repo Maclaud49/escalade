@@ -7,6 +7,7 @@ import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -149,7 +150,11 @@ public class GestionUtilisateurAction extends ActionSupport {
      * @return input / success / error
      */
     public String doDelete() {
-        //todo delete
+        try {
+            managerFactory.getUtilisateurManager().delete(utilisateurId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         String vResult = ActionSupport.SUCCESS;
         return vResult;
     }
