@@ -3,6 +3,7 @@ package com.parlow.escalade.business.manager.contract;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Voie;
 import com.parlow.escalade.model.exception.FunctionalException;
+import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public interface SecteurVoieManager {
      * @return Le id généré
      * @throws FunctionalException si le id du secteur ou le id du voie est null
      * @throws TechnicalException si problème avec la base de données
+     * @throws NotFoundException si non trouvé dans la base de données
      */
-    int findBySecteurAndVoie(int pSecteurId, int pVoieId ) throws FunctionalException, TechnicalException;
+    int findBySecteurAndVoie(int pSecteurId, int pVoieId ) throws FunctionalException, TechnicalException, NotFoundException;
 }

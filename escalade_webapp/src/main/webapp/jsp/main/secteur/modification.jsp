@@ -53,7 +53,7 @@
                                     <s:textfield name="secteur.nom" class="form-control" value="%{secteur.nom}" title="Nom du secteur" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomSecteur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="secteurNom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                     <s:textarea rows="10" name="secteur.description" class="form-control" value="%{secteur.description}" title="Description du secteur" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionSecteur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionSecteur" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                     </s:if>
                     <s:else >
                         <div style="display: none;">
-                            <s:textfield name="secteur.publication" value="false"/>
+                            <s:checkbox class="form-check-input" name="secteur.publication"  value="false" label="Publication"/>
                         </div>
                     </s:else>
                     <div class="row">
@@ -112,7 +112,7 @@
                     <div class="row">
                         <div class="col-md-12" style="padding-top: .35rem">
                                     <span class="text-danger align-middle">
-                                        <s:actionerror class="text-danger align-middle"/>
+                                        <s:actionerror class="text-danger align-middle" style="list-style:none"/>
                                     </span>
                         </div>
                     </div>

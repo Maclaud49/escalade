@@ -90,7 +90,7 @@
                             <s:param name="utilisateurId" value="voie.utilisateur.id" />
                             <s:property value="voie.utilisateur.prenom"/> <s:property value="voie.utilisateur.nom"/>
                         </s:a>
-                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                 </div>
             </div>
 

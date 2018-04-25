@@ -61,4 +61,13 @@ public interface LongueurDao {
      * @return List
      */
     List<Longueur> searchResult(String keyWord);
+
+    /**
+     * Renvoie le {@link Longueur} demandé
+     * @param pNom du {@link Longueur}
+     * @return {@link Longueur}
+     * @throws NotFoundException si non trouvé
+     */
+    Longueur findByName( String pNom )throws NotFoundException;
+
 }

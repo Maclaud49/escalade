@@ -61,6 +61,18 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
     }
 
     @Override
+    public List<Site> findAllPublic() {
+        List<Site> vList = daoFactory.getSiteDao().findAllPublic();
+        if (vList == null) {
+            Site site = new Site();
+            site.setId(1);
+            site.setNom("Pas de données");
+            vList.add(site);
+        }
+        return vList;
+    }
+
+    @Override
     public int insert(Site pSite) throws FunctionalException, TechnicalException {
         if (pSite == null) {
             throw new FunctionalException("L'objet Site ne doit pas être null !");
@@ -91,14 +103,11 @@ public class SiteManagerImpl extends AbstractManager implements SiteManager {
 
     @Override
     public Site findByName(String pNom) throws NotFoundException {
-        logger.info("manager");
         Site site = daoFactory.getSiteDao().findByName(pNom);
         if(site != null){
-            logger.info("not null");
             return site;
         }
         else {
-            logger.info("null");
             throw new NotFoundException("Aucun site correspondant à ce nom.");
         }
     }

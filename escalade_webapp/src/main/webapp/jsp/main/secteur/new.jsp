@@ -43,7 +43,7 @@
                             <s:textfield name="secteur.nom" class="form-control" required="true"/>
                         </div>
                         <s:if test="hasFieldErrors()">
-                            <small class="text-danger align-middle"><s:fielderror fieldName="secteurNom"/></small>
+                            <small class="text-danger align-middle"><s:fielderror fieldName="secteurNom" style="list-style:none"/></small>
                         </s:if>
                     </div>
                 </div>

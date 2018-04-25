@@ -234,10 +234,10 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
             }
 
             if(siteId !=null && siteId >0){
-                //Verification de l'existence de l'association
-                int result = 0;
+                //Insertion de l'association
+
                 try {
-                    result = managerFactory.getSiteSecteurManager().findBySiteAndSecteur(siteId,secteurId);
+                    managerFactory.getSiteSecteurManager().insert(siteId,this.secteur.getId());
                 } catch (FunctionalException e) {
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
@@ -305,6 +305,9 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
                 } catch (TechnicalException e) {
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
+                } catch (NotFoundException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
                 }
                 //Si association non existante, création de celle-ci
                 if(result==0){
@@ -330,9 +333,11 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
             } catch (NotFoundException pE) {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(secteurId)));
             } catch (TechnicalException e) {
-                e.printStackTrace();
+                this.addActionError(e.getMessage());
+                vResult = ActionSupport.ERROR;
             } catch (FunctionalException e) {
-                e.printStackTrace();
+                this.addActionError(e.getMessage());
+                vResult = ActionSupport.ERROR;
             }
         }
 
@@ -383,11 +388,20 @@ public class GestionSecteurAction extends ActionSupport implements  SessionAware
 
     @Override
     public void validate() {
-        //Todo validation des donnees
         if (this.secteur != null) {
-            if (secteur.getNom().length() < 3) {
+            boolean secteurNomExist = true;
 
-                addFieldError("secteurNom", "Le nom du secteur doit faire au moins 3 lettres");
+            if (secteur.getNom().length() < 2 || secteur.getNom().length() >15) {
+                addFieldError("secteurNom", "Le nom du secteur doit faire entre 2 et 15 caratères ");
+            }
+            try {
+                managerFactory.getSecteurManager().findByName(premiereLettreMaj(this.secteur.getNom()));
+                secteurNomExist = true;
+            } catch (NotFoundException e) {
+                secteurNomExist = false;
+            }
+            if(this.secteur.getId()==null&&secteurNomExist){
+                addFieldError("secteurNom", "Ce nom de secteur est déjà utilisé ");
             }
         }
     }

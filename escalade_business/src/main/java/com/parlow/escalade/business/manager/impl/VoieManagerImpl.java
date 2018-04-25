@@ -81,4 +81,15 @@ public class VoieManagerImpl extends AbstractManager implements VoieManager{
     public List<Voie> searchResult(String keyWord) {
         return daoFactory.getVoieDao().searchResult(keyWord);
     }
+
+    @Override
+    public Voie findByName(String pNom) throws NotFoundException {
+        Voie voie = daoFactory.getVoieDao().findByName(pNom);
+        if(voie != null){
+            return voie;
+        }
+        else {
+            throw new NotFoundException("Aucun voie correspondant à ce nom.");
+        }
+    }
 }

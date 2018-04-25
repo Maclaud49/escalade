@@ -52,12 +52,12 @@
                             <s:if test="publication == true">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h2>
-                                            <s:a action="site_detail" class="btn btn-primary">
+                                        <h4>
+                                            <s:a action="site_detail" >
                                                 <s:param name="siteId" value="id" />
                                                 <s:property value="nom" />
                                             </s:a>
-                                        </h2>
+                                        </h4>
                                         <p class="card-text"><s:property value="description" /></p>
                                     </div>
                                     <div class="card-footer text-muted">
@@ -84,12 +84,12 @@
                             <s:if test="publication == true">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h2>
-                                            <s:a action="secteur_detail" class="btn btn-primary">
+                                        <h4>
+                                            <s:a action="secteur_detail" >
                                                 <s:param name="secteurId" value="id" />
                                                 <s:property value="nom" />
                                             </s:a>
-                                        </h2>
+                                        </h4>
                                         <p class="card-text"><s:property value="description" /></p>
                                     </div>
                                     <div class="card-footer text-muted">
@@ -116,12 +116,12 @@
                             <s:if test="publication == true">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h2>
-                                            <s:a action="voie_detail" class="btn btn-primary">
+                                        <h4>
+                                            <s:a action="voie_detail" >
                                                 <s:param name="voieId" value="id" />
                                                 <s:property value="nom" />
                                             </s:a>
-                                        </h2>
+                                        </h4>
                                         <p class="card-text"><s:property value="description" /></p>
                                     </div>
                                     <div class="card-footer text-muted">
@@ -148,12 +148,12 @@
                             <s:if test="publication == true">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <h2>
-                                            <s:a action="longueur_detail" class="btn btn-primary">
+                                        <h4>
+                                            <s:a action="longueur_detail">
                                                 <s:param name="longueurId" value="id" />
                                                 <s:property value="nom" />
                                             </s:a>
-                                        </h2>
+                                        </h4>
                                         <p class="card-text"><s:property value="description" /></p>
                                     </div>
                                     <div class="card-footer text-muted">

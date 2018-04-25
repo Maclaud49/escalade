@@ -83,9 +83,9 @@
                                 <s:param name="siteId" value="id" />
                                 <i class="fa fa-edit"></i>
                             </s:a>
-                            <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#siteDialog%{site.id}"><i class="fa fa-close"></i>
+                            <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#siteDialog${id}"><i class="fa fa-close"></i>
                             </button>
-                            <div class="modal fade" id="siteDialog%{site.id}" tabindex="-1"
+                            <div class="modal fade" id="siteDialog${id}" tabindex="-1"
                                  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -160,9 +160,9 @@
                                         <s:param name="secteurId" value="id" />
                                         <i class="fa fa-edit"></i>
                                     </s:a>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#secteurDialog%{secteur.id}"><i class="fa fa-close"></i>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#secteurDialog${id}"><i class="fa fa-close"></i>
                                     </button>
-                                    <div class="modal fade" id="secteurDialog%{secteur.id}" tabindex="-1"
+                                    <div class="modal fade" id="secteurDialog${id}" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -238,9 +238,9 @@
                                         <s:param name="voieId" value="id" />
                                         <i class="fa fa-edit"></i>
                                     </s:a>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#voieDialog%{voie.id}"><i class="fa fa-close"></i>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#voieDialog${id}"><i class="fa fa-close"></i>
                                     </button>
-                                    <div class="modal fade" id="voieDialog%{voie.id}" tabindex="-1"
+                                    <div class="modal fade" id="voieDialog${id}" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -314,9 +314,9 @@
                                         <s:param name="longueurId" value="id" />
                                         <i class="fa fa-edit"></i>
                                     </s:a>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#longueurDialog%{longueur.id}"><i class="fa fa-close"></i>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#longueurDialog${id}"><i class="fa fa-close"></i>
                                     </button>
-                                    <div class="modal fade" id="longueurDialog%{longueur.id}" tabindex="-1"
+                                    <div class="modal fade" id="longueurDialog${id}" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -403,9 +403,9 @@
                                         <s:param name="commentaireId" value="id" />
                                         <i class="fa fa-edit"></i>
                                     </s:a>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#commentaireDialog%{commentaire.id}"><i class="fa fa-close"></i>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#commentaireDialog${id}"><i class="fa fa-close"></i>
                                     </button>
-                                    <div class="modal fade" id="commentaireDialog%{commentaire.id}" tabindex="-1"
+                                    <div class="modal fade" id="commentaireDialog${id}" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -462,21 +462,21 @@
                                 </td>
                                 <td class="text-center"><s:property value="email" /></td>
                                 <td class="text-center"><s:property value="profil" /></td>
-                                <td class="text-center"><s:property value="utilisateur.nbCommentaires" /></td>
+                                <td class="text-center"><s:property value="nbCommentaires" /></td>
                                 <td class="text-center">
                                     <s:a action="utilisateur_modifier" class="btn btn-info btn-xs" title="Editer">
                                         <s:param name="utilisateurId" value="id" />
                                         <i class="fa fa-edit"></i>
                                     </s:a>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#utilisateurDialog%{utilisateur.id}"><i class="fa fa-close"></i>
+                                    <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#utilisateurDialog${id}"><i class="fa fa-close"></i>
                                     </button>
-                                    <div class="modal fade" id="utilisateurDialog%{utilisateur.id}" tabindex="-1"
+                                    <div class="modal fade" id="utilisateurDialog${id}" tabindex="-1"
                                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                 </div>
-                                                <div class="modal-body">Supprimer l'utilisateur <s:property value="nom" /> ?</div>
+                                                <div class="modal-body">Supprimer l'utilisateur <s:property value="prénom" /> <s:property value="nom" /> ?</div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                     <s:a action="utilisateur_supprimer" class="btn btn-danger">
@@ -497,7 +497,7 @@
                 </div>
             </s:if>
             <s:else>
-                <div class="alert alert-warning">Pas de utilisateurs.</div>
+                <div class="alert alert-warning">Pas d'utilisateurs.</div>
             </s:else>
             <s:a action="register" class="btn btn-primary">
                 <i class="fa fa-plus"></i>

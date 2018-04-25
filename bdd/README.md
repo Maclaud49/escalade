@@ -10,8 +10,7 @@ Voici les éléments relatifs à la base de données **escalade**.
 -   `Escalade_BDD_Data.sql` : script d'ajout de données de démo dans la base de données
 -   `Escalade_BDD_Clear.sql` : script de purge de la base de données :
     -   supprime toutes les données contenues dans les tables
-    -   réinitialise les séquences
--   `MPD_escalade.png` : modèle physique de données de la base de données
+-   `Database_diagram.png` : Diagramme de la base de données
 
 
 

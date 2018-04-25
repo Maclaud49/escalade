@@ -31,7 +31,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
     @Override
     public List<Voie> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_voie,t_utilisateur WHERE voie_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_voie,t_utilisateur WHERE voie_utilisateur_fk_id = utilisateur_id ORDER BY voie_datecreation DESC";
         List<Voie> voies  = this.vJdbcTemplate.query(vSQL_findAll, new VoieMapper());
         return voies;
     }
@@ -105,6 +105,19 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao{
 
         return voies;
         
+    }
+
+    @Override
+    public Voie findByName(String pNom) throws NotFoundException {
+        String sql_findByName = "SELECT * FROM t_voie, t_utilisateur WHERE voie_nom = ? AND voie_utilisateur_fk_id = utilisateur_id";
+
+        try {
+            Voie voie = this.vJdbcTemplate.queryForObject(
+                    sql_findByName, new Object[]{pNom}, new VoieMapper());
+            return voie;
+        } catch (Exception e) {
+            throw new NotFoundException("Aucun voie correspondant à ce nom fourni.");
+        }
     }
 
 

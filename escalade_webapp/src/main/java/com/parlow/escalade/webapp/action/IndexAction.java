@@ -2,6 +2,9 @@ package com.parlow.escalade.webapp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
+import com.parlow.escalade.model.bean.Commentaire;
+import com.parlow.escalade.model.bean.Site;
+import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +16,8 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class IndexAction extends ActionSupport implements ServletRequestAware, SessionAware {
@@ -24,31 +29,48 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
     private HttpServletRequest servletRequest;
-
-    // ----- Element en sortie
-
+    private List<Site> listSites;
     protected Utilisateur utilisateur;
+    private List<Commentaire> listCommentaires;
+    private List<Topo> listTopos;
 
     // ==================== Getters/Setters ====================
 
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
-
     public void setUtilisateur(Utilisateur vutilisateur) {
         this.utilisateur = vutilisateur;
     }
-
-
+    public List<Site> getListSites() {
+        if(this.listSites==null){
+            this.listSites=selectSites();
+        }
+        return listSites;
+    }
+    public void setListSites(List<Site> listSites) {
+        this.listSites = listSites;
+    }
+    public List<Commentaire> getListCommentaires() {
+        if(this.listCommentaires==null){
+            this.listCommentaires=selectCommentaires();
+        }
+        return listCommentaires;
+    }
+    public List<Topo> getListTopos() {
+        if(this.listTopos==null){
+            this.listTopos=selectTopos();
+        }
+        return listTopos;
+    }
+    
     // ==================== Méthodes ====================
     /**
      * Action permettant la connexion d'un utilisateur
      * @return input / success
      */
     public String doIndex() {
-
         if (rememberMeLoad() >0){
-
             try {
                 this.utilisateur = managerFactory.getUtilisateurManager().findById(rememberMeLoad());
             } catch (NotFoundException pEx) {
@@ -56,9 +78,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
             }
             this.session.put("escalade_user", this.utilisateur);
         }
-
         String vResult = ActionSupport.SUCCESS;
-
         return vResult;
     }
 
@@ -71,6 +91,18 @@ public class IndexAction extends ActionSupport implements ServletRequestAware, S
             }
         }
         return vUtilisateurId;
+    }
+
+    private List<Commentaire> selectCommentaires(){
+        return  managerFactory.getCommentaireManager().findAll();
+    }
+
+    private List<Site> selectSites(){
+        return managerFactory.getSiteManager().findAllPublic();
+    }
+
+    private List<Topo> selectTopos(){
+        return  managerFactory.getTopoManager().findAllPublic();
     }
 
 

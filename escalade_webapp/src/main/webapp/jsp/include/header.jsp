@@ -37,6 +37,15 @@
                         <s:a action="voie_new" class="dropdown-item">Créer un nouveau voie</s:a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTopo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Topo
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <s:a action="topo_list" class="dropdown-item">Liste des topos</s:a>
+                        <s:a action="topo_new" class="dropdown-item">Créer un nouveau topo</s:a>
+                    </div>
+                </li>
                 <s:if test="#session.escalade_user">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,16 +76,16 @@
                         <i class="fa fa-language"> Langue</i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <s:a action="request_locale" class="dropdown-item">
-                            <s:param name="request_locale">fr</s:param>
+                        <s:a action="index" class="dropdown-item">
+                            <s:param name="request_locale">fr_FR</s:param>
                             <span class="lang-sm lang-lbl" lang="fr"/>
                         </s:a>
-                        <s:a action="request_locale" class="dropdown-item">
-                            <s:param name="request_locale">en</s:param>
+                        <s:a action="index" class="dropdown-item">
+                            <s:param name="request_locale">en_US</s:param>
                             <span class="lang-sm lang-lbl" lang="en"></span>
                         </s:a>
-                        <s:a action="request_locale" class="dropdown-item">
-                            <s:param name="request_locale">jp</s:param>
+                        <s:a action="index" class="dropdown-item">
+                            <s:param name="request_locale">jp_JP</s:param>
                             <span class="lang-sm lang-lbl-full" lang="ja"></span>
                         </s:a>
                     </div>

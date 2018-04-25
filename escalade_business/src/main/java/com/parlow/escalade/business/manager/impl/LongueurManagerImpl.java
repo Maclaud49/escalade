@@ -78,4 +78,15 @@ public class LongueurManagerImpl extends AbstractManager implements LongueurMana
     public List<Longueur> searchResult(String keyWord) {
         return daoFactory.getLongueurDao().searchResult(keyWord);
     }
+
+    @Override
+    public Longueur findByName(String pNom) throws NotFoundException {
+        Longueur longueur = daoFactory.getLongueurDao().findByName(pNom);
+        if(longueur != null){
+            return longueur;
+        }
+        else {
+            throw new NotFoundException("Aucun longueur correspondant à ce nom.");
+        }
+    }
 }

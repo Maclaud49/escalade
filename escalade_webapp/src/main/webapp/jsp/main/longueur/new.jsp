@@ -40,7 +40,7 @@
                             <s:textfield name="longueur.nom" class="form-control" required="true"/>
                         </div>
                         <s:if test="hasFieldErrors()">
-                            <small class="text-danger align-middle"><s:fielderror fieldName="longueurNom"/></small>
+                            <small class="text-danger align-middle"><s:fielderror fieldName="longueurNom" style="list-style:none"/></small>
                         </s:if>
                     </div>
                 </div>

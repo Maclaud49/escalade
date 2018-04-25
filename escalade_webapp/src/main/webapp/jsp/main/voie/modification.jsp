@@ -13,7 +13,7 @@
 <div class="container" style="margin-top:50px">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Modification des informations du voie</h1>
+    <h1 class="mt-4 mb-3">Modification des informations de la voie</h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -53,7 +53,7 @@
                                     <s:textfield name="voie.nom" class="form-control" value="%{voie.nom}" title="Nom de la voie" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomVoie"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="voieNom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                     <s:textarea rows="10" name="voie.description" class="form-control" value="%{voie.description}" title="Description de la voie" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionVoie"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionVoie" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -76,10 +76,10 @@
                             <div class="form-group has-danger">
                                 <label>Hauteur de la voie (en m)</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:textarea rows="10" name="voie.hauteurVoie" class="form-control" value="%{voie.hauteurVoie}" title="Hauteur de la voie" required="true"/>
+                                    <s:textfield name="voie.hauteurVoie" class="form-control" value="%{voie.hauteurVoie}" title="Hauteur de la voie"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="hauteurVoie"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="hauteurVoie" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -107,10 +107,10 @@
                             <div class="form-group has-danger">
                                 <label>Nombre de points</label>
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <s:textarea rows="10" name="voie.nbPoints" class="form-control" value="%{voie.nbPoints}" title="Nombre de points de la voie" required="true"/>
+                                    <s:textfield name="voie.nbPoints" class="form-control" value="%{voie.nbPoints}" title="Nombre de points de la voie"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nbPointsVoie"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="nbPointsVoie" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                     </s:if>
                     <s:else >
                         <div style="display: none;">
-                            <s:textfield name="voie.publication" value="false"/>
+                            <s:checkbox class="form-check-input" name="voie.publication"  value="false" label="Publication"/>
                         </div>
                     </s:else>
                     <div class="row">
@@ -140,26 +140,12 @@
                             </div>
                         </div>
                     </div>
-                <s:if test="#session.escalade_user.profil =='admin'">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-check">
-                                <s:checkbox class="form-check-input" name="site.publication"  value="%{site.publication}" label="Publication"/>
-                            </div>
-                        </div>
-                    </div>
-                </s:if>
-                <s:else >
-                    <div style="display: none;">
-                        <s:textfield name="site.publication" value="false"/>
-                    </div>
-                </s:else>
 
 
                 <div class="row">
                     <div class="col-md-12" style="padding-top: .35rem">
                                 <span class="text-danger align-middle">
-                                    <s:actionerror class="text-danger align-middle"/>
+                                    <s:actionerror class="text-danger align-middle" style="list-style:none"/>
                                 </span>
                     </div>
                 </div>

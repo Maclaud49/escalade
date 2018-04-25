@@ -57,103 +57,98 @@
 
     <h1 class="my-4">Bienvenue sur le site collaboratif autour de l'escalade</h1>
 
-    <!-- Marketing Icons Section -->
+    <!-- Derniers commentaires -->
     <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <h4 class="card-header">Mickaël Parlow - 15 mars 2018</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">En savoir plus</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <h4 class="card-header">Aimée Parlow - 4 mars 2018</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">En savoir plus</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <h4 class="card-header">Marc Lefèvre - 2 février 2018</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">En savoir plus + </a>
-                </div>
-            </div>
-        </div>
+        <s:subset start="0" count = "3" source = "listCommentaires">
+            <s:iterator>
+                <s:if test="target_table == 'SITE'">
+                    <div class="col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <h4 class="card-header">
+                                <s:a action="utilisateur_detail">
+                                    <s:param name="utilisateurId" value="utilisateur.id" />
+                                    <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
+                                </s:a><br>
+                                <small><s:date name="dateCreation" format="dd/MM/yyyy" /> à <s:date name="dateCreation" format="HH" />h<s:date name="dateCreation" format="mm" /></small>
+                            </h4>
+
+                            <div class="card-body">
+                                <p class="card-text"><s:property value="commentaire" /></p>
+                            </div>
+                            <div class="card-footer">
+                                <s:a action="site_detail" class="btn btn-primary">
+                                    <s:param name="siteId" value="reference_id" />
+                                    En savoir plus
+                                </s:a>
+                            </div>
+                        </div>
+                    </div>
+
+                </s:if>
+            </s:iterator>
+        </s:subset>
     </div>
-    <!-- /.row -->
 
-    <!-- Portfolio Section -->
-    <h2>Sites plébiscités</h2>
 
+    <!-- Dernier sites -->
+    <h2>Sites récents</h2>
+        <div class="row">
+            <s:subset start="0" count = "3" source = "listSites">
+                <s:iterator>
+                    <div class="col-lg-4 col-sm-6 portfolio-item">
+                        <div class="card h-100">
+                            <s:a action="site_detail">
+                                <s:param name="siteId" value="id" /><img class="card-img-top" src="<s:property value="image" />">
+                            </s:a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <s:a action="site_detail">
+                                        <s:param name="siteId" value="id" /><s:property value="nom" />
+                                    </s:a>
+                                </h4>
+                                <p class="card-text"><s:property value="description" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </s:iterator>
+            </s:subset>
+        </div>
+
+    <!-- Features Topo -->
     <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="../../ressources/images/etiquette1.jpg" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Site 1</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="../../ressources/images/etiquette2.jpg" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Site 2</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="../../ressources/images/etiquette3.jpg" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Site 3</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
+        <s:subset start="0" count = "1" source = "listTopos">
+            <s:iterator>
+                <div class="col-lg-6">
+                    <h2>Topo à la une</h2>
 
-    <!-- Features Section -->
-    <div class="row">
-        <div class="col-lg-6">
-            <h2>Site à la une</h2>
-            <p>Site recommendé pour la saison actuelle:</p>
-            <ul>
-                <li>
-                    <strong>Site 4</strong>
-                </li>
-                <li>Nb de voies : 4</li>
-                <li>Difficulté moyenne : 2c</li>
-                <li>Type de roche : volcanique</li>
-                <li>Région : Pays de la Loire</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-        </div>
-        <div class="col-lg-6">
-            <img class="img-fluid rounded" src="../../ressources/images/lightUp.jpg" alt="">
-        </div>
+                    <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-spinner fa-spin"></i>
+                            <s:a action="topo_detail">
+                                <s:param name="topoId" value="id" /><strong><s:property value="nom" /></strong>
+                            </s:a>
+                        </li>
+                        <li><i class="fa-li fa fa-square"></i> Région : <s:property value="region" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Nombre de sites : <s:property value="nbSites" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Nombre de secteurs : <s:property value="nbSecteurs" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Nombre de voies : <s:property value="nbVoies" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Date de modification : <s:property value="lastUpdate" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Disponible pour location :
+                            <s:if test="disponible">
+                                Oui
+                            </s:if>
+                            <s:else>
+                                Non
+                            </s:else></li>
+                    </ul>
+                    <p><s:property value="description" /></p>
+                </div>
+                <div class="col-lg-6">
+                    <s:a action="topo_detail">
+                        <s:param name="topoId" value="id" /><img class="img-fluid rounded" src="<s:property value="image"/>" >
+                    </s:a>
+                </div>
+            </s:iterator>
+        </s:subset>
     </div>
     <!-- /.row -->
 
@@ -165,7 +160,7 @@
             <p>Toi aussi viens partager ta passion de l'escalade ! Cela te permettra d'échanger, de partager et de découvrir de nombreux sites.</p>
         </div>
         <div class="col-md-4">
-            <a class="btn btn-lg btn-secondary btn-block" href="#">S'enregistrer</a>
+            <s:a action="register" class="btn btn-primary">S'enregistrer</s:a>
         </div>
     </div>
 

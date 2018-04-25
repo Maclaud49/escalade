@@ -36,7 +36,10 @@ CREATE TABLE t_topo (
 	topo_disponible BOOLEAN,
 	topo_description CHARACTER VARYING(2000) NOT NULL,
 	topo_utilisateur_fk_id INTEGER,
-	topo_image CHARACTER VARYING(100)
+	topo_image CHARACTER VARYING(100),
+	topo_dateCreation TIMESTAMP,
+	topo_lastUpdate TIMESTAMP,
+	topo_publication boolean
 );
 
 CREATE TABLE t_site (
@@ -120,7 +123,7 @@ CREATE TABLE t_location_topo(
 CREATE TABLE t_commentaire (
 	com_id  SERIAL PRIMARY KEY,
 	com_dateCreation TIMESTAMP,
-	com_commentaire CHARACTER VARYING(200),
+	com_commentaire CHARACTER VARYING(2000),
 	com_utilisateur_fk_id INTEGER,
 	com_table_fk_id INTEGER,
 	com_target_table CHARACTER VARYING(20)

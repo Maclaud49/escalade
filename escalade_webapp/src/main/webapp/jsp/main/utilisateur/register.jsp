@@ -31,15 +31,8 @@
                                      placeholder="votreadresse@exemple.fr" title="Votre adresse email" required="true"/>
                     </div>
                     <s:if test="hasFieldErrors()">
-                        <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail" style="list-style:none"/></small>
                     </s:if>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                                <span class="text-danger align-middle">
-                                    <!-- <i class="fa fa-close"></i> error message -->
-                                </span>
                 </div>
             </div>
         </div>
@@ -58,7 +51,7 @@
                         <small id="passwordHelp" class="form-text text-muted">Doit contenir au moins 6 caractères</small>
                     </div>
                     <s:if test="hasFieldErrors()">
-                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword"/></small>
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword" style="list-style:none"/></small>
                     </s:if>
                 </div>
             </div>
@@ -74,7 +67,7 @@
                                     title="Vérification de votre mot de passe" required="true"/>
                     </div>
                     <s:if test="hasFieldErrors()">
-                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword"/></small>
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword" style="list-style:none"/></small>
                     </s:if>
                 </div>
             </div>
@@ -84,7 +77,7 @@
             <div class="col-md-6" style="padding-top: .35rem">
                         <span class="text-danger align-middle">
                             <s:if test="hasFieldErrors()">
-                              <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword2"/></small>
+                              <small class="text-danger align-middle"><s:fielderror fieldName="registerPassword2" style="list-style:none"/></small>
                             </s:if>
                         </span>
             </div>
@@ -98,7 +91,7 @@
                         <s:textfield name="nom" class="form-control" placeholder="Votre nom" title="Votre nom" required="true"/>
                     </div>
                     <s:if test="hasFieldErrors()">
-                        <small class="text-danger align-middle"><s:fielderror fieldName="registerNom"/></small>
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerNom" style="list-style:none"/></small>
                     </s:if>
                 </div>
             </div>
@@ -112,7 +105,7 @@
                         <s:textfield name="prenom" class="form-control" placeholder="Votre prénom" title="Votre prénom" required="true"/>
                     </div>
                     <s:if test="hasFieldErrors()">
-                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPrenom"/></small>
+                        <small class="text-danger align-middle"><s:fielderror fieldName="registerPrenom" style="list-style:none"/></small>
                     </s:if>
                 </div>
             </div>

@@ -50,43 +50,33 @@ public class GestionUtilisateurAction extends ActionSupport {
     public Integer getUtilisateurId() {
         return utilisateurId;
     }
-
     public void setUtilisateurId(Integer utilisateurId) {
         this.utilisateurId = utilisateurId;
     }
-
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
-
     public List<String> getListCotations() {
         if(this.listCotations==null){
             this.listCotations=selectCotation();
         }
         return listCotations;
     }
-
     public void setListCotations(List<String> cotations) {
         this.listCotations = cotations;
     }
-
     public String getNom() {
         return nom;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
-
     public String getPrenom() {
         return prenom;
     }
-
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
-
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
@@ -142,6 +132,7 @@ public class GestionUtilisateurAction extends ActionSupport {
                 this.addActionError(getText("error.user.notfound", Collections.singletonList(utilisateurId)));
             }
         }
+        logger.info("result " + vResult);
         return vResult;
     }
 

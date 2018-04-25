@@ -14,8 +14,10 @@ public interface TopoManager {
      * @param pId du {@link Topo}
      * @return {@link Topo}
      * @throws NotFoundException si non trouvé
+     * @throws TechnicalException si problème avec la base de données
+     * @throws FunctionalException si id est null
      */
-    Topo findById(int pId )throws NotFoundException;
+    Topo findById( int pId )throws NotFoundException, TechnicalException, FunctionalException;
 
     /**
      * Renvoie la liste des {@link Topo}
@@ -25,20 +27,29 @@ public interface TopoManager {
     List<Topo> findAll();
 
     /**
+     * Renvoie la liste des {@link Topo} publiés
+     *
+     * @return List de {@link Topo}
+     */
+    List<Topo> findAllPublic();
+
+    /**
      * Insert l'{@link Topo} dans la bdd
      * @param pTopo le {@link Topo}
      * @return Le {@link Topo}
      * @throws FunctionalException si le topo est null
+     * @throws TechnicalException si problème avec la base de données
      */
-    int insert( Topo pTopo )throws FunctionalException;
+    int insert( Topo pTopo )throws FunctionalException, TechnicalException;
 
     /**
      * Supprime un {@link Topo}
      * @param pId du {@link Topo}
      * @throws NotFoundException si non trouvé
+     * @throws TechnicalException si problème avec la base de données
      * @return boolean
      */
-    void delete( int pId )throws NotFoundException;
+    void delete( int pId )throws NotFoundException, TechnicalException;
 
     /**
      * Met à jour l'{@link Topo} dans la bdd
@@ -47,4 +58,19 @@ public interface TopoManager {
      * @throws FunctionalException si le topo est null
      */
     void update ( Topo pTopo ) throws FunctionalException;
+
+    /**
+     * Renvoie la liste des résultats de la recherche
+     * @param keyWord
+     * @return List
+     */
+    List<Topo> searchResult(String keyWord);
+
+    /**
+     * Renvoie le {@link Topo} demandé
+     * @param pNom du {@link Topo}
+     * @return {@link Topo}
+     * @throws NotFoundException si non trouvé
+     */
+    Topo findByName( String pNom )throws NotFoundException;
 }

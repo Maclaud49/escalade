@@ -57,7 +57,7 @@
                             <s:param name="utilisateurId" value="longueur.utilisateur.id" />
                             <s:property value="longueur.utilisateur.prenom"/> <s:property value="longueur.utilisateur.nom"/>
                         </s:a>
-                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                 </div>
             </div>
             <!-- Comments Form -->

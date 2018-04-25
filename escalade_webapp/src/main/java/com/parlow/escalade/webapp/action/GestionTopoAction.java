@@ -8,12 +8,13 @@ import java.sql.Timestamp;
 import com.opensymphony.xwork2.ActionSupport;
 import com.parlow.escalade.business.manager.contract.ManagerFactory;
 import com.parlow.escalade.model.bean.Commentaire;
-import com.parlow.escalade.model.bean.Site;
+import com.parlow.escalade.model.bean.Topo;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -24,14 +25,14 @@ import org.springframework.context.annotation.PropertySource;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 
 /**
- * Action de gestion des {@link Site}
+ * Action de gestion des {@link Topo}
  */
 @PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
-public class GestionSiteAction extends ActionSupport implements SessionAware, ServletRequestAware {
+public class GestionTopoAction extends ActionSupport implements SessionAware, ServletRequestAware {
 
 
 
@@ -51,40 +52,42 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
     private Map<String, Object> session;
     private HttpServletRequest servletRequest;
 
-    private static final Logger logger = LogManager.getLogger(GestionSiteAction.class);
+    private static final Logger logger = LogManager.getLogger(GestionTopoAction.class);
 
 
     // ----- Paramètres en entrée
-    private Integer siteId;
+    private Integer topoId;
     private Date createdDate;
     private Date lastUpdate;
     private File imageTemp;
     private String imageTempContentType;
     private String imageTempFileName;
-    private List<Site> listSite;
+    private List<Topo> listTopo;
     private List<String> listRegions;
     private List<Commentaire> listCommentaires;
 
     // ----- Eléments en sortie
 
-    private Site site;
+    private Topo topo;
 
     // ==================== Getters/Setters ====================
 
-    public Integer getSiteId() {
-        return siteId;
+    public Integer getTopoId() {
+        return topoId;
     }
-    public void setSiteId(Integer siteId) {
-        this.siteId = siteId;
+
+    public void setTopoId(Integer topoId) {
+        this.topoId = topoId;
     }
-    public List<Site> getListSite() {
-        return listSite;
+
+    public List<Topo> getListTopo() {
+        return listTopo;
     }
-    public Site getSite() {
-        return site;
+    public Topo getTopo() {
+        return topo;
     }
-    public void setSite(Site site) {
-        this.site = site;
+    public void setTopo(Topo pTopo){
+        topo = pTopo;
     }
     public List<String> getListRegions() {
         if(this.listRegions==null){
@@ -107,110 +110,115 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+
     public File getImageTemp() {
         return imageTemp;
     }
+
     public void setImageTemp(File imageTemp) {
         this.imageTemp = imageTemp;
     }
+
     public String getImageTempContentType() {
         return imageTempContentType;
     }
+
     public void setImageTempContentType(String imageTempContentType) {
         this.imageTempContentType = imageTempContentType;
     }
+
     public String getImageTempFileName() {
         return imageTempFileName;
     }
+
     public void setImageTempFileName(String imageTempFileName) {
         this.imageTempFileName = imageTempFileName;
     }
+
     public List<Commentaire> getListCommentaires() {
         if(this.listCommentaires==null){
             this.listCommentaires=selectCommentaires();
         }
         return listCommentaires;
     }
+
     public void setListCommentaires(List<Commentaire> listCommentaires) {
         this.listCommentaires = listCommentaires;
     }
 
+
+
+
+
     // ==================== Méthodes ====================
     /**
-     * Action listant les {@link Site}
+     * Action listant les {@link Topo}
      * @return success
      */
     public String doList() {
 
-        logger.info("chemin image2 " + cheminImages2);
-        logger.info("chemin image " + cheminImages);
-        logger.info("chemin image3 " + cheminImages3);
-
-        listSite = managerFactory.getSiteManager().findAll();
+        listTopo = managerFactory.getTopoManager().findAll();
         return ActionSupport.SUCCESS;
     }
 
 
     /**
-     * Action affichant les détails d'un {@link Site}
+     * Action affichant les détails d'un {@link Topo}
      * @return success / error
      */
     public String doDetail() {
-        if (siteId == null) {
-            this.addActionError(getText("error.site.missing.id"));
+        if (topoId == null) {
+            this.addActionError(getText("error.topo.missing.id"));
         } else {
             try {
-                site = managerFactory.getSiteManager().findById(siteId);
+
+                topo = managerFactory.getTopoManager().findById(topoId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.site.notfound", Collections.singletonList(siteId)));
+                this.addActionError(getText("error.topo.notfound", Collections.singletonList(topoId)));
             } catch (TechnicalException e) {
                 this.addActionError(e.getMessage());
             } catch (FunctionalException e) {
                 this.addActionError(e.getMessage());
             }
-
-            //Todo optimiser les dates (pas besoin de ces var)
-            this.createdDate = site.getDateCreation();
-            this.lastUpdate = site.getLastUpdate();
-
-            site.setNbSecteurs(site.getSecteurs().size());
         }
 
         return ActionSupport.SUCCESS;
     }
     /**
-     * Action permettant de créer un nouveau {@link Site}
+     * Action permettant de créer un nouveau {@link Topo}
      * @return input / success / error
      */
-        public String doCreate() {
+    public String doCreate() {
 
         String vResult = ActionSupport.INPUT;
 
-        // ===== Validation de l'ajout de site (site != null)
-        if (this.site != null) {
+        // ===== Validation de l'ajout de topo (topo != null)
+        if (this.topo != null) {
             Date date = new Date();
-            this.site.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
-            this.site.setDateCreation(new Timestamp(date.getTime()));
-            site.setDescription(premiereLettreMaj(this.site.getDescription()));
-            site.setNom(premiereLettreMaj(this.site.getNom()));
+            this.topo.setUtilisateur((Utilisateur)this.session.get("escalade_user"));
+            this.topo.setDateCreation(new Timestamp(date.getTime()));
+            topo.setDescription(premiereLettreMaj(this.topo.getDescription()));
+            topo.setNom(premiereLettreMaj(this.topo.getNom()));
 
-                try {
-                    if(this.site.getImage()==null){
-                        String image = "../../ressources/images/750x300.png";
-                        this.site.setImage(image);
-                    }
-                    this.site.setId(managerFactory.getSiteManager().insert(this.site));
-                    vResult = ActionSupport.SUCCESS;
-                    this.addActionMessage("Site ajouté avec succès");
-
-                } catch (FunctionalException pEx) {
-                    this.addActionError(pEx.getMessage());
-                    vResult = ActionSupport.ERROR;
-
-                } catch (TechnicalException pEx) {
-                    this.addActionError(pEx.getMessage());
-                    vResult = ActionSupport.ERROR;
+            try {
+                if(this.topo.getImage()==null){
+                    String image = "../../ressources/images/750x300.png";
+                    this.topo.setImage(image);
                 }
+                this.topo.setId(managerFactory.getTopoManager().insert(this.topo));
+                vResult = ActionSupport.SUCCESS;
+                this.addActionMessage("Topo ajouté avec succès");
+
+            } catch (FunctionalException pEx) {
+                this.addActionError(pEx.getMessage());
+                vResult = ActionSupport.ERROR;
+
+            } catch (TechnicalException pEx) {
+
+                this.addActionError(pEx.getMessage());
+                vResult = ActionSupport.ERROR;
+            }
         }
 
         //Ajout des infos nécessaires pour le formulaire de saisie
@@ -221,13 +229,13 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
     }
 
     /**
-     * Action permettant de supprimer {@link Site}
+     * Action permettant de supprimer {@link Topo}
      * @return input / success / error
      */
     public String doDelete() {
-    //todo mettre au propre toutes les méthodes
+        //todo mettre au propre toutes les méthodes
         try {
-            managerFactory.getSiteManager().delete(siteId);
+            managerFactory.getTopoManager().delete(topoId);
         } catch (NotFoundException e) {
             e.printStackTrace();
         } catch (TechnicalException e) {
@@ -239,47 +247,48 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
 
 
     /**
-     * Action permetttant la modification d'un {@link Site}
-     * @return success / error / input
+     * Action permetttant la modification d'un {@link Topo}
+     * @return success / error
      */
     public String doModifier() throws IOException {
 
         String vResult = ActionSupport.INPUT;
 
         //vérification si affiche les données ou les update
-        logger.info("site "+this.site);
-        if (site != null) {
+        if (this.topo != null) {
             Date date = new Date();
-            this.site.setLastUpdate(new Timestamp(date.getTime()));
-            site.setDescription(premiereLettreMaj(this.site.getDescription()));
-            site.setNom(premiereLettreMaj(this.site.getNom()));
+            this.topo.setLastUpdate(new Timestamp(date.getTime()));
+            topo.setDescription(premiereLettreMaj(this.topo.getDescription()));
+            topo.setNom(premiereLettreMaj(this.topo.getNom()));
             //Gestion image
             logger.error("image fileName + contentType "+getImageTempFileName() + getImageTempContentType());
             //copy the uploaded file to the dedicated location
             if(imageTemp!=null){
-            try{
-                String filePath = cheminImages;
-                File file2 = new File(filePath, getImageTempFileName());
-                FileUtils.copyFile(imageTemp, file2);
+                try{
+                    String filePath = cheminImages;
+                    File file2 = new File(filePath, getImageTempFileName());
+                    FileUtils.copyFile(imageTemp, file2);
 
-            }catch (Exception e)
-                 {logger.error("problème lors du upload de l'image " +e);}
+                }catch (Exception e)
+                {logger.error("problème lors du upload de l'image " +e);}
 
-                this.site.setImage("../../ressources/images/"+ getImageTempFileName());
+
+                this.topo.setImage("../../ressources/images/"+ getImageTempFileName());
             }
 
+
             try {
-                managerFactory.getSiteManager().update(site);
+                managerFactory.getTopoManager().update(topo);
                 vResult = ActionSupport.SUCCESS;
             } catch (FunctionalException e) {
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
                 vResult = ActionSupport.ERROR;
             }
         }
-        if (vResult.equals(ActionSupport.INPUT)) {
+        else {
 
             try {
-                this.site = managerFactory.getSiteManager().findById(siteId);
+                this.topo = managerFactory.getTopoManager().findById(topoId);
             } catch (NotFoundException e) {
                 this.addActionError(e.getMessage());
             } catch (TechnicalException e) {
@@ -288,7 +297,7 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
                 this.addActionError(e.getMessage());
             }
         }
-        logger.info("result " + vResult);
+
         return vResult;
     }
 
@@ -302,9 +311,9 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
 
     private List<Commentaire> selectCommentaires(){
         List<Commentaire> listCommentaires = new ArrayList<>();
-            if(siteId != null) {
-                listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("SITE", siteId);
-            }
+        if(topoId != null) {
+            listCommentaires = managerFactory.getCommentaireManager().findAllBySectionAndArticle("TOPO", topoId);
+        }
         return listCommentaires;
     }
 
@@ -317,28 +326,23 @@ public class GestionSiteAction extends ActionSupport implements SessionAware, Se
     @Override
     public void validate() {
 
+        if (this.topo != null) {
+            boolean topoNomExist = true;
 
-            if (site != null) {
-
-                logger.info("Conditions remplies pour étape validation");
-                boolean siteNomExist = true;
-
-                if (site.getNom().length() < 2 || site.getNom().length() >15) {
-                    addFieldError("siteNom", "Le nom du site doit faire entre 2 et 15 caratères ");
-                }
-                try {
-                    managerFactory.getSiteManager().findByName(premiereLettreMaj(this.site.getNom()));
-                    siteNomExist = true;
-                } catch (NotFoundException e) {
-                    siteNomExist = false;
-                }
-                if(this.site.getId()==null&&siteNomExist){
-                    addFieldError("siteNom", "Ce nom de site est déjà utilisé ");
-                }
-            } else {
-                logger.info("Conditions non remplies pour étape validation");
+            if (topo.getNom().length() < 2 || topo.getNom().length() >15) {
+                addFieldError("topoNom", "Le nom du topo doit faire entre 2 et 15 caratères ");
+            }
+            try {
+                managerFactory.getTopoManager().findByName(premiereLettreMaj(this.topo.getNom()));
+                topoNomExist = true;
+            } catch (NotFoundException e) {
+                topoNomExist = false;
+            }
+            if(this.topo.getId()==null&&topoNomExist){
+                addFieldError("topoNom", "Ce nom de topo est déjà utilisé ");
             }
         }
+    }
 
     @Override
     public void setSession(Map<String, Object> pSession) {

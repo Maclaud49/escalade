@@ -315,11 +315,20 @@ public class GestionLongueurAction  extends ActionSupport implements SessionAwar
 
     @Override
     public void validate() {
-        //Todo validation des donnees
         if (this.longueur != null) {
-            if (longueur.getNom().length() < 3) {
+            boolean longueurNomExist = true;
 
-                addFieldError("longueurNom", "Le nom du longueur doit faire au moins 3 lettres");
+            if (longueur.getNom().length() < 2 || longueur.getNom().length() >15) {
+                addFieldError("longueurNom", "Le nom de la longueur doit faire entre 2 et 15 caratères ");
+            }
+            try {
+                managerFactory.getLongueurManager().findByName(premiereLettreMaj(this.longueur.getNom()));
+                longueurNomExist = true;
+            } catch (NotFoundException e) {
+                longueurNomExist = false;
+            }
+            if(this.longueur.getId()==null&&longueurNomExist){
+                addFieldError("longueurNom", "Ce nom de longueur est déjà utilisé ");
             }
         }
     }

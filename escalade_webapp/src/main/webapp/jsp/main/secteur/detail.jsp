@@ -77,7 +77,7 @@
                             <s:param name="utilisateurId" value="secteur.utilisateur.id" />
                             <s:property value="secteur.utilisateur.prenom"/> <s:property value="secteur.utilisateur.nom"/>
                         </s:a>
-                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                 </div>
             </div>
 
@@ -134,8 +134,8 @@
                 </div>
             </s:if>
 
-            <!-- Ajouter un secteur -->
-            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
+            <!-- Ajouter une voie -->
+            <s:if test="secteur.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
             <div class="card mb-4">
                 <h5 class="card-header">Ajouter une voie à ce secteur</h5>
                 <div class="card-body text-center">

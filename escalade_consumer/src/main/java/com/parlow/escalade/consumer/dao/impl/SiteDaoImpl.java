@@ -24,8 +24,6 @@ import java.util.List;
 @Named
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
-    @Inject
-    protected DaoFactory daoFactory;
 
     @Override
     public Site findById(int pId) throws NotFoundException {
@@ -37,7 +35,14 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 
     @Override
     public List<Site> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur WHERE site_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur WHERE site_utilisateur_fk_id = utilisateur_id ORDER BY site_lastupdate DESC";
+        List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new SiteMapper());
+        return sites;
+    }
+
+    @Override
+    public List<Site> findAllPublic() {
+        String vSQL_findAll = "SELECT * FROM t_site,t_utilisateur WHERE site_publication = true AND site_utilisateur_fk_id = utilisateur_id ORDER BY site_lastupdate DESC";
         List<Site> sites  = this.vJdbcTemplate.query(vSQL_findAll, new SiteMapper());
         return sites;
     }
@@ -98,9 +103,13 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
     public Site findByName(String pNom) throws NotFoundException {
         String sql_findByName = "SELECT * FROM t_site, t_utilisateur WHERE site_nom = ? AND site_utilisateur_fk_id = utilisateur_id";
 
+        try {
             Site site = this.vJdbcTemplate.queryForObject(
                     sql_findByName, new Object[]{pNom}, new SiteMapper());
             return site;
+        }catch(Exception e){
+            throw new NotFoundException("Aucun site correspondant à ce nom fourni.");
+        }
 
     }
 

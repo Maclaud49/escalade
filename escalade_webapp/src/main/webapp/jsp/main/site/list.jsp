@@ -48,7 +48,7 @@
                                 <s:param name="utilisateurId" value="utilisateur.id" />
                                 <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
                             </s:a>
-                            <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                            <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                         </div>
                     </div>
                     </s:if>
@@ -83,14 +83,14 @@
                                 <s:param name="utilisateurId" value="utilisateur.id" />
                                 <s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/>
                             </s:a>
-                            <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                            <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                         </div>
                     </div>
                     </s:else>
 
                 </s:iterator>
 
-                <!-- Pagination -->
+                <!-- Pagination
                 <ul class="pagination justify-content-center mb-4">
                     <li class="page-item">
                         <a class="page-link" href="#">&larr; Précédent</a>
@@ -98,47 +98,14 @@
                     <li class="page-item disabled">
                         <a class="page-link" href="#">Suivant &rarr;</a>
                     </li>
-                </ul>
+                </ul>-->
 
             </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">
 
-                <!-- Categories Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Méthode de tri</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Date</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Commentaires</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Difficulté</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Saison</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Région</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Appéciations</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- Creation site Widget -->
                 <div class="card mb-4">
                     <h5 class="card-header">Créer un nouveau site</h5>

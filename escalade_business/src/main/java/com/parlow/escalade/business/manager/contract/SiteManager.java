@@ -27,6 +27,13 @@ public interface SiteManager {
     List<Site> findAll();
 
     /**
+     * Renvoie la liste des {@link Site} publiés
+     *
+     * @return List de {@link Site}
+     */
+    List<Site> findAllPublic();
+
+    /**
      * Insert l'{@link Site} dans la bdd
      * @param pSite le {@link Site}
      * @return Le {@link Site}

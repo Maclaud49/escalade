@@ -289,7 +289,7 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                 this.addActionError(getText("Un problème est survenu avec la base de données, réessayez plus tard"));
                 vResult = ActionSupport.ERROR;
             }
-            if(secteurId >0){
+            if(secteurId != null && secteurId >0){
                 logger.info("secteur id " + secteurId);
                 //Verification de l'existence de l'association
                 int result = 0;
@@ -301,11 +301,15 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                 } catch (TechnicalException e) {
                     this.addActionError(e.getMessage());
                     vResult = ActionSupport.ERROR;
+                } catch (NotFoundException e) {
+                    this.addActionError(e.getMessage());
+                    vResult = ActionSupport.ERROR;
                 }
                 //Si association non existante, création de celle-ci
                 if(result==0){
                     try {
                         managerFactory.getSecteurVoieManager().insert(secteurId,this.voie.getId());
+                        logger.info("insertion asso faite secteurId" + secteurId +" voieId " + this.voie.getId());
                     } catch (FunctionalException e) {
                         this.addActionError(e.getMessage());
                         vResult = ActionSupport.ERROR;
@@ -315,16 +319,13 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
                     }
                 }
             }
-            else{
-                logger.info("for test");
-            }
         }
         else {
-
+        logger.info("here");
             try {
                 this.voie = managerFactory.getVoieManager().findById(voieId);
             } catch (NotFoundException pE) {
-                this.addActionError(getText("error.user.notfound", Collections.singletonList(voieId)));
+                this.addActionError("Voie non trouvée");
             }
         }
 
@@ -374,12 +375,33 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
 
     @Override
     public void validate() {
-        //Todo validation des donnees
         if (this.voie != null) {
-            if (voie.getNom().length() < 3) {
+            boolean voieNomExist = true;
+            String nbPointsRegex = "[0-9]*";
+            String hauteurRegex ="[0-9]*|[0-9]*[.][0-9]*";
 
-                addFieldError("voieNom", "Le nom du voie doit faire au moins 3 lettres");
+            if (voie.getNom().length() < 2 || voie.getNom().length() >15) {
+                addFieldError("voieNom", "Le nom de la voie doit faire entre 2 et 15 caratères ");
             }
+            try {
+                managerFactory.getVoieManager().findByName(premiereLettreMaj(this.voie.getNom()));
+                voieNomExist = true;
+            } catch (NotFoundException e) {
+                voieNomExist = false;
+            }
+            if(this.voie.getId()==null&&voieNomExist){
+                addFieldError("voieNom", "Ce nom de voie est déjà utilisé ");
+            }
+            if(!String.valueOf(voie.getNbPoints()).matches(nbPointsRegex) ){
+                addFieldError("nbPointsVoie", "La valeur attendue pour ce champ est un entier ");
+            }
+            if(!String.valueOf(voie.getHauteurVoie()).matches(hauteurRegex) ){
+                addFieldError("hauteurVoie", "La valeur attendue pour ce champ est un entier ou un décimal (attention à la ,)");
+            }
+            if(voie.getHauteurVoie() == 0.0 ){
+                addFieldError("hauteurVoie", "Attention à utiliser une , et non un . pour la partie décimale");
+            }
+
         }
     }
 

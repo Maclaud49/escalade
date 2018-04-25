@@ -197,15 +197,24 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Modification profil -->
             <s:if test="utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
+                <!-- Modification profil -->
                 <div class="card mb-4">
                     <h5 class="card-header">Modifier le profil</h5>
                     <div class="card-body text-center">
                         <s:a action="utilisateur_modifier" class="btn btn-secondary"><s:param name="utilisateurId" value="utilisateur.id" />Modifier</s:a>
                     </div>
                 </div>
+                <!-- Ajout topo -->
+                <div class="card mb-4">
+                    <h5 class="card-header">Ajouter un topo</h5>
+                    <div class="card-body text-center">
+                        <s:a action="index" class="btn btn-secondary">A faire</s:a>
+                    </div>
+                </div>
             </s:if>
+
+
         </div>
 
     </div>

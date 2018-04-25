@@ -43,14 +43,13 @@
                                                  value="%{utilisateur.email}" title="Votre adresse email"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
                     </div>
                     <div style="display: none;">
                         <s:textfield name="utilisateur.id" value="%{utilisateur.id}"/>
-                        <s:textfield name="utilisateur.profil" value="%{utilisateur.profil}"/>
                         <s:textfield name="utilisateur.password" value="%{utilisateur.password}"/>
                     </div>
 
@@ -63,7 +62,7 @@
                                     <s:textfield name="utilisateur.nom" class="form-control" value="%{utilisateur.nom}" title="Votre nom" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerNom"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerNom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -77,7 +76,7 @@
                                     <s:textfield name="utilisateur.prenom" class="form-control" value="%{utilisateur.prenom}" title="Votre prénom" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerPrenom"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerPrenom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -92,7 +91,7 @@
                                                  value="%{utilisateur.dateNaissance}" title="01/01/1981" />
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -109,7 +108,7 @@
                                     </div>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -121,8 +120,8 @@
                                 <div class="form-group has-danger">
                                     <label>Profil</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <s:select  class="form-control" name="profil"
-                                                   list="{'utilisateur','admin'}"  emptyOption="true" value="utilisateur"/>
+                                        <s:select  class="form-control" name="utilisateur.profil"
+                                                   list="{'utilisateur','admin'}"  emptyOption="true" value="%{utilisateur.profil}"/>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +145,7 @@
                                                  value="%{utilisateur.adresse1}" title="Votre adresse"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerAdresse1" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -161,7 +160,7 @@
                                                  value="%{utilisateur.adresse2}" title="Votre adresse"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerAdresse2" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -176,7 +175,7 @@
                                                  value="%{utilisateur.codePostal}" title="Votre code postal"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerCodePostal" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -191,7 +190,7 @@
                                                  value="%{utilisateur.ville}" title="Votre ville"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerVille" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -206,7 +205,7 @@
                                                  value="%{utilisateur.pays}" title="Votre pays"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerPays" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -222,9 +221,7 @@
                                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                     A faire
                                 </div>
-                                <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="registerEmail"/></small>
-                                </s:if>
+
                             </div>
                         </div>
                      </div>
@@ -256,13 +253,6 @@
             <!-- Modification mot de passe -->
             <div class="card mb-4">
                 <h5 class="card-header">Modifier mon mot de passe</h5>
-                <div class="card-body text-center">
-                    <s:a action="index" class="btn btn-secondary">A faire</s:a>
-                </div>
-            </div>
-            <!-- Ajout topo -->
-            <div class="card mb-4">
-                <h5 class="card-header">Ajouter un topo</h5>
                 <div class="card-body text-center">
                     <s:a action="index" class="btn btn-secondary">A faire</s:a>
                 </div>

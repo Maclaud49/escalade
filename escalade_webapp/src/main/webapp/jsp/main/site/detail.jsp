@@ -41,7 +41,6 @@
                     <p class="card-text"><strong>Description : </strong> <s:property value="site.description" /></p>
                     <p class="card-text"><strong>Région : </strong> <s:property value="site.region" /></p>
                     <p class="card-text"><strong>Nombre de secteurs : </strong> <s:property value="site.nbSecteurs" /></p>
-                    <p class="card-text"><strong>Nombre de voies : </strong> <s:property value="site.nbVoies" /></p>
                     <p class="card-text"><strong>Publié : </strong>
                         <s:if test="site.ispublication">
                             Oui
@@ -82,7 +81,7 @@
                             <s:param name="utilisateurId" value="site.utilisateur.id" />
                             <s:property value="site.utilisateur.prenom"/> <s:property value="site.utilisateur.nom"/>
                         </s:a>
-                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" />
+                    <br>Dernière modification le <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" />
                 </div>
             </div>
 

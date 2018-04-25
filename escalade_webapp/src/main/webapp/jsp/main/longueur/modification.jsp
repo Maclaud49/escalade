@@ -53,7 +53,7 @@
                                     <s:textfield name="longueur.nom" class="form-control" value="%{longueur.nom}" title="Nom de la longueur" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomLongueur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="longueurNom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                     <s:textarea rows="10" name="longueur.description" class="form-control" value="%{longueur.description}" title="Description de la longueur" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionLongueur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionLongueur" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                     <s:textfield name="longueur.relai" class="form-control" value="%{longueur.relai}" title="Relai de la longueur"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="relaiLongueur"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="relaiLongueur" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                 </s:if>
                 <s:else >
                     <div style="display: none;">
-                        <s:textfield name="longueur.publication" value="false"/>
+                        <s:checkbox class="form-check-input" name="longueur.publication"  value="false" label="Publication"/>
                     </div>
                 </s:else>
 

@@ -24,7 +24,6 @@ public class Site {
     private List<Secteur> secteurs;
     private String region;
     private Integer nbSecteurs;
-    private Integer nbVoies;
     private Integer nbCommentaires;
 
     // ==================== Constructeurs ==============
@@ -92,14 +91,6 @@ public class Site {
 
     public void setNbSecteurs(Integer nbSecteurs) {
         this.nbSecteurs = nbSecteurs;
-    }
-
-    public Integer getNbVoies() {
-        return nbVoies;
-    }
-
-    public void setNbVoies(Integer nbVoies) {
-        this.nbVoies = nbVoies;
     }
 
     public Timestamp getLastUpdate() {

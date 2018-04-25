@@ -3,6 +3,7 @@ package com.parlow.escalade.business.manager.contract;
 import com.parlow.escalade.model.bean.Secteur;
 import com.parlow.escalade.model.bean.Site;
 import com.parlow.escalade.model.exception.FunctionalException;
+import com.parlow.escalade.model.exception.NotFoundException;
 import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public interface SiteSecteurManager {
      * @return Le id généré
      * @throws FunctionalException si le id du site ou le id du secteur est null
      * @throws TechnicalException si problème avec la base de données
+     * @throws NotFoundException si non trouvé dans la base de données
      */
-    int findBySiteAndSecteur(int pSiteId, int pSecteurId ) throws FunctionalException, TechnicalException;
+    int findBySiteAndSecteur(int pSiteId, int pSecteurId ) throws FunctionalException, TechnicalException,NotFoundException;
 }

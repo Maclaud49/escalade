@@ -78,4 +78,16 @@ public class SecteurManagerImpl extends AbstractManager implements SecteurManage
     public List<Secteur> searchResult(String keyWord) {
         return daoFactory.getSecteurDao().searchResult(keyWord);
     }
+
+    @Override
+    public Secteur findByName(String pNom) throws NotFoundException {
+        Secteur secteur = daoFactory.getSecteurDao().findByName(pNom);
+        if(secteur != null){
+            return secteur;
+        }
+        else {
+            throw new NotFoundException("Aucun secteur correspondant à ce nom.");
+        }
+    }
+
 }

@@ -31,7 +31,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 
     @Override
     public List<Longueur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_longueur,t_utilisateur WHERE longueur_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_longueur,t_utilisateur WHERE longueur_utilisateur_fk_id = utilisateur_id ORDER BY longueur_lastupdate DESC";
         List<Longueur> longueurs = this.vJdbcTemplate.query(vSQL_findAll, new LongueurMapper());
         return longueurs;
     }
@@ -101,5 +101,18 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
         });
 
         return longueurs;
+    }
+
+    @Override
+    public Longueur findByName(String pNom) throws NotFoundException {
+        String sql_findByName = "SELECT * FROM t_longueur, t_utilisateur WHERE longueur_nom = ? AND longueur_utilisateur_fk_id = utilisateur_id";
+
+        try {
+            Longueur longueur = this.vJdbcTemplate.queryForObject(
+                    sql_findByName, new Object[]{pNom}, new LongueurMapper());
+            return longueur;
+        }catch(Exception e){
+            throw new NotFoundException("Aucune longueur correspondant à ce nom fourni.");
+        }
     }
 }

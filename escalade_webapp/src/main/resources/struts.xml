@@ -41,6 +41,7 @@
         </action>
         <!-- Action affichant la page de modification d'un site -->
         <action name="site_modifier" class="gestionSiteAction" method="doModifier">
+            <result name="input">/jsp/main/site/modification.jsp</result>
             <interceptor-ref name="checkbox"/>
             <interceptor-ref name="exception"/>
             <interceptor-ref name="i18n"/>
@@ -57,7 +58,6 @@
             <interceptor-ref name="workflow">
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
-            <result name="input">/jsp/main/site/modification.jsp</result>
             <result name="success" type="redirectAction">
                 <param name="actionName">site_detail</param>
                 <param name="siteId">${site.id}</param>
@@ -324,11 +324,7 @@
             <result name="error">/jsp/error.jsp</result>
         </action>
 
-        <!-- Action permettant de créer un commentaire sur la page longueur-->
-        <action name="commentaire_modifier" class="gestionCommentaireAction" method="doModifier">
-            <result name="success"></result>
-            <result name="error">/jsp/error.jsp</result>
-        </action>
+
 
         <!-- Action permettant de supprimer un commentaire sur la page longueur-->
         <action name="commentaire_supprimer" class="gestionCommentaireAction" method="doDelete">
@@ -365,6 +361,68 @@
         <action name="register" class="registerAction" method="doRegister">
             <result name="success" type="redirectAction">index</result>
             <result name="input">/jsp/main/utilisateur/register.jsp</result>
+        </action>
+
+        <!-- Action listant les topos -->
+        <action name="topo_list" class="gestionTopoAction" method="doList">
+            <result>/jsp/main/topo/list.jsp</result>
+        </action>
+        <!-- Action affichant le détail d'un topo -->
+        <action name="topo_detail" class="gestionTopoAction" method="doDetail">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success">/jsp/main/topo/detail.jsp</result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de créer un topo -->
+        <action name="topo_new" class="gestionTopoAction" method="doCreate">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input">/jsp/main/topo/new.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_detail</param>
+                <param name="topoId">${topo.id}</param>
+            </result>
+        </action>
+        <!-- Action affichant la page de modification d'un topo -->
+        <action name="topo_modifier" class="gestionTopoAction" method="doModifier">
+            <interceptor-ref name="checkbox"/>
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png</param>
+                <param name="maximumSize">2048000</param>
+            </interceptor-ref>
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <result name="input">/jsp/main/topo/modification.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_detail</param>
+                <param name="topoId">${topo.id}</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de supprimer un topo -->
+        <action name="topo_supprimer" class="gestionTopoAction" method="doDelete">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">console</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
         </action>
 
     </package>

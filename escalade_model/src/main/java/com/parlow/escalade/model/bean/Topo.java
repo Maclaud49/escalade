@@ -8,7 +8,7 @@ import java.util.List;
 public class Topo {
 
     // ==================== Attributs ====================
-    private Integer id;;
+    private Integer id;
     private String nom;
     private String description;
     private Utilisateur utilisateur;

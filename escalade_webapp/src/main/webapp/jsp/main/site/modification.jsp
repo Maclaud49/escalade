@@ -43,6 +43,7 @@
                         <s:textfield name="site.utilisateur.id" value="%{site.utilisateur.id}"/>
                         <s:textfield name="site.dateCreation" value="%{site.dateCreation}"/>
                         <s:textfield name="site.image" value="%{site.image}"/>
+                        <s:textfield name="siteId" value="%{siteId}"/>
                     </div>
 
                     <div class="row">
@@ -53,7 +54,7 @@
                                     <s:textfield name="site.nom" class="form-control" value="%{site.nom}" title="Nom du site" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="nomSite"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="siteNom" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                                     <s:textarea rows="10" name="site.description" class="form-control" value="%{site.description}" title="Description du site" required="true"/>
                                 </div>
                                 <s:if test="hasFieldErrors()">
-                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionSite"/></small>
+                                    <small class="text-danger align-middle"><s:fielderror fieldName="descriptionSite" style="list-style:none"/></small>
                                 </s:if>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                     </s:if>
                     <s:else >
                         <div style="display: none;">
-                            <s:textfield name="site.publication" value="false"/>
+                            <s:checkbox class="form-check-input" name="site.publication"  value="false" label="Publication"/>
                         </div>
                     </s:else>
 
@@ -102,7 +103,7 @@
                 <div class="row">
                     <div class="col-md-12" style="padding-top: .35rem">
                                 <span class="text-danger align-middle">
-                                    <s:actionerror class="text-danger align-middle"/>
+                                    <s:actionerror class="text-danger align-middle" style="list-style:none"/>
                                 </span>
                     </div>
                 </div>
@@ -119,8 +120,6 @@
 
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
-
-
 
 
         </div>

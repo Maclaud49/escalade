@@ -61,4 +61,12 @@ public interface VoieDao {
      * @return List
      */
     List<Voie> searchResult(String keyWord);
+
+    /**
+     * Renvoie le {@link Voie} demandé
+     * @param pNom du {@link Voie}
+     * @return {@link Voie}
+     * @throws NotFoundException si non trouvé
+     */
+    Voie findByName( String pNom )throws NotFoundException;
 }

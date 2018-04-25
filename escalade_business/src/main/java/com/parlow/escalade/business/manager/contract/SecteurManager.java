@@ -58,4 +58,12 @@ public interface SecteurManager {
      * @return List
      */
     List<Secteur> searchResult(String keyWord);
+
+    /**
+     * Renvoie le {@link Secteur} demandé
+     * @param pNom du {@link Secteur}
+     * @return {@link Secteur}
+     * @throws NotFoundException si non trouvé
+     */
+    Secteur findByName( String pNom )throws NotFoundException;
 }

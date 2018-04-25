@@ -14,20 +14,20 @@
     <div class="container" style="margin-bottom:50px">
 
         <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">Création voie</h1>
+        <h1 class="mt-4 mb-3">Création de topo</h1>
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <s:a action="index" ><s:text name="home.home"/></s:a>
             </li>
-            <li class="breadcrumb-item active">Création voie</li>
+            <li class="breadcrumb-item active">Création topo</li>
         </ol>
 
-        <form class="form-horizontal" method="POST" action="voie_new.action">
+        <form class="form-horizontal" method="POST" action="topo_new.action">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-8">
-                    <h4>Renseignez les différents champs pour créer une nouvelle voie</h4>
+                    <h4>Renseignez les différents champs pour créer un nouveau topo</h4>
                     <hr>
                 </div>
             </div>
@@ -35,18 +35,15 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label>Nom de la voie</label>
+                        <label>Nom du topo</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:textfield name="voie.nom" class="form-control" required="true"/>
+                            <s:textfield name="topo.nom" class="form-control" required="true"/>
                         </div>
                         <s:if test="hasFieldErrors()">
-                            <small class="text-danger align-middle"><s:fielderror fieldName="voieNom" style="list-style:none"/></small>
+                            <small class="text-danger align-middle"><s:fielderror fieldName="topoNom" style="list-style:none"/></small>
                         </s:if>
                     </div>
                 </div>
-            </div>
-            <div style="display: none;">
-                <s:textfield name="secteurId" value="%{secteurId}"/>
             </div>
 
             <div class="row">
@@ -55,9 +52,21 @@
                     <div class="form-group">
                         <label>Decription</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:textarea  rows="10" class="form-control" name="voie.description" />
+                            <s:textarea  rows="10" class="form-control" name="topo.description" />
                         </div>
                         <small id="descriptionHelp" class="form-text text-muted">Decription limité à 500 caractères</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label >Région</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <s:select  class="form-control" name="topo.region"
+                                       list="listRegions"  emptyOption="true" required="true"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,7 +74,7 @@
             <div class="row" style="padding-top: 1rem">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <button type="submit" class="btn btn-success">Création de la voie</button>
+                    <button type="submit" class="btn btn-success">Création du topo</button>
                 </div>
             </div>
         </form>

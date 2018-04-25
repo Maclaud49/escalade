@@ -37,7 +37,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 
     @Override
     public List<Secteur> findAll() {
-        String vSQL_findAll = "SELECT * FROM t_secteur,t_utilisateur WHERE secteur_utilisateur_fk_id = utilisateur_id";
+        String vSQL_findAll = "SELECT * FROM t_secteur,t_utilisateur WHERE secteur_utilisateur_fk_id = utilisateur_id ORDER BY secteur_lastupdate DESC";
         List<Secteur> secteurs  = this.vJdbcTemplate.query(vSQL_findAll, new SecteurMapper());
         return secteurs;
     }
@@ -93,6 +93,19 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
         });
 
         return secteurs;
+    }
+
+    @Override
+    public Secteur findByName(String pNom) throws NotFoundException {
+        String sql_findByName = "SELECT * FROM t_secteur, t_utilisateur WHERE secteur_nom = ? AND secteur_utilisateur_fk_id = utilisateur_id";
+
+        try {
+            Secteur secteur = this.vJdbcTemplate.queryForObject(
+                    sql_findByName, new Object[]{pNom}, new SecteurMapper());
+            return secteur;
+        } catch (Exception e) {
+            throw new NotFoundException("Aucun secteur correspondant à ce nom fourni.");
+        }
     }
 
 }
