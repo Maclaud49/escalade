@@ -163,13 +163,7 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Ajouter un secteur -->
-            <div class="card mb-4">
-                <h5 class="card-header">Ajouter une longueur à cette voie</h5>
-                <div class="card-body text-center">
-                    <s:a action="index" class="btn btn-secondary">Ajouter</s:a>
-                </div>
-            </div>
+
 
 
         </div>

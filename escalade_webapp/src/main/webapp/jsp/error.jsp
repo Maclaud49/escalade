@@ -7,18 +7,35 @@
 </head>
 
 <body>
+<%@ include file="./include/header.jsp" %>
 
-    <h2>Une erreur s'est produite</h2>
+    <!-- Page Content -->
+    <div class="container">
 
-    <s:a action="index">
-        <s:text name="error.back.home"/>
-    </s:a>
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Une erreur s'est produite</h1>
 
-    <s:actionerror />
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <s:a action="index" ><s:text name="home.home"/></s:a>
+            </li>
+            <li class="breadcrumb-item active">erreur</li>
+        </ol>
 
-    <s:bean name="java.util.Date" var="now" />
-    <s:text name="error.metadata">
-        <s:param value="now" />
-    </s:text>
+        <div class="jumbotron">
+
+            <s:actionerror />
+
+            <s:bean name="java.util.Date" var="now" />
+            <s:text name="error.metadata">
+                <s:param value="now" />
+            </s:text>
+        </div>
+        <!-- /.jumbotron -->
+
+    </div>
+    <!-- /.container -->
+
+<%@ include file="./include/script.jsp" %>
 </body>
 </html>

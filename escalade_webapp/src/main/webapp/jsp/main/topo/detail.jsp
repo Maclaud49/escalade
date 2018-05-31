@@ -125,6 +125,16 @@
                 </div>
             </s:if>
 
+            <!-- Modification topo -->
+            <s:if test="#session.escalade_user && topo.utilisateur.id != #session.escalade_user.id && topo.disponible || #session.escalade_user.profil =='admin' && topo.disponible">
+                <div class="card mb-4">
+                    <h5 class="card-header">Location topo</h5>
+                    <div class="card-body text-center">
+                            <s:a action="topo_location_request" class="btn btn-secondary"><s:param name="topoId" value="topo.id" />Louer ce topo</s:a>
+                    </div>
+                </div>
+            </s:if>
+
         </div>
 
     </div>

@@ -1,15 +1,8 @@
 package com.parlow.escalade.business.manager.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.parlow.escalade.consumer.dao.contract.DaoFactory;
-import com.parlow.escalade.consumer.dao.contract.UtilisateurDao;
 import com.parlow.escalade.model.exception.FunctionalException;
-import org.apache.commons.lang3.StringUtils;
-
 import com.parlow.escalade.business.manager.contract.UtilisateurManager;
 import com.parlow.escalade.model.bean.utilisateur.Utilisateur;
 import com.parlow.escalade.model.exception.NotFoundException;

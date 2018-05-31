@@ -211,21 +211,7 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset class="form-group">
-                    <legend>Topos</legend>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8">
-                            <div class="form-group has-danger">
-                                <label>Liste topos</label>
-                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    A faire
-                                </div>
 
-                            </div>
-                        </div>
-                     </div>
-                </fieldset>
 
 
                 <div class="row">

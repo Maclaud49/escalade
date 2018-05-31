@@ -29,7 +29,7 @@
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                                 <s:textfield type="email" name="email" class="form-control"
-                                             placeholder="votreadresse@exemple.fr" />
+                                             placeholder="votreadresse@exemple.fr" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <label class="sr-only" for="password">Mot de passe</label>
                             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                                <s:password type="password" class="form-control" name="password"  placeholder="Mot de passe"  />
+                                <s:password type="password" class="form-control" name="password"  placeholder="Mot de passe"  required="true"/>
                             </div>
                         </div>
                     </div>

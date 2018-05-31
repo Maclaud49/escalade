@@ -392,14 +392,16 @@ public class GestionVoieAction extends ActionSupport implements SessionAware {
             if(this.voie.getId()==null&&voieNomExist){
                 addFieldError("voieNom", "Ce nom de voie est déjà utilisé ");
             }
-            if(!String.valueOf(voie.getNbPoints()).matches(nbPointsRegex) ){
-                addFieldError("nbPointsVoie", "La valeur attendue pour ce champ est un entier ");
-            }
-            if(!String.valueOf(voie.getHauteurVoie()).matches(hauteurRegex) ){
-                addFieldError("hauteurVoie", "La valeur attendue pour ce champ est un entier ou un décimal (attention à la ,)");
-            }
-            if(voie.getHauteurVoie() == 0.0 ){
-                addFieldError("hauteurVoie", "Attention à utiliser une , et non un . pour la partie décimale");
+            if(this.voie.getId()!=null) {
+                if (!String.valueOf(voie.getNbPoints()).matches(nbPointsRegex)) {
+                    addFieldError("nbPointsVoie", "La valeur attendue pour ce champ est un entier ");
+                }
+                if (!String.valueOf(voie.getHauteurVoie()).matches(hauteurRegex)) {
+                    addFieldError("hauteurVoie", "La valeur attendue pour ce champ est un entier ou un décimal (attention à la ,)");
+                }
+                if (voie.getHauteurVoie() == 0.0) {
+                    addFieldError("hauteurVoie", "Attention à utiliser une , et non un . pour la partie décimale");
+                }
             }
 
         }

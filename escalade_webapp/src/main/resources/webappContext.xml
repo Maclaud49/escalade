@@ -62,6 +62,9 @@
     <bean id="gestionTopoAction"
           class="com.parlow.escalade.webapp.action.GestionTopoAction"
           scope= "prototype"  />
+    <bean id="gestionTopoLocationAction"
+          class="com.parlow.escalade.webapp.action.GestionTopoLocationAction"
+          scope= "prototype"  />
 
 </beans>
 

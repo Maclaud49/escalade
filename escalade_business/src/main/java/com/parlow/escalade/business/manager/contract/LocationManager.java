@@ -3,6 +3,7 @@ package com.parlow.escalade.business.manager.contract;
 import com.parlow.escalade.model.bean.Location;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
 
 import java.util.List;
 
@@ -27,9 +28,10 @@ public interface LocationManager {
      * Insert l'{@link Location} dans la bdd
      * @param pLocation le {@link Location}
      * @return Le {@link Location}
-     * @throws FunctionalException si le location est null
+     * @throws FunctionalException si la location est null
+     * @throws TechnicalException si problème avec la base de données
      */
-    int insert( Location pLocation )throws FunctionalException;
+    int insert( Location pLocation )throws FunctionalException, TechnicalException;
 
     /**
      * Supprime un {@link Location}

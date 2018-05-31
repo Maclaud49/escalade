@@ -131,7 +131,7 @@
                         <li><i class="fa-li fa fa-square"></i> Nombre de sites : <s:property value="nbSites" /></li>
                         <li><i class="fa-li fa fa-square"></i> Nombre de secteurs : <s:property value="nbSecteurs" /></li>
                         <li><i class="fa-li fa fa-square"></i> Nombre de voies : <s:property value="nbVoies" /></li>
-                        <li><i class="fa-li fa fa-square"></i> Date de modification : <s:property value="lastUpdate" /></li>
+                        <li><i class="fa-li fa fa-square"></i> Date de modification : <s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH" />h<s:date name="lastUpdate" format="mm" /></li>
                         <li><i class="fa-li fa fa-square"></i> Disponible pour location :
                             <s:if test="disponible">
                                 Oui
@@ -155,14 +155,16 @@
     <hr>
 
     <!-- Call to Action Section -->
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <p>Toi aussi viens partager ta passion de l'escalade ! Cela te permettra d'échanger, de partager et de découvrir de nombreux sites.</p>
+    <s:if test="!#session.escalade_user">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <p>Toi aussi viens partager ta passion de l'escalade ! Cela te permettra d'échanger, de partager et de découvrir de nombreux sites.</p>
+            </div>
+            <div class="col-md-4">
+                <s:a action="register" class="btn btn-lg btn-secondary btn-block">S'enregistrer</s:a>
+            </div>
         </div>
-        <div class="col-md-4">
-            <s:a action="register" class="btn btn-primary">S'enregistrer</s:a>
-        </div>
-    </div>
+    </s:if>
 
 </div>
 <!-- /.container -->

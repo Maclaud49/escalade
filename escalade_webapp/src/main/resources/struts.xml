@@ -10,11 +10,12 @@
 
         <!-- Action "index" -->
         <action name="index" class="indexAction" method="doIndex">
-            <result>/jsp/main/index.jsp</result>
-        </action>
+        <!-- <result>/jsp/main/index.jsp</result>-->
+    <result>/jsp/error.jsp</result>
+     </action>
 
 
-        <!-- Action listant les sites -->
+<!-- Action listant les sites -->
         <action name="site_list" class="gestionSiteAction" method="doList">
             <result>/jsp/main/site/list.jsp</result>
         </action>
@@ -421,6 +422,41 @@
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirectAction">
                 <param name="actionName">console</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Actions permettant de louer un topo -->
+        <action name="topo_location_request" class="gestionTopoLocationAction" method="doLocationRequest">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_location_list</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <action name="topo_location_list" class="gestionTopoLocationAction" method="doLocationList">
+            <result>/jsp/main/topoLocation/locationList.jsp</result>
+        </action>
+        <!-- Action permettant d'accepter la demande de location d'un topo-->
+        <action name="location_accepter" class="gestionTopoLocationAction" method="doLocationAccept">
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_location_list</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Action permettant de refuser la demande de location d'un topo-->
+        <action name="location_refuser" class="gestionTopoLocationAction" method="doLocationReject">
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_location_list</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <!-- Action permettant de terminer la demande de location d'un topo-->
+        <action name="location_terminer" class="gestionTopoLocationAction" method="doLocationFinish">
+            <result name="success" type="redirectAction">
+                <param name="actionName">topo_location_list</param>
             </result>
             <result name="error">/jsp/error.jsp</result>
         </action>

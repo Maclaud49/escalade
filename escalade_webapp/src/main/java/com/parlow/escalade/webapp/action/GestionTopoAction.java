@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
  * Action de gestion des {@link Topo}
  */
 @PropertySource(value = "classpath:app.properties", ignoreResourceNotFound=true)
-public class GestionTopoAction extends ActionSupport implements SessionAware, ServletRequestAware {
+public class GestionTopoAction extends ActionSupport implements SessionAware {
 
 
 
@@ -50,8 +50,6 @@ public class GestionTopoAction extends ActionSupport implements SessionAware, Se
     @Inject
     private ManagerFactory managerFactory;
     private Map<String, Object> session;
-    private HttpServletRequest servletRequest;
-
     private static final Logger logger = LogManager.getLogger(GestionTopoAction.class);
 
 
@@ -349,9 +347,4 @@ public class GestionTopoAction extends ActionSupport implements SessionAware, Se
         this.session = pSession;
     }
 
-
-    @Override
-    public void setServletRequest(HttpServletRequest pRequest) {
-        this.servletRequest = pRequest;
-    }
 }

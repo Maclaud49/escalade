@@ -16,7 +16,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                         <s:a action="site_list" class="dropdown-item"><s:text name="nav.listSite" /></s:a>
-                        <s:a action="site_new" class="dropdown-item"><s:text name="site.creation"/></s:a>
+                            <s:if test="#session.escalade_user">
+                                <s:a action="site_new" class="dropdown-item"><s:text name="site.creation"/></s:a>
+                            </s:if>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -25,7 +27,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <s:a action="secteur_list" class="dropdown-item">Liste des secteurs</s:a>
-                        <s:a action="secteur_new" class="dropdown-item">Créer un nouveau secteur</s:a>
+                            <s:if test="#session.escalade_user">
+                                <s:a action="secteur_new" class="dropdown-item">Créer un nouveau secteur</s:a>
+                            </s:if>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -34,7 +38,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <s:a action="voie_list" class="dropdown-item">Liste des voies</s:a>
-                        <s:a action="voie_new" class="dropdown-item">Créer un nouveau voie</s:a>
+                            <s:if test="#session.escalade_user">
+                                <s:a action="voie_new" class="dropdown-item">Créer un nouveau voie</s:a>
+                            </s:if>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -43,8 +49,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <s:a action="topo_list" class="dropdown-item">Liste des topos</s:a>
-                        <s:a action="topo_new" class="dropdown-item">Créer un nouveau topo</s:a>
-                    </div>
+                            <s:if test="#session.escalade_user">
+                                <s:a action="topo_new" class="dropdown-item">Créer un nouveau topo</s:a>
+                                <s:a action="topo_location_list" class="dropdown-item">Location</s:a>
+                            </s:if>
+                     </div>
                 </li>
                 <s:if test="#session.escalade_user">
                     <li class="nav-item dropdown">

@@ -116,4 +116,12 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
         }
 
     }
+
+    @Override
+    public List<Topo> findListByUserId(int id) {
+        String vSQL_findAll = "SELECT * FROM t_topo,t_utilisateur WHERE topo_publication = true AND topo_utilisateur_fk_id=? AND topo_utilisateur_fk_id = utilisateur_id ORDER BY topo_lastupdate DESC";
+        List<Topo> topos  = this.vJdbcTemplate.query(vSQL_findAll, new TopoMapper(),id);
+
+        return topos;
+    }
 }

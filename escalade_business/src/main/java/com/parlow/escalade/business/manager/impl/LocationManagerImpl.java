@@ -1,10 +1,11 @@
 package com.parlow.escalade.business.manager.impl;
 
 import com.parlow.escalade.business.manager.contract.LocationManager;
-import com.parlow.escalade.consumer.dao.contract.DaoFactory;
 import com.parlow.escalade.model.bean.Location;
 import com.parlow.escalade.model.exception.FunctionalException;
 import com.parlow.escalade.model.exception.NotFoundException;
+import com.parlow.escalade.model.exception.TechnicalException;
+
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -34,7 +35,7 @@ public class LocationManagerImpl extends AbstractManager implements LocationMana
     }
 
     @Override
-    public int insert(Location pLocation) throws FunctionalException {
+    public int insert(Location pLocation) throws FunctionalException,TechnicalException {
         if (pLocation == null) {
             throw new FunctionalException("L'objet Location ne doit pas être null !");
         }

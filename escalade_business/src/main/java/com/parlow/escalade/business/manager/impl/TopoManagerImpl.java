@@ -95,4 +95,9 @@ public class TopoManagerImpl extends AbstractManager implements TopoManager{
             throw new NotFoundException("Aucun topo correspondant à ce nom.");
         }
     }
+
+    @Override
+    public List<Topo> findListByUserId(int id){
+        return daoFactory.getTopoDao().findListByUserId(id);
+    }
 }

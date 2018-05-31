@@ -73,4 +73,11 @@ public interface TopoManager {
      * @throws NotFoundException si non trouvé
      */
     Topo findByName( String pNom )throws NotFoundException;
+
+    /**
+     * Renvoie une liste de {@link Topo}
+     * @param id de l'utilisateur
+     * @return
+     */
+    List<Topo> findListByUserId(int id);
 }

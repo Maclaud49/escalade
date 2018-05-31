@@ -59,7 +59,7 @@
 
 
                             <s:iterator value="site.secteurs">
-                                <s:if test="publication == true">
+                                <s:if test="publication == true || #session.escalade_user.profil =='admin'">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="secteur_detail" class="btn btn-primary">
                                             <s:param name="secteurId" value="id" />

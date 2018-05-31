@@ -173,11 +173,24 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-7">
-                    <div class="form-group has-danger">
-                        <label>Liste topos</label>
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <s:textfield name="topos" class="form-control" title="Vos topos" readonly="true"/>
-                        </div>
+                    <div class="card-text"></strong>
+                        <s:if test="listTopo.size() == 0">
+                            Pas de topos
+                        </s:if>
+                        <s:else>
+                            <ul class="text-center">
+                                <s:iterator value="listTopo">
+                                    <s:if test="publication == true && utilisateur.id == #session.escalade_user.id|| #session.escalade_user.profil =='admin'">
+                                        <li style = "list-style: none;margin:10px">
+                                            <s:a action="topo_detail" class="btn btn-primary">
+                                                <s:param name="topoId" value="id" />
+                                                <s:property value="nom" />
+                                            </s:a>
+                                        </li>
+                                    </s:if>
+                                </s:iterator>
+                            </ul>
+                        </s:else>
                     </div>
                 </div>
             </div>
@@ -203,13 +216,6 @@
                     <h5 class="card-header">Modifier le profil</h5>
                     <div class="card-body text-center">
                         <s:a action="utilisateur_modifier" class="btn btn-secondary"><s:param name="utilisateurId" value="utilisateur.id" />Modifier</s:a>
-                    </div>
-                </div>
-                <!-- Ajout topo -->
-                <div class="card mb-4">
-                    <h5 class="card-header">Ajouter un topo</h5>
-                    <div class="card-body text-center">
-                        <s:a action="index" class="btn btn-secondary">A faire</s:a>
                     </div>
                 </div>
             </s:if>

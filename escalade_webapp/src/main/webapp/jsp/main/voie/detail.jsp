@@ -69,7 +69,7 @@
                         <s:else>
                         <ul class="text-center">
                             <s:iterator value="voie.longueurs">
-                                <s:if test="publication == true">
+                                <s:if test="publication == true || #session.escalade_user.profil =='admin'">
                                     <li style = "list-style: none;margin:10px">
                                         <s:a action="longueur_detail" class="btn btn-primary">
                                             <s:param name="longueurId" value="id" />
@@ -148,15 +148,15 @@
 
 
             <!-- Ajouter une longueur -->
-            <s:if test="site.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
-            <div class="card mb-4">
-                <h5 class="card-header">Ajouter une longueur à cette voie</h5>
-                <div class="card-body text-center">
-                    <s:a action="longueur_new" class="btn btn-secondary">
-                        <s:param name="voieId" value="%{voie.id}" />
-                        Ajouter</s:a>
+            <s:if test="voie.utilisateur.id == #session.escalade_user.id || #session.escalade_user.profil =='admin'">
+                <div class="card mb-4">
+                    <h5 class="card-header">Ajouter une longueur à cette voie</h5>
+                    <div class="card-body text-center">
+                        <s:a action="longueur_new" class="btn btn-secondary">
+                            <s:param name="voieId" value="%{voie.id}" />
+                            Ajouter</s:a>
+                    </div>
                 </div>
-            </div>
             </s:if>
         </div>
 

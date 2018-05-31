@@ -117,7 +117,8 @@ CREATE TABLE t_location_topo(
 	loc_dateFin TIMESTAMP,
 	loc_topoProprioUser_fk_id INTEGER,
 	loc_topoLoueurUser_fk_id INTEGER,
-	loc_topo_fk_id INTEGER
+	loc_topo_fk_id INTEGER,
+	loc_status CHARACTER VARYING(15)
 );
 
 CREATE TABLE t_commentaire (

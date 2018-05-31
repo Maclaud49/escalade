@@ -12,9 +12,11 @@ public class Location {
     private Integer id;
     private Timestamp dateDebut;
     private Timestamp dateFin;
-    private Utilisateur topoProprio;
-    private Utilisateur topoLoueur;
+    private int topoProprio;
+    private int topoLoueur;
     private Topo topo;
+    private String status; //{Demande,Acceptation,Refus,Clos}
+
 
 
     // ==================== Getters/Setters ==============
@@ -42,22 +44,6 @@ public class Location {
         this.dateFin = dateFin;
     }
 
-    public Utilisateur getTopoProprio() {
-        return topoProprio;
-    }
-
-    public void setTopoProprio(Utilisateur topoProprio) {
-        this.topoProprio = topoProprio;
-    }
-
-    public Utilisateur getTopoLoueur() {
-        return topoLoueur;
-    }
-
-    public void setTopoLoueur(Utilisateur topoLoueur) {
-        this.topoLoueur = topoLoueur;
-    }
-
     public Topo getTopo() {
         return topo;
     }
@@ -66,6 +52,29 @@ public class Location {
         this.topo = topo;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getTopoProprio() {
+        return topoProprio;
+    }
+
+    public void setTopoProprio(int topoProprio) {
+        this.topoProprio = topoProprio;
+    }
+
+    public int getTopoLoueur() {
+        return topoLoueur;
+    }
+
+    public void setTopoLoueur(int topoLoueur) {
+        this.topoLoueur = topoLoueur;
+    }
 
     // ==================== Méthodes =====================
 

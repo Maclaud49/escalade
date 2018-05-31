@@ -51,9 +51,9 @@
                     <thead>
                     <tr>
                         <th>Nom</th>
-                        <th class="text-center">Nb de secteurs</th>
+                        <!--<th class="text-center">Nb de secteurs</th>-->
                         <th class="text-center">Status</th>
-                        <th class="text-center">Nb commentaires</th>
+                        <!--<th class="text-center">Nb commentaires</th>-->
                         <th class="text-center">Dernière modification</th>
                         <th></th>
                         <!-- Actions column -->
@@ -67,7 +67,7 @@
                                 <s:property value="nom" />
                             </s:a>
                         </td>
-                        <td class="text-center"><s:property value="site.nbSecteurs" /></td>
+                        <!-- <td class="text-center"><s:property value="site.nbSecteurs" /></td>-->
                         <td class="text-center">
                             <s:if test="publication">
                                 Publié
@@ -76,7 +76,7 @@
                                 A valider
                             </s:else>
                         </td>
-                        <td class="text-center"><s:property value="site.nbCommentaires" /></td>
+                        <!--<td class="text-center"><s:property value="site.nbCommentaires" /></td>-->
                         <td class="text-center"><s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" /></td>
                         <td class="text-center">
                             <s:a action="site_modifier" class="btn btn-info btn-xs" title="Editer">
@@ -128,9 +128,9 @@
                         <thead>
                         <tr>
                             <th>Nom</th>
-                            <th class="text-center">Nb de voies</th>
+                            <!--<th class="text-center">Nb de voies</th>-->
                             <th class="text-center">Status</th>
-                            <th class="text-center">Nb commentaires</th>
+                            <!--<th class="text-center">Nb commentaires</th>-->
                             <th class="text-center">Dernière modification</th>
                             <th></th>
                             <!-- Actions column -->
@@ -144,7 +144,7 @@
                                         <s:property value="nom" />
                                     </s:a>
                                 </td>
-                                <td class="text-center"><s:property value="secteur.nbVoies" /></td>
+                                <!--<td class="text-center"><s:property value="secteur.nbVoies" /></td>-->
                                 <td class="text-center">
                                     <s:if test="publication">
                                         Publié
@@ -153,7 +153,7 @@
                                         A valider
                                     </s:else>
                                 </td>
-                                <td class="text-center"><s:property value="secteur.nbCommentaires" /></td>
+                                <!--<td class="text-center"><s:property value="secteur.nbCommentaires" /></td>-->
                                 <td class="text-center"><s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" /></td>
                                 <td class="text-center">
                                     <s:a action="secteur_modifier" class="btn btn-info btn-xs" title="Editer">
@@ -206,9 +206,9 @@
                         <thead>
                         <tr>
                             <th>Nom</th>
-                            <th class="text-center">Nb de longueurs</th>
+                            <!--<th class="text-center">Nb de longueurs</th>-->
                             <th class="text-center">Status</th>
-                            <th class="text-center">Nb commentaires</th>
+                            <!--<th class="text-center">Nb commentaires</th>-->
                             <th class="text-center">Dernière modification</th>
                             <th></th>
                             <!-- Actions column -->
@@ -222,7 +222,7 @@
                                         <s:property value="nom" />
                                     </s:a>
                                 </td>
-                                <td class="text-center"><s:property value="voie.nbLongueurs" /></td>
+                                <!--<td class="text-center"><s:property value="voie.nbLongueurs" /></td>-->
                                 <td class="text-center">
                                     <s:if test="publication">
                                         Publié
@@ -231,7 +231,7 @@
                                         A valider
                                     </s:else>
                                 </td>
-                                <td class="text-center"><s:property value="voie.nbCommentaires" /></td>
+                                <!--<td class="text-center"><s:property value="voie.nbCommentaires" /></td>-->
                                 <td class="text-center"><s:date name="lastUpdate" format="dd/MM/yyyy" /> à <s:date name="lastUpdate" format="HH:mm:ss" /></td>
                                 <td class="text-center">
                                     <s:a action="voie_modifier" class="btn btn-info btn-xs" title="Editer">
@@ -285,7 +285,7 @@
                         <tr>
                             <th>Nom</th>
                             <th class="text-center">Status</th>
-                            <th class="text-center">Nb commentaires</th>
+                            <!--<th class="text-center">Nb commentaires</th>-->
                             <th class="text-center">Dernière modification</th>
                             <th></th>
                             <!-- Actions column -->
@@ -307,7 +307,7 @@
                                         A valider
                                     </s:else>
                                 </td>
-                                <td class="text-center"><s:property value="longueur.nbCommentaires" /></td>
+                                <!--<td class="text-center"><s:property value="longueur.nbCommentaires" /></td>-->
                                 <td class="text-center"><s:date name="lastUpdate" format="dd/MM/yyyy" /></td>
                                 <td class="text-center">
                                     <s:a action="longueur_modifier" class="btn btn-info btn-xs" title="Editer">
@@ -399,10 +399,10 @@
                                 <td class="text-center"><s:property value="target_table" /></td>
                                 <td class="text-center"><s:date name="dateCreation" format="dd/MM/yyyy" /> <s:date name="dateCreation" format="HH:mm" /></td>
                                 <td class="text-center">
-                                    <s:a action="commentaire_modifier" class="btn btn-info btn-xs" title="Editer">
+                                    <!--<s:a action="commentaire_modifier" class="btn btn-info btn-xs" title="Editer">
                                         <s:param name="commentaireId" value="id" />
                                         <i class="fa fa-edit"></i>
-                                    </s:a>
+                                    </s:a>-->
                                     <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#commentaireDialog${id}"><i class="fa fa-close"></i>
                                     </button>
                                     <div class="modal fade" id="commentaireDialog${id}" tabindex="-1"

@@ -39,6 +39,7 @@ public class GestionUtilisateurAction extends ActionSupport {
     // ----- Eléments en sortie
     private Utilisateur utilisateur;
     private List<String> listCotations;
+    private List<Topo> listTopo;
 
     private static Logger logger = LogManager.getLogger();
 
@@ -81,6 +82,16 @@ public class GestionUtilisateurAction extends ActionSupport {
         this.utilisateur = utilisateur;
     }
 
+    public List<Topo> getListTopo() {
+        if(this.listTopo==null){
+            this.listTopo=selectTopos();
+        }
+        return listTopo;
+    }
+
+    public void setListTopo(List<Topo> listTopo) {
+        this.listTopo = listTopo;
+    }
     // ==================== Méthodes ====================
     /**
      * Action affichant les détails d'un {@link Utilisateur}
@@ -159,6 +170,12 @@ public class GestionUtilisateurAction extends ActionSupport {
     public List<String> selectCotation(){
         List<String> list = new ArrayList<>();
         list =  Arrays.asList("3", "3a", "3b","3c","4","4a","4b","4c","5","5a","5b","5c","6","6a","6b","6c","7","7a","7b","7c","8","8a","8b","8c","9","9a","9b","9c");
+        return list;
+    }
+
+    private List<Topo> selectTopos(){
+        List<Topo> list = new ArrayList<>();
+            list = managerFactory.getTopoManager().findAll();
         return list;
     }
 
