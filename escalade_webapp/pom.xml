@@ -79,7 +79,10 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+        </dependency>
 
     </dependencies>
     <build>
@@ -173,4 +176,5 @@
             </properties>
         </profile>
     </profiles>
+
 </project>

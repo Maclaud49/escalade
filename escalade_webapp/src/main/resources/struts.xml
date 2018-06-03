@@ -10,8 +10,8 @@
 
         <!-- Action "index" -->
         <action name="index" class="indexAction" method="doIndex">
-        <!-- <result>/jsp/main/index.jsp</result>-->
-    <result>/jsp/error.jsp</result>
+            <result>/jsp/main/index.jsp</result>
+        <!--<result>/jsp/error.jsp</result> -->
      </action>
 
 
@@ -463,5 +463,15 @@
 
     </package>
 
+    <!-- ===== Package pour les actions AJAX ===== -->
+    <package name="ajax" extends="json-default">
+
+        <!-- Action renvoyant la liste des Projets -->
+        <action name="getListCommentairesSite" class="gestionCommentaireAction" method="doGetCommentairesSite">
+            <result name="success" type="json">
+                <param name="root">listCommentairesSite</param>
+            </result>
+        </action>
+    </package>
 
 </struts>

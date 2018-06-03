@@ -13,7 +13,9 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import javax.inject.Inject;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class GestionCommentaireAction extends ActionSupport implements SessionAware {
@@ -27,8 +29,10 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
     // ----- Paramètres en entrée
 
     private Commentaire commentaire;
+    private String section;
     private Integer sectionId;
     private Integer commentaireId;
+    private List<Commentaire> listCommentairesSite;
 
     // ==================== Getters/Setters ====================
 
@@ -57,7 +61,22 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
         this.commentaireId = commentaireId;
     }
 
+    public List<Commentaire> getListCommentairesSite() {
+        return listCommentairesSite;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
     // ==================== Méthodes ====================
+
+    public String execute() {
+        return ActionSupport.SUCCESS;
+    }
 
     /**
      * Action permettant de créer un nouveau {@link Commentaire}
@@ -136,6 +155,15 @@ public class GestionCommentaireAction extends ActionSupport implements SessionAw
 
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+
+    public String doGetCommentairesSite(){
+            logger.info("section " + section);
+            logger.info("sectionId " + sectionId);
+            listCommentairesSite = managerFactory.getCommentaireManager().findAllBySectionAndArticle(section, sectionId);
+            logger.info("premier element liste " + listCommentairesSite.get(0).getCommentaire());
+        return ActionSupport.SUCCESS;
+    }
+
 
     @Override
     public void setSession(Map<String, Object> pSession) {

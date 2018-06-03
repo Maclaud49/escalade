@@ -112,16 +112,20 @@
             </s:else>
 
 
-            <!-- Single Comment -->
+            <!-- Comments -->
+            <div id="commentsList" >
             <s:iterator value="listCommentaires">
-            <div id="commentsList" class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/><small> le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></small></h5>
-                    <s:property value="commentaire"/>
+                <div id="commentContainer" class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""/>
+                    <div class="media-body">
+                        <h5 class="mt-0"><s:property value="utilisateur.prenom"/> <s:property value="utilisateur.nom"/><small> le <s:date name="dateCreation" format="dd/MM/yyyy"/> à <s:date name="dateCreation" format="HH:mm" /></small></h5>
+                        <p><s:property value="commentaire"/></p>
+                    </div>
                 </div>
-            </div>
             </s:iterator>
+            </div>
+
+            <button class="btn btn-secondary" onclick="ReloadListCommentaires()">Recharger les commentaires</button>
 
         </div>
 
@@ -164,28 +168,41 @@
 
 <%@ include file="../../include/script.jsp" %>
 
-<script>
-    function saveAndReloadListCommentaires() {
-        // URL de l'action AJAX
-        var url = "<s:url action="getListCommentaires"><s:param name="pSection" value="SITE" /><s:param name="pArticle" value="site.id" /></s:url>";
+<script type="text/html" id="template">
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""/>
+        <div class="media-body">
+            <h5 class="mt-0"> <span data-content="utilisateur_prenom"></span> <span data-content="utilisateur_nom"></span>
+                <small data-content="date_creation1">  </small> à  <small data-content="date_creation2"></small>
+            </h5>
+            <p data-content="commentaire"></p>
+        </div>
+    </div>
+</script>
 
+<script>
+    function ReloadListCommentaires() {
+        // URL de l'action AJAX
+        //var url = "<s:url action="getListCommentairesSite"><s:param name="section" value="SITE" /><s:param name="sectionId" value="site.id" /></s:url>";
+        var url = "http://localhost:8080/getListCommentairesSite?sectionId=9&section=SITE";
         // Action AJAX en POST
         jQuery.post(
             url,
             function (data) {
-                var commentsList = jQuery("#commentsList");
+                var commentsList = $("#commentsList");
+                var commentContainer = $("#commentContainer")
                 commentsList.empty();
                 jQuery.each(data, function (key, val) {
-                    commentsList.append(
-                        jQuery('<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">')
-                            .append('<div class="media-body">')
-                            .append('<h5 class="mt-0">')
-                            .append(val.utilisateur.prenom)
-                            .append(val.utilisateur.nom)
-                            .append(dateCreation)
-                            .append('</h5>')
-                            .append('</div>')
-                    );
+
+                    commentContainer.loadTemplate($("#template"),
+                        {
+                            utilisateur_prenom: val.utilisateur.prenom,
+                            utilisateur_nom: val.utilisateur.nom,
+                            date_creation1: val.dateCreation,
+                            date_creation2: val.dateCreation,
+                            commentaire : val.commentaire
+                        });
+                    commentsList.append(commentContainer);
                 });
             })
             .fail(function () {
