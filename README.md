@@ -44,13 +44,22 @@ Escalade_BDD_Data pour injecter les données inititales de l'application
 
 Utiliser le profil : target-dev
 
-commande Maven : maven install -P target-dev
+Commande Maven : maven install -P target-dev
 
-Le war ainsi créé est alors dépoyable sur le Tomcat
+(rajouter étapes pour déploiement)
+
+Le war ainsi créé est alors dépoyable sur le Tomcat et ensuite accessible :
+
+http://localhost:8080/
+
+```
+Exemple de tutoriel pour déployer un war sur Tomcat :
+http://www.developper-jeux-video.com/deployer-fichier-war-tomcat/
+```
 
 ## Auteur
 
-* **Mickaël PArlow** - *Application initiale* - 
+* **Mickaël Parlow** - *Application initiale* - 
 
 ## Remerciements
 

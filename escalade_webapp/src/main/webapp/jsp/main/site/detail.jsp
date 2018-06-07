@@ -125,7 +125,7 @@
             </s:iterator>
             </div>
 
-            <button class="btn btn-secondary" onclick="ReloadListCommentaires()">Recharger les commentaires</button>
+            <!--<button class="btn btn-secondary" onclick="ReloadListCommentaires()">Recharger les commentaires</button> -->
 
         </div>
 
